@@ -1,0 +1,22 @@
+apiVersion: v2
+name: gardener-ai-mcp
+description: MCP server for Gardener — documentation search, issue/PR retrieval, and root cause analysis via RAG
+type: application
+version: 0.1.0
+appVersion: "dev"
+keywords:
+  - gardener
+  - kubernetes
+  - mcp
+  - rag
+  - llm
+home: https://github.com/gardener/gardener
+icon: https://raw.githubusercontent.com/gardener/gardener/master/logo/gardener-large.png
+sources:
+  - https://github.com/gardener/gardener
+
+dependencies:
+  - name: qdrant
+    version: "1.18.1"
+    repository: "https://qdrant.github.io/qdrant-helm"
+    condition: qdrant.enabled

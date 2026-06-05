@@ -1,0 +1,82 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+**gardener-docs-mcp** is a production-ready MCP (Model Context Protocol) server that exposes a RAG (Retrieval-Augmented Generation) pipeline over official Gardener Kubernetes documentation. It allows LLM clients to query Gardener docs, code, and proposals via structured MCP tools.
+
+## Architecture
+
+### Pipeline
+
+```
+Data Sources → Ingestion → Chunking → Embedding → Qdrant → MCP Server
+```
+
+1. **Data Sources**: `gardener.cloud/docs`, `github.com/gardener/documentation`, `github.com/gardener/gardener`
+2. **Embedding**: OpenAI `text-embedding-3-large` via an abstraction layer (supports swap to Voyage/Gemini/local)
+3. **Vector DB**: Qdrant with three named collections:
+   - `gardener-docs` — official documentation
+   - `gardener-code` — code and inline docs from the main repo
+   - `gardener-proposals` — GEP (Gardener Enhancement Proposals)
+4. **MCP Layer**: Five tools exposed over MCP protocol
+
+### MCP Tools
+
+| Tool | Purpose |
+|------|---------|
+| `search_docs` | Semantic search over documentation |
+| `search_proposals` | Search GEPs and design proposals |
+| `search_code_docs` | Search code comments and API docs |
+| `explain_concept` | Explain a Gardener concept with context |
+| `find_related_documents` | Find documents related to a given doc/concept |
+
+All tools must return: source URLs, relevance scores, and confidence levels.
+
+### Qdrant Document Metadata Schema
+
+Every stored chunk must carry:
+```python
+{
+  "source_url": str,
+  "repository": str,       # e.g. "gardener/documentation"
+  "file_path": str,
+  "section_title": str,
+  "last_updated": str,     # ISO 8601
+  "content_type": str      # "docs" | "code" | "proposal"
+}
+```
+
+### Retrieval Modes
+
+- **Semantic search**: pure vector similarity
+- **Hybrid search**: vector + BM25 keyword
+- **Metadata filtering**: filter by `repository`, `content_type`, date range
+
+## Repository Structure
+
+```
+gardener-ai-mcp/
+├── backend/          # Shared config, Qdrant client, embedding abstraction
+├── ingestion/        # Crawlers and chunkers per data source
+├── retrieval/        # Search logic (semantic, hybrid, filtered)
+├── mcp/              # MCP server and tool definitions
+├── tests/            # Unit + integration tests
+└── docker/           # Dockerfile and Kubernetes/Helm manifests
+```
+
+## Key Design Decisions
+
+- **Python 3.12** is the target runtime
+- **Embedding abstraction**: all embedding calls go through a provider interface — never call OpenAI SDK directly from retrieval or MCP layers
+- **Incremental phases**: build in order — scaffold → ingestion → retrieval → MCP tools → deployment
+- **Deployment**: Dockerfile + raw Kubernetes manifests + Helm chart required
+
+## Development Phases
+
+1. **Phase 1**: Scaffold repo, select dependencies, finalize architecture
+2. **Phase 2**: Ingestion pipeline (crawl → chunk → embed → upsert into Qdrant)
+3. **Phase 3**: Retrieval layer (semantic, hybrid, metadata-filtered search)
+4. **Phase 4**: MCP server with all five tools
+5. **Phase 5**: Deployment artifacts (Docker, K8s manifests, Helm chart)

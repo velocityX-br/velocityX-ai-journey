@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "gardener-ai-mcp Helm values",
+  "description": "JSON Schema for validating gardener-ai-mcp Helm chart values.",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "description": "Number of MCP server pod replicas.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "description": "Container image repository.",
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "description": "Container image tag.",
+          "type": "string",
+          "minLength": 1
+        },
+        "pullPolicy": {
+          "description": "Image pull policy.",
+          "type": "string",
+          "enum": ["Always", "IfNotPresent", "Never"]
+        }
+      },
+      "required": ["repository", "tag"]
+    },
+    "imagePullSecrets": {
+      "description": "List of image pull secret names.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "description": "Whether to create a ServiceAccount for the MCP server.",
+          "type": "boolean"
+        },
+        "annotations": {
+          "description": "Annotations to add to the ServiceAccount.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Override for the ServiceAccount name. Empty string auto-generates the name.",
+          "type": "string"
+        }
+      }
+    },
+    "podAnnotations": {
+      "description": "Annotations to add to pods.",
+      "type": "object"
+    },
+    "podLabels": {
+      "description": "Extra labels to add to pods.",
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "description": "Pod-level security context.",
+      "type": "object"
+    },
+    "securityContext": {
+      "description": "Container-level security context.",
+      "type": "object"
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Kubernetes service type.",
+          "type": "string",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"]
+        },
+        "port": {
+          "description": "Service port number.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Whether to create an Ingress resource.",
+          "type": "boolean"
+        },
+        "className": {
+          "description": "Ingress class name.",
+          "type": "string"
+        },
+        "annotations": {
+          "description": "Annotations to add to the Ingress.",
+          "type": "object"
+        },
+        "hosts": {
+          "description": "List of ingress host rules.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string",
+                      "enum": ["Prefix", "Exact", "ImplementationSpecific"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "description": "TLS configuration for the Ingress.",
+          "type": "array"
+        }
+      }
+    },
+    "resources": {
+      "description": "Container resource requests and limits.",
+      "type": "object",
+      "properties": {
+        "requests": {
+          "type": "object"
+        },
+        "limits": {
+          "type": "object"
+        }
+      }
+    },
+    "autoscaling": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Whether to create a HorizontalPodAutoscaler.",
+          "type": "boolean"
+        },
+        "minReplicas": {
+          "description": "Minimum number of replicas for the HPA.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxReplicas": {
+          "description": "Maximum number of replicas for the HPA.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "targetCPUUtilizationPercentage": {
+          "description": "Target CPU utilisation percentage for the HPA.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "livenessProbe": {
+      "description": "Liveness probe configuration.",
+      "type": "object"
+    },
+    "readinessProbe": {
+      "description": "Readiness probe configuration.",
+      "type": "object"
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "transport": {
+          "description": "MCP transport mode.",
+          "type": "string",
+          "enum": ["stdio", "sse"]
+        },
+        "embeddingModel": {
+          "description": "Embedding model identifier.",
+          "type": "string"
+        },
+        "embeddingDimensions": {
+          "description": "Number of embedding dimensions as a string (env var compatible).",
+          "type": "string"
+        },
+        "qdrantUrl": {
+          "description": "Qdrant URL when qdrant.enabled is false.",
+          "type": "string"
+        },
+        "apiTimeoutMs": {
+          "description": "LLM API timeout in milliseconds as a string.",
+          "type": "string"
+        },
+        "anthropicModel": {
+          "description": "Anthropic model identifier for LLM calls.",
+          "type": "string"
+        },
+        "hyperspaceOpenaiBaseUrl": {
+          "description": "Hyperspace OpenAI-compatible base URL for embeddings.",
+          "type": "string"
+        },
+        "anthropicBaseUrl": {
+          "description": "Anthropic-compatible base URL for LLM calls.",
+          "type": "string"
+        }
+      },
+      "required": ["transport"]
+    },
+    "secrets": {
+      "description": "Placeholder secret values. Override at deploy time — never commit real values.",
+      "type": "object",
+      "properties": {
+        "anthropicAuthToken": {
+          "type": "string"
+        },
+        "githubToken": {
+          "type": "string"
+        },
+        "qdrantApiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "qdrant": {
+      "description": "Configuration for the embedded Qdrant subchart.",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Whether to deploy Qdrant as a subchart dependency.",
+          "type": "boolean"
+        }
+      }
+    },
+    "extraEnv": {
+      "description": "Additional environment variables to inject into the MCP server container.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    "nodeSelector": {
+      "description": "Node selector for pod scheduling.",
+      "type": "object"
+    },
+    "tolerations": {
+      "description": "Tolerations for pod scheduling.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "affinity": {
+      "description": "Affinity rules for pod scheduling.",
+      "type": "object"
+    }
+  },
+  "required": ["replicaCount", "image"]
+}

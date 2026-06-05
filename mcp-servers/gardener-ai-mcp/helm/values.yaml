@@ -1,0 +1,142 @@
+# ── Replica count ─────────────────────────────────────────────────────────────
+replicaCount: 1
+
+# ── Image ─────────────────────────────────────────────────────────────────────
+image:
+  repository: gardener-ai-mcp
+  tag: "dev"
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+# ── Service account ───────────────────────────────────────────────────────────
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# ── Pod annotations / labels ──────────────────────────────────────────────────
+podAnnotations: {}
+podLabels: {}
+
+# ── Security context ──────────────────────────────────────────────────────────
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1001
+  runAsGroup: 1001
+  fsGroup: 1001
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+# ── Service ───────────────────────────────────────────────────────────────────
+service:
+  type: ClusterIP
+  port: 8080
+
+# ── Ingress ───────────────────────────────────────────────────────────────────
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: gardener-ai-mcp.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+# ── Resources ─────────────────────────────────────────────────────────────────
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi
+
+# ── Autoscaling / HPA ─────────────────────────────────────────────────────────
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 80
+
+# ── Liveness / readiness probes ───────────────────────────────────────────────
+livenessProbe:
+  exec:
+    command:
+      - python
+      - scripts/healthcheck.py
+  initialDelaySeconds: 15
+  periodSeconds: 30
+  timeoutSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  exec:
+    command:
+      - python
+      - scripts/healthcheck.py
+  initialDelaySeconds: 10
+  periodSeconds: 15
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+# ── MCP server configuration ──────────────────────────────────────────────────
+config:
+  # MCP transport: stdio or sse
+  transport: sse
+  # Embedding model
+  embeddingModel: text-embedding-3-small
+  embeddingDimensions: "1536"
+  # Qdrant connection (overridden when qdrant.enabled=true to use subchart service)
+  qdrantUrl: ""
+  # API timeout in milliseconds
+  apiTimeoutMs: "3000000"
+  # Anthropic model to use for root_cause_analysis
+  anthropicModel: "anthropic--claude-sonnet-latest"
+  # Hyperspace OpenAI-compatible base URL (for embeddings)
+  hyperspaceOpenaiBaseUrl: "http://localhost:6655/openai/v1"
+  # Anthropic-compatible base URL (for LLM calls)
+  anthropicBaseUrl: "http://localhost:6655/anthropic/"
+
+# ── Secrets ───────────────────────────────────────────────────────────────────
+# WARNING: Do not set real secrets here. Override via --set at deploy time
+# or use an external secrets operator (e.g. External Secrets Operator).
+secrets:
+  # Hyperspace bearer token (used for both embeddings and LLM calls)
+  anthropicAuthToken: ""
+  # GitHub Personal Access Token for ingestion
+  githubToken: ""
+  # Qdrant API key (leave empty if Qdrant runs without auth)
+  qdrantApiKey: ""
+
+# ── Qdrant subchart ───────────────────────────────────────────────────────────
+qdrant:
+  enabled: true
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: "2"
+      memory: 4Gi
+  persistence:
+    enabled: true
+    size: 10Gi
+
+# ── Additional environment variables ──────────────────────────────────────────
+extraEnv: []
+# - name: MY_VAR
+#   value: "my-value"
+
+# ── Node selector / tolerations / affinity ────────────────────────────────────
+nodeSelector: {}
+tolerations: []
+affinity: {}

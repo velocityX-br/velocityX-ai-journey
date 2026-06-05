@@ -1,0 +1,46 @@
+# =============================================================================
+# .dockerignore — Gardener AI MCP
+#
+# Excludes files that must not enter the Docker build context.
+# Keeping the build context small reduces both build time and the risk of
+# accidentally leaking secrets into an image layer.
+# =============================================================================
+
+# Version control
+.git
+.gitignore
+
+# Python bytecode cache — generated fresh inside the container
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Secrets — the real .env file must NEVER be baked into the image.
+# .env.example is allowed through so documentation tooling can read it,
+# but the actual secret files are excluded.
+.env
+.env.*
+!.env.example
+
+# Local virtualenv — the builder stage creates its own via uv
+.venv
+
+# Development-only directories — not needed at runtime
+tests/
+docs/
+helm/
+.github/
+documentation/
+
+# Markdown files — README.md is permitted as it may be consumed by tooling
+*.md
+!README.md
+
+# Development tooling config
+.pre-commit-config.yaml
+.python-version
+
+# Lock file — copied explicitly by name in the Dockerfile (uv.lock*)
+# Exclude the glob pattern so only the explicit COPY instruction controls it
+uv.lock

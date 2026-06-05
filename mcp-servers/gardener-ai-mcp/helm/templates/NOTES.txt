@@ -1,0 +1,30 @@
+Gardener AI MCP has been deployed!
+
+1. Get the application URL:
+{{- if .Values.ingress.enabled }}
+  http{{ if .Values.ingress.tls }}s{{ end }}://{{ (index .Values.ingress.hosts 0).host }}
+{{- else }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "{{ include "gardener-ai-mcp.selectorLabels" . }}" -o jsonpath="{.items[0].metadata.name}")
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:8080
+  MCP server available at: http://127.0.0.1:8080
+{{- end }}
+
+2. Connect Claude Desktop (SSE transport):
+   Add to claude_desktop_config.json:
+   {
+     "mcpServers": {
+       "gardener": {
+         "url": "http://127.0.0.1:8080/sse"
+       }
+     }
+   }
+
+3. Run ingestion:
+   kubectl run ingest --rm -it --restart=Never \
+     --namespace {{ .Release.Namespace }} \
+     --image={{ .Values.image.repository }}:{{ .Values.image.tag }} \
+     --env-from=secret/{{ include "gardener-ai-mcp.fullname" . }} \
+     -- python scripts/ingest_docs.py
+
+4. Check logs:
+   kubectl logs -n {{ .Release.Namespace }} -l "{{ include "gardener-ai-mcp.selectorLabels" . }}" -f

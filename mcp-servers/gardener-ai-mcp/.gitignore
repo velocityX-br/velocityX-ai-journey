@@ -1,0 +1,42 @@
+# =============================================================================
+# .gitignore — Gardener AI MCP
+# =============================================================================
+
+# Cloned external repos — fetched at runtime via GitHub API, not committed
+documentation/
+
+# Python
+__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+.venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Test / coverage artifacts
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
