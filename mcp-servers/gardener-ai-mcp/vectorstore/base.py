@@ -154,6 +154,19 @@ class BaseVectorStore(ABC):
         """
         ...
 
+    @abstractmethod
+    async def count(self, collection: str) -> int:
+        """Return the number of points stored in the collection.
+
+        Args:
+            collection: The collection name to count points in.
+
+        Returns:
+            The total number of indexed points, or ``0`` if the collection
+            does not exist or any error occurs.
+        """
+        ...
+
 
 class VectorStoreError(Exception):
     """Raised when a vector store operation encounters a non-recoverable error.

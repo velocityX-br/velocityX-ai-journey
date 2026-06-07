@@ -39,6 +39,9 @@ class Settings(BaseSettings):
             Defaults to ``"gardener/documentation"``.
         github_gardener_repo: Repository slug for the main Gardener source.
             Defaults to ``"gardener/gardener"``.
+        github_base_url: GitHub API base URL.  ``None`` (default) targets
+            ``github.com``.  Set to ``"https://github.tools.sap/api/v3"``
+            for SAP GitHub Enterprise.
         anthropic_base_url: Base URL for the Anthropic-compatible LLM proxy
             (SAP Hyperspace).
         anthropic_auth_token: Bearer token for the Anthropic proxy.
@@ -88,6 +91,18 @@ class Settings(BaseSettings):
             "GITHUB_GARDENER_REPO",
         ),
         description="Repository slug for the main Gardener source code.",
+    )
+
+    github_base_url: str | None = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "GARDENER_MCP_GITHUB_BASE_URL",
+            "GITHUB_BASE_URL",
+        ),
+        description=(
+            "GitHub API base URL.  Leave unset (None) to target github.com. "
+            "Set to e.g. 'https://github.tools.sap/api/v3' for GitHub Enterprise."
+        ),
     )
 
     # ------------------------------------------------------------------
@@ -161,6 +176,18 @@ class Settings(BaseSettings):
         description="Number of dimensions for embedding vectors.",
     )
 
+    embedding_cache_size: int = Field(
+        default=256,
+        validation_alias=AliasChoices(
+            "GARDENER_MCP_EMBEDDING_CACHE_SIZE",
+            "EMBEDDING_CACHE_SIZE",
+        ),
+        description=(
+            "Number of query embeddings to cache in memory (FIFO eviction). "
+            "Set to 0 to disable the cache."
+        ),
+    )
+
     # ------------------------------------------------------------------
     # Qdrant vector store
     # ------------------------------------------------------------------
@@ -191,6 +218,74 @@ class Settings(BaseSettings):
         ),
         description="Number of points to upsert per Qdrant request.  Larger values "
         "increase throughput but consume more memory per request.",
+    )
+
+    # ------------------------------------------------------------------
+    # Ingestion limits
+    # ------------------------------------------------------------------
+
+    ingestion_max_prs: int = Field(
+        default=500,
+        validation_alias=AliasChoices(
+            "GARDENER_MCP_INGESTION_MAX_PRS",
+            "INGESTION_MAX_PRS",
+        ),
+        description=(
+            "Maximum number of PRs to ingest.  Fetches the most-recently updated "
+            "PRs first (state='all', sorted by updated).  Set to 0 for no limit "
+            "(not recommended for large repos — will exhaust GitHub API rate limits)."
+        ),
+    )
+
+    ingestion_max_issues: int = Field(
+        default=1000,
+        validation_alias=AliasChoices(
+            "GARDENER_MCP_INGESTION_MAX_ISSUES",
+            "INGESTION_MAX_ISSUES",
+        ),
+        description=(
+            "Maximum number of issues to ingest.  Fetches the most-recently updated "
+            "issues first (state='all', sorted by updated).  Set to 0 for no limit "
+            "(not recommended for large repos — will exhaust GitHub API rate limits)."
+        ),
+    )
+
+    ingestion_issues_batch_size: int = Field(
+        default=100,
+        validation_alias=AliasChoices(
+            "GARDENER_MCP_INGESTION_ISSUES_BATCH_SIZE",
+            "INGESTION_ISSUES_BATCH_SIZE",
+        ),
+        description=(
+            "Number of issues to process per batch during ingestion.  "
+            "Each batch fetches issue comments sequentially before moving on.  "
+            "Smaller values reduce peak memory usage."
+        ),
+    )
+
+    # ------------------------------------------------------------------
+    # MCP tool result cache
+    # ------------------------------------------------------------------
+
+    tool_cache_ttl_seconds: int = Field(
+        default=3600,
+        validation_alias=AliasChoices(
+            "GARDENER_MCP_TOOL_CACHE_TTL_SECONDS",
+            "TOOL_CACHE_TTL_SECONDS",
+        ),
+        description=(
+            "TTL in seconds for MCP tool result cache. "
+            "Set to 0 to disable tool-level caching."
+        ),
+    )
+
+    tool_cache_max_size: int = Field(
+        default=128,
+        validation_alias=AliasChoices(
+            "GARDENER_MCP_TOOL_CACHE_MAX_SIZE",
+            "TOOL_CACHE_MAX_SIZE",
+        ),
+        description="Maximum number of cached MCP tool results (LRU eviction).",
     )
 
     # ------------------------------------------------------------------
@@ -226,6 +321,30 @@ class Settings(BaseSettings):
         ),
         description="TCP port to bind when transport='sse'.",
     )
+
+
+def build_github_client(settings: Settings) -> "github.Github":
+    """Construct a PyGithub client from settings.
+
+    Uses ``settings.github_base_url`` when set so that the client targets
+    the correct GitHub instance (``github.com`` vs GitHub Enterprise).
+    When ``github_base_url`` is ``None`` the PyGithub default is used,
+    which resolves to ``https://api.github.com``.
+
+    Args:
+        settings: Validated application settings.
+
+    Returns:
+        An authenticated ``github.Github`` instance.
+    """
+    import github  # local import to keep module-level deps minimal
+
+    if settings.github_base_url:
+        return github.Github(
+            login_or_token=settings.github_token,
+            base_url=settings.github_base_url,
+        )
+    return github.Github(settings.github_token)
 
 
 def get_settings() -> Settings:

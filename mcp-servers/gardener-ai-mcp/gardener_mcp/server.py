@@ -28,7 +28,7 @@ from fastmcp import FastMCP
 
 from config.settings import Settings, get_settings
 from gardener_mcp.context import build_app_context
-from gardener_mcp.tools import register_tools
+from gardener_mcp.tools import configure_tool_cache, register_tools
 
 logger = logging.getLogger(__name__)
 
@@ -53,6 +53,10 @@ async def lifespan(app: FastMCP) -> AsyncIterator[dict]:  # type: ignore[type-ar
         "Starting Gardener AI MCP server — qdrant_url=%s anthropic_model=%s",
         settings.qdrant_url,
         settings.anthropic_model,
+    )
+    configure_tool_cache(
+        ttl_seconds=settings.tool_cache_ttl_seconds,
+        max_size=settings.tool_cache_max_size,
     )
     app_context = await build_app_context(settings)
     logger.info("AppContext built successfully.")

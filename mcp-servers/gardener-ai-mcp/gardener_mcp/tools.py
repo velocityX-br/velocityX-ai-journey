@@ -27,16 +27,82 @@ Context injection (FastMCP v3.x):
 
 from __future__ import annotations
 
+import hashlib
+import json
 import logging
+import time
 from typing import Any
 
 from fastmcp import Context
 
-from gardener_mcp.models import ToolSearchResult
+from gardener_mcp.models import (
+    CacheSapGithubContentResult,
+    SAP_GITHUB_CONTENT_TYPES,
+    ToolSearchResult,
+    _SAP_GITHUB_TARGET_COLLECTIONS,
+)
+from ingestion.base import Document
+from ingestion.chunking import CodeChunker, MarkdownChunker
 from retrieval.semantic import SemanticRetriever
 from vectorstore.base import SearchResult
 
 logger = logging.getLogger(__name__)
+
+
+# ---------------------------------------------------------------------------
+# Lightweight TTL cache for tool results
+# ---------------------------------------------------------------------------
+
+class _ToolCache:
+    """In-process TTL + LRU cache for MCP tool results.
+
+    Entries expire after ``ttl_seconds`` and the cache evicts the oldest
+    entry (FIFO) once ``max_size`` is reached.  Both ``ttl_seconds=0``
+    and ``max_size=0`` disable caching entirely.
+
+    This is intentionally simple — no threading locks needed because the
+    MCP server is single-threaded async.
+    """
+
+    def __init__(self, ttl_seconds: int, max_size: int) -> None:
+        self._ttl = ttl_seconds
+        self._max_size = max_size
+        # Ordered dict: key → (expiry_timestamp, value)
+        self._store: dict[str, tuple[float, Any]] = {}
+
+    @property
+    def enabled(self) -> bool:
+        """Return True when caching is active."""
+        return self._ttl > 0 and self._max_size > 0
+
+    def _make_key(self, tool_name: str, **kwargs: Any) -> str:
+        """Derive a stable cache key from the tool name and call arguments."""
+        payload = json.dumps({"tool": tool_name, **kwargs}, sort_keys=True, default=str)
+        return hashlib.sha256(payload.encode()).hexdigest()
+
+    def get(self, key: str) -> tuple[bool, Any]:
+        """Return ``(True, value)`` on a live cache hit, else ``(False, None)``."""
+        if not self.enabled or key not in self._store:
+            return False, None
+        expiry, value = self._store[key]
+        if time.monotonic() > expiry:
+            del self._store[key]
+            return False, None
+        logger.debug("Tool cache hit for key %s", key[:8])
+        return True, value
+
+    def set(self, key: str, value: Any) -> None:
+        """Store a value with the configured TTL."""
+        if not self.enabled:
+            return
+        # FIFO eviction when at capacity.
+        if len(self._store) >= self._max_size:
+            self._store.pop(next(iter(self._store)))
+        self._store[key] = (time.monotonic() + self._ttl, value)
+
+
+# Module-level cache instance; re-configured by register_tools() at startup.
+_tool_cache: _ToolCache = _ToolCache(ttl_seconds=0, max_size=0)
 
 
 def _to_tool_result(result: SearchResult) -> ToolSearchResult:
@@ -123,6 +189,28 @@ def set_mcp_instance(instance: Any) -> None:
     _mcp_instance = instance
 
 
+def configure_tool_cache(ttl_seconds: int, max_size: int) -> None:
+    """Configure the module-level tool result cache.
+
+    Called from the server lifespan after settings are available.
+    Can be called again to reconfigure (e.g. in tests).
+
+    Args:
+        ttl_seconds: Cache entry TTL. ``0`` disables caching.
+        max_size: Maximum number of cached entries. ``0`` disables caching.
+    """
+    global _tool_cache
+    _tool_cache = _ToolCache(ttl_seconds=ttl_seconds, max_size=max_size)
+    if _tool_cache.enabled:
+        logger.info(
+            "Tool result cache enabled: ttl=%ds max_size=%d",
+            ttl_seconds,
+            max_size,
+        )
+    else:
+        logger.info("Tool result cache disabled.")
+
+
 def register_tools(mcp_app: Any) -> None:
     """Register all 7 MCP tools against the given ``FastMCP`` instance.
 
@@ -130,9 +218,14 @@ def register_tools(mcp_app: Any) -> None:
     instance is created and the lifespan is configured.  Each inner
     ``async def`` is decorated with ``@mcp_app.tool`` at call time.
 
+    The tool-level TTL cache is initialised here from the application
+    settings so that the cache size and TTL are configurable at runtime
+    without touching this module.
+
     Args:
         mcp_app: The ``FastMCP`` application instance.
     """
+    global _tool_cache
 
     @mcp_app.tool
     async def search_docs(
@@ -156,13 +249,20 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A ranked list of matching documentation chunks.
         """
+        cache_key = _tool_cache._make_key("search_docs", query=query, limit=limit, filters=filters)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
+
         app_ctx = _get_app_context(ctx)
         results = await app_ctx.semantic_retriever.retrieve(
             query=query,
             filters=filters or None,
             limit=limit,
         )
-        return [_to_tool_result(r) for r in results]
+        output = [_to_tool_result(r) for r in results]
+        _tool_cache.set(cache_key, output)
+        return output
 
     @mcp_app.tool
     async def search_issues(
@@ -198,6 +298,11 @@ def register_tools(mcp_app: Any) -> None:
 
         filters = _merge_filters(None, extra) or None
 
+        cache_key = _tool_cache._make_key("search_issues", query=query, limit=limit, state=state, labels=labels)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
+
         retriever = SemanticRetriever(
             embedder=app_ctx.embedder,
             vector_store=app_ctx.vector_store,
@@ -208,7 +313,9 @@ def register_tools(mcp_app: Any) -> None:
             filters=filters,
             limit=limit,
         )
-        return [_to_tool_result(r) for r in results]
+        output = [_to_tool_result(r) for r in results]
+        _tool_cache.set(cache_key, output)
+        return output
 
     @mcp_app.tool
     async def search_prs(
@@ -239,6 +346,11 @@ def register_tools(mcp_app: Any) -> None:
 
         filters = _merge_filters(None, extra) or None
 
+        cache_key = _tool_cache._make_key("search_prs", query=query, limit=limit, state=state)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
+
         retriever = SemanticRetriever(
             embedder=app_ctx.embedder,
             vector_store=app_ctx.vector_store,
@@ -249,7 +361,9 @@ def register_tools(mcp_app: Any) -> None:
             filters=filters,
             limit=limit,
         )
-        return [_to_tool_result(r) for r in results]
+        output = [_to_tool_result(r) for r in results]
+        _tool_cache.set(cache_key, output)
+        return output
 
     @mcp_app.tool
     async def search_proposals(
@@ -275,6 +389,11 @@ def register_tools(mcp_app: Any) -> None:
 
         filters: dict[str, Any] = {"content_type": "proposal"}
 
+        cache_key = _tool_cache._make_key("search_proposals", query=query, limit=limit)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
+
         retriever = SemanticRetriever(
             embedder=app_ctx.embedder,
             vector_store=app_ctx.vector_store,
@@ -285,7 +404,9 @@ def register_tools(mcp_app: Any) -> None:
             filters=filters,
             limit=limit,
         )
-        return [_to_tool_result(r) for r in results]
+        output = [_to_tool_result(r) for r in results]
+        _tool_cache.set(cache_key, output)
+        return output
 
     @mcp_app.tool
     async def search_code(
@@ -316,6 +437,11 @@ def register_tools(mcp_app: Any) -> None:
 
         filters = _merge_filters(None, extra) or None
 
+        cache_key = _tool_cache._make_key("search_code", query=query, limit=limit, repo=repo)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
+
         retriever = SemanticRetriever(
             embedder=app_ctx.embedder,
             vector_store=app_ctx.vector_store,
@@ -326,7 +452,9 @@ def register_tools(mcp_app: Any) -> None:
             filters=filters,
             limit=limit,
         )
-        return [_to_tool_result(r) for r in results]
+        output = [_to_tool_result(r) for r in results]
+        _tool_cache.set(cache_key, output)
+        return output
 
     @mcp_app.tool
     async def rag_retrieve(
@@ -356,6 +484,11 @@ def register_tools(mcp_app: Any) -> None:
         """
         app_ctx = _get_app_context(ctx)
 
+        cache_key = _tool_cache._make_key("rag_retrieve", query=query, collection=collection, limit=limit, filters=filters)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
+
         retriever = SemanticRetriever(
             embedder=app_ctx.embedder,
             vector_store=app_ctx.vector_store,
@@ -366,7 +499,9 @@ def register_tools(mcp_app: Any) -> None:
             filters=filters,
             limit=limit,
         )
-        return [_to_tool_result(r) for r in results]
+        output = [_to_tool_result(r) for r in results]
+        _tool_cache.set(cache_key, output)
+        return output
 
     @mcp_app.tool
     async def root_cause_analysis(
@@ -404,6 +539,11 @@ def register_tools(mcp_app: Any) -> None:
             the LLM.
         """
         app_ctx = _get_app_context(ctx)
+
+        cache_key = _tool_cache._make_key("root_cause_analysis", symptom=symptom, context=context, limit=limit)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
 
         # Build the combined query for hybrid retrieval.
         combined_query = symptom
@@ -452,7 +592,202 @@ def register_tools(mcp_app: Any) -> None:
 
         # Extract the text content from the first content block.
         if response.content and hasattr(response.content[0], "text"):
-            return response.content[0].text
+            result = response.content[0].text
+            _tool_cache.set(cache_key, result)
+            return result
 
         logger.warning("root_cause_analysis: unexpected LLM response shape — returning empty string")
         return ""
+
+    # ---------------------------------------------------------------------------
+    # SAP GitHub → Qdrant write-through cache
+    # ---------------------------------------------------------------------------
+
+    # Collection routing: content_type → Qdrant collection name.
+    # Kept here (not in models.py) so the tool owns its routing logic.
+    _SAP_GITHUB_COLLECTION_MAP: dict[str, str] = {
+        "issue": "gardener_issues",
+        "pr": "gardener_prs",
+        "code": "gardener_code",
+        "doc": "gardener_docs",
+    }
+
+    @mcp_app.tool
+    async def cache_sap_github_content(
+        content_type: str,
+        content: str,
+        sap_github_url: str,
+        sap_github_repo: str,
+        issue_metadata: dict[str, Any] | None = None,
+        pr_metadata: dict[str, Any] | None = None,
+        code_metadata: dict[str, Any] | None = None,
+        ctx: Context = None,
+    ) -> CacheSapGithubContentResult:
+        """Vectorise and cache content from github.tools.sap into Qdrant.
+
+        Call this tool after fetching content via the github-tools MCP server
+        (which targets github.tools.sap — SAP's internal GitHub Enterprise).
+        The content is chunked, embedded, and upserted into the appropriate
+        Qdrant collection so that future ``search_*`` calls can surface it
+        semantically alongside public github.com/gardener/* content.
+
+        **Important distinction:**
+        - github.com/gardener/* content is batch-ingested offline via
+          ``scripts/ingest_docs.py`` (GitHubIssuesIngester, GitHubPRsIngester).
+        - github.tools.sap content arrives on-demand through this tool,
+          triggered by the AI agent after calling github-tools MCP tools.
+
+        Collection routing (automatic):
+            ``content_type='issue'`` → ``gardener_issues``
+            ``content_type='pr'``    → ``gardener_prs``
+            ``content_type='code'``  → ``gardener_code``
+            ``content_type='doc'``   → ``gardener_docs``
+
+        Deduplication: re-caching the same ``sap_github_url`` replaces all
+        existing chunks for that URL (upsert semantics — no duplicates).
+
+        Args:
+            content_type: Type of content from github.tools.sap.
+                Must be one of: ``'issue'``, ``'pr'``, ``'code'``, ``'doc'``.
+            content: Full text to vectorise — e.g. issue body + comments,
+                PR description + diff summary, or raw file contents.
+            sap_github_url: Canonical HTML URL on github.tools.sap used as
+                the deduplication key.
+                Example: ``'https://github.tools.sap/my-org/my-repo/issues/42'``
+            sap_github_repo: Repository slug on github.tools.sap
+                e.g. ``'my-org/my-repo'``.  Stored in metadata to distinguish
+                SAP GitHub content from public github.com/gardener/* content.
+            issue_metadata: Structured metadata when ``content_type='issue'``.
+                Expected keys: ``issue_number``, ``title``, ``state``,
+                ``labels``, ``created_at``, ``closed_at``.
+            pr_metadata: Structured metadata when ``content_type='pr'``.
+                Expected keys: ``pr_number``, ``title``, ``state``,
+                ``created_at``, ``merged_at``.
+            code_metadata: Structured metadata when ``content_type='code'``.
+                Expected keys: ``file_path``, ``ref``, ``language``.
+            ctx: FastMCP context providing access to lifespan singletons.
+
+        Returns:
+            A ``CacheSapGithubContentResult`` with the number of chunks
+            upserted, the target collection, and whether the URL already
+            existed in the store.
+
+        Raises:
+            ValueError: If ``content_type`` is not one of the four valid
+                values, or if ``content`` is empty.
+        """
+        if content_type not in SAP_GITHUB_CONTENT_TYPES:
+            raise ValueError(
+                f"Invalid content_type {content_type!r}. "
+                f"Must be one of: {sorted(SAP_GITHUB_CONTENT_TYPES)}"
+            )
+        if not content or not content.strip():
+            raise ValueError("content must not be empty")
+
+        app_ctx = _get_app_context(ctx)
+        collection = _SAP_GITHUB_COLLECTION_MAP[content_type]
+
+        # ------------------------------------------------------------------
+        # Build the metadata payload — always tag with sap_github origin so
+        # search results can be distinguished from github.com/gardener/* docs.
+        # ------------------------------------------------------------------
+        metadata: dict[str, Any] = {
+            "source_origin": "sap_github",        # distinguishes from github.com
+            "sap_github_repo": sap_github_repo,
+            "url": sap_github_url,
+            "content_type": content_type,
+        }
+
+        if content_type == "issue" and issue_metadata:
+            metadata.update({
+                "issue_number": issue_metadata.get("issue_number"),
+                "title": issue_metadata.get("title"),
+                "state": issue_metadata.get("state", "open"),
+                "labels": issue_metadata.get("labels", []),
+                "created_at": issue_metadata.get("created_at"),
+                "closed_at": issue_metadata.get("closed_at"),
+            })
+        elif content_type == "pr" and pr_metadata:
+            metadata.update({
+                "pr_number": pr_metadata.get("pr_number"),
+                "title": pr_metadata.get("title"),
+                "state": pr_metadata.get("state", "open"),
+                "created_at": pr_metadata.get("created_at"),
+                "merged_at": pr_metadata.get("merged_at"),
+            })
+        elif content_type == "code" and code_metadata:
+            metadata.update({
+                "file_path": code_metadata.get("file_path"),
+                "ref": code_metadata.get("ref"),
+                "language": code_metadata.get("language"),
+            })
+
+        # ------------------------------------------------------------------
+        # Check whether this URL already has chunks in the collection.
+        # We do a tiny semantic search filtered to the exact URL as a proxy
+        # for existence; if any result comes back we know it existed.
+        # ------------------------------------------------------------------
+        probe_retriever = SemanticRetriever(
+            embedder=app_ctx.embedder,
+            vector_store=app_ctx.vector_store,
+            collection=collection,
+        )
+        probe_results = await probe_retriever.retrieve(
+            query=sap_github_url,
+            filters={"url": sap_github_url},
+            limit=1,
+        )
+        already_existed = len(probe_results) > 0
+
+        # ------------------------------------------------------------------
+        # Chunk the content.
+        # - Markdown/prose content (issues, PRs, docs) → MarkdownChunker
+        # - Source code → CodeChunker (language-aware recursive splitting)
+        # ------------------------------------------------------------------
+        doc = Document(
+            content=content,
+            metadata=metadata,
+            source=sap_github_url,
+        )
+
+        if content_type == "code":
+            chunker = CodeChunker()
+        else:
+            chunker = MarkdownChunker()
+
+        chunks: list[Document] = chunker.chunk(doc)
+
+        # ------------------------------------------------------------------
+        # Embed all chunks in one batch.
+        # ------------------------------------------------------------------
+        chunk_texts = [c.content for c in chunks]
+        vectors: list[list[float]] = await app_ctx.embedder.embed(chunk_texts)
+
+        # ------------------------------------------------------------------
+        # Ensure the collection exists (idempotent), then upsert.
+        # ------------------------------------------------------------------
+        await app_ctx.vector_store.ensure_collection(
+            collection=collection,
+            vector_size=app_ctx.settings.embedding_dimensions,
+        )
+        upserted = await app_ctx.vector_store.upsert(
+            collection=collection,
+            documents=chunks,
+            vectors=vectors,
+        )
+
+        logger.info(
+            "cache_sap_github_content: upserted %d chunks into %r for %s "
+            "(already_existed=%s)",
+            upserted,
+            collection,
+            sap_github_url,
+            already_existed,
+        )
+
+        return CacheSapGithubContentResult(
+            chunks_upserted=upserted,
+            collection=collection,
+            sap_github_url=sap_github_url,
+            already_existed=already_existed,
+        )

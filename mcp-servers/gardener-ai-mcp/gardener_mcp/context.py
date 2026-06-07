@@ -109,6 +109,15 @@ async def build_app_context(settings: Settings) -> AppContext:
             "Qdrant health check failed — vector store may be unreachable. "
             "Retrieval tools will fail until Qdrant becomes available."
         )
+    else:
+        for collection in _ALL_COLLECTIONS:
+            count = await vector_store.count(collection)
+            if count == 0:
+                logger.warning(
+                    "Collection %r is empty — run `uv run python scripts/ingest_docs.py` "
+                    "to populate it before using retrieval tools.",
+                    collection,
+                )
 
     semantic_retriever = SemanticRetriever(
         embedder=embedder,

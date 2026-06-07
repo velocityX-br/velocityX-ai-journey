@@ -194,6 +194,191 @@ class RootCauseAnalysisInput(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# SAP GitHub cache tool models
+# ---------------------------------------------------------------------------
+
+# Valid Qdrant target collections for SAP GitHub content.
+# These are the same four collections used by the read-side search tools,
+# but the naming makes explicit which GitHub origin is being written to.
+_SAP_GITHUB_TARGET_COLLECTIONS = frozenset(
+    {"gardener_docs", "gardener_issues", "gardener_prs", "gardener_code"}
+)
+
+# Content types as returned by github-tools MCP (github.tools.sap).
+# Kept explicit so agents know what values are valid without guessing.
+SAP_GITHUB_CONTENT_TYPES = frozenset({"issue", "pr", "code", "doc"})
+
+
+class SapGithubIssueMetadata(BaseModel):
+    """Metadata for a GitHub issue fetched from github.tools.sap via github-tools MCP.
+
+    All fields mirror the payload returned by github-tools ``issue_read``
+    and ``list_issues`` operations.  Optional fields may be absent when
+    the github-tools MCP omits them.
+    """
+
+    issue_number: int = Field(
+        description="Issue number on github.tools.sap (e.g. 42)"
+    )
+    repo: str = Field(
+        description="Repository slug on github.tools.sap e.g. 'my-org/my-repo'"
+    )
+    title: str = Field(
+        description="Issue title as returned by github-tools MCP"
+    )
+    state: str = Field(
+        default="open",
+        description="Issue state: 'open' or 'closed'",
+    )
+    labels: list[str] = Field(
+        default_factory=list,
+        description="Label names attached to the issue",
+    )
+    url: str = Field(
+        description="HTML URL of the issue on github.tools.sap"
+    )
+    created_at: str | None = Field(
+        default=None,
+        description="ISO 8601 creation timestamp",
+    )
+    closed_at: str | None = Field(
+        default=None,
+        description="ISO 8601 close timestamp, or None if still open",
+    )
+
+
+class SapGithubPRMetadata(BaseModel):
+    """Metadata for a pull request fetched from github.tools.sap via github-tools MCP."""
+
+    pr_number: int = Field(
+        description="Pull request number on github.tools.sap"
+    )
+    repo: str = Field(
+        description="Repository slug on github.tools.sap e.g. 'my-org/my-repo'"
+    )
+    title: str = Field(
+        description="PR title as returned by github-tools MCP"
+    )
+    state: str = Field(
+        default="open",
+        description="PR state: 'open', 'closed', or 'merged'",
+    )
+    url: str = Field(
+        description="HTML URL of the PR on github.tools.sap"
+    )
+    created_at: str | None = Field(
+        default=None,
+        description="ISO 8601 creation timestamp",
+    )
+    merged_at: str | None = Field(
+        default=None,
+        description="ISO 8601 merge timestamp, or None if not merged",
+    )
+
+
+class SapGithubCodeMetadata(BaseModel):
+    """Metadata for a source-code file fetched from github.tools.sap via github-tools MCP."""
+
+    repo: str = Field(
+        description="Repository slug on github.tools.sap e.g. 'my-org/my-repo'"
+    )
+    file_path: str = Field(
+        description="File path within the repository e.g. 'pkg/client/client.go'"
+    )
+    url: str = Field(
+        description="HTML URL of the file on github.tools.sap"
+    )
+    ref: str | None = Field(
+        default=None,
+        description="Git ref (branch, tag, or commit SHA) this file was read from",
+    )
+    language: str | None = Field(
+        default=None,
+        description="Programming language detected for this file e.g. 'go', 'python'",
+    )
+
+
+class CacheSapGithubContentInput(BaseModel):
+    """Input schema for the ``cache_sap_github_content`` tool.
+
+    Vectorises content retrieved from github.tools.sap (via the github-tools
+    MCP server) and upserts it into the appropriate Qdrant collection so that
+    future ``search_*`` calls can surface it semantically.
+
+    The caller is responsible for:
+    - Fetching the raw content from github-tools first.
+    - Choosing the correct ``content_type`` to route to the right collection.
+    - Providing the typed metadata block that matches ``content_type``.
+
+    Deduplication is by ``sap_github_url``: re-caching the same URL replaces
+    the existing vectors (upsert semantics).
+
+    Collection routing:
+        ``issue`` → ``gardener_issues``
+        ``pr``    → ``gardener_prs``
+        ``code``  → ``gardener_code``
+        ``doc``   → ``gardener_docs``
+    """
+
+    content_type: str = Field(
+        description=(
+            "Type of content from github.tools.sap: "
+            "'issue', 'pr', 'code', or 'doc'"
+        )
+    )
+    content: str = Field(
+        description=(
+            "Full text content to vectorise — e.g. issue body + comments, "
+            "PR description + diff summary, or file contents"
+        )
+    )
+    sap_github_url: str = Field(
+        description=(
+            "Canonical HTML URL of the item on github.tools.sap — used as the "
+            "deduplication key.  Example: "
+            "'https://github.tools.sap/my-org/my-repo/issues/42'"
+        )
+    )
+    sap_github_repo: str = Field(
+        description=(
+            "Repository slug on github.tools.sap e.g. 'my-org/my-repo'.  "
+            "Stored in metadata to distinguish SAP GitHub content from "
+            "public github.com/gardener/* content."
+        )
+    )
+    issue_metadata: SapGithubIssueMetadata | None = Field(
+        default=None,
+        description="Required when content_type='issue'. Omit for other types.",
+    )
+    pr_metadata: SapGithubPRMetadata | None = Field(
+        default=None,
+        description="Required when content_type='pr'. Omit for other types.",
+    )
+    code_metadata: SapGithubCodeMetadata | None = Field(
+        default=None,
+        description="Required when content_type='code'. Omit for other types.",
+    )
+
+
+class CacheSapGithubContentResult(BaseModel):
+    """Result returned by the ``cache_sap_github_content`` tool.
+
+    Attributes:
+        chunks_upserted: Number of vector chunks written to Qdrant.
+        collection: The Qdrant collection that was written to.
+        sap_github_url: The deduplication key used for this upsert.
+        already_existed: True when at least one chunk with the same
+            ``sap_github_url`` was already present in the collection
+            before this call (i.e. the content was refreshed, not new).
+    """
+
+    chunks_upserted: int
+    collection: str
+    sap_github_url: str
+    already_existed: bool
+
+
+# ---------------------------------------------------------------------------
 # Tool output models
 # ---------------------------------------------------------------------------
 

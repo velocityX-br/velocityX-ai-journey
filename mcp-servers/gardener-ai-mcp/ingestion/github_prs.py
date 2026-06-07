@@ -144,17 +144,28 @@ class GitHubPRsIngester(BaseIngester):
             ) from exc
 
         try:
-            paginated_prs = await asyncio.to_thread(repo.get_pulls, state="all")
+            paginated_prs = await asyncio.to_thread(
+                repo.get_pulls, state="all", sort="updated", direction="desc"
+            )
         except Exception as exc:
             raise IngestionError(
                 f"Failed to list PRs for {repo_slug!r}: {exc}", source=repo_slug
             ) from exc
 
-        prs: list[PullRequest] = await asyncio.to_thread(list, paginated_prs)
-
-        logger.info(
-            "Fetched %d PRs from %s; fetching review comments…", len(prs), repo_slug
-        )
+        max_prs = self._settings.ingestion_max_prs
+        all_prs: list[PullRequest] = await asyncio.to_thread(list, paginated_prs)
+        if max_prs > 0:
+            prs = all_prs[:max_prs]
+            logger.info(
+                "Fetched %d PRs total from %s; capped at %d (most recently updated). "
+                "Set INGESTION_MAX_PRS=0 to remove the cap.",
+                len(all_prs),
+                repo_slug,
+                max_prs,
+            )
+        else:
+            prs = all_prs
+            logger.info("Fetched %d PRs from %s (no cap).", len(prs), repo_slug)
 
         documents: list[Document] = []
         for pr in prs:

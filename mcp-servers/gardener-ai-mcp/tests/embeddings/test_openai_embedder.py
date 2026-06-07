@@ -29,13 +29,17 @@ from embeddings.openai_embedder import HyperspaceEmbedder
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _make_settings() -> Settings:
+def _make_settings(cache_size: int = 0) -> Settings:
     """Return a minimal Settings instance suitable for unit tests.
 
     ``pydantic-settings`` resolves ``validation_alias=AliasChoices`` fields
     from keyword arguments using the *alias* names, not the Python attribute
     names.  The unprefixed alias names (e.g. ``GITHUB_TOKEN``) are used here
     to keep the helper concise.
+
+    Args:
+        cache_size: Value for ``EMBEDDING_CACHE_SIZE``.  Defaults to ``0``
+            (disabled) so existing tests are unaffected.
     """
     return Settings(
         GITHUB_TOKEN="test-token",
@@ -43,6 +47,7 @@ def _make_settings() -> Settings:
         ANTHROPIC_AUTH_TOKEN="test-key",
         EMBEDDING_MODEL="text-embedding-3-small",
         EMBEDDING_DIMENSIONS=3,
+        EMBEDDING_CACHE_SIZE=cache_size,
     )
 
 
@@ -208,3 +213,84 @@ class TestHyperspaceEmbedder:
         assert len(captured_requests) == 1
         body = json.loads(captured_requests[0].content)
         assert body["model"] == "text-embedding-3-small"
+
+
+class TestHyperspaceEmbedderCache:
+    """Unit tests for embed_query in-process caching."""
+
+    @pytest.mark.asyncio
+    async def test_cache_hit_avoids_second_http_call(self) -> None:
+        """Second embed_query call with the same text must not hit the HTTP API."""
+        settings = _make_settings(cache_size=256)
+        embedder = _make_embedder(settings)
+        expected_vector = [0.1, 0.2, 0.3]
+
+        async with respx.mock(base_url="http://test") as mock:
+            route = mock.post("/v1/embeddings").mock(
+                return_value=_ok_response([expected_vector])
+            )
+            first = await embedder.embed_query("certificate rotation")
+            second = await embedder.embed_query("certificate rotation")
+
+        # Only one HTTP call despite two embed_query calls.
+        assert route.call_count == 1
+        assert first == pytest.approx(expected_vector)
+        assert second == pytest.approx(expected_vector)
+
+    @pytest.mark.asyncio
+    async def test_different_queries_each_call_api(self) -> None:
+        """Two distinct queries must each trigger one HTTP call."""
+        settings = _make_settings(cache_size=256)
+        embedder = _make_embedder(settings)
+
+        async with respx.mock(base_url="http://test") as mock:
+            route = mock.post("/v1/embeddings")
+            route.side_effect = [
+                _ok_response([[0.1, 0.2, 0.3]]),
+                _ok_response([[0.4, 0.5, 0.6]]),
+            ]
+            v1 = await embedder.embed_query("shoot cluster")
+            v2 = await embedder.embed_query("etcd backup")
+
+        assert route.call_count == 2
+        assert v1 == pytest.approx([0.1, 0.2, 0.3])
+        assert v2 == pytest.approx([0.4, 0.5, 0.6])
+
+    @pytest.mark.asyncio
+    async def test_cache_disabled_when_size_zero(self) -> None:
+        """With cache_size=0 every call must go to the HTTP API."""
+        settings = _make_settings(cache_size=0)
+        embedder = _make_embedder(settings)
+        vector = [0.1, 0.2, 0.3]
+
+        async with respx.mock(base_url="http://test") as mock:
+            route = mock.post("/v1/embeddings").mock(
+                return_value=_ok_response([vector])
+            )
+            await embedder.embed_query("gardener shoot")
+            await embedder.embed_query("gardener shoot")
+
+        assert route.call_count == 2
+
+    @pytest.mark.asyncio
+    async def test_cache_fifo_eviction(self) -> None:
+        """After the cache fills up the oldest entry is evicted."""
+        settings = _make_settings(cache_size=2)
+        embedder = _make_embedder(settings)
+
+        async with respx.mock(base_url="http://test") as mock:
+            route = mock.post("/v1/embeddings")
+            route.side_effect = [
+                _ok_response([[0.1, 0.1, 0.1]]),  # query A — fills slot 1
+                _ok_response([[0.2, 0.2, 0.2]]),  # query B — fills slot 2
+                _ok_response([[0.3, 0.3, 0.3]]),  # query C — evicts A, fills slot 2
+                _ok_response([[0.4, 0.4, 0.4]]),  # query A (re-embed after eviction)
+            ]
+            await embedder.embed_query("alpha")   # call 1
+            await embedder.embed_query("beta")    # call 2
+            await embedder.embed_query("gamma")   # call 3 — evicts "alpha"
+            result = await embedder.embed_query("alpha")  # call 4 — cache miss
+
+        # All four queries triggered HTTP calls (alpha was evicted).
+        assert route.call_count == 4
+        assert result == pytest.approx([0.4, 0.4, 0.4])

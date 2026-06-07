@@ -13,6 +13,7 @@ Key design decisions:
 
 from __future__ import annotations
 
+import hashlib
 import logging
 
 import openai
@@ -61,6 +62,10 @@ class HyperspaceEmbedder(BaseEmbedder):
             ``"text-embedding-3-small"``).
         _dimensions: The number of vector dimensions produced by the model.
         _tokenizer: A tiktoken encoder used for token-count warnings.
+        _query_cache: In-process FIFO cache mapping SHA-256(query) → vector.
+            Avoids redundant Hyperspace round-trips for repeated queries.
+        _cache_max_size: Maximum number of entries in ``_query_cache``.
+            Set to ``0`` to disable caching entirely.
     """
 
     def __init__(
@@ -72,8 +77,8 @@ class HyperspaceEmbedder(BaseEmbedder):
 
         Args:
             settings: Application settings.  Provides ``embedding_model``,
-                ``embedding_dimensions``, ``hyperspace_openai_base_url``, and
-                ``anthropic_auth_token``.
+                ``embedding_dimensions``, ``hyperspace_openai_base_url``,
+                ``anthropic_auth_token``, and ``embedding_cache_size``.
             client: An optional pre-built ``openai.AsyncOpenAI`` instance.
                 When supplied, ``hyperspace_openai_base_url`` and
                 ``anthropic_auth_token`` from ``settings`` are ignored.
@@ -97,6 +102,12 @@ class HyperspaceEmbedder(BaseEmbedder):
             self._tokenizer = tiktoken.encoding_for_model("text-embedding-3-small")
         except KeyError:
             self._tokenizer = tiktoken.get_encoding("cl100k_base")
+
+        # In-process query embedding cache.  Keyed by SHA-256 of the query
+        # text; eviction is simple FIFO once the max size is reached.
+        # Size 0 means caching is disabled.
+        self._cache_max_size: int = settings.embedding_cache_size
+        self._query_cache: dict[str, list[float]] = {}
 
     # ------------------------------------------------------------------
     # Public interface
@@ -141,8 +152,11 @@ class HyperspaceEmbedder(BaseEmbedder):
     async def embed_query(self, text: str) -> list[float]:
         """Embed a single query string into a dense float vector.
 
-        Delegates to ``embed_documents([text])`` since the Hyperspace
-        endpoint makes no distinction between query and document embeddings.
+        Results are cached in ``_query_cache`` (keyed by SHA-256 of the
+        query text) to avoid redundant Hyperspace round-trips for repeated
+        or identical queries.  Cache eviction is FIFO once
+        ``_cache_max_size`` is reached.  Set ``embedding_cache_size=0``
+        (via settings) to disable caching entirely.
 
         Args:
             text: The query string to embed.
@@ -156,6 +170,24 @@ class HyperspaceEmbedder(BaseEmbedder):
             openai.APIError: Propagated after all tenacity retries are
                 exhausted.
         """
+        if self._cache_max_size > 0:
+            cache_key = hashlib.sha256(text.encode()).hexdigest()
+            if cache_key in self._query_cache:
+                logger.debug("embed_query cache hit for key %s", cache_key[:8])
+                return self._query_cache[cache_key]
+
+            results = await self.embed_documents([text])
+            if not results:
+                raise EmbeddingError(
+                    "embed_documents returned an empty list for a single-text input",
+                    provider="hyperspace-openai",
+                )
+            # FIFO eviction: remove oldest entry when at capacity.
+            if len(self._query_cache) >= self._cache_max_size:
+                self._query_cache.pop(next(iter(self._query_cache)))
+            self._query_cache[cache_key] = results[0]
+            return results[0]
+
         results = await self.embed_documents([text])
         if not results:
             raise EmbeddingError(
