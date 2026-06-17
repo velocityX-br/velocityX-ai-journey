@@ -1,0 +1,362 @@
+# SAP GCS DevOps Containerization Guide — Checklist
+# Source: https://wiki.one.int.sap/wiki/spaces/GCSDevOpforCIS/pages/5054171249/Containerisation+Guide
+#
+# level: MUST = blocking requirement / SHOULD = recommendation
+# category: image | helm_k8s
+# search_pattern: grep/string hints for automated detection (not exhaustive)
+
+categories:
+  - id: image
+    name: "Image Checks"
+    description: "Checks for Dockerfile and container image configuration"
+
+  - id: helm_k8s
+    name: "Helm / Kubernetes Checks"
+    description: "Checks for Helm charts and Kubernetes manifest configuration"
+
+checks:
+  # ─── IMAGE CHECKS ──────────────────────────────────────────────────────────
+
+  - id: img-001
+    category: image
+    level: MUST
+    title: "Base image is SUSE/SAP-based (or approved exception)"
+    description: >
+      The default and recommendation is SUSE-based images. Exceptions are allowed for
+      images provided by a Vendor (with contract), official open source communities
+      (e.g. prometheus, istio), or other SAP teams. All exceptions must still pass
+      CVE scanning and be updated regularly via automation.
+    how_to_check: >
+      Look at FROM lines in Dockerfile. Check whether the base image is SUSE/SAP-based
+      (e.g. registry.suse.com/*, suse/*, sap/*). If not, verify it is an approved
+      exception (vendor, open-source community, or SAP team).
+    fix_hint: "Use a SUSE-based base image or document the approved exception source."
+    search_patterns:
+      - "FROM "
+
+  - id: img-002
+    category: image
+    level: MUST
+    title: "Image does not use 'latest' tag"
+    description: >
+      Never use the 'latest' tag. Renovate will not work with 'latest', and it makes
+      image versions unpredictable. Use semantic versioning (\d+\.\d+\.\d+) for
+      images in live/validation clusters.
+    how_to_check: >
+      Scan all FROM lines and image references in Helm values for ':latest' or missing tag.
+    fix_hint: "Pin image to a specific semantic version tag (e.g. 1.2.3)."
+    search_patterns:
+      - ":latest"
+      - "image: "
+
+  - id: img-003
+    category: image
+    level: MUST
+    title: "Log output includes timestamp"
+    description: >
+      Container logs must contain timestamps. Since Octobus logs may arrive out of order,
+      timestamps must be embedded in the log lines themselves. Use 'ts' from PackageHub
+      if the application cannot add timestamps natively.
+      Example: exec /usr/sbin/myservice 2>&1 | ts %Y-%m-%dT%H:%M:%.S%z
+    how_to_check: >
+      Check entrypoint scripts and CMD/ENTRYPOINT in Dockerfile for timestamp handling.
+      Look for 'ts ' pipe, or confirm the application logs timestamps natively.
+    fix_hint: "Pipe output through `ts %Y-%m-%dT%H:%M:%.S%z` or configure the app to emit timestamps."
+    search_patterns:
+      - "ts %Y"
+      - "timestamp"
+      - "ENTRYPOINT"
+      - "CMD"
+
+  - id: img-004
+    category: image
+    level: MUST
+    title: "Container has one process / PID 1 is the service"
+    description: >
+      One container, one process. PID 1 must be the service itself. If a shell script
+      is used as entrypoint, it must use 'exec /path/to/bin' so the service replaces
+      the shell as PID 1. Multiple processes are only allowed as a documented exception,
+      and signal handling must be ensured.
+    how_to_check: >
+      Check entrypoint scripts for 'exec' usage before the main binary. If multiple
+      processes exist, verify signal handling or preStop lifecycle hooks are configured.
+    fix_hint: "Use `exec /path/to/bin` in entrypoint script so the service is PID 1."
+    search_patterns:
+      - "exec /"
+      - "ENTRYPOINT"
+
+  - id: img-005
+    category: image
+    level: MUST
+    title: "Elevated privileges only if absolutely necessary"
+    description: >
+      Containers with elevated privileges (root, privileged, hostPID, etc.) must be
+      avoided. If absolutely necessary, additional security SME reviewers are required
+      on PR merging, OR the image must be SUSE/SAP-based.
+    how_to_check: >
+      Check securityContext in pod/container specs for privileged: true, runAsRoot,
+      hostPID, hostNetwork, or capabilities.add entries. Check Dockerfile for USER root.
+    fix_hint: "Remove elevated privileges or document the necessity and add required reviewers."
+    search_patterns:
+      - "privileged: true"
+      - "runAsUser: 0"
+      - "hostPID: true"
+      - "hostNetwork: true"
+      - "USER root"
+
+  - id: img-006
+    category: image
+    level: SHOULD
+    title: "Renovate metadata comments present for package versions"
+    description: >
+      Packages installed in Dockerfiles should have Renovate metadata comments so
+      versions can be automatically updated. Format:
+      # renovate: depName=<pkg> slesVersion=<ver> slesModule=<mod> slesArchitecture=<arch>
+      ENV PKG_VERSION="x.y.z"
+    how_to_check: >
+      Check Dockerfile for ENV *_VERSION= lines. Verify each has a preceding
+      '# renovate:' comment with depName, slesVersion, slesModule, slesArchitecture.
+    fix_hint: "Add `# renovate: depName=<name> slesVersion=... slesModule=... slesArchitecture=x86_64` above each ENV *_VERSION line."
+    search_patterns:
+      - "# renovate:"
+      - "ENV.*VERSION"
+
+  - id: img-007
+    category: image
+    level: SHOULD
+    title: "Image updated regularly via automation (Renovate)"
+    description: >
+      All images must be updated on a regular basis with some kind of automation
+      (Renovate). Stale images accumulate CVEs.
+    how_to_check: >
+      Check if the repository has a renovate.json or .renovaterc configuration.
+      Verify image dependencies are covered by Renovate rules.
+    fix_hint: "Configure Renovate for this repository to automate image version updates."
+    search_patterns:
+      - "renovate.json"
+      - ".renovaterc"
+
+  # ─── HELM / KUBERNETES CHECKS ──────────────────────────────────────────────
+
+  - id: k8s-001
+    category: helm_k8s
+    level: MUST
+    title: "livenessProbe configured on every container"
+    description: >
+      Every pod must have a livenessProbe. The liveness probe should check if the
+      container needs to be restarted. Avoid probing external dependencies unless
+      restart is the correct response when those dependencies are unavailable.
+    how_to_check: >
+      Search Deployment/StatefulSet/DaemonSet YAML for 'livenessProbe:' under
+      each container spec.
+    fix_hint: "Add a livenessProbe block to each container in your pod spec."
+    search_patterns:
+      - "livenessProbe:"
+
+  - id: k8s-002
+    category: helm_k8s
+    level: MUST
+    title: "readinessProbe configured on every container"
+    description: >
+      Every pod must have a readinessProbe. The readiness probe should check if
+      the container can process requests. Very few exceptions may exist.
+    how_to_check: >
+      Search Deployment/StatefulSet/DaemonSet YAML for 'readinessProbe:' under
+      each container spec.
+    fix_hint: "Add a readinessProbe block to each container in your pod spec."
+    search_patterns:
+      - "readinessProbe:"
+
+  - id: k8s-003
+    category: helm_k8s
+    level: MUST
+    title: "startupProbe configured on every container"
+    description: >
+      Every pod must have a startupProbe. The startup probe must check that the
+      service is fully up and ready (not still syncing data). Without it, the
+      liveness probe may kill slow-starting pods.
+      Note: a file-based startup probe (e.g. /tmp/healthz) persists across restarts.
+    how_to_check: >
+      Search Deployment/StatefulSet/DaemonSet YAML for 'startupProbe:' under
+      each container spec.
+    fix_hint: "Add a startupProbe block. Ensure it verifies the service is truly ready, not just a file check."
+    search_patterns:
+      - "startupProbe:"
+
+  - id: k8s-004
+    category: helm_k8s
+    level: MUST
+    title: "PodDisruptionBudget (PDB) configured"
+    description: >
+      Always configure a PodDisruptionBudget for every Deployment, StatefulSet,
+      and DaemonSet. Exceptions may exist for non-LoB-visible components.
+    how_to_check: >
+      Search for 'kind: PodDisruptionBudget' in the Helm chart templates or
+      manifest files. Verify it selects the correct pods.
+    fix_hint: "Create a PodDisruptionBudget resource with maxUnavailable: 1 (or appropriate value)."
+    search_patterns:
+      - "kind: PodDisruptionBudget"
+      - "PodDisruptionBudget"
+
+  - id: k8s-005
+    category: helm_k8s
+    level: MUST
+    title: "Pod Anti-Affinity configured (hard or soft)"
+    description: >
+      Pod anti-affinity must be configured for Deployments and StatefulSets to
+      prevent all replicas from running on the same node. Use hard anti-affinity
+      where possible; use soft (preferredDuringScheduling) only when fast scale-out
+      beyond node count is required.
+    how_to_check: >
+      Search for 'podAntiAffinity:' in pod spec affinity block.
+      Verify it uses requiredDuringSchedulingIgnoredDuringExecution (hard) or
+      preferredDuringSchedulingIgnoredDuringExecution (soft) with hostname topology key.
+    fix_hint: "Add podAntiAffinity with topologyKey: kubernetes.io/hostname."
+    search_patterns:
+      - "podAntiAffinity:"
+      - "affinity:"
+
+  - id: k8s-006
+    category: helm_k8s
+    level: MUST
+    title: "AZ Topology Spread Constraints configured"
+    description: >
+      topologySpreadConstraints with topologyKey: topology.kubernetes.io/zone must
+      be configured for Multi-AZ deployments to survive AZ failures.
+    how_to_check: >
+      Search for 'topologySpreadConstraints:' in pod spec.
+      Verify topologyKey is 'topology.kubernetes.io/zone'.
+    fix_hint: "Add topologySpreadConstraints with zone topologyKey and maxSkew: 1."
+    search_patterns:
+      - "topologySpreadConstraints:"
+      - "topology.kubernetes.io/zone"
+
+  - id: k8s-007
+    category: helm_k8s
+    level: MUST
+    title: "Replicas >= 3 for LoB-facing services"
+    description: >
+      LoB-facing services must have at least 3 replicas. With automated patching
+      causing weekly redundancy loss, 2 replicas is insufficient to guarantee
+      availability during node failures. Very few exceptions exist
+      (e.g. MultiDC DNS Hidden Primaries).
+    how_to_check: >
+      Check 'replicas:' in Deployment/StatefulSet specs, or minReplicas in HPA.
+      For LoB-facing services, value must be >= 3.
+    fix_hint: "Set replicas: 3 (or minReplicas: 3 in HPA) for all LoB-facing services."
+    search_patterns:
+      - "replicas:"
+      - "minReplicas:"
+
+  - id: k8s-008
+    category: helm_k8s
+    level: MUST
+    title: "Resource requests and limits configured"
+    description: >
+      Every container must define resources.requests and resources.limits for
+      both CPU and memory. This ensures scheduling correctness and prevents OOM
+      issues from going undetected.
+    how_to_check: >
+      Search for 'resources:' in container specs. Verify both 'requests:' and
+      'limits:' are present with cpu and memory values.
+    fix_hint: "Add resources.requests and resources.limits to every container."
+    search_patterns:
+      - "resources:"
+      - "requests:"
+      - "limits:"
+
+  - id: k8s-009
+    category: helm_k8s
+    level: MUST
+    title: "priorityClassName configured"
+    description: >
+      Every workload must have a priorityClassName set so Kubernetes can make
+      correct scheduling and eviction decisions during resource pressure.
+      Use: lob-critical (10000), lob-medium (5000), lob-low (2000),
+      internal-critical (1000), internal-medium (500), internal-low (200).
+    how_to_check: >
+      Search for 'priorityClassName:' in pod/Deployment/StatefulSet specs.
+    fix_hint: "Add priorityClassName matching the service's criticality level."
+    search_patterns:
+      - "priorityClassName:"
+
+  - id: k8s-010
+    category: helm_k8s
+    level: MUST
+    title: "ApplicationSet has ignoreApplicationDifferences for emergency sync"
+    description: >
+      All ApplicationSet(s) in argocd/appsets/ must include:
+        ignoreApplicationDifferences:
+          - jsonPointers:
+              - /spec/syncPolicy/automated
+      This allows disabling auto-sync during emergency changes without
+      full workflow approval.
+    how_to_check: >
+      Search ApplicationSet YAML files for 'ignoreApplicationDifferences' and
+      verify the /spec/syncPolicy/automated jsonPointer is present.
+    fix_hint: "Add ignoreApplicationDifferences with /spec/syncPolicy/automated to all ApplicationSets."
+    search_patterns:
+      - "ignoreApplicationDifferences"
+      - "syncPolicy/automated"
+
+  - id: k8s-011
+    category: helm_k8s
+    level: SHOULD
+    title: "HorizontalPodAutoscaler (HPA) configured"
+    description: >
+      Unless the service requires static replica count (e.g. LDAP suppliers,
+      DNS Primaries, DaemonSets), configure an HPA for dynamic scaling.
+      HPA is the preferred way to manage replicas.
+    how_to_check: >
+      Search for 'kind: HorizontalPodAutoscaler' in Helm templates or manifests.
+    fix_hint: "Add an HPA targeting the Deployment/StatefulSet with appropriate min/maxReplicas and metrics."
+    search_patterns:
+      - "kind: HorizontalPodAutoscaler"
+      - "HorizontalPodAutoscaler"
+
+  - id: k8s-012
+    category: helm_k8s
+    level: SHOULD
+    title: "FQDN used for service-to-service communication"
+    description: >
+      Use fully-qualified domain names for inter-service communication to avoid
+      unnecessary DNS search domain lookups.
+      Format: <service>.<namespace>.svc.cluster.local.
+      (Trailing dot avoids 6 extra DNS lookups per request.)
+    how_to_check: >
+      Search for service URLs in ConfigMaps, env vars, and Helm values.
+      Check if short names (e.g. 'my-service') are used instead of FQDNs.
+    fix_hint: "Replace short service names with `<svc>.<namespace>.svc.cluster.local.` (with trailing dot)."
+    search_patterns:
+      - "svc.cluster.local"
+
+  - id: k8s-013
+    category: helm_k8s
+    level: SHOULD
+    title: "NetworkPolicy configured"
+    description: >
+      NetworkPolicy should be configured to restrict ingress and egress.
+      Include DNS egress (port 53 UDP/TCP to kube-dns/node-local-dns).
+      If policyTypes lists Ingress/Egress without rules, it results in deny-all.
+    how_to_check: >
+      Search for 'kind: NetworkPolicy' in Helm templates or manifests.
+      Verify policyTypes and at minimum DNS egress rules are present.
+    fix_hint: "Add a NetworkPolicy with explicit ingress/egress rules including DNS."
+    search_patterns:
+      - "kind: NetworkPolicy"
+      - "NetworkPolicy"
+
+  - id: k8s-014
+    category: helm_k8s
+    level: SHOULD
+    title: "Resource limits are approximately 2x requests (2:1 ratio)"
+    description: >
+      To avoid overbooking k8s nodes, resource limits should be approximately
+      double the requests (2:1 ratio). Exceptions exist (e.g. bind/named DNS pods
+      where thread count is CPU-based).
+    how_to_check: >
+      For each container with resources defined, compare limits vs requests for
+      cpu and memory. Flag if ratio is < 1.5x or > 4x as potentially misconfigured.
+    fix_hint: "Set limits to approximately 2x requests (e.g. requests.cpu=2, limits.cpu=4)."
+    search_patterns:
+      - "resources:"
