@@ -176,18 +176,22 @@ if echo "$CMD" | grep -Eq "$DANGEROUS_PATTERN"; then
 fi
 
 # ── Execution ─────────────────────────────────────────────────────────────────
-declare -A RESULTS
+# Use parallel arrays for bash 3.2 compatibility (macOS ships bash 3.2)
+RESULT_SHOOTS=()
+RESULT_STATUSES=()
 
 for SHOOT in "${TARGET_SHOOTS[@]}"; do
   echo ""
   echo "──────────────────────────────────────────"
   echo "[$SHOOT] Targeting..."
 
+  RESULT_SHOOTS+=("$SHOOT")
+
   if $DRY_RUN; then
     echo "[$SHOOT] DRY-RUN: gardenctl target --garden $GARDEN --project $PROJECT --shoot $SHOOT"
     echo "[$SHOOT] DRY-RUN: eval \"\$(gardenctl kubectl-env bash)\""
     echo "[$SHOOT] DRY-RUN: $CMD"
-    RESULTS[$SHOOT]="dry-run"
+    RESULT_STATUSES+=("dry-run")
     continue
   fi
 
@@ -200,9 +204,9 @@ for SHOOT in "${TARGET_SHOOTS[@]}"; do
   set -e
 
   if [[ $EXIT_CODE -eq 0 ]]; then
-    RESULTS[$SHOOT]="pass"
+    RESULT_STATUSES+=("pass")
   else
-    RESULTS[$SHOOT]="fail:$EXIT_CODE"
+    RESULT_STATUSES+=("fail:$EXIT_CODE")
   fi
 done
 
@@ -213,8 +217,9 @@ echo "Results"
 echo "══════════════════════════════════════════"
 
 OVERALL=0
-for SHOOT in "${TARGET_SHOOTS[@]}"; do
-  STATUS="${RESULTS[$SHOOT]}"
+for i in "${!RESULT_SHOOTS[@]}"; do
+  SHOOT="${RESULT_SHOOTS[$i]}"
+  STATUS="${RESULT_STATUSES[$i]}"
   case "$STATUS" in
     pass)     echo "  ✓ $SHOOT" ;;
     dry-run)  echo "  ~ $SHOOT (dry-run)" ;;
