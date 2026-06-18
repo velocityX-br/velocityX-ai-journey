@@ -13,6 +13,51 @@
 
 set -euo pipefail
 
+# ── Help ──────────────────────────────────────────────────────────────────────
+usage() {
+  cat <<'EOF'
+gardener-run.sh — fan out a kubectl command to multiple Gardener shoot clusters
+
+Usage:
+  gardener-run.sh [OPTIONS] "kubectl command"
+
+Options:
+  --garden  live|canary|cn   Target landscape (prompted interactively if omitted)
+  --all                       Run on all shoots in the project
+  --shoots  s1,s2,s3         Run on named shoots (comma-separated)
+  --project <name>            Garden project (default: sni)
+  --dry-run                   Print commands without executing
+  --help                      Show this help message
+
+Landscapes:
+  live    sap-landscape-live
+  canary  sap-landscape-canary
+  cn      sap-landscape-ac-live (China)
+
+Examples:
+  # All shoots in the default project (sni)
+  gardener-run.sh --garden live --all "kubectl get nodes"
+
+  # Specific shoots
+  gardener-run.sh --garden canary --shoots shoot-a,shoot-b "kubectl get pods -A"
+
+  # Named project
+  gardener-run.sh --garden live --project myproject --all "kubectl get nodes"
+
+  # Dry run first
+  gardener-run.sh --garden live --all --dry-run "kubectl rollout restart deploy/myapp -n default"
+
+Prerequisites:
+  gardenctl and kubectl must be installed.
+  KUBECONFIG must be set: eval "$(gardenctl kubectl-env bash)"
+EOF
+}
+
+# Handle --help before anything else (no KUBECONFIG required)
+for arg in "$@"; do
+  [[ "$arg" == "--help" ]] && usage && exit 0
+done
+
 # ── Pre-flight ────────────────────────────────────────────────────────────────
 if [[ -z "${KUBECONFIG:-}" ]]; then
   echo "ERROR: KUBECONFIG is not set." >&2
@@ -36,6 +81,7 @@ while [[ $# -gt 0 ]]; do
     --shoots)   SHOOTS_ARG="$2";  shift 2 ;;
     --all)      RUN_ALL=true;     shift ;;
     --dry-run)  DRY_RUN=true;     shift ;;
+    --help)     usage; exit 0 ;;
     --*)
       echo "ERROR: Unknown option '$1'" >&2
       exit 1
