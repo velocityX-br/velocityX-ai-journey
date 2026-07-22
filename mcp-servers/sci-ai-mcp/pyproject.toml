@@ -1,0 +1,113 @@
+[project]
+name = "sci-ai-mcp"
+version = "0.1.0"
+description = "MCP server for SCI (SAP Converged Infrastructure) documentation — semantic documentation search and root cause analysis via RAG over the operation and customer documentation repositories."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "SCI AI MCP Contributors" },
+]
+keywords = ["sci", "sap", "documentation", "mcp", "rag", "llm"]
+
+dependencies = [
+  "fastmcp>=3.3.1",
+  "qdrant-client>=1.18.0",
+  "openai>=2.40.0",
+  "anthropic>=0.40.0",
+  "langchain>=0.3.0",
+  "langchain-text-splitters>=0.3.0",
+  "pydantic>=2.13.0",
+  "pydantic-settings>=2.7.0",
+  "PyGithub>=2.9.1",
+  "httpx>=0.28.1",
+  "tenacity>=9.1.4",
+  "tiktoken>=0.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4",
+  "pytest-asyncio>=0.24",
+  "pytest-cov>=6.0",
+  "pytest-mock>=3.14.0",
+  "ruff>=0.9.0",
+  "mypy>=1.15.0",
+  "respx>=0.22.0",
+]
+
+[project.scripts]
+ingest-docs = "scripts.ingest_docs:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "ingestion",
+  "embeddings",
+  "vectorstore",
+  "retrieval",
+  "config",
+  "scripts",
+  "sci_mcp",
+]
+
+# ---------------------------------------------------------------------------
+# Ruff — linter + formatter
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+  "ingestion",
+  "embeddings",
+  "vectorstore",
+  "retrieval",
+  "config",
+  "scripts",
+  "sci_mcp",
+]
+
+# ---------------------------------------------------------------------------
+# mypy — static type checking
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.12"
+strict = false
+ignore_missing_imports = true
+
+# ---------------------------------------------------------------------------
+# pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--tb=short --strict-markers"
+
+# ---------------------------------------------------------------------------
+# coverage
+# ---------------------------------------------------------------------------
+[tool.coverage.run]
+source = [
+  "ingestion",
+  "embeddings",
+  "vectorstore",
+  "retrieval",
+  "config",
+  "scripts",
+  "sci_mcp",
+]
+
+[tool.coverage.report]
+fail_under = 70
+
+[dependency-groups]
+dev = ["respx>=0.23.1"]
