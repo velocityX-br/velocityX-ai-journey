@@ -50,6 +50,26 @@ Key Kubernetes `kind` values to look for:
 
 For each check in `checklist.yaml`, apply the `how_to_check` logic against the discovered files.
 
+> **Large project? Run the two check groups in parallel.**
+> The **Image checks** (Dockerfile, entrypoint, renovate) and the **Helm/K8s
+> checks** (manifests by `kind:`) are fully independent. For a big repo — many
+> charts, many Dockerfiles — spawn **two parallel subagents** (`Agent` tool,
+> `subagent_type: "Explore"`, both calls in a single message):
+>
+> - Subagent A → all `img-*` checks against Dockerfiles/entrypoints/renovate config.
+> - Subagent B → all `k8s-*` checks against the discovered Kubernetes manifests.
+>
+> Give each subagent the `checklist.yaml` rules for its group and the file list
+> from Step 2, and ask it to return **findings in the one-line-per-check report
+> format** (symbol, level, ID, description, file:line, fix hint) — not raw file
+> contents. Then merge both result sets into the single report below.
+>
+> These subagents are **read-only** (Glob/Grep/Read only). This skill audits and
+> reports; it never edits the project's files.
+>
+> For a small project (one chart, one Dockerfile), skip subagents and run the
+> checks directly in the main thread.
+
 **Reporting symbols:**
 - ✅ `[MUST]` or `✅ [SHOULD]` — check passed
 - ❌ `[MUST]` — blocking failure

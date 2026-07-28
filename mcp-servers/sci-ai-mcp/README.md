@@ -33,6 +33,9 @@ uv sync
 uv run python -m sci_mcp.server
 ```
 
+For the full operational process — prerequisites, ingestion workflow, MCP client
+registration, tool-selection guidance, and troubleshooting — see [`USAGE.md`](./USAGE.md).
+
 ## Ingestion
 
 Requires a running Qdrant instance and a valid SAP GitHub Enterprise PAT.
