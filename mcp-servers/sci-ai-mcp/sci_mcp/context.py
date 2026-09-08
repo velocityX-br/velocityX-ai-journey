@@ -17,9 +17,9 @@ Design notes:
   URL and auth token from ``Settings``.  The SDK never calls
   ``api.anthropic.com`` directly.
 
-This server manages two documentation collections and therefore holds
+This server manages three documentation collections and therefore holds
 one ``SemanticRetriever`` per collection plus one ``HybridRetriever``
-spanning both.
+spanning all of them.
 """
 
 from __future__ import annotations
@@ -34,13 +34,21 @@ from embeddings.base import BaseEmbedder
 from embeddings.openai_embedder import HyperspaceEmbedder
 from retrieval.hybrid import HybridRetriever
 from retrieval.semantic import SemanticRetriever
-from sci_mcp.models import CUSTOMER_COLLECTION, OPERATION_COLLECTION
+from sci_mcp.models import (
+    ADR_COLLECTION,
+    CUSTOMER_COLLECTION,
+    OPERATION_COLLECTION,
+)
 from vectorstore.base import BaseVectorStore
 from vectorstore.qdrant import QdrantVectorStore
 
 logger = logging.getLogger(__name__)
 
-_ALL_COLLECTIONS: list[str] = [OPERATION_COLLECTION, CUSTOMER_COLLECTION]
+_ALL_COLLECTIONS: list[str] = [
+    OPERATION_COLLECTION,
+    CUSTOMER_COLLECTION,
+    ADR_COLLECTION,
+]
 
 
 class AppContext(BaseModel):
@@ -58,8 +66,10 @@ class AppContext(BaseModel):
             for the ``sci_docs_operation`` collection.
         customer_retriever: Dense-vector semantic retriever pre-configured
             for the ``sci_docs_customer`` collection.
+        adr_retriever: Dense-vector semantic retriever pre-configured
+            for the ``sci_docs_adr`` collection (Architecture Decision Records).
         hybrid_retriever: Multi-collection hybrid retriever (dense + sparse
-            + RRF) spanning both documentation collections.  Required for
+            + RRF) spanning all documentation collections.  Required for
             ``search_docs`` and ``root_cause_analysis``.
         anthropic_client: Async Anthropic client pointed at the SAP
             Hyperspace LLM proxy.
@@ -72,6 +82,7 @@ class AppContext(BaseModel):
     vector_store: BaseVectorStore
     operation_retriever: SemanticRetriever
     customer_retriever: SemanticRetriever
+    adr_retriever: SemanticRetriever
     hybrid_retriever: HybridRetriever
     anthropic_client: anthropic.AsyncAnthropic
 
@@ -86,8 +97,8 @@ async def build_app_context(settings: Settings) -> AppContext:
        A failure logs a warning but does not abort startup, allowing the
        server to start and serve non-retrieval requests even when Qdrant
        is temporarily unavailable.
-    4. Two ``SemanticRetriever`` instances — one per collection.
-    5. ``HybridRetriever`` — spans both collections.
+    4. Three ``SemanticRetriever`` instances — one per collection.
+    5. ``HybridRetriever`` — spans all collections.
     6. ``anthropic.AsyncAnthropic`` — Hyperspace LLM proxy client.
 
     Args:
@@ -130,6 +141,12 @@ async def build_app_context(settings: Settings) -> AppContext:
         collection=CUSTOMER_COLLECTION,
     )
 
+    adr_retriever = SemanticRetriever(
+        embedder=embedder,
+        vector_store=vector_store,
+        collection=ADR_COLLECTION,
+    )
+
     hybrid_retriever = HybridRetriever(
         embedder=embedder,
         vector_store=vector_store,
@@ -147,6 +164,7 @@ async def build_app_context(settings: Settings) -> AppContext:
         vector_store=vector_store,
         operation_retriever=operation_retriever,
         customer_retriever=customer_retriever,
+        adr_retriever=adr_retriever,
         hybrid_retriever=hybrid_retriever,
         anthropic_client=anthropic_client,
     )

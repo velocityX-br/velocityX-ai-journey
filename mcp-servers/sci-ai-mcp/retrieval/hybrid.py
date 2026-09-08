@@ -34,6 +34,7 @@ from vectorstore.base import BaseVectorStore
 _DEFAULT_COLLECTIONS: list[str] = [
     "sci_docs_operation",
     "sci_docs_customer",
+    "sci_docs_adr",
 ]
 
 
