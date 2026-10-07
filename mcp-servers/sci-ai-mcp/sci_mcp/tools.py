@@ -28,6 +28,7 @@ import logging
 import time
 from typing import Any
 
+from ai_observability import preview, span
 from fastmcp import Context
 
 from retrieval.semantic import SemanticRetriever
@@ -187,9 +188,7 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A ranked list of matching operation documentation chunks.
         """
-        cache_key = _tool_cache.make_key(
-            "search_operation_docs", query=query, limit=limit, filters=filters
-        )
+        cache_key = _tool_cache.make_key("search_operation_docs", query=query, limit=limit, filters=filters)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -226,9 +225,7 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A ranked list of matching customer documentation chunks.
         """
-        cache_key = _tool_cache.make_key(
-            "search_customer_docs", query=query, limit=limit, filters=filters
-        )
+        cache_key = _tool_cache.make_key("search_customer_docs", query=query, limit=limit, filters=filters)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -265,9 +262,7 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A ranked list of matching ADR document chunks.
         """
-        cache_key = _tool_cache.make_key(
-            "search_adr_docs", query=query, limit=limit, filters=filters
-        )
+        cache_key = _tool_cache.make_key("search_adr_docs", query=query, limit=limit, filters=filters)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -304,9 +299,7 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A single ranked list merging results from both collections.
         """
-        cache_key = _tool_cache.make_key(
-            "search_docs", query=query, limit=limit, filters=filters
-        )
+        cache_key = _tool_cache.make_key("search_docs", query=query, limit=limit, filters=filters)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -352,10 +345,7 @@ def register_tools(mcp_app: Any) -> None:
                 documentation collections.
         """
         if collection not in VALID_COLLECTIONS:
-            raise ValueError(
-                f"Invalid collection {collection!r}. "
-                f"Must be one of: {sorted(VALID_COLLECTIONS)}"
-            )
+            raise ValueError(f"Invalid collection {collection!r}. Must be one of: {sorted(VALID_COLLECTIONS)}")
 
         cache_key = _tool_cache.make_key(
             "rag_retrieve", query=query, collection=collection, limit=limit, filters=filters
@@ -413,9 +403,7 @@ def register_tools(mcp_app: Any) -> None:
             A structured root cause analysis as a plain-text string from
             the LLM.
         """
-        cache_key = _tool_cache.make_key(
-            "root_cause_analysis", symptom=symptom, context=context, limit=limit
-        )
+        cache_key = _tool_cache.make_key("root_cause_analysis", symptom=symptom, context=context, limit=limit)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -437,10 +425,7 @@ def register_tools(mcp_app: Any) -> None:
         context_lines: list[str] = []
         for idx, doc in enumerate(retrieved, start=1):
             source_label = doc.metadata.get("url") or doc.metadata.get("source", "unknown")
-            context_lines.append(
-                f"[{idx}] Collection: {doc.collection} | Source: {source_label}\n"
-                f"{doc.content}"
-            )
+            context_lines.append(f"[{idx}] Collection: {doc.collection} | Source: {source_label}\n{doc.content}")
         context_block = "\n\n---\n\n".join(context_lines)
 
         # Build the user message.
@@ -457,20 +442,32 @@ def register_tools(mcp_app: Any) -> None:
             " from retrieved documents, 3) Recommended remediation steps."
         )
 
-        response = await app_ctx.anthropic_client.messages.create(
-            model=app_ctx.settings.anthropic_model,
-            max_tokens=2048,
-            system=system_prompt,
-            messages=[{"role": "user", "content": user_message}],
-        )
+        async with span(
+            f"chat {app_ctx.settings.anthropic_model}",
+            **{
+                "gen_ai.operation.name": "chat",
+                "gen_ai.request.model": app_ctx.settings.anthropic_model,
+                "gen_ai.provider.name": "anthropic",
+                "peer.service": "anthropic",
+                "ai.query": preview(user_message),
+            },
+        ) as current:
+            response = await app_ctx.anthropic_client.messages.create(
+                model=app_ctx.settings.anthropic_model,
+                max_tokens=2048,
+                system=system_prompt,
+                messages=[{"role": "user", "content": user_message}],
+            )
+            if response.content and hasattr(response.content[0], "text"):
+                result = response.content[0].text
+                if current.is_recording():
+                    current.set_attribute("ai.answer", preview(result))
+            else:
+                result = ""
 
-        # Extract the text content from the first content block.
-        if response.content and hasattr(response.content[0], "text"):
-            result = response.content[0].text
+        if result:
             _tool_cache.set(cache_key, result)
             return result
 
-        logger.warning(
-            "root_cause_analysis: unexpected LLM response shape — returning empty string"
-        )
+        logger.warning("root_cause_analysis: unexpected LLM response shape — returning empty string")
         return ""

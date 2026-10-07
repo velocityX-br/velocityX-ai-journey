@@ -1,0 +1,47 @@
+# hyperspace_gpt5_6_sol.yaml — selectable backend model: gpt-5.6-sol.
+#
+# Exposes OpenAI's `gpt-5.6-sol` (Azure OpenAI family; see SAP Note 3437766)
+# to the Web UI as its own selectable config, routed through a LiteLLM proxy —
+# a single OpenAI-compatible endpoint that fronts SAP "Hyperspace" backends.
+#
+# Setup: run a LiteLLM proxy whose model_list maps the name `gpt-5.6-sol` to the
+# real Azure/Hyperspace deployment, then set (in .env):
+#   LITELLM_BASE_URL=http://localhost:4000     # your LiteLLM proxy URL
+#   LITELLM_API_KEY=sk-...                      # the proxy's virtual key
+# No secrets live in this file.
+
+name: hyperspace-gpt-5.6-sol
+
+system_prompt: |
+  You are a helpful, precise assistant powered by gpt-5.6-sol via the SAP
+  Hyperspace gateway. Use the available tools when they help answer the
+  question, and cite the sources returned by tools.
+
+  A message that starts with /<skill-name> already contains that skill's
+  instructions. Follow them. /skills only lists loaded skills.
+
+llm:
+  provider: litellm            # LiteLLM proxy (OpenAI-compatible endpoint)
+  model: gpt-5.6-sol           # LiteLLM model_list alias -> Azure/Hyperspace
+  temperature: 0.0
+  max_tokens: 4096
+  # Endpoint + key resolved from env by default (LITELLM_BASE_URL / LITELLM_API_KEY).
+  # You may pin them here explicitly (supports ${ENV} references):
+  # base_url: ${LITELLM_BASE_URL}
+  # api_key: ${LITELLM_API_KEY}
+
+memory:
+  backend: memory
+
+# Built-in web search (see src/agent_chat/web_search.py). Uses TAVILY_API_KEY
+# when set, otherwise a keyless DuckDuckGo fallback.
+web_search: true
+
+mcp_servers: {}
+
+# Repo skills (kb-capture and the rest) plus the user Claude skills dir, which
+# holds sap-jira and sap-authentication. First match wins, so the repo copy of
+# a shared name is the one that loads. `~` is the home directory.
+skills:
+  - ../../skills
+  - ~/.claude/skills

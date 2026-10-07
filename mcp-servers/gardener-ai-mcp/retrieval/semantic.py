@@ -17,6 +17,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from ai_observability import embed_query, preview, search_collection, span, top_sources
+
 from embeddings.base import BaseEmbedder
 from retrieval.base import BaseRetriever, SearchResult
 from vectorstore.base import BaseVectorStore
@@ -82,11 +84,24 @@ class SemanticRetriever(BaseRetriever):
             EmbeddingError: If the embedder cannot encode the query.
             VectorStoreError: If the vector store search fails.
         """
-        query_vector: list[float] = await self._embedder.embed_query(query)
-        results: list[SearchResult] = await self._vector_store.search(
-            self._collection,
-            query_vector,
-            limit,
-            filters,
-        )
-        return results
+        async with span(
+            f"retrieve {self._collection}",
+            **{
+                "gen_ai.operation.name": "retrieve",
+                "ai.rag.collection": self._collection,
+                "ai.rag.limit": limit,
+                "ai.query": preview(query),
+            },
+        ) as current:
+            query_vector: list[float] = await embed_query(self._embedder, query)
+            results: list[SearchResult] = await search_collection(
+                self._vector_store,
+                self._collection,
+                query_vector,
+                limit,
+                filters,
+            )
+            if current.is_recording():
+                current.set_attribute("ai.rag.result_count", len(results))
+                current.set_attribute("ai.rag.top_sources", top_sources(results))
+            return results

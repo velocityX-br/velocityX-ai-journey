@@ -135,7 +135,7 @@ class TestGitHubDocsIngesterIngest:
         # Wrap to_thread so it calls the sync function synchronously in tests.
         mocker.patch(
             "ingestion.github_docs.asyncio.to_thread",
-            side_effect=lambda fn, *args, **kwargs: _async_call(fn, *args, **kwargs),
+            side_effect=_async_call,
         )
 
         ingester = GitHubDocsIngester(github_client=gh, settings=settings)
@@ -143,6 +143,80 @@ class TestGitHubDocsIngesterIngest:
 
         assert isinstance(result, list)
         assert all(isinstance(d, Document) for d in result)
+
+    @pytest.mark.asyncio
+    async def test_ingest_supports_current_hugo_content_root(
+        self, mocker: Any
+    ) -> None:
+        """Current repository Markdown under hugo/content must be ingested."""
+        gh = MagicMock()
+        settings = _make_settings()
+        repo_mock = MagicMock()
+        gh.get_repo.return_value = repo_mock
+
+        md_file = _make_content_file(
+            path="hugo/content/docs/getting-started.md",
+            html_url=(
+                "https://github.com/gardener/documentation/blob/master/"
+                "hugo/content/docs/getting-started.md"
+            ),
+        )
+
+        def get_contents_side_effect(path: str) -> Any:
+            if path == "hugo/content":
+                return [md_file]
+            if path == "hugo/content/docs/getting-started.md":
+                return md_file
+            return []
+
+        repo_mock.get_contents.side_effect = get_contents_side_effect
+        mocker.patch(
+            "ingestion.github_docs.asyncio.to_thread",
+            side_effect=_async_call,
+        )
+
+        result = await GitHubDocsIngester(gh, settings).ingest()
+
+        assert len(result) == 1
+        assert result[0].metadata["path"] == "hugo/content/docs/getting-started.md"
+        assert result[0].metadata["content_type"] == "doc"
+
+    @pytest.mark.asyncio
+    async def test_nested_hugo_proposals_are_classified_as_proposals(
+        self, mocker: Any
+    ) -> None:
+        """Proposal classification must follow nested paths under the doc root."""
+        gh = MagicMock()
+        settings = _make_settings()
+        repo_mock = MagicMock()
+        gh.get_repo.return_value = repo_mock
+
+        proposal_dir = _make_content_file(
+            path="hugo/content/docs/proposals", file_type="dir"
+        )
+        proposal_file = _make_content_file(
+            path="hugo/content/docs/proposals/0001/index.md"
+        )
+
+        def get_contents_side_effect(path: str) -> Any:
+            if path == "hugo/content":
+                return [proposal_dir]
+            if path == "hugo/content/docs/proposals":
+                return [proposal_file]
+            if path == "hugo/content/docs/proposals/0001/index.md":
+                return proposal_file
+            return []
+
+        repo_mock.get_contents.side_effect = get_contents_side_effect
+        mocker.patch(
+            "ingestion.github_docs.asyncio.to_thread",
+            side_effect=_async_call,
+        )
+
+        result = await GitHubDocsIngester(gh, settings).ingest()
+
+        assert len(result) == 1
+        assert result[0].metadata["content_type"] == "proposal"
 
     @pytest.mark.asyncio
     async def test_ingest_raises_on_repo_access_failure(
@@ -155,7 +229,7 @@ class TestGitHubDocsIngesterIngest:
 
         mocker.patch(
             "ingestion.github_docs.asyncio.to_thread",
-            side_effect=lambda fn, *args, **kwargs: _async_call(fn, *args, **kwargs),
+            side_effect=_async_call,
         )
 
         ingester = GitHubDocsIngester(github_client=gh, settings=settings)
@@ -194,7 +268,7 @@ class TestGitHubDocsIngesterIngest:
 
         mocker.patch(
             "ingestion.github_docs.asyncio.to_thread",
-            side_effect=lambda fn, *args, **kwargs: _async_call(fn, *args, **kwargs),
+            side_effect=_async_call,
         )
 
         ingester = GitHubDocsIngester(github_client=gh, settings=settings)
@@ -235,7 +309,7 @@ class TestGitHubDocsIngesterIngest:
 
         mocker.patch(
             "ingestion.github_docs.asyncio.to_thread",
-            side_effect=lambda fn, *args, **kwargs: _async_call(fn, *args, **kwargs),
+            side_effect=_async_call,
         )
 
         ingester = GitHubDocsIngester(github_client=gh, settings=settings)
@@ -273,7 +347,7 @@ class TestGitHubDocsIngesterIngest:
 
         mocker.patch(
             "ingestion.github_docs.asyncio.to_thread",
-            side_effect=lambda fn, *args, **kwargs: _async_call(fn, *args, **kwargs),
+            side_effect=_async_call,
         )
 
         ingester = GitHubDocsIngester(github_client=gh, settings=settings)
@@ -309,7 +383,7 @@ class TestGitHubDocsIngesterIngest:
 
         mocker.patch(
             "ingestion.github_docs.asyncio.to_thread",
-            side_effect=lambda fn, *args, **kwargs: _async_call(fn, *args, **kwargs),
+            side_effect=_async_call,
         )
 
         ingester = GitHubDocsIngester(github_client=gh, settings=settings)

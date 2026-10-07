@@ -1,0 +1,930 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - list:
+      - listitem:
+        - link "Skip to sidebar Type 'u' then '8'" [ref=e5] [cursor=pointer]:
+          - /url: "#nav-sidebar"
+          - text: Skip to sidebar
+      - listitem:
+        - link "Skip to main content" [ref=e6] [cursor=pointer]:
+          - /url: "#main"
+      - listitem:
+        - link "Skip to search" [ref=e7] [cursor=pointer]:
+          - /url: "#quick-search-query"
+    - navigation "Site" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button " Linked Applications" [ref=e11] [cursor=pointer]
+          - text: 
+        - list [ref=e14]:
+          - listitem [ref=e15]:
+            - button " Spaces" [ref=e16] [cursor=pointer]
+          - listitem [ref=e17]:
+            - link "Calendars" [ref=e18] [cursor=pointer]:
+              - /url: /wiki/calendar/mycalendar.action
+          - listitem [ref=e20]:
+            - link "Create blank page Type 'c'" [ref=e21] [cursor=pointer]:
+              - /url: /wiki/plugins/createcontent/createpage-defaultspace.action?atl_token=95e7a40b8e0f918add9756b36ac092d9c924dc4e&src=quick-create
+              - text: Create
+            - link "Create" [ref=e22] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e23]: 
+        - list [ref=e25]:
+          - listitem [ref=e26]:
+            - generic [ref=e27]:
+              - button "Search" [ref=e28] [cursor=pointer]: 
+              - textbox "Search query Type 'g' then 'g' OR '/'" [ref=e29]:
+                - /placeholder: Search
+          - listitem [ref=e30]:
+            - button " Help" [ref=e31] [cursor=pointer]
+          - listitem
+          - listitem [ref=e33]:
+            - button "Notifications" [ref=e34] [cursor=pointer]:
+              - generic [ref=e35]: 
+              - generic: "0"
+          - listitem [ref=e36]:
+            - button "Your profile and preferences" [ref=e37] [cursor=pointer]
+  - generic [ref=e42]:
+    - complementary "sidebar":
+      - generic [ref=e43]:
+        - navigation "Sidebar menu" [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e48]:
+              - heading "Discover" [level=2] [ref=e50]
+              - list [ref=e51]:
+                - listitem [ref=e52]:
+                  - button " All updates" [ref=e53] [cursor=pointer]:
+                    - generic [ref=e54]: 
+                    - generic [ref=e55]: All updates
+                - listitem [ref=e56]:
+                  - button " Popular" [ref=e57] [cursor=pointer]:
+                    - generic [ref=e58]: 
+                    - generic [ref=e59]: Popular
+            - generic [ref=e61]:
+              - heading "My Work" [level=2] [ref=e63]
+              - list [ref=e64]:
+                - listitem [ref=e65]:
+                  - button " Recently worked on" [ref=e66] [cursor=pointer]:
+                    - generic [ref=e67]: 
+                    - generic [ref=e68]: Recently worked on
+                - listitem [ref=e69]:
+                  - button " Recently visited" [ref=e70] [cursor=pointer]:
+                    - generic [ref=e71]: 
+                    - generic [ref=e72]: Recently visited
+                - listitem [ref=e73]:
+                  - button " Saved for later" [ref=e74] [cursor=pointer]:
+                    - generic [ref=e75]: 
+                    - generic [ref=e76]: Saved for later
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - heading "My Spaces" [level=2] [ref=e80]
+                - link "All" [ref=e81] [cursor=pointer]:
+                  - /url: /wiki/spacedirectory/view.action
+              - list [ref=e82]:
+                - listitem [ref=e83]:
+                  - link " Find spaces" [ref=e84] [cursor=pointer]:
+                    - /url: /wiki/spacedirectory/view.action
+                    - generic [ref=e85]: 
+                    - generic [ref=e86]: Find spaces
+                  - paragraph [ref=e87]: Keep your most useful spaces at hand. Hit the star icon beside any space to make it appear here.
+                  - paragraph [ref=e88]:
+                    - link "Find spaces" [ref=e89] [cursor=pointer]:
+                      - /url: /wiki/spacedirectory/view.action
+        - button "Collapse sidebar ( [ )" [ref=e91] [cursor=pointer]:
+          - generic [ref=e92]: 
+    - generic [ref=e95]:
+      - main [ref=e96]:
+        - generic [ref=e97]:
+          - heading "All updates" [level=1] [ref=e99]
+          - list [ref=e100]:
+            - listitem [ref=e101]:
+              - link [ref=e105] [cursor=pointer]:
+                - /url: /wiki/display/~I045145
+                - img "I045145" [ref=e108]
+              - generic [ref=e109]:
+                - heading [level=4] [ref=e110]:
+                  - link "Chocheva, Desislava" [ref=e111] [cursor=pointer]:
+                    - /url: /wiki/display/~I045145
+                - list [ref=e112]:
+                  - listitem [ref=e113]:
+                    - generic [ref=e114]:
+                      - generic [ref=e115]: Page
+                      - generic [ref=e117]:
+                        - link "BAIP Security Issues Status" [ref=e118] [cursor=pointer]:
+                          - /url: /wiki/spaces/SAPCPSEC/pages/6103488498/BAIP+Security+Issues+Status
+                        - generic [ref=e119]:
+                          - time [ref=e120]: updated 33 minutes ago
+                          - text: (
+                          - link "view change" [ref=e121] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6103488498&selectedPageVersions=6536&selectedPageVersions=6535
+                          - text: )
+            - listitem [ref=e122]:
+              - link [ref=e126] [cursor=pointer]:
+                - /url: /wiki/display/~C5358326
+                - img "C5358326" [ref=e129]
+              - generic [ref=e130]:
+                - heading [level=4] [ref=e131]:
+                  - link "Keumala Daud, Nadia (external - Service)" [ref=e132] [cursor=pointer]:
+                    - /url: /wiki/display/~C5358326
+                - list [ref=e133]:
+                  - listitem [ref=e134]:
+                    - generic [ref=e135]:
+                      - generic [ref=e136]: Page
+                      - generic [ref=e138]:
+                        - link "Product Tracking Table" [ref=e139] [cursor=pointer]:
+                          - /url: /wiki/spaces/DCPL/pages/6182505881/Product+Tracking+Table
+                        - generic [ref=e140]:
+                          - time [ref=e141]: updated 33 minutes ago
+                          - text: (
+                          - link "view change" [ref=e142] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6182505881&selectedPageVersions=692&selectedPageVersions=691
+                          - text: )
+            - listitem [ref=e143]:
+              - link [ref=e147] [cursor=pointer]:
+                - /url: /wiki/display/~wiki-ds-deliveryusr
+                - img "wiki-ds-deliveryusr" [ref=e150]
+              - generic [ref=e151]:
+                - heading [level=4] [ref=e152]:
+                  - link "wiki-ds-deliveryusr" [ref=e153] [cursor=pointer]:
+                    - /url: /wiki/display/~wiki-ds-deliveryusr
+                - list [ref=e154]:
+                  - listitem [ref=e155]:
+                    - generic [ref=e156]:
+                      - generic [ref=e157]: Page
+                      - generic [ref=e159]:
+                        - link "Dwaas-core Flaky Cypress New Tests" [ref=e160] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/5650246323/Dwaas-core+Flaky+Cypress+New+Tests
+                        - generic [ref=e161]:
+                          - time [ref=e162]: updated about 2 hours ago
+                          - text: (
+                          - link "view change" [ref=e163] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=5650246323&selectedPageVersions=4505&selectedPageVersions=4504
+                          - text: )
+            - listitem [ref=e164]:
+              - link [ref=e168] [cursor=pointer]:
+                - /url: /wiki/display/~I315370
+                - img "I315370" [ref=e171]
+              - generic [ref=e172]:
+                - heading [level=4] [ref=e173]:
+                  - link "Cruz, Jen Roy" [ref=e174] [cursor=pointer]:
+                    - /url: /wiki/display/~I315370
+                - list [ref=e175]:
+                  - listitem [ref=e176]:
+                    - generic [ref=e177]:
+                      - generic [ref=e178]: Page
+                      - generic [ref=e180]:
+                        - link "July 2026 - Data Engineering Review - Meeting notes" [ref=e181] [cursor=pointer]:
+                          - /url: /wiki/spaces/ISBNClOps/pages/6229449210/July+2026+-+Data+Engineering+Review+-+Meeting+notes
+                        - generic [ref=e182]:
+                          - time [ref=e183]: updated about 2 hours ago
+                          - text: (
+                          - link "view change" [ref=e184] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6229449210&selectedPageVersions=16&selectedPageVersions=15
+                          - text: )
+            - listitem [ref=e185]:
+              - link [ref=e189] [cursor=pointer]:
+                - /url: /wiki/display/~I531197
+                - img "I531197" [ref=e192]
+              - generic [ref=e193]:
+                - heading [level=4] [ref=e194]:
+                  - link "Gorospe, Brian" [ref=e195] [cursor=pointer]:
+                    - /url: /wiki/display/~I531197
+                - list [ref=e196]:
+                  - listitem [ref=e197]:
+                    - generic [ref=e198]:
+                      - generic [ref=e199]: Page
+                      - generic [ref=e201]:
+                        - link "2607 - Queries Sourcing" [ref=e202] [cursor=pointer]:
+                          - /url: /wiki/spaces/PROCPLM/pages/6162569664/2607+-+Queries+Sourcing
+                        - generic [ref=e203]:
+                          - time [ref=e204]: updated about 2 hours ago
+                          - text: (
+                          - link "view change" [ref=e205] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6162569664&selectedPageVersions=22&selectedPageVersions=21
+                          - text: )
+            - listitem [ref=e206]:
+              - link [ref=e210] [cursor=pointer]:
+                - /url: /wiki/display/~wiki-ds-deliveryusr
+                - img "wiki-ds-deliveryusr" [ref=e213]
+              - generic [ref=e214]:
+                - heading [level=4] [ref=e215]:
+                  - link "wiki-ds-deliveryusr" [ref=e216] [cursor=pointer]:
+                    - /url: /wiki/display/~wiki-ds-deliveryusr
+                - list [ref=e217]:
+                  - listitem [ref=e218]:
+                    - generic [ref=e219]:
+                      - generic [ref=e220]: Page
+                      - generic [ref=e222]:
+                        - link "Wave 2026.18" [ref=e223] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/6301910340/Wave+2026.18
+                        - generic [ref=e224]:
+                          - time [ref=e225]: updated about 3 hours ago
+                          - text: (
+                          - link "view change" [ref=e226] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6301910340&selectedPageVersions=20&selectedPageVersions=19
+                          - text: )
+                  - listitem [ref=e227]:
+                    - generic [ref=e228]:
+                      - generic [ref=e229]: Page
+                      - generic [ref=e231]:
+                        - link "Automation Catch Up" [ref=e232] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/5312272669/Automation+Catch+Up
+                        - generic [ref=e233]:
+                          - time [ref=e234]: updated about 3 hours ago
+                          - text: (
+                          - link "view change" [ref=e235] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=5312272669&selectedPageVersions=5964&selectedPageVersions=5963
+                          - text: )
+                  - listitem [ref=e236]:
+                    - generic [ref=e237]:
+                      - generic [ref=e238]: Page
+                      - generic [ref=e240]:
+                        - link "SAP Datasphere ARC Meeting" [ref=e241] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/3956510006/SAP+Datasphere+ARC+Meeting
+                        - generic [ref=e242]:
+                          - time [ref=e243]: updated about 3 hours ago
+                          - text: (
+                          - link "view change" [ref=e244] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=3956510006&selectedPageVersions=13009&selectedPageVersions=13008
+                          - text: )
+                  - listitem [ref=e245]:
+                    - generic [ref=e246]:
+                      - generic [ref=e247]: Page
+                      - generic [ref=e249]:
+                        - link "SAP Datasphere Show & Tell Meeting" [ref=e250] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/3956526817/SAP+Datasphere+Show+Tell+Meeting
+                        - generic [ref=e251]:
+                          - time [ref=e252]: updated about 3 hours ago
+                          - text: (
+                          - link "view change" [ref=e253] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=3956526817&selectedPageVersions=12604&selectedPageVersions=12603
+                          - text: )
+                  - listitem [ref=e254]:
+                    - generic [ref=e255]:
+                      - generic [ref=e256]: Page
+                      - generic [ref=e258]:
+                        - link "SAP Datasphere Elaboration Meeting" [ref=e259] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/3956526807/SAP+Datasphere+Elaboration+Meeting
+                        - generic [ref=e260]:
+                          - time [ref=e261]: updated about 3 hours ago
+                          - text: (
+                          - link "view change" [ref=e262] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=3956526807&selectedPageVersions=12625&selectedPageVersions=12624
+                          - text: )
+                  - listitem [ref=e263]:
+                    - generic [ref=e264]:
+                      - generic [ref=e265]: Page
+                      - generic [ref=e267]:
+                        - link "SAP Datasphere Invest Meeting" [ref=e268] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/3249972738/SAP+Datasphere+Invest+Meeting
+                        - generic [ref=e269]:
+                          - time [ref=e270]: updated about 3 hours ago
+                          - text: (
+                          - link "view change" [ref=e271] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=3249972738&selectedPageVersions=12657&selectedPageVersions=12656
+                          - text: )
+            - listitem [ref=e272]:
+              - link [ref=e276] [cursor=pointer]:
+                - /url: /wiki/display/~I572223
+                - img "I572223" [ref=e279]
+              - generic [ref=e280]:
+                - heading [level=4] [ref=e281]:
+                  - link "De Rocher, Grace" [ref=e282] [cursor=pointer]:
+                    - /url: /wiki/display/~I572223
+                - list [ref=e283]:
+                  - listitem [ref=e284]:
+                    - generic [ref=e285]:
+                      - generic [ref=e286]: Page
+                      - generic [ref=e288]:
+                        - link "Banana Bot 2.0" [ref=e289] [cursor=pointer]:
+                          - /url: /wiki/spaces/concur/pages/5585761093/Banana+Bot+2.0
+                        - generic [ref=e290]:
+                          - time [ref=e291]: updated about 3 hours ago
+                          - text: (
+                          - link "view change" [ref=e292] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=5585761093&selectedPageVersions=14&selectedPageVersions=13
+                          - text: )
+            - listitem [ref=e293]:
+              - link [ref=e297] [cursor=pointer]:
+                - /url: /wiki/display/~I835972
+                - img "I835972" [ref=e300]
+              - generic [ref=e301]:
+                - heading [level=4] [ref=e302]:
+                  - link "K, Arunprakash" [ref=e303] [cursor=pointer]:
+                    - /url: /wiki/display/~I835972
+                - list [ref=e304]:
+                  - listitem [ref=e305]:
+                    - generic [ref=e306]:
+                      - generic [ref=e307]: Page
+                      - generic [ref=e309]:
+                        - link "2607 - Queries Buying" [ref=e310] [cursor=pointer]:
+                          - /url: /wiki/spaces/PROCPLM/pages/6162569661/2607+-+Queries+Buying
+                        - generic [ref=e311]:
+                          - time [ref=e312]: updated about 4 hours ago
+                          - text: (
+                          - link "view change" [ref=e313] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6162569661&selectedPageVersions=16&selectedPageVersions=15
+                          - text: )
+            - listitem [ref=e314]:
+              - link [ref=e318] [cursor=pointer]:
+                - /url: /wiki/display/~D024771
+                - img "D024771" [ref=e321]
+              - generic [ref=e322]:
+                - heading [level=4] [ref=e323]:
+                  - link "Sponda, Christof" [ref=e324] [cursor=pointer]:
+                    - /url: /wiki/display/~D024771
+                - list [ref=e325]:
+                  - listitem [ref=e326]:
+                    - generic [ref=e327]:
+                      - generic [ref=e328]: Page
+                      - generic [ref=e330]:
+                        - link "2026-07 Ops Ticket - RHP PC runs" [ref=e331] [cursor=pointer]:
+                          - /url: /wiki/spaces/IMTOOLS/pages/6230100334/2026-07+Ops+Ticket+-+RHP+PC+runs
+                        - generic [ref=e332]:
+                          - time [ref=e333]: updated about 4 hours ago
+                          - text: (
+                          - link "view change" [ref=e334] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6230100334&selectedPageVersions=117&selectedPageVersions=116
+                          - text: )
+            - listitem [ref=e335]:
+              - link [ref=e339] [cursor=pointer]:
+                - /url: /wiki/display/~C5407846
+                - img "C5407846" [ref=e342]
+              - generic [ref=e343]:
+                - heading [level=4] [ref=e344]:
+                  - link "Kus, Sibel (external - Service)" [ref=e345] [cursor=pointer]:
+                    - /url: /wiki/display/~C5407846
+                - list [ref=e346]:
+                  - listitem [ref=e347]:
+                    - generic [ref=e348]:
+                      - generic [ref=e349]: Page
+                      - generic [ref=e351]:
+                        - link "RD08 Downstream Systems" [ref=e352] [cursor=pointer]:
+                          - /url: /wiki/spaces/SOLUOFC/pages/6294749428/RD08+Downstream+Systems
+                        - generic [ref=e353]:
+                          - time [ref=e354]: updated about 5 hours ago
+                          - text: (
+                          - link "view change" [ref=e355] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6294749428&selectedPageVersions=21&selectedPageVersions=20
+                          - text: )
+            - listitem [ref=e356]:
+              - link [ref=e360] [cursor=pointer]:
+                - /url: /wiki/display/~I534535
+                - img "I534535" [ref=e363]
+              - generic [ref=e364]:
+                - heading [level=4] [ref=e365]:
+                  - link "Saavedra, Juan" [ref=e366] [cursor=pointer]:
+                    - /url: /wiki/display/~I534535
+                - list [ref=e367]:
+                  - listitem [ref=e368]:
+                    - generic [ref=e369]:
+                      - generic [ref=e370]: Page
+                      - generic [ref=e372]:
+                        - link "CUPID" [ref=e373] [cursor=pointer]:
+                          - /url: /wiki/spaces/DXAEM/pages/5664356522/CUPID
+                        - generic [ref=e374]:
+                          - time [ref=e375]: updated about 5 hours ago
+                          - text: (
+                          - link "view change" [ref=e376] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=5664356522&selectedPageVersions=3&selectedPageVersions=2
+                          - text: )
+            - listitem [ref=e377]:
+              - link [ref=e381] [cursor=pointer]:
+                - /url: /wiki/display/~D072840
+                - img "D072840" [ref=e384]
+              - generic [ref=e385]:
+                - heading [level=4] [ref=e386]:
+                  - link "Simsek, Mustafa Can" [ref=e387] [cursor=pointer]:
+                    - /url: /wiki/display/~D072840
+                - list [ref=e388]:
+                  - listitem [ref=e389]:
+                    - generic [ref=e390]:
+                      - generic [ref=e391]: Page
+                      - generic [ref=e393]:
+                        - link "Store Lifecycle - Store Orchestration Technical Specification" [ref=e394] [cursor=pointer]:
+                          - /url: /wiki/spaces/SAPCCWiki/pages/6295833688/Store+Lifecycle+-+Store+Orchestration+Technical+Specification
+                        - generic [ref=e395]:
+                          - time [ref=e396]: updated about 5 hours ago
+                          - text: (
+                          - link "view change" [ref=e397] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6295833688&selectedPageVersions=14&selectedPageVersions=13
+                          - text: )
+            - listitem [ref=e398]:
+              - link [ref=e402] [cursor=pointer]:
+                - /url: /wiki/display/~I833032
+                - img "I833032" [ref=e405]
+              - generic [ref=e406]:
+                - heading [level=4] [ref=e407]:
+                  - link "Werckmeister, Nickolas" [ref=e408] [cursor=pointer]:
+                    - /url: /wiki/display/~I833032
+                - list [ref=e409]:
+                  - listitem [ref=e410]:
+                    - generic [ref=e411]:
+                      - generic [ref=e412]: Page
+                      - generic [ref=e414]:
+                        - link "KG for Just Ask" [ref=e415] [cursor=pointer]:
+                          - /url: /wiki/spaces/DWAAS/pages/6276586134/KG+for+Just+Ask
+                        - generic [ref=e416]:
+                          - time [ref=e417]: updated about 5 hours ago
+                          - text: (
+                          - link "view change" [ref=e418] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6276586134&selectedPageVersions=13&selectedPageVersions=12
+                          - text: )
+            - listitem [ref=e419]:
+              - link [ref=e423] [cursor=pointer]:
+                - /url: /wiki/display/~D052271
+                - img "D052271" [ref=e426]
+              - generic [ref=e427]:
+                - heading [level=4] [ref=e428]:
+                  - link "Zamudio, Ruth" [ref=e429] [cursor=pointer]:
+                    - /url: /wiki/display/~D052271
+                - list [ref=e430]:
+                  - listitem [ref=e431]:
+                    - generic [ref=e432]:
+                      - generic [ref=e433]: Page
+                      - generic [ref=e435]:
+                        - link "Mercedes-Benz CAS Service Request Fulfillment" [ref=e436] [cursor=pointer]:
+                          - /url: /wiki/spaces/CAS/pages/6252258573/Mercedes-Benz+CAS+Service+Request+Fulfillment
+                        - generic [ref=e437]:
+                          - time [ref=e438]:
+                            - text: updated yesterday at 09:12
+                            - generic [ref=e439]: PM
+                          - text: (
+                          - link "view change" [ref=e440] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6252258573&selectedPageVersions=57&selectedPageVersions=56
+                          - text: )
+            - listitem [ref=e441]:
+              - link [ref=e445] [cursor=pointer]:
+                - /url: /wiki/display/~I835743
+                - img "I835743" [ref=e448]
+              - generic [ref=e449]:
+                - heading [level=4] [ref=e450]:
+                  - link "Lee, Stephen" [ref=e451] [cursor=pointer]:
+                    - /url: /wiki/display/~I835743
+                - list [ref=e452]:
+                  - listitem [ref=e453]:
+                    - generic [ref=e454]:
+                      - generic [ref=e455]: Page
+                      - generic [ref=e457]:
+                        - link "Feature POD - Prep Teams" [ref=e458] [cursor=pointer]:
+                          - /url: /wiki/spaces/OneProc/pages/6252262447/Feature+POD+-+Prep+Teams
+                        - generic [ref=e459]:
+                          - time [ref=e460]:
+                            - text: updated yesterday at 09:10
+                            - generic [ref=e461]: PM
+                          - text: (
+                          - link "view change" [ref=e462] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6252262447&selectedPageVersions=151&selectedPageVersions=150
+                          - text: )
+            - listitem [ref=e463]:
+              - link [ref=e467] [cursor=pointer]:
+                - /url: /wiki/display/~wiki-ds-deliveryusr
+                - img "wiki-ds-deliveryusr" [ref=e470]
+              - generic [ref=e471]:
+                - heading [level=4] [ref=e472]:
+                  - link "wiki-ds-deliveryusr" [ref=e473] [cursor=pointer]:
+                    - /url: /wiki/display/~wiki-ds-deliveryusr
+                - list [ref=e474]:
+                  - listitem [ref=e475]:
+                    - generic [ref=e476]:
+                      - generic [ref=e477]: Page
+                      - generic [ref=e479]:
+                        - link "Traceability in Wave - 2026.18" [ref=e480] [cursor=pointer]:
+                          - /url: /wiki/spaces/BDC/pages/6177765016/Traceability+in+Wave+-+2026.18
+                        - generic [ref=e481]:
+                          - time [ref=e482]:
+                            - text: updated yesterday at 09:08
+                            - generic [ref=e483]: PM
+                          - text: (
+                          - link "view change" [ref=e484] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6177765016&selectedPageVersions=16&selectedPageVersions=15
+                          - text: )
+                  - listitem [ref=e485]:
+                    - generic [ref=e486]:
+                      - generic [ref=e487]: Page
+                      - generic [ref=e489]:
+                        - link "BDC Traceability Relevant" [ref=e490] [cursor=pointer]:
+                          - /url: /wiki/spaces/BDC/pages/5312006806/BDC+Traceability+Relevant
+                        - generic [ref=e491]:
+                          - time [ref=e492]:
+                            - text: updated yesterday at 09:08
+                            - generic [ref=e493]: PM
+                          - text: (
+                          - link "view change" [ref=e494] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=5312006806&selectedPageVersions=4451&selectedPageVersions=4450
+                          - text: )
+                  - listitem [ref=e495]:
+                    - generic [ref=e496]:
+                      - generic [ref=e497]: Page
+                      - generic [ref=e499]:
+                        - link "BDC New Features" [ref=e500] [cursor=pointer]:
+                          - /url: /wiki/spaces/BDC/pages/5290562734/BDC+New+Features
+                        - generic [ref=e501]:
+                          - time [ref=e502]:
+                            - text: updated yesterday at 09:08
+                            - generic [ref=e503]: PM
+                          - text: (
+                          - link "view change" [ref=e504] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=5290562734&selectedPageVersions=4447&selectedPageVersions=4446
+                          - text: )
+                  - listitem [ref=e505]:
+                    - generic [ref=e506]:
+                      - generic [ref=e507]: Page
+                      - generic [ref=e509]:
+                        - link "BDC Upcoming Wave planning" [ref=e510] [cursor=pointer]:
+                          - /url: /wiki/spaces/BDC/pages/5312328933/BDC+Upcoming+Wave+planning
+                        - generic [ref=e511]:
+                          - time [ref=e512]:
+                            - text: updated yesterday at 09:08
+                            - generic [ref=e513]: PM
+                          - text: (
+                          - link "view change" [ref=e514] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=5312328933&selectedPageVersions=4455&selectedPageVersions=4454
+                          - text: )
+            - listitem [ref=e515]:
+              - link [ref=e519] [cursor=pointer]:
+                - /url: /wiki/display/~D072840
+                - img "D072840" [ref=e522]
+              - generic [ref=e523]:
+                - heading [level=4] [ref=e524]:
+                  - link "Simsek, Mustafa Can" [ref=e525] [cursor=pointer]:
+                    - /url: /wiki/display/~D072840
+                - list [ref=e526]:
+                  - listitem [ref=e527]:
+                    - generic [ref=e528]:
+                      - generic [ref=e529]: PNG File
+                      - generic [ref=e531]:
+                        - link "03_delete_sequence.png" [ref=e532] [cursor=pointer]:
+                          - /url: /wiki/spaces/SAPCCWiki/pages/6295833688/Store+Lifecycle+-+Store+Orchestration+Technical+Specification?preview=%2F6295833688%2F6295833710%2F03_delete_sequence.png
+                        - time [ref=e534]:
+                          - text: attached yesterday at 08:45
+                          - generic [ref=e535]: PM
+                  - listitem [ref=e536]:
+                    - generic [ref=e537]:
+                      - generic [ref=e538]: PNG File
+                      - generic [ref=e540]:
+                        - link "02_create_sequence.png" [ref=e541] [cursor=pointer]:
+                          - /url: /wiki/spaces/SAPCCWiki/pages/6295833688/Store+Lifecycle+-+Store+Orchestration+Technical+Specification?preview=%2F6295833688%2F6295833709%2F02_create_sequence.png
+                        - time [ref=e543]:
+                          - text: attached yesterday at 08:45
+                          - generic [ref=e544]: PM
+                  - listitem [ref=e545]:
+                    - generic [ref=e546]:
+                      - generic [ref=e547]: PNG File
+                      - generic [ref=e549]:
+                        - link "01_topology.png" [ref=e550] [cursor=pointer]:
+                          - /url: /wiki/spaces/SAPCCWiki/pages/6295833688/Store+Lifecycle+-+Store+Orchestration+Technical+Specification?preview=%2F6295833688%2F6295833708%2F01_topology.png
+                        - time [ref=e552]:
+                          - text: attached yesterday at 08:45
+                          - generic [ref=e553]: PM
+            - listitem [ref=e554]:
+              - link [ref=e558] [cursor=pointer]:
+                - /url: /wiki/display/~I818862
+                - img "I818862" [ref=e561]
+              - generic [ref=e562]:
+                - heading [level=4] [ref=e563]:
+                  - link "Fussek, Jacob" [ref=e564] [cursor=pointer]:
+                    - /url: /wiki/display/~I818862
+                - list [ref=e565]:
+                  - listitem [ref=e566]:
+                    - generic [ref=e567]:
+                      - generic [ref=e568]: Page
+                      - generic [ref=e570]:
+                        - link "Policy Management Dashboard - Data History | via Copilot" [ref=e571] [cursor=pointer]:
+                          - /url: /wiki/spaces/CONCSV/pages/6279564987/Policy+Management+Dashboard+-+Data+History+via+Copilot
+                        - paragraph [ref=e572]: "Copilot: remove overlapping/subset ledger rows; fix summary totals"
+                        - generic [ref=e573]:
+                          - time [ref=e574]:
+                            - text: updated yesterday at 08:37
+                            - generic [ref=e575]: PM
+                          - text: (
+                          - link "view change" [ref=e576] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6279564987&selectedPageVersions=67&selectedPageVersions=66
+                          - text: )
+            - listitem [ref=e577]:
+              - link [ref=e581] [cursor=pointer]:
+                - /url: /wiki/display/~I770400
+                - img "I770400" [ref=e584]
+              - generic [ref=e585]:
+                - heading [level=4] [ref=e586]:
+                  - link "Vitharana, Milinda" [ref=e587] [cursor=pointer]:
+                    - /url: /wiki/display/~I770400
+                - list [ref=e588]:
+                  - listitem [ref=e589]:
+                    - generic [ref=e590]:
+                      - generic [ref=e591]: Page
+                      - generic [ref=e593]:
+                        - link "Enterprise Readiness 90 Day Plans (ER-n90)" [ref=e594] [cursor=pointer]:
+                          - /url: /wiki/spaces/BDC/pages/6294460479/Enterprise+Readiness+90+Day+Plans+ER-n90
+                        - generic [ref=e595]:
+                          - time [ref=e596]:
+                            - text: updated yesterday at 08:32
+                            - generic [ref=e597]: PM
+                          - text: (
+                          - link "view change" [ref=e598] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6294460479&selectedPageVersions=22&selectedPageVersions=21
+                          - text: )
+            - listitem [ref=e599]:
+              - link [ref=e603] [cursor=pointer]:
+                - /url: /wiki/display/~I831617
+                - img "I831617" [ref=e606]
+              - generic [ref=e607]:
+                - heading [level=4] [ref=e608]:
+                  - link "Nickel-Felton, Christopher" [ref=e609] [cursor=pointer]:
+                    - /url: /wiki/display/~I831617
+                - list [ref=e610]:
+                  - listitem [ref=e611]:
+                    - generic [ref=e612]:
+                      - generic [ref=e613]: Page
+                      - generic [ref=e615]:
+                        - link "CSB Roadmap" [ref=e616] [cursor=pointer]:
+                          - /url: /wiki/spaces/SFRSP/pages/6163334060/CSB+Roadmap
+                        - generic [ref=e617]:
+                          - time [ref=e618]:
+                            - text: updated yesterday at 07:48
+                            - generic [ref=e619]: PM
+                          - text: (
+                          - link "view change" [ref=e620] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6163334060&selectedPageVersions=101&selectedPageVersions=100
+                          - text: )
+            - listitem [ref=e621]:
+              - link [ref=e625] [cursor=pointer]:
+                - /url: /wiki/display/~I306914
+                - img "I306914" [ref=e628]
+              - generic [ref=e629]:
+                - heading [level=4] [ref=e630]:
+                  - link "Kumar, Amit" [ref=e631] [cursor=pointer]:
+                    - /url: /wiki/display/~I306914
+                - list [ref=e632]:
+                  - listitem [ref=e633]:
+                    - generic [ref=e634]:
+                      - generic [ref=e635]: Page
+                      - generic [ref=e637]:
+                        - link "Rule Scenario \"Configure OnLoad Rule for Benefits\"" [ref=e638] [cursor=pointer]:
+                          - /url: /wiki/spaces/SFRUL/pages/6224513206/Rule+Scenario+Configure+OnLoad+Rule+for+Benefits
+                        - generic [ref=e639]:
+                          - time [ref=e640]:
+                            - text: updated yesterday at 07:40
+                            - generic [ref=e641]: PM
+                          - text: (
+                          - link "view change" [ref=e642] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6224513206&selectedPageVersions=9&selectedPageVersions=8
+                          - text: )
+            - listitem [ref=e643]:
+              - link [ref=e647] [cursor=pointer]:
+                - /url: /wiki/display/~I080372
+                - img "I080372" [ref=e650]
+              - generic [ref=e651]:
+                - heading [level=4] [ref=e652]:
+                  - link "Albright, Kristin" [ref=e653] [cursor=pointer]:
+                    - /url: /wiki/display/~I080372
+                - list [ref=e654]:
+                  - listitem [ref=e655]:
+                    - generic [ref=e656]:
+                      - generic [ref=e657]: Page
+                      - generic [ref=e659]:
+                        - link "Nexus GA 2607.1" [ref=e660] [cursor=pointer]:
+                          - /url: /wiki/spaces/PROCPLM/pages/6282826923/Nexus+GA+2607.1
+                        - generic [ref=e661]:
+                          - time [ref=e662]:
+                            - text: updated yesterday at 07:33
+                            - generic [ref=e663]: PM
+                          - text: (
+                          - link "view change" [ref=e664] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6282826923&selectedPageVersions=18&selectedPageVersions=17
+                          - text: )
+            - listitem [ref=e665]:
+              - link [ref=e669] [cursor=pointer]:
+                - /url: /wiki/display/~I048966
+                - img "I048966" [ref=e672]
+              - generic [ref=e673]:
+                - heading [level=4] [ref=e674]:
+                  - link "KLESER, Gerald" [ref=e675] [cursor=pointer]:
+                    - /url: /wiki/display/~I048966
+                - list [ref=e676]:
+                  - listitem [ref=e677]:
+                    - generic [ref=e678]:
+                      - generic [ref=e679]: Page
+                      - generic [ref=e681]:
+                        - link "AI Core Architecture Sync" [ref=e682] [cursor=pointer]:
+                          - /url: /wiki/spaces/AI/pages/2317551910/AI+Core+Architecture+Sync
+                        - generic [ref=e683]:
+                          - time [ref=e684]:
+                            - text: updated yesterday at 07:26
+                            - generic [ref=e685]: PM
+                          - text: (
+                          - link "view change" [ref=e686] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=2317551910&selectedPageVersions=710&selectedPageVersions=709
+                          - text: )
+            - listitem [ref=e687]:
+              - link [ref=e691] [cursor=pointer]:
+                - /url: /wiki/display/~I768892
+                - img "I768892" [ref=e694]
+              - generic [ref=e695]:
+                - heading [level=4] [ref=e696]:
+                  - link "Makarenko, Alexander" [ref=e697] [cursor=pointer]:
+                    - /url: /wiki/display/~I768892
+                - list [ref=e698]:
+                  - listitem [ref=e699]:
+                    - generic [ref=e700]:
+                      - generic [ref=e701]: Page
+                      - generic [ref=e703]:
+                        - link "CC2614 Domain sprint review" [ref=e704] [cursor=pointer]:
+                          - /url: /wiki/spaces/SAPCCWiki/pages/6301222264/CC2614+Domain+sprint+review
+                        - generic [ref=e705]:
+                          - time [ref=e706]:
+                            - text: updated yesterday at 07:21
+                            - generic [ref=e707]: PM
+                          - text: (
+                          - link "view change" [ref=e708] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6301222264&selectedPageVersions=15&selectedPageVersions=14
+                          - text: )
+            - listitem [ref=e709]:
+              - link [ref=e713] [cursor=pointer]:
+                - /url: /wiki/display/~D048473
+                - img "D048473" [ref=e716]
+              - generic [ref=e717]:
+                - heading [level=4] [ref=e718]:
+                  - link "Kaemper, Jutta" [ref=e719] [cursor=pointer]:
+                    - /url: /wiki/display/~D048473
+                - list [ref=e720]:
+                  - listitem [ref=e721]:
+                    - generic [ref=e722]:
+                      - generic [ref=e723]: Page
+                      - generic [ref=e725]:
+                        - link "Issues for setup in Azure landscape" [ref=e726] [cursor=pointer]:
+                          - /url: /wiki/spaces/AMIDEV/pages/6301226616/Issues+for+setup+in+Azure+landscape
+                        - generic [ref=e727]:
+                          - time [ref=e728]:
+                            - text: updated yesterday at 07:17
+                            - generic [ref=e729]: PM
+                          - text: (
+                          - link "view change" [ref=e730] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6301226616&selectedPageVersions=6&selectedPageVersions=5
+                          - text: )
+            - listitem [ref=e731]:
+              - link [ref=e735] [cursor=pointer]:
+                - /url: /wiki/display/~I348233
+                - img "I348233" [ref=e738]
+              - generic [ref=e739]:
+                - heading [level=4] [ref=e740]:
+                  - link "Paul, Bijo" [ref=e741] [cursor=pointer]:
+                    - /url: /wiki/display/~I348233
+                - list [ref=e742]:
+                  - listitem [ref=e743]:
+                    - generic [ref=e744]:
+                      - generic [ref=e745]: Page
+                      - generic [ref=e747]:
+                        - link "AbapNaut Platform Architecture" [ref=e748] [cursor=pointer]:
+                          - /url: /wiki/spaces/DLM/pages/6295835217/AbapNaut+Platform+Architecture
+                        - generic [ref=e749]:
+                          - time [ref=e750]:
+                            - text: updated yesterday at 07:12
+                            - generic [ref=e751]: PM
+                          - text: (
+                          - link "view change" [ref=e752] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6295835217&selectedPageVersions=19&selectedPageVersions=18
+                          - text: )
+            - listitem [ref=e753]:
+              - link [ref=e757] [cursor=pointer]:
+                - /url: /wiki/display/~I831964
+                - img "I831964" [ref=e760]
+              - generic [ref=e761]:
+                - heading [level=4] [ref=e762]:
+                  - link "Xue, Zhongyuan" [ref=e763] [cursor=pointer]:
+                    - /url: /wiki/display/~I831964
+                - list [ref=e764]:
+                  - listitem [ref=e765]:
+                    - generic [ref=e766]:
+                      - generic [ref=e767]: Page
+                      - generic [ref=e769]:
+                        - link "Third-Party JAR Upgrade Process for Learning (with AI)" [ref=e770] [cursor=pointer]:
+                          - /url: /wiki/spaces/SFENG8/pages/6294749296/Third-Party+JAR+Upgrade+Process+for+Learning+with+AI
+                        - generic [ref=e771]:
+                          - time [ref=e772]:
+                            - text: updated yesterday at 06:58
+                            - generic [ref=e773]: PM
+                          - text: (
+                          - link "view change" [ref=e774] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6294749296&selectedPageVersions=19&selectedPageVersions=18
+                          - text: )
+            - listitem [ref=e775]:
+              - link [ref=e779] [cursor=pointer]:
+                - /url: /wiki/display/~D064251
+                - img "D064251" [ref=e782]
+              - generic [ref=e783]:
+                - heading [level=4] [ref=e784]:
+                  - link "Egenolf, Daniel" [ref=e785] [cursor=pointer]:
+                    - /url: /wiki/display/~D064251
+                - list [ref=e786]:
+                  - listitem [ref=e787]:
+                    - generic [ref=e788]:
+                      - generic [ref=e789]: Page
+                      - generic [ref=e791]:
+                        - link "SUM Phaselist Viewer" [ref=e792] [cursor=pointer]:
+                          - /url: /wiki/spaces/LMUpgrade/pages/1825071671/SUM+Phaselist+Viewer
+                        - generic [ref=e793]:
+                          - time [ref=e794]:
+                            - text: updated yesterday at 06:55
+                            - generic [ref=e795]: PM
+                          - text: (
+                          - link "view change" [ref=e796] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=1825071671&selectedPageVersions=78&selectedPageVersions=77
+                          - text: )
+            - listitem [ref=e797]:
+              - link [ref=e801] [cursor=pointer]:
+                - /url: /wiki/display/~D070201
+                - img "D070201" [ref=e804]
+              - generic [ref=e805]:
+                - heading [level=4] [ref=e806]:
+                  - link "Kirchmaier, Isadora" [ref=e807] [cursor=pointer]:
+                    - /url: /wiki/display/~D070201
+                - list [ref=e808]:
+                  - listitem [ref=e809]:
+                    - generic [ref=e810]:
+                      - generic [ref=e811]: Page
+                      - generic [ref=e813]:
+                        - link "Change Management of Foundation for Business Suite Blueprint" [ref=e814] [cursor=pointer]:
+                          - /url: /wiki/spaces/SNPSHQ/pages/6177757379/Change+Management+of+Foundation+for+Business+Suite+Blueprint
+                        - generic [ref=e815]:
+                          - time [ref=e816]:
+                            - text: updated yesterday at 06:50
+                            - generic [ref=e817]: PM
+                          - text: (
+                          - link "view change" [ref=e818] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=6177757379&selectedPageVersions=12&selectedPageVersions=11
+                          - text: )
+            - listitem [ref=e819]:
+              - link [ref=e823] [cursor=pointer]:
+                - /url: /wiki/display/~C5402263
+                - img "C5402263" [ref=e826]
+              - generic [ref=e827]:
+                - heading [level=4] [ref=e828]:
+                  - link "Venkataraman, Aparna (external - Service)" [ref=e829] [cursor=pointer]:
+                    - /url: /wiki/display/~C5402263
+                - list [ref=e830]:
+                  - listitem [ref=e831]:
+                    - generic [ref=e832]:
+                      - generic [ref=e833]: Page
+                      - generic [ref=e835]:
+                        - link "|Runtime Changes/Scheduled activities History Board|" [ref=e836] [cursor=pointer]:
+                          - /url: /wiki/spaces/cloudss/pages/3552436419/Runtime+Changes+Scheduled+activities+History+Board
+                        - generic [ref=e837]:
+                          - time [ref=e838]:
+                            - text: updated yesterday at 06:43
+                            - generic [ref=e839]: PM
+                          - text: (
+                          - link "view change" [ref=e840] [cursor=pointer]:
+                            - /url: /wiki/pages/diffpagesbyversion.action?pageId=3552436419&selectedPageVersions=3516&selectedPageVersions=3515
+                          - text: )
+      - complementary [ref=e842]:
+        - generic [ref=e846]:
+          - heading "Welcome to Corporate Wiki" [level=2] [ref=e850]
+          - paragraph [ref=e854]
+          - region "Tip" [ref=e858]:
+            - text: 
+            - generic [ref=e859]:
+              - paragraph [ref=e860]:
+                - link "Self Help Tool" [ref=e861] [cursor=pointer]:
+                  - /url: /wiki/spaces/wikihome/pages/1900960425/WIKI+HOME
+              - paragraph [ref=e862]:
+                - link "Wiki Permissions" [ref=e863] [cursor=pointer]:
+                  - /url: /wiki/spaces/wikihome/pages/2015338988/Wiki+Permissions
+              - paragraph [ref=e864]:
+                - link "Work Zone - Support Center" [ref=e865] [cursor=pointer]:
+                  - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/overview_page/R1slkakPVopJhblbUM5mIL
+          - generic [ref=e868]:
+            - heading "Latest Updates from My Spaces" [level=2] [ref=e869]
+            - separator [ref=e870]
+            - region "Tip" [ref=e871]:
+              - generic [ref=e873]:
+                - heading "Recently Updated" [level=2] [ref=e874]
+                - paragraph [ref=e875]: As you and your team create content this area will fill up and display the latest updates.
+        - list [ref=e876]:
+          - listitem [ref=e877]:
+            - generic [ref=e879]:
+              - generic [ref=e880]:
+                - heading "Upcoming Events" [level=2] [ref=e881]
+                - link [ref=e883] [cursor=pointer]:
+                  - /url: https://wiki.one.int.sap/wiki/calendar/mycalendar.action
+                  - img "My Calendars" [ref=e884]: 
+                  - text: My Calendars
+              - text: 
+              - generic [ref=e885]:
+                - generic [ref=e886]: You have no calendars in your list.
+                - link "Create or find calendars »" [ref=e887] [cursor=pointer]:
+                  - /url: https://wiki.one.int.sap/wiki/calendar/mycalendar.action
+  - contentinfo [ref=e888]:
+    - list [ref=e890]:
+      - listitem [ref=e891]:
+        - text: Powered by
+        - link "Atlassian Confluence" [ref=e892] [cursor=pointer]:
+          - /url: https://www.atlassian.com/software/confluence
+        - text: "9.2.22 (node1: 4bccea17)·"
+      - listitem [ref=e893]:
+        - link "Report an Incident" [ref=e894] [cursor=pointer]:
+          - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+        - text: ·
+      - listitem [ref=e895]:
+        - link "Wiki Community" [ref=e896] [cursor=pointer]:
+          - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL

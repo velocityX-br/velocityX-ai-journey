@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.veloxityx.gardener-ingest</string>
+
+    <!-- The wrapper to run. It preflights Qdrant + the Hai proxy and
+         soft-skips (no deletion) if either is down, so an unattended run
+         never wipes the index when it cannot be rebuilt. Config is passed
+         via EnvironmentVariables below — no secrets live in the plist. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/I577081/Workdir/Github/veloxityX-ai-journey/mcp-servers/gardener-ai-mcp/scripts/weekly_ingest.sh</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <!-- Absolute path to the gardener-ai-mcp project root. REQUIRED so the
+             script can cd here and pydantic-settings can load .env. -->
+        <key>GARDENER_DIR</key>
+        <string>/Users/I577081/Workdir/Github/veloxityX-ai-journey/mcp-servers/gardener-ai-mcp</string>
+
+        <!-- Optional overrides; defaults are baked into the script. -->
+        <key>QDRANT_URL</key>
+        <string>http://localhost:6333</string>
+        <key>HAI_PROXY_URL</key>
+        <string>http://localhost:6655</string>
+    </dict>
+
+    <!-- Run once a week: Monday (Weekday=1) at 11:00 local time.
+         Deliberately offset one hour after the SCI ingest (Monday 10:00) so
+         the two full rebuilds don't contend for Qdrant / the Hai proxy at the
+         same time. Daytime local is intentional — the Mac is awake, VPN is up,
+         and the Hai proxy is running, so the rebuild actually happens instead
+         of soft-skipping (a night run would usually find the services down).
+         Edit Weekday/Hour/Minute to reschedule. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>1</integer>
+        <key>Hour</key>
+        <integer>11</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- Capture stdout/stderr for launchd-level debugging. Detailed run
+         logs (with UTC timestamps) also go to gardener-ai-mcp/logs/weekly-ingest.log. -->
+    <key>StandardOutPath</key>
+    <string>/Users/I577081/Library/Logs/gardener-ingest.launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/I577081/Library/Logs/gardener-ingest.launchd.err.log</string>
+
+    <!-- Do not run at load; only on the calendar schedule. -->
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

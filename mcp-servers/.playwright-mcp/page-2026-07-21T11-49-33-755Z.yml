@@ -1,0 +1,587 @@
+- generic [ref=e2]:
+  - heading [level=1] [ref=e3]:
+    - link "multus-cni" [ref=e4] [cursor=pointer]:
+      - /url: https://k8snetworkplumbingwg.github.io/multus-cni/
+  - heading [level=2] [ref=e5]:
+    - text: Multus CNI usage guide
+    - link "Anchor" [ref=e6] [cursor=pointer]:
+      - /url: "#multus-cni-usage-guide"
+      - text: 
+  - heading [level=3] [ref=e7]:
+    - text: Prerequisites
+    - link "Anchor" [ref=e8] [cursor=pointer]:
+      - /url: "#prerequisites"
+      - text: 
+  - list [ref=e9]:
+    - listitem [ref=e10]: Kubelet configured to use CNI
+    - listitem [ref=e11]: Kubernetes version with CRD support (generally )
+  - paragraph [ref=e12]:
+    - text: Your Kubelet(s) must be configured to run with the CNI network plugin. Please see
+    - link "Kubernetes document for CNI" [ref=e13] [cursor=pointer]:
+      - /url: https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni
+    - text: for more details.
+  - heading [level=3] [ref=e14]:
+    - text: Install Multus
+    - link "Anchor" [ref=e15] [cursor=pointer]:
+      - /url: "#install-multus"
+      - text: 
+  - paragraph [ref=e16]:
+    - text: "Generally we recommend two options: Manually place a Multus binary in your"
+    - code [ref=e17]: /opt/cni/bin
+    - text: ", or use our"
+    - link "quick-start method" [ref=e18] [cursor=pointer]:
+      - /url: /multus-cni/docs/quickstart.html
+    - text: – which creates a daemonset that has an opinionated way of how to install & configure Multus CNI (recommended).
+  - paragraph [ref=e19]:
+    - emphasis [ref=e20]: Copy Multus Binary into place
+  - paragraph [ref=e21]:
+    - text: You may acquire the Multus binary via compilation (see the
+    - link "developer guide" [ref=e22] [cursor=pointer]:
+      - /url: /multus-cni/docs/development.html
+    - text: ) or download the a binary from the
+    - link "GitHub releases" [ref=e23] [cursor=pointer]:
+      - /url: https://github.com/k8snetworkplumbingwg/multus-cni/releases
+    - text: page. Copy multus binary into CNI binary directory, usually
+    - code [ref=e24]: /opt/cni/bin
+    - text: . Perform this on all nodes in your cluster (master and nodes).
+  - code [ref=e28]: cp multus /opt/cni/bin
+  - paragraph [ref=e29]:
+    - emphasis [ref=e30]: Via Daemonset method
+  - paragraph [ref=e31]:
+    - text: As a
+    - link "quickstart" [ref=e32] [cursor=pointer]:
+      - /url: /multus-cni/docs/quickstart.html
+    - text: ", you may apply these YAML files. Run this command (typically you would run this on the master, or wherever you have access to the"
+    - code [ref=e33]: kubectl
+    - text: command to manage your cluster).
+  - code [ref=e37]: "kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml # thin deployment"
+  - paragraph [ref=e38]: or
+  - code [ref=e42]: "kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset-thick.yml # thick (client/server) deployment"
+  - paragraph [ref=e43]:
+    - text: If you need more comprehensive detail, continue along with this guide, otherwise, you may wish to either
+    - link "follow the quickstart guide" [ref=e44] [cursor=pointer]:
+      - /url: ""
+    - text: or skip to the
+    - link "‘Create network attachment definition’" [ref=e45] [cursor=pointer]:
+      - /url: "#create-network-attachment-definition"
+    - text: section.
+  - heading [level=3] [ref=e46]:
+    - text: Set up conf file in /etc/cni/net.d/ (Installed automatically by Daemonset)
+    - link "Anchor" [ref=e47] [cursor=pointer]:
+      - /url: "#set-up-conf-file-in-etccninetd-installed-automatically-by-daemonset"
+      - text: 
+  - paragraph [ref=e48]:
+    - strong [ref=e49]: If you use daemonset to install multus, skip this section and go to “Create network attachment”
+  - paragraph [ref=e50]:
+    - text: You put CNI config file in
+    - code [ref=e51]: /etc/cni/net.d
+    - text: . Kubernetes CNI runtime uses the alphabetically first file in the directory. (
+    - code [ref=e52]: "\"NOTE1\""
+    - text: ","
+    - code [ref=e53]: "\"NOTE2\""
+    - text: are just comments, you can remove them at your configuration)
+  - paragraph [ref=e54]: Execute following commands at all Kubernetes nodes (i.e. master and minions)
+  - code [ref=e58]: "mkdir -p /etc/cni/net.d cat >/etc/cni/net.d/00-multus.conf <<EOF { \"name\": \"multus-cni-network\", \"type\": \"multus\", \"readinessindicatorfile\": \"/run/flannel/subnet.env\", \"delegates\": [ { \"NOTE1\": \"This is example, wrote your CNI config in delegates\", \"NOTE2\": \"If you use flannel, you also need to run flannel daemonset before!\", \"type\": \"flannel\", \"name\": \"flannel.1\", \"delegate\": { \"isDefaultGateway\": true } } ], \"kubeconfig\": \"/etc/cni/net.d/multus.d/multus.kubeconfig\" } EOF"
+  - paragraph [ref=e59]:
+    - text: For the detail, please take a look into
+    - link "Configuration Reference" [ref=e60] [cursor=pointer]:
+      - /url: /multus-cni/docs/configuration.html
+  - paragraph [ref=e61]:
+    - strong [ref=e62]:
+      - text: "NOTE: You can use “clusterNetwork”/”defaultNetworks” instead of “delegates”, see"
+      - link:
+        - /url: ""
+      - text: for the detail
+  - paragraph [ref=e63]:
+    - text: As above config, you need to set
+    - code [ref=e64]: "\"kubeconfig\""
+    - text: in the config file for NetworkAttachmentDefinition(CRD).
+  - heading [level=5] [ref=e65]:
+    - text: Which network will be used for “Pod IP”?
+    - link "Anchor" [ref=e66] [cursor=pointer]:
+      - /url: "#which-network-will-be-used-for-pod-ip"
+      - text: 
+  - paragraph [ref=e67]: In case of “delegates”, the first delegates network will be used for “Pod IP”. Otherwise, “clusterNetwork” will be used for “Pod IP”.
+  - heading [level=4] [ref=e68]:
+    - text: Create ServiceAccount, ClusterRole and its binding
+    - link "Anchor" [ref=e69] [cursor=pointer]:
+      - /url: "#create-serviceaccount-clusterrole-and-its-binding"
+      - text: 
+  - paragraph [ref=e70]: "Create resources for multus to access CRD objects as following command:"
+  - code [ref=e74]: "# Execute following commands at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: v1 kind: ServiceAccount metadata: name: multus namespace: kube-system --- kind: ClusterRole apiVersion: rbac.authorization.k8s.io/v1beta1 metadata: name: multus rules: - apiGroups: [\"k8s.cni.cncf.io\"] resources: - '*' verbs: - '*' - apiGroups: - \"\" resources: - pods - pods/status verbs: - get - update --- kind: ClusterRoleBinding apiVersion: rbac.authorization.k8s.io/v1beta1 metadata: name: multus roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: multus subjects: - kind: ServiceAccount name: multus namespace: kube-system EOF"
+  - heading [level=4] [ref=e75]:
+    - text: Set up kubeconfig file
+    - link "Anchor" [ref=e76] [cursor=pointer]:
+      - /url: "#set-up-kubeconfig-file"
+      - text: 
+  - paragraph [ref=e77]: "Create kubeconfig at master node as following commands:"
+  - code [ref=e81]: "# Execute following command at Kubernetes master mkdir -p /etc/cni/net.d/multus.d SERVICEACCOUNT_CA=$(kubectl get secrets -n=kube-system -o json | jq -r '.items[]|select(.metadata.annotations.\"kubernetes.io/service-account.name\"==\"multus\")| .data.\"ca.crt\"') SERVICEACCOUNT_TOKEN=$(kubectl get secrets -n=kube-system -o json | jq -r '.items[]|select(.metadata.annotations.\"kubernetes.io/service-account.name\"==\"multus\")| .data.token' | base64 -d ) KUBERNETES_SERVICE_PROTOCOL=$(kubectl get all -o json | jq -r .items[0].spec.ports[0].name) KUBERNETES_SERVICE_HOST=$(kubectl get all -o json | jq -r .items[0].spec.clusterIP) KUBERNETES_SERVICE_PORT=$(kubectl get all -o json | jq -r .items[0].spec.ports[0].port) cat > /etc/cni/net.d/multus.d/multus.kubeconfig <<EOF # Kubeconfig file for Multus CNI plugin. apiVersion: v1 kind: Config clusters: - name: local cluster: server: ${KUBERNETES_SERVICE_PROTOCOL:-https}://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT} certificate-authority-data: ${SERVICEACCOUNT_CA} users: - name: multus user: token: \"${SERVICEACCOUNT_TOKEN}\" contexts: - name: multus-context context: cluster: local user: multus current-context: multus-context EOF"
+  - paragraph [ref=e82]:
+    - text: Copy
+    - code [ref=e83]: /etc/cni/net.d/multus.d/multus.kubeconfig
+    - text: into other Kubernetes nodes
+    - strong [ref=e84]: "NOTE: Recommend to exec ‘chmod 600 /etc/cni/net.d/multus.d/multus.kubeconfig’ to keep secure"
+  - code [ref=e88]: scp /etc/cni/net.d/multus.d/multus.kubeconfig ...
+  - heading [level=3] [ref=e89]:
+    - text: Setup CRDs (daemonset automatically does)
+    - link "Anchor" [ref=e90] [cursor=pointer]:
+      - /url: "#setup-crds-daemonset-automatically-does"
+      - text: 
+  - paragraph [ref=e91]:
+    - strong [ref=e92]: If you use daemonset to install multus, skip this section and go to “Create network attachment”
+  - paragraph [ref=e93]: "Create CRD definition in Kubernetes as following command at master node:"
+  - code [ref=e97]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: apiextensions.k8s.io/v1beta1 kind: CustomResourceDefinition metadata: name: network-attachment-definitions.k8s.cni.cncf.io spec: group: k8s.cni.cncf.io version: v1 scope: Namespaced names: plural: network-attachment-definitions singular: network-attachment-definition kind: NetworkAttachmentDefinition shortNames: - net-attach-def validation: openAPIV3Schema: properties: spec: properties: config: type: string EOF"
+  - heading [level=3] [ref=e98]:
+    - text: Create network attachment definition
+    - link "Anchor" [ref=e99] [cursor=pointer]:
+      - /url: "#create-network-attachment-definition"
+      - text: 
+  - paragraph [ref=e100]: "The ‘NetworkAttachmentDefinition’ is used to setup the network attachment, i.e. secondary interface for the pod, There are two ways to configure the ‘NetworkAttachmentDefinition’ as following:"
+  - list [ref=e101]:
+    - listitem [ref=e102]: NetworkAttachmentDefinition with json CNI config
+    - listitem [ref=e103]: NetworkAttachmentDefinition with CNI config file
+  - heading [level=4] [ref=e104]:
+    - text: "NetworkAttachmentDefinition with json CNI config:"
+    - link "Anchor" [ref=e105] [cursor=pointer]:
+      - /url: "#networkattachmentdefinition-with-json-cni-config"
+      - text: 
+  - paragraph [ref=e106]:
+    - text: Following command creates NetworkAttachmentDefinition. CNI config is in
+    - code [ref=e107]: "config:"
+    - text: field.
+  - code [ref=e111]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: \"k8s.cni.cncf.io/v1\" kind: NetworkAttachmentDefinition metadata: name: macvlan-conf-1 spec: config: '{ \"cniVersion\": \"0.3.0\", \"type\": \"macvlan\", \"master\": \"eth1\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"host-local\", \"ranges\": [ [ { \"subnet\": \"10.10.0.0/16\", \"rangeStart\": \"10.10.1.20\", \"rangeEnd\": \"10.10.3.50\", \"gateway\": \"10.10.0.254\" } ] ] } }' EOF"
+  - heading [level=4] [ref=e112]:
+    - text: "NetworkAttachmentDefinition with CNI config file:"
+    - link "Anchor" [ref=e113] [cursor=pointer]:
+      - /url: "#networkattachmentdefinition-with-cni-config-file"
+      - text: 
+  - paragraph [ref=e114]: If NetworkAttachmentDefinition has no spec, multus find a file in defaultConfDir (‘/etc/cni/multus/net.d’, with same name in the ‘name’ field of CNI config.
+  - code [ref=e118]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: \"k8s.cni.cncf.io/v1\" kind: NetworkAttachmentDefinition metadata: name: macvlan-conf-2 EOF"
+  - code [ref=e122]: "# Execute following commands at all Kubernetes nodes (i.e. master and minions) cat <<EOF > /etc/cni/multus/net.d/macvlan2.conf { \"cniVersion\": \"0.3.0\", \"type\": \"macvlan\", \"name\": \"macvlan-conf-2\", \"master\": \"eth1\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"host-local\", \"ranges\": [ [ { \"subnet\": \"11.10.0.0/16\", \"rangeStart\": \"11.10.1.20\", \"rangeEnd\": \"11.10.3.50\" } ] ] } } EOF"
+  - heading [level=3] [ref=e123]:
+    - text: Run pod with network annotation
+    - link "Anchor" [ref=e124] [cursor=pointer]:
+      - /url: "#run-pod-with-network-annotation"
+      - text: 
+  - heading [level=4] [ref=e125]:
+    - text: Launch pod with text annotation
+    - link "Anchor" [ref=e126] [cursor=pointer]:
+      - /url: "#launch-pod-with-text-annotation"
+      - text: 
+  - code [ref=e130]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: name: pod-case-01 annotations: k8s.v1.cni.cncf.io/networks: macvlan-conf-1, macvlan-conf-2 spec: containers: - name: pod-case-01 image: docker.io/centos/tools:latest command: - /sbin/init EOF"
+  - heading [level=4] [ref=e131]:
+    - text: Launch pod with text annotation for NetworkAttachmentDefinition in different namespace
+    - link "Anchor" [ref=e132] [cursor=pointer]:
+      - /url: "#launch-pod-with-text-annotation-for-networkattachmentdefinition-in-different-namespace"
+      - text: 
+  - paragraph [ref=e133]:
+    - text: You can also specify NetworkAttachmentDefinition with its namespace as adding
+    - code [ref=e134]: <namespace>/
+  - code [ref=e138]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: \"k8s.cni.cncf.io/v1\" kind: NetworkAttachmentDefinition metadata: name: macvlan-conf-3 namespace: testns1 spec: config: '{ \"cniVersion\": \"0.3.0\", \"type\": \"macvlan\", \"master\": \"eth1\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"host-local\", \"ranges\": [ [ { \"subnet\": \"12.10.0.0/16\", \"rangeStart\": \"12.10.1.20\", \"rangeEnd\": \"12.10.3.50\" } ] ] } }' EOF cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: name: pod-case-02 annotations: k8s.v1.cni.cncf.io/networks: testns1/macvlan-conf-3 spec: containers: - name: pod-case-02 image: docker.io/centos/tools:latest command: - /sbin/init EOF"
+  - heading [level=4] [ref=e139]:
+    - text: Launch pod with text annotation with interface name
+    - link "Anchor" [ref=e140] [cursor=pointer]:
+      - /url: "#launch-pod-with-text-annotation-with-interface-name"
+      - text: 
+  - paragraph [ref=e141]:
+    - text: You can also specify interface name as adding
+    - code [ref=e142]: "@<ifname>"
+    - text: .
+  - code [ref=e146]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: name: pod-case-03 annotations: k8s.v1.cni.cncf.io/networks: macvlan-conf-1@macvlan1 spec: containers: - name: pod-case-03 image: docker.io/centos/tools:latest command: - /sbin/init EOF"
+  - heading [level=4] [ref=e147]:
+    - text: Launch pod with json annotation
+    - link "Anchor" [ref=e148] [cursor=pointer]:
+      - /url: "#launch-pod-with-json-annotation"
+      - text: 
+  - code [ref=e152]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: name: pod-case-04 annotations: k8s.v1.cni.cncf.io/networks: '[ { \"name\" : \"macvlan-conf-1\" }, { \"name\" : \"macvlan-conf-2\" } ]' spec: containers: - name: pod-case-04 image: docker.io/centos/tools:latest command: - /sbin/init EOF"
+  - heading [level=4] [ref=e153]:
+    - text: Launch pod with json annotation for NetworkAttachmentDefinition in different namespace
+    - link "Anchor" [ref=e154] [cursor=pointer]:
+      - /url: "#launch-pod-with-json-annotation-for-networkattachmentdefinition-in-different-namespace"
+      - text: 
+  - paragraph [ref=e155]:
+    - text: You can also specify NetworkAttachmentDefinition with its namespace as adding
+    - code [ref=e156]: "\"namespace\": \"<namespace>\""
+    - text: .
+  - code [ref=e160]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: name: pod-case-05 annotations: k8s.v1.cni.cncf.io/networks: '[ { \"name\" : \"macvlan-conf-1\", \"namespace\": \"testns1\" } ]' spec: containers: - name: pod-case-05 image: docker.io/centos/tools:latest command: - /sbin/init EOF"
+  - heading [level=4] [ref=e161]:
+    - text: Launch pod with json annotation with interface
+    - link "Anchor" [ref=e162] [cursor=pointer]:
+      - /url: "#launch-pod-with-json-annotation-with-interface"
+      - text: 
+  - paragraph [ref=e163]:
+    - text: You can also specify interface name as adding
+    - code [ref=e164]: "\"interface\": \"<ifname>\""
+    - text: .
+  - code [ref=e168]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: name: pod-case-06 annotations: k8s.v1.cni.cncf.io/networks: '[ { \"name\" : \"macvlan-conf-1\", \"interface\": \"macvlan1\" }, { \"name\" : \"macvlan-conf-2\" } ]' spec: containers: - name: pod-case-06 image: docker.io/centos/tools:latest command: - /sbin/init EOF"
+  - heading [level=3] [ref=e169]:
+    - text: Verifying pod network
+    - link "Anchor" [ref=e170] [cursor=pointer]:
+      - /url: "#verifying-pod-network"
+      - text: 
+  - paragraph [ref=e171]:
+    - text: Following the example of
+    - code [ref=e172]: ip -d address
+    - text: "output of above pod, “pod-case-06”:"
+  - code [ref=e176]: "# Execute following command at Kubernetes master kubectl exec -it pod-case-06 -- ip -d address 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00 promiscuity 0 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 inet 127.0.0.1/8 scope host lo valid_lft forever preferred_lft forever inet6 ::1/128 scope host valid_lft forever preferred_lft forever 3: eth0@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue state UP group default link/ether 0a:58:0a:f4:02:06 brd ff:ff:ff:ff:ff:ff link-netnsid 0 promiscuity 0 veth numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 inet 10.244.2.6/24 scope global eth0 valid_lft forever preferred_lft forever inet6 fe80::ac66:45ff:fe7c:3a19/64 scope link valid_lft forever preferred_lft forever 4: macvlan1@if3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default link/ether 4e:6d:7a:4e:14:87 brd ff:ff:ff:ff:ff:ff link-netnsid 0 promiscuity 0 macvlan mode bridge numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 inet 10.10.1.22/16 scope global macvlan1 valid_lft forever preferred_lft forever inet6 fe80::4c6d:7aff:fe4e:1487/64 scope link valid_lft forever preferred_lft forever 5: net2@if3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default link/ether 6e:e3:71:7f:86:f7 brd ff:ff:ff:ff:ff:ff link-netnsid 0 promiscuity 0 macvlan mode bridge numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 inet 11.10.1.22/16 scope global net2 valid_lft forever preferred_lft forever inet6 fe80::6ce3:71ff:fe7f:86f7/64 scope link valid_lft forever preferred_lft forever"
+  - table [ref=e177]:
+    - rowgroup [ref=e178]:
+      - row [ref=e179]:
+        - columnheader "Interface name" [ref=e180]
+        - columnheader "Description" [ref=e181]
+    - rowgroup [ref=e182]:
+      - row [ref=e183]:
+        - cell "lo" [ref=e184]
+        - cell "loopback" [ref=e185]
+      - row [ref=e186]:
+        - cell "eth0" [ref=e187]
+        - cell "Default network interface (flannel)" [ref=e188]
+      - row [ref=e189]:
+        - cell "macvlan1" [ref=e190]
+        - cell "macvlan interface (macvlan-conf-1)" [ref=e191]
+      - row [ref=e192]:
+        - cell "net2" [ref=e193]
+        - cell "macvlan interface (macvlan-conf-2)" [ref=e194]
+  - heading [level=2] [ref=e195]:
+    - text: Specifying a default route for a specific attachment
+    - link "Anchor" [ref=e196] [cursor=pointer]:
+      - /url: "#specifying-a-default-route-for-a-specific-attachment"
+      - text: 
+  - paragraph [ref=e197]:
+    - text: Typically, the default route for a pod will route traffic over the
+    - code [ref=e198]: eth0
+    - text: and therefore over the cluster-wide default network. You may wish to specify that a different network attachment will have the default route.
+  - paragraph [ref=e199]:
+    - text: You can achieve this by using the JSON formatted annotation and specifying a
+    - code [ref=e200]: default-route
+    - text: key.
+  - paragraph [ref=e201]:
+    - emphasis [ref=e202]: NOTE
+    - text: ": It’s important that you consider that this may impact some functionality of getting traffic to route over the cluster-wide default network."
+  - paragraph [ref=e203]: "For example, we have a this configuration for macvlan:"
+  - code [ref=e207]: "cat <<EOF | kubectl create -f - apiVersion: \"k8s.cni.cncf.io/v1\" kind: NetworkAttachmentDefinition metadata: name: macvlan-conf spec: config: '{ \"cniVersion\": \"0.3.0\", \"type\": \"macvlan\", \"master\": \"eth0\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"host-local\", \"subnet\": \"192.168.2.0/24\", \"rangeStart\": \"192.168.2.200\", \"rangeEnd\": \"192.168.2.216\", \"routes\": [ { \"dst\": \"0.0.0.0/0\" } ], \"gateway\": \"192.168.2.1\" } }' EOF"
+  - paragraph [ref=e208]:
+    - text: We can then create a pod which uses the
+    - code [ref=e209]: default-route
+    - text: key in the JSON formatted
+    - code [ref=e210]: k8s.v1.cni.cncf.io/networks
+    - text: annotation.
+  - code [ref=e214]: "cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: name: samplepod annotations: k8s.v1.cni.cncf.io/networks: '[{ \"name\": \"macvlan-conf\", \"default-route\": [\"192.168.2.1\"] }]' spec: containers: - name: samplepod command: [\"/bin/bash\", \"-c\", \"trap : TERM INT; sleep infinity & wait\"] image: dougbtv/centos-network EOF"
+  - paragraph [ref=e215]:
+    - text: This will set
+    - code [ref=e216]: 192.168.2.1
+    - text: as the default route over the
+    - code [ref=e217]: net1
+    - text: "interface, such as:"
+  - code [ref=e221]: kubectl exec -it samplepod -- ip route default via 192.168.2.1 dev net1 10.244.0.0/24 dev eth0 proto kernel scope link src 10.244.0.169 10.244.0.0/16 via 10.244.0.1 dev eth0
+  - heading [level=2] [ref=e222]:
+    - text: Entrypoint Parameters
+    - link "Anchor" [ref=e223] [cursor=pointer]:
+      - /url: "#entrypoint-parameters"
+      - text: 
+  - paragraph [ref=e224]: Multus CNI, when installed using the daemonset-style installation uses an entrypoint script which copies the Multus binary into place, places CNI configurations. This entrypoint takes a variety of parameters for customization.
+  - paragraph [ref=e225]: Typically, you’d modified the daemonset YAML itself to specify these parameters.
+  - paragraph [ref=e226]:
+    - text: For example, the
+    - code [ref=e227]: command
+    - text: and
+    - code [ref=e228]: args
+    - text: parameters in the
+    - code [ref=e229]: containers
+    - text: "section of the DaemonSet may look something like:"
+  - code [ref=e233]: "command: [\"/thin_entrypoint\"] args: - \"--multus-conf-file=auto\" - \"--namespace-isolation=true\" - \"--multus-log-level=verbose\""
+  - paragraph [ref=e234]:
+    - text: Note that some of the defaults have directories inside the root directory named
+    - code [ref=e235]: /host/
+    - text: ", this is because it is deployed as a container and we have host file system locations mapped into this directory inside the container. If you use other directories, you may have to change the mounted volumes."
+  - heading [level=3] [ref=e236]:
+    - text: Entrypoint script parameters
+    - link "Anchor" [ref=e237] [cursor=pointer]:
+      - /url: "#entrypoint-script-parameters"
+      - text: 
+  - paragraph [ref=e238]: Each parameter is shown with the default as the value.
+  - code [ref=e242]: "--cni-conf-dir=/host/etc/cni/net.d"
+  - paragraph [ref=e243]: This is the configuration directory where Multus will write its configuration file.
+  - code [ref=e247]: "--cni-bin-dir=/host/opt/cni/bin"
+  - paragraph [ref=e248]: This the directory in which the Multus binary will be installed.
+  - code [ref=e252]: "--namespace-isolation=false"
+  - paragraph [ref=e253]: Setting this option to true enables the Namespace isolation feature, which insists that custom resources must be created in the same namespace as the pods, otherwise it will refuse to attach those definitions as additional interfaces. See (the configuration guide for more information)[configuration.md].
+  - code [ref=e257]: "--global-namespaces=default,foo,bar"
+  - paragraph [ref=e258]:
+    - text: The
+    - code [ref=e259]: "--global-namespaces"
+    - text: works only when
+    - code [ref=e260]: "--namespace-isolation=true"
+    - text: . This takes a comma-separated list of namespaces which can be referred to globally when namespace isolation is enabled. See (the configuration guide for more information)[configuration.md].
+  - code [ref=e264]: "--multus-bin-file=/usr/src/multus-cni/bin/multus"
+  - paragraph [ref=e265]:
+    - text: This option lets you set which binary executable to copy from the container onto the host (into the directory specified by
+    - code [ref=e266]: "--cni-bin-dir"
+    - text: ), allowing one to copy an alternate version or build of Multus CNI.
+  - code [ref=e270]: "--multus-conf-file=/usr/src/multus-cni/images/70-multus.conf"
+  - paragraph [ref=e271]:
+    - text: The
+    - code [ref=e272]: "--multus-conf-file"
+    - text: is one of two options; it can be set to a source file to be copied into the location specified by
+    - code [ref=e273]: "--cni-conf-dir"
+    - text: . Or, to a value of
+    - code [ref=e274]: auto
+    - text: ", that is:"
+    - code [ref=e275]: "--multus-conf-file=auto"
+    - text: .
+  - paragraph [ref=e276]: The automatic configuration option is used to automatically generate Multus configurations given existing on-disk CNI configurations for your default network.
+  - paragraph [ref=e277]:
+    - text: In the case that
+    - code [ref=e278]: "--multus-conf-file=auto"
+    - text: – The entrypoint script will look at the
+    - code [ref=e279]: "--multus-autoconfig-dir"
+    - text: (by default, the same as the
+    - code [ref=e280]: "--cni-conf-dir"
+    - text: ). Multus will take the alphabetically first configuration there and wrap that into a Multus configuration.
+  - code [ref=e284]: "--multus-autoconfig-dir=/host/etc/cni/net.d"
+  - paragraph [ref=e285]:
+    - text: Used only with
+    - code [ref=e286]: "--multus-conf-file=auto"
+    - text: . This option allows one to set which directory will be used to generate configuration files.
+  - paragraph [ref=e287]:
+    - text: This can be used if you have your CNI configuration stored in an alternate location, or, you have constraints on race conditions where you’d like to generate your default network configuration first, and then only have Multus write its configuration when it finds that configuration – allowing only Multus to write the CNI configuration in the
+    - code [ref=e288]: "--cni-conf-dir"
+    - text: ", therefore notifying the Kubelet that the node is in a ready state."
+  - code [ref=e292]: "--multus-kubeconfig-file-host=/etc/cni/net.d/multus.d/multus.kubeconfig"
+  - paragraph [ref=e293]:
+    - text: Used only with
+    - code [ref=e294]: "--multus-conf-file=auto"
+    - text: . Allows you to specify an alternate path to the Kubeconfig.
+  - code [ref=e298]: "--multus-master-cni-file-name="
+  - paragraph [ref=e299]:
+    - text: The
+    - code [ref=e300]: "--multus-master-cni-file-name"
+    - text: can be used to select the cni file as the master cni, rather than the first file in cni-conf-dir. For example,
+    - code [ref=e301]: "--multus-master-cni-file-name=10-calico.conflist"
+    - text: .
+  - code [ref=e305]: "--multus-log-level= --multus-log-file="
+  - paragraph [ref=e306]:
+    - text: Used only with
+    - code [ref=e307]: "--multus-conf-file=auto"
+    - text: . See the
+    - link "documentation for logging" [ref=e308] [cursor=pointer]:
+      - /url: https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/configuration.md#logging
+    - text: for which values are permitted.
+  - paragraph [ref=e309]:
+    - text: Used only with
+    - code [ref=e310]: "--multus-conf-file=auto"
+    - text: . Allows you to specify CNI spec version. Please set if you need to specify CNI spec version.
+  - code [ref=e314]: "--cni-version="
+  - paragraph [ref=e315]:
+    - text: In some cases, the original CNI configuration that the Multus configuration was generated from (using
+    - code [ref=e316]: "--multus-conf-file=auto"
+    - text: ") may be used as a sort of semaphor for network readiness – as this model is used by the Kubelet itself. If you need to disable Multus’ availability, you may wish to clean out the generated configuration file when the source file for autogeneration of the config file is no longer present. You can use this functionality by setting:"
+  - code [ref=e320]: "--cleanup-config-on-exit=true"
+  - paragraph [ref=e321]:
+    - text: When specifying
+    - code [ref=e322]: "--cleanup-config-on-exit=true"
+    - text: the entrypoint script will delete any generated/copied Multus configuration files when entrypoint script exits (upon Pod termination). This allows Multus to be safely removed from the cluster when its no longer needed.
+  - paragraph [ref=e323]:
+    - text: In addition, when both
+    - code [ref=e324]: "--cleanup-config-on-exit=true"
+    - text: and
+    - code [ref=e325]: "--multus-conf-file=auto"
+    - text: "are specified, the entrypoint script will watch for changes of the master CNI configuration and kubeconfig. when such change detected, the script will re-genereate Multus configuration. Watch can be skipped by setting:"
+  - code [ref=e329]: "--skip-config-watch"
+  - paragraph [ref=e330]:
+    - text: Additionally when using CRIO, you may wish to have the CNI config file that’s used as the source for
+    - code [ref=e331]: "--multus-conf-file=auto"
+    - text: renamed. This boolean option when set to true automatically renames the file with a
+    - code [ref=e332]: .old
+    - text: suffix to the original filename.
+  - code [ref=e336]: "--rename-conf-file=true"
+  - paragraph [ref=e337]:
+    - text: When using
+    - code [ref=e338]: "--multus-conf-file=auto"
+    - text: you may also care to specify a
+    - code [ref=e339]: binDir
+    - text: in the configuration, this can be accomplished using the
+    - code [ref=e340]: "--additional-bin-dir"
+    - text: option.
+  - code [ref=e344]: "--additional-bin-dir=/opt/multus/bin"
+  - paragraph [ref=e345]: "Sometimes, you may wish to not have the entrypoint copy the binary file onto the host. Potentially, you have another way to copy in a specific version of Multus, for example. By default, it’s always copied, but you may disable the copy with:"
+  - code [ref=e349]: "--skip-multus-binary-copy=true"
+  - paragraph [ref=e350]:
+    - text: If you wish to have auto configuration use the
+    - code [ref=e351]: readinessindicatorfile
+    - text: in the configuration, you can use the
+    - code [ref=e352]: "--readiness-indicator-file"
+    - text: to express which file should be used as the readiness indicator.
+  - code [ref=e356]: "--readiness-indicator-file=/path/to/file"
+  - heading [level=3] [ref=e357]:
+    - text: Run pod with network annotation and Dynamic Resource Allocation driver
+    - link "Anchor" [ref=e358] [cursor=pointer]:
+      - /url: "#run-pod-with-network-annotation-and-dynamic-resource-allocation-driver"
+      - text: 
+  - paragraph [ref=e359]: Dynamic Resource Allocation is an alternative mechanism to device plugin which allows pods to request pod and container resources dynamically.
+  - paragraph [ref=e360]: The following sections describe how to use DRA with Multus. DRA networking driver vendors should follow similar concepts to make use of Multus DRA support.
+  - heading [level=4] [ref=e361]:
+    - text: Prerequisite
+    - link "Anchor" [ref=e362] [cursor=pointer]:
+      - /url: "#prerequisite"
+      - text: 
+  - list [ref=e363]:
+    - listitem [ref=e364]: Kubernetes 1.34+
+  - heading [level=4] [ref=e365]:
+    - text: Install DRA driver
+    - link "Anchor" [ref=e366] [cursor=pointer]:
+      - /url: "#install-dra-driver"
+      - text: 
+  - paragraph [ref=e367]:
+    - text: You need to install a DRA driver that provides network devices. For example, you can use the
+    - link "SR-IOV DRA" [ref=e368] [cursor=pointer]:
+      - /url: https://github.com/k8snetworkplumbingwg/dra-driver-sriov
+    - text: driver or other DRA networking drivers. Refer to your DRA driver documentation for installation instructions.
+  - paragraph [ref=e369]:
+    - text: The DRA driver MUST expose the following attributes on each allocated
+    - strong [ref=e370]: network
+    - text: device in
+    - code [ref=e371]: ResourceSlice
+    - text: ":"
+  - list [ref=e372]:
+    - listitem [ref=e373]:
+      - code [ref=e374]: k8s.cni.cncf.io/deviceID
+      - text: ": device ID that Multus passes to the CNI plugin."
+    - listitem [ref=e375]:
+      - code [ref=e376]: k8s.cni.cncf.io/resourceName
+      - text: ":"
+      - strong [ref=e377]: must exactly match
+      - text: the value you put on the NetworkAttachmentDefinition
+      - code [ref=e378]: k8s.v1.cni.cncf.io/resourceName
+      - text: annotation (same style as classic extended resources, e.g.
+      - code [ref=e379]: intel.com/sriov_vf
+      - text: ).
+  - paragraph [ref=e380]:
+    - text: Devices that lack
+    - code [ref=e381]: k8s.cni.cncf.io/deviceID
+    - text: or
+    - code [ref=e382]: k8s.cni.cncf.io/resourceName
+    - text: are
+    - strong [ref=e383]: silently skipped
+    - text: in the normal claims path — this is intentional so that mixed pods with both network and non-network DRA claims (e.g. a GPU claim alongside an SR-IOV claim) work correctly. The existing kubelet / device-plugin resource-map entries for such pods are preserved unchanged.
+  - paragraph [ref=e384]:
+    - text: For pods that use the
+    - strong [ref=e385]: extended resource
+    - text: feature gate, Multus uses
+    - code [ref=e386]: pod.status.extendedResourceClaimStatus
+    - text: "request mappings: the NAD"
+    - code [ref=e387]: resourceName
+    - text: matches
+    - code [ref=e388]: requestMappings[].resourceName
+    - text: . In this path the device attribute
+    - code [ref=e389]: k8s.cni.cncf.io/resourceName
+    - strong [ref=e390]: must
+    - text: be present and
+    - strong [ref=e391]: equal
+    - code [ref=e392]: requestMappings[].resourceName
+    - text: exactly — a missing or mismatched value is treated as an error, because the extended-resource mapping explicitly names the expected device. Device lookup uses the same
+    - code [ref=e393]: ResourceClaim
+    - text: /
+    - code [ref=e394]: ResourceSlice
+    - text: flow as the normal path.
+  - heading [level=4] [ref=e395]:
+    - text: Create network attachment definition with resource name
+    - link "Anchor" [ref=e396] [cursor=pointer]:
+      - /url: "#create-network-attachment-definition-with-resource-name"
+      - text: 
+  - paragraph [ref=e397]:
+    - text: The
+    - code [ref=e398]: k8s.v1.cni.cncf.io/resourceName
+    - text: annotation must be the
+    - strong [ref=e399]: same string
+    - text: as the
+    - code [ref=e400]: k8s.cni.cncf.io/resourceName
+    - text: device attribute published by your DRA driver for that allocation. Multiple secondary networks use distinct values on each device (or the same value when multiple device IDs should be consumed from one NAD, matching the device-plugin model).
+  - paragraph [ref=e401]:
+    - text: Multus queries the ResourceClaim and ResourceSlices APIs. When the NAD annotation equals the device’s
+    - code [ref=e402]: k8s.cni.cncf.io/resourceName
+    - text: ", Multus passes the corresponding"
+    - code [ref=e403]: k8s.cni.cncf.io/deviceID
+    - text: to the CNI plugin.
+  - heading [level=5] [ref=e404]:
+    - text: "NetworkAttachmentDefinition for SR-IOV example:"
+    - link "Anchor" [ref=e405] [cursor=pointer]:
+      - /url: "#networkattachmentdefinition-for-sr-iov-example"
+      - text: 
+  - paragraph [ref=e406]:
+    - text: Following command creates a NetworkAttachmentDefinition for SR-IOV. The
+    - code [ref=e407]: resourceName
+    - text: annotation must match what the DRA driver sets on the allocated device (here
+    - code [ref=e408]: intel.com/sriov_vf
+    - text: "):"
+  - code [ref=e412]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: k8s.cni.cncf.io/v1 kind: NetworkAttachmentDefinition metadata: name: sriov-net namespace: default annotations: k8s.v1.cni.cncf.io/resourceName: intel.com/sriov_vf spec: config: |- { \"cniVersion\": \"1.0.0\", \"name\": \"sriov-net\", \"type\": \"sriov\", \"vlan\": 0, \"spoofchk\": \"on\", \"trust\": \"on\", \"vlanQoS\": 0, \"logLevel\": \"info\", \"ipam\": { \"type\": \"host-local\", \"ranges\": [ [ { \"subnet\": \"10.0.2.0/24\" } ] ] } } EOF"
+  - heading [level=4] [ref=e413]:
+    - text: Create Device Class
+    - link "Anchor" [ref=e414] [cursor=pointer]:
+      - /url: "#create-device-class"
+      - text: 
+  - paragraph [ref=e415]:
+    - text: Following command creates a
+    - code [ref=e416]: DeviceClass
+    - text: for the
+    - code [ref=e417]: ResourceClaimTemplate
+    - text: to request devices from.
+  - code [ref=e421]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: resource.k8s.io/v1 kind: DeviceClass metadata: name: sriovnetwork.k8snetworkplumbingwg.io spec: selectors: - cel: expression: device.driver == 'sriovnetwork.k8snetworkplumbingwg.io' EOF"
+  - heading [level=4] [ref=e422]:
+    - text: Create DRA Resource Claim Template
+    - link "Anchor" [ref=e423] [cursor=pointer]:
+      - /url: "#create-dra-resource-claim-template"
+      - text: 
+  - paragraph [ref=e424]:
+    - text: Following command creates a
+    - code [ref=e425]: ResourceClaimTemplate
+    - text: that requests a VF device from the SR-IOV device class. The device request is named
+    - code [ref=e426]: vf
+    - text: ; the DRA driver should publish
+    - code [ref=e427]: k8s.cni.cncf.io/resourceName
+    - text: on the device so it matches your NAD (e.g.
+    - code [ref=e428]: intel.com/sriov_vf
+    - text: ).
+  - code [ref=e432]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: resource.k8s.io/v1 kind: ResourceClaimTemplate metadata: namespace: default name: sriov-template spec: spec: devices: requests: - name: vf deviceClassName: sriovnetwork.k8snetworkplumbingwg.io EOF"
+  - heading [level=4] [ref=e433]:
+    - text: Launch pod with DRA Resource Claim
+    - link "Anchor" [ref=e434] [cursor=pointer]:
+      - /url: "#launch-pod-with-dra-resource-claim"
+      - text: 
+  - paragraph [ref=e435]:
+    - text: Following command launches a Pod with the secondary network
+    - code [ref=e436]: sriov-net
+    - text: and a DRA resource claim named
+    - code [ref=e437]: sriov
+    - text: . The NAD
+    - code [ref=e438]: resourceName
+    - text: must match the driver’s
+    - code [ref=e439]: k8s.cni.cncf.io/resourceName
+    - text: on the allocated device.
+  - code [ref=e443]: "# Execute following command at Kubernetes master cat <<EOF | kubectl create -f - apiVersion: v1 kind: Pod metadata: namespace: default name: sriov-pod annotations: k8s.v1.cni.cncf.io/networks: sriov-net spec: restartPolicy: Always containers: - name: with-resource image: docker.io/library/ubuntu:22.04 command: [\"/bin/sh\", \"-ec\", \"while :; do echo '.'; sleep 5 ; done\"] resources: claims: - name: sriov resourceClaims: - name: sriov resourceClaimTemplateName: sriov-template EOF"
+  - paragraph [ref=e444]: "In this example:"
+  - list [ref=e445]:
+    - listitem [ref=e446]:
+      - text: The pod has a resourceClaim named
+      - code [ref=e447]: sriov
+      - text: that uses the
+      - code [ref=e448]: sriov-template
+    - listitem [ref=e449]:
+      - text: The ResourceClaimTemplate has a device request named
+      - code [ref=e450]: vf
+    - listitem [ref=e451]:
+      - text: The DRA driver must set
+      - code [ref=e452]: "k8s.cni.cncf.io/resourceName: intel.com/sriov_vf"
+      - text: (and
+      - code [ref=e453]: deviceID
+      - text: ) on the allocated device
+    - listitem [ref=e454]:
+      - text: The NetworkAttachmentDefinition uses
+      - code [ref=e455]: "resourceName: intel.com/sriov_vf"
+      - text: to match that device attribute
+    - listitem [ref=e456]: Multus will match these and provide the allocated deviceID to the SR-IOV CNI plugin
+  - generic [ref=e457]:
+    - text: This site is open source.
+    - link "Improve this page" [ref=e458] [cursor=pointer]:
+      - /url: https://github.com/k8snetworkplumbingwg/multus-cni/edit/master/docs/how-to-use.md
+    - text: .

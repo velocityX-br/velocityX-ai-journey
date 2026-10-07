@@ -1,9 +1,9 @@
 ---
-name: multi-source-research
+name: sci-multi-source-research
 description: Research a topic across three sources in parallel — SAP Wiki (Confluence), sci-ai-mcp (SAP Converged Infrastructure docs), and the public internet — then synthesize a single cited research report. Uses parallel subagents so each source is investigated independently and heavy search output stays out of the main context. Use when the user asks to "research", "investigate", "gather info on", "write a research report on", or "cross-check <topic> across SAP wiki / SCI docs / the web".
 ---
 
-# Multi-Source Research
+# SCI Multi-Source Research
 
 Fan out research on a single topic to **three independent sources at once**, then
 merge the findings into one structured, cited report. Each source is handled by its

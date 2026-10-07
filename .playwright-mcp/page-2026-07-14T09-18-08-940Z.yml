@@ -1,0 +1,410 @@
+- generic [active] [ref=f12e1]:
+  - generic [ref=f12e3]:
+    - banner [ref=f12e4]:
+      - list:
+        - listitem:
+          - link "Skip to sidebar Type 'u' then '8'" [ref=f12e5] [cursor=pointer]:
+            - /url: ""
+            - text: Skip to sidebar
+        - listitem:
+          - link "Skip to main content" [ref=f12e6] [cursor=pointer]:
+            - /url: "#main"
+        - listitem:
+          - link "Skip to breadcrumbs" [ref=f12e7] [cursor=pointer]:
+            - /url: "#breadcrumbs"
+        - listitem:
+          - link "Skip to search" [ref=f12e8] [cursor=pointer]:
+            - /url: "#quick-search-query"
+      - navigation "Site" [ref=f12e9]:
+        - generic [ref=f12e10]:
+          - generic [ref=f12e11]:
+            - button " Linked Applications" [ref=f12e12] [cursor=pointer]
+            - text: 
+          - list [ref=f12e15]:
+            - listitem [ref=f12e16]:
+              - button " Spaces" [ref=f12e17] [cursor=pointer]
+            - listitem [ref=f12e18]:
+              - link "Calendars" [ref=f12e19] [cursor=pointer]:
+                - /url: /wiki/calendar/mycalendar.action
+            - listitem [ref=f12e21]:
+              - link "Create blank page Type 'c'" [ref=f12e22] [cursor=pointer]:
+                - /url: /wiki/pages/createpage.action?spaceKey=GCOPSD&fromPageId=6148911394&atl_token=0b782fc7a212e23a5d8eba9bc089339d15c520b8&src=quick-create
+                - text: Create
+              - link "Create" [ref=f12e23] [cursor=pointer]:
+                - /url: /wiki/pages/createpage.action?&atl_token=0b782fc7a212e23a5d8eba9bc089339d15c520b8spaceKey=GCOPSD&fromPageId=6148911394
+                - generic [ref=f12e24]: 
+          - list [ref=f12e26]:
+            - listitem [ref=f12e27]:
+              - generic [ref=f12e28]:
+                - button "Search" [ref=f12e29] [cursor=pointer]: 
+                - textbox "Search query Type 'g' then 'g' OR '/'" [ref=f12e30]:
+                  - /placeholder: Search
+            - listitem [ref=f12e31]:
+              - button " Help" [ref=f12e32] [cursor=pointer]
+            - listitem
+            - listitem [ref=f12e34]:
+              - 'button "Notifications: 1 new" [expanded] [ref=f12e35] [cursor=pointer]':
+                - generic [ref=f12e36]: 
+                - generic: "1"
+            - listitem [ref=f12e37]:
+              - button "Your profile and preferences" [ref=f12e38] [cursor=pointer]
+    - generic [ref=f12e41]:
+      - complementary "sidebar" [ref=f12e42]:
+        - generic [ref=f12e43]:
+          - generic [ref=f12e44]:
+            - link "Global Cloud Operations - IPE&D - SCI Platform Delivery" [ref=f12e45] [cursor=pointer]:
+              - /url: /wiki/spaces/GCOPSD/pages/5814684654/Global+Cloud+Operations+-+IPE+D+-+SCI+Platform+Delivery
+              - generic "Global Cloud Operations - IPE&D - SCI Platform Delivery" [ref=f12e51]
+            - text: 
+            - generic:
+              - button "Add to my spaces" [ref=f12e52] [cursor=pointer]: 
+              - text: 
+          - generic [ref=f12e53]:
+            - list [ref=f12e58]:
+              - listitem [ref=f12e59]:
+                - link "Pages" [ref=f12e60] [cursor=pointer]:
+                  - /url: /wiki/collector/pages.action?key=GCOPSD
+                  - generic [ref=f12e61]: 
+                  - text: Pages
+              - listitem [ref=f12e62]:
+                - link "Blog" [ref=f12e63] [cursor=pointer]:
+                  - /url: /wiki/pages/viewrecentblogposts.action?key=GCOPSD
+                  - generic [ref=f12e64]: 
+                  - text: Blog
+              - listitem [ref=f12e65]:
+                - link "Calendars" [ref=f12e66] [cursor=pointer]:
+                  - /url: /wiki/display/GCOPSD/calendars
+                  - generic [ref=f12e67]: 
+                  - text: Calendars
+            - generic [ref=f12e68]:
+              - heading "Page tree" [level=2] [ref=f12e70]:  Page tree
+              - list [ref=f12e73]:
+                - list [ref=f12e75]:
+                  - listitem [ref=f12e76]:
+                    - button "Expand item 01_Onboarding" [ref=f12e78] [cursor=pointer]: 
+                    - link "01_Onboarding" [ref=f12e81] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/5814684704/01_Onboarding
+                  - listitem [ref=f12e82]:
+                    - button "Expand item 02_APIs" [expanded] [ref=f12e84] [cursor=pointer]: 
+                    - link "02_APIs" [ref=f12e87] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/5927156708/02_APIs
+                    - list [ref=f12e89]:
+                      - listitem [ref=f12e90]:
+                        - link "Andromeda" [ref=f12e95] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6162113915/Andromeda
+                      - listitem [ref=f12e96]:
+                        - link "Archer" [ref=f12e101] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6162113934/Archer
+                      - listitem [ref=f12e102]:
+                        - link "Barbican" [ref=f12e107] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6104247032/Barbican
+                      - listitem [ref=f12e108]:
+                        - button "Expand item Cinder/ Manila" [ref=f12e110] [cursor=pointer]: 
+                        - link "Cinder/ Manila" [ref=f12e113] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6081386216/Cinder+Manila
+                      - listitem [ref=f12e114]:
+                        - link "Clavis" [ref=f12e119] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6229666949/Clavis
+                      - listitem [ref=f12e120]:
+                        - button "Expand item Compute APIs" [ref=f12e122] [cursor=pointer]: 
+                        - link "Compute APIs" [ref=f12e125] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6163355215/Compute+APIs
+                      - listitem [ref=f12e126]:
+                        - link "Cronus" [ref=f12e131] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6247394726/Cronus
+                      - listitem [ref=f12e132]:
+                        - link "Designate" [ref=f12e137] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6134075776/Designate
+                      - listitem [ref=f12e138]:
+                        - button "Expand item Elektra" [ref=f12e140] [cursor=pointer]: 
+                        - link "Elektra" [ref=f12e143] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6148251501/Elektra
+                      - listitem [ref=f12e144]:
+                        - link "Gardener (Infrastructure)" [ref=f12e149] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6134077972/Gardener+Infrastructure
+                      - listitem [ref=f12e150]:
+                        - link "Gardener Persephone" [ref=f12e155] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6182521790/Gardener+Persephone
+                      - listitem [ref=f12e156]:
+                        - button "Expand item Hermez / Maia" [ref=f12e158] [cursor=pointer]: 
+                        - link "Hermez / Maia" [ref=f12e161] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6114239203/Hermez+Maia
+                      - listitem [ref=f12e162]:
+                        - link "Keppel" [ref=f12e167] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6114243022/Keppel
+                      - listitem [ref=f12e168]:
+                        - link "Keystone" [ref=f12e173] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6163354502/Keystone
+                      - listitem [ref=f12e174]:
+                        - link "Kubernikus" [ref=f12e179] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6148911394/Kubernikus
+                      - listitem [ref=f12e180]:
+                        - button "Expand item Limes/ Castellum" [ref=f12e182] [cursor=pointer]: 
+                        - link "Limes/ Castellum" [ref=f12e185] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6113732318/Limes+Castellum
+                      - listitem [ref=f12e186]:
+                        - link "Maia / Hermes" [ref=f12e191] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6163354088/Maia+Hermes
+                      - listitem [ref=f12e192]:
+                        - link "Neutron/Octavia" [ref=f12e197] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6140469216/Neutron+Octavia
+                      - listitem [ref=f12e198]:
+                        - link "Swift" [ref=f12e203] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6114241805/Swift
+                      - listitem [ref=f12e204]:
+                        - button "Expand item VMWare Rebalancer / Cortex" [ref=f12e206] [cursor=pointer]: 
+                        - link "VMWare Rebalancer / Cortex" [ref=f12e209] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6148245930/VMWare+Rebalancer+Cortex
+                      - listitem [ref=f12e210]:
+                        - button "Expand item Webcli" [ref=f12e212] [cursor=pointer]: 
+                        - link "Webcli" [ref=f12e215] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6134090267/Webcli
+                      - listitem [ref=f12e216]:
+                        - button "Expand item Workload Management" [ref=f12e218] [cursor=pointer]: 
+                        - link "Workload Management" [ref=f12e221] [cursor=pointer]:
+                          - /url: /wiki/spaces/GCOPSD/pages/6188018278/Workload+Management
+                  - listitem [ref=f12e222]:
+                    - button "Expand item 03_Tools" [ref=f12e224] [cursor=pointer]: 
+                    - link "03_Tools" [ref=f12e227] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/5927156727/03_Tools
+                  - listitem [ref=f12e228]:
+                    - button "Expand item 04_Transition" [ref=f12e230] [cursor=pointer]: 
+                    - link "04_Transition" [ref=f12e233] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/6045712874/04_Transition
+                  - listitem [ref=f12e234]:
+                    - button "Expand item 05_Ticketing" [ref=f12e236] [cursor=pointer]: 
+                    - link "05_Ticketing" [ref=f12e239] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/6065681712/05_Ticketing
+                  - listitem [ref=f12e240]:
+                    - button "Expand item 06_Builds" [ref=f12e242] [cursor=pointer]: 
+                    - link "06_Builds" [ref=f12e245] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/6210797622/06_Builds
+                  - listitem [ref=f12e246]:
+                    - link "Learning" [ref=f12e251] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/6010214842/Learning
+                  - listitem [ref=f12e252]:
+                    - button "Expand item Tooling" [ref=f12e254] [cursor=pointer]: 
+                    - link "Tooling" [ref=f12e257] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/5886106034/Tooling
+        - generic [ref=f12e258]:
+          - button "ConfigureSpace tools" [ref=f12e259] [cursor=pointer]:
+            - generic [ref=f12e260]:  Configure
+            - text: Space tools
+          - button "Sidebar" [expanded] [ref=f12e262] [cursor=pointer]: 
+        - tooltip "Type '['" [ref=f12e263]
+      - main [ref=f12e265]:
+        - generic [ref=f12e266]:
+          - region "Page tools" [ref=f12e267]:
+            - list:
+              - listitem [ref=f12e268]:
+                - link "Edit Type 'e'" [ref=f12e269] [cursor=pointer]:
+                  - /url: /wiki/pages/editpage.action?pageId=6148911394
+                  - generic [ref=f12e270]:
+                    - generic [ref=f12e271]: 
+                    - text: Edit
+              - listitem [ref=f12e272]:
+                - link "View inline comments ('v') Type 'v'" [ref=f12e273] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f12e274]:
+                    - generic [ref=f12e275]: 
+                    - text: View inline comments
+              - listitem [ref=f12e276]:
+                - link "Save for later Type 'f'" [ref=f12e277] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f12e278]:
+                    - generic [ref=f12e279]: 
+                    - text: Save for later
+              - listitem [ref=f12e280]:
+                - link "Stop watching 'w'" [ref=f12e281] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f12e282]:
+                    - generic [ref=f12e283]: 
+                    - text: Watching
+              - listitem [ref=f12e284]:
+                - link "Share this page with others Type 's' OR 'k'" [ref=f12e285] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f12e286]:
+                    - generic [ref=f12e287]: 
+                    - text: Share
+              - listitem [ref=f12e288]:
+                - link "More options" [ref=f12e289] [cursor=pointer]:
+                  - /url: "#"
+                  - button "More options" [ref=f12e291]: 
+          - generic [ref=f12e292]:
+            - generic:
+              - navigation "Breadcrumbs":
+                - list:
+                  - listitem [ref=f12e293]:
+                    - link "Pages" [ref=f12e295] [cursor=pointer]:
+                      - /url: /wiki/collector/pages.action?key=GCOPSD
+                  - listitem [ref=f12e296]:
+                    - text: /
+                    - link "Global Cloud Operations - IPE+D - SCI Platform Delivery" [ref=f12e298] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/5814684654/Global+Cloud+Operations+-+IPE+D+-+SCI+Platform+Delivery
+                  - listitem [ref=f12e299]:
+                    - text: /
+                    - link "02_APIs" [ref=f12e301] [cursor=pointer]:
+                      - /url: /wiki/spaces/GCOPSD/pages/5927156708/02_APIs
+            - generic:
+              - list:
+                - listitem [ref=f12e302]:
+                  - link "Unrestricted" [ref=f12e303] [cursor=pointer]:
+                    - /url: ""
+                    - text: 
+                - listitem
+                - listitem
+                - listitem [ref=f12e304]
+            - link [ref=f12e306] [cursor=pointer]:
+              - /url: /wiki/spaces/GCOPSD/pages/6148911394/Kubernikus
+              - heading "Kubernikus" [level=1] [ref=f12e307]
+        - generic [ref=f12e308]:
+          - generic [ref=f12e309]:
+            - list [ref=f12e310]:
+              - listitem [ref=f12e311]:
+                - text: Created by
+                - link "created by Diedrich, Jan-Alexander (external - Service)" [ref=f12e313] [cursor=pointer]:
+                  - /url: "    /wiki/display/~C5418419\n"
+                  - text: Diedrich, Jan-Alexander (external - Service)
+                - text: ", last updated by"
+                - link "last.updated.by Ruschpler, Magnus" [ref=f12e315] [cursor=pointer]:
+                  - /url: "    /wiki/display/~I549553\n"
+                  - text: Ruschpler, Magnus
+                - text: "on"
+                - link "modified on Jun 08, 2026, select to show changes" [ref=f12e316] [cursor=pointer]:
+                  - /url: /wiki/pages/diffpagesbyversion.action?pageId=6148911394&selectedPageVersions=4&selectedPageVersions=5
+                  - text: Jun 08, 2026
+                - text: • 1 minute read
+            - list:
+              - listitem
+              - listitem
+              - listitem
+              - listitem
+          - generic [ref=f12e317]:
+            - paragraph [ref=f12e318]:
+              - emphasis [ref=f12e319]: "\"Kubernikus is our legacy Kubernetes cluster platform that provides Kubernetes-as-a-Service for OpenStack and Metal environments.\""
+            - separator [ref=f12e320]
+            - paragraph [ref=f12e321]
+            - paragraph [ref=f12e322]: "Key Stakeholder: Jan Knipper, Goeran Gudat-Hedel"
+            - paragraph [ref=f12e323]
+            - heading [level=4] [ref=f12e324]:
+              - text: "Infos & Operations docs:"
+              - button "Copy link to heading" [ref=f12e326] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f12e327]: 
+                - text:  
+            - list [ref=f12e328]:
+              - listitem [ref=f12e329]:
+                - paragraph [ref=f12e330]:
+                  - link "https://operations.global.cloud.sap/docs/container/kubernetes/cluster-platforms/kubernikus" [ref=f12e331] [cursor=pointer]:
+                    - /url: https://operations.global.cloud.sap/docs/container/kubernetes/cluster-platforms/kubernikus
+            - heading [level=4] [ref=f12e332]:
+              - text: "Git-Repos:"
+              - button "Copy link to heading" [ref=f12e334] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f12e335]: 
+                - text:  
+            - list [ref=f12e336]:
+              - listitem [ref=f12e337]:
+                - paragraph [ref=f12e338]:
+                  - link "https://github.com/sapcc/kubernikus" [ref=f12e339] [cursor=pointer]:
+                    - /url: https://github.com/sapcc/kubernikus
+              - listitem [ref=f12e340]:
+                - link "Kube-master charts" [ref=f12e341] [cursor=pointer]:
+                  - /url: https://github.com/sapcc/kubernikus/tree/master/charts/kube-master/templates
+              - listitem [ref=f12e342]:
+                - link "Operator charts" [ref=f12e343] [cursor=pointer]:
+                  - /url: https://github.com/sapcc/kubernikus/tree/master/charts/kubernikus/templates
+              - listitem [ref=f12e344]:
+                - link "Seed charts (customer cluster)" [ref=f12e345] [cursor=pointer]:
+                  - /url: https://github.com/sapcc/kubernikus/tree/master/charts/seed/templates
+              - listitem [ref=f12e346]:
+                - link "Node templates (upgrades)" [ref=f12e347] [cursor=pointer]:
+                  - /url: https://github.com/sapcc/kubernikus/tree/master/pkg/templates
+            - heading [level=4] [ref=f12e348]:
+              - text: "Concourse:"
+              - button "Copy link to heading" [ref=f12e350] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f12e351]: 
+                - text:  
+            - list [ref=f12e352]:
+              - listitem [ref=f12e353]:
+                - paragraph [ref=f12e354]:
+                  - link "https://ci1.eu-de-2.cloud.sap/teams/services/pipelines/kubernikus" [ref=f12e355] [cursor=pointer]:
+                    - /url: https://ci1.eu-de-2.cloud.sap/teams/services/pipelines/kubernikus
+              - listitem [ref=f12e356]:
+                - paragraph [ref=f12e357]:
+                  - link "https://github.wdf.sap.corp/cc/kube-secrets/tree/master/values" [ref=f12e358] [cursor=pointer]:
+                    - /url: https://github.wdf.sap.corp/cc/kube-secrets/tree/master/values
+            - heading [level=4] [ref=f12e359]:
+              - text: "Monitoring & Logging:"
+              - button "Copy link to heading" [ref=f12e361] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f12e362]: 
+                - text:  
+            - list [ref=f12e363]:
+              - listitem [ref=f12e364]: To be determined
+            - heading [level=4] [ref=f12e365]:
+              - text: "Slack channels:"
+              - button "Copy link to heading" [ref=f12e367] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f12e368]: 
+                - text:  
+            - list [ref=f12e369]:
+              - listitem [ref=f12e370]: kubernikus
+              - listitem [ref=f12e371]: kubernikus-users (incident history)
+            - heading [level=4] [ref=f12e372]:
+              - text: "Required roles:"
+              - button "Copy link to heading" [ref=f12e374] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f12e375]: 
+                - text:  
+            - list [ref=f12e376]:
+              - listitem [ref=f12e377]:
+                - paragraph [ref=f12e378]: kubernetes_admin
+            - paragraph [ref=f12e379]
+            - generic [ref=f12e380]:
+              - generic [ref=f12e381]: Cluster infos
+              - generic [ref=f12e383]:
+                - generic [ref=f12e384]:
+                  - button "Turn on wrap" [ref=f12e385] [cursor=pointer]
+                  - button "Copy as text" [ref=f12e391] [cursor=pointer]
+                - code [ref=f12e396]: "# kubernikus operator/api namespace u8s --context a-qa-de-1 kubectl -n kubernikus-system get pods # clusters namespace (customer control-planes prefixed with 'k-', metal-cluster providing openstack prefixed with 'v-') u8s --context a-qa-de-1 kubectl -n kubernikus get pods # get kluster-crds u8s --context a-qa-de-1 kubectl -n kubernikus get kluster # essential daemonsets u8s --context s-qa-de-1 kubectl -n kube-system get daemonset -> kube-proxy: iptable-rules -> flannel: cni-plugin -> wormhole: reverse-tunnel # show operator deployed cluster-helm-charts u8s --context k-qa-de-1 helm -n kubernikus ls"
+            - paragraph [ref=f12e397]
+            - 'heading "Q&A topics: Copy link to heading" [level=4] [ref=f12e398]':
+              - generic [ref=f12e399]: Q&A
+              - text: "topics:"
+              - button "Copy link to heading" [ref=f12e401] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f12e402]: 
+                - text:  
+            - list [ref=f12e403]:
+              - listitem [ref=f12e404]:
+                - paragraph [ref=f12e405]: "Goeran Gudat-Hedel: control-planes and v-clusters"
+              - listitem [ref=f12e406]: "Jan Knipper: pipeline and node-upgrade deepdive; playbooks; logging"
+          - generic [ref=f12e407]:
+            - generic [ref=f12e408]:
+              - link " Like" [ref=f12e409] [cursor=pointer]:
+                - /url: ""
+                - generic [ref=f12e410]: 
+                - text: Like
+              - text: Be the first to like this
+            - list [ref=f12e414]:
+              - listitem [ref=f12e415]: No labels
+              - listitem [ref=f12e416]:
+                - link "Edit Labels Type 'l'" [ref=f12e417] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f12e418]:  Edit Labels
+          - generic [ref=f12e421]:
+            - paragraph [ref=f12e422]:
+              - link [ref=f12e423] [cursor=pointer]:
+                - /url: /wiki/users/profile/editmyprofilepicture.action
+                - 'img "User icon: Add a picture of yourself" [ref=f12e426]'
+            - button "Add a Comment Type 'm'" [ref=f12e429]: Write a comment...
+      - contentinfo [ref=f12e430]:
+        - list [ref=f12e432]:
+          - listitem [ref=f12e433]:
+            - text: Powered by
+            - link "Atlassian Confluence" [ref=f12e434] [cursor=pointer]:
+              - /url: https://www.atlassian.com/software/confluence
+            - text: "9.2.21 (node3: 4bccedf7)·"
+          - listitem [ref=f12e435]:
+            - link "Report an Incident" [ref=f12e436] [cursor=pointer]:
+              - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+            - text: ·
+          - listitem [ref=f12e437]:
+            - link "Wiki Community" [ref=f12e438] [cursor=pointer]:
+              - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL
+  - text:                              

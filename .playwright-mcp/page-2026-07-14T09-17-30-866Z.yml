@@ -1,0 +1,307 @@
+- generic [ref=f9e1]:
+  - generic [ref=f9e3]:
+    - banner [ref=f9e4]:
+      - list:
+        - listitem:
+          - link "Skip to main content Type 'u' then '8'" [ref=f9e5] [cursor=pointer]:
+            - /url: "#main"
+            - text: Skip to main content
+        - listitem:
+          - link "Skip to search" [ref=f9e6] [cursor=pointer]:
+            - /url: "#quick-search-query"
+      - navigation "Site" [ref=f9e7]:
+        - generic [ref=f9e8]:
+          - generic [ref=f9e9]:
+            - button " Linked Applications" [ref=f9e10] [cursor=pointer]
+            - text: 
+          - list [ref=f9e13]:
+            - listitem [ref=f9e14]:
+              - button " Spaces" [ref=f9e15] [cursor=pointer]
+            - listitem [ref=f9e16]:
+              - link "Calendars" [ref=f9e17] [cursor=pointer]:
+                - /url: /wiki/calendar/mycalendar.action
+            - listitem [ref=f9e19]:
+              - link "Create blank page Type 'c'" [ref=f9e20] [cursor=pointer]:
+                - /url: /wiki/plugins/createcontent/createpage-defaultspace.action?atl_token=0b782fc7a212e23a5d8eba9bc089339d15c520b8&src=quick-create
+                - text: Create
+              - link "Create" [ref=f9e21] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f9e22]: 
+          - list [ref=f9e24]:
+            - listitem [ref=f9e25]:
+              - generic [ref=f9e26]:
+                - button "Search" [ref=f9e27] [cursor=pointer]: 
+                - textbox "Search query Type 'g' then 'g' OR '/'" [ref=f9e28]:
+                  - /placeholder: Search
+            - listitem [ref=f9e29]:
+              - button " Help" [ref=f9e30] [cursor=pointer]
+            - listitem
+            - listitem [ref=f9e32]:
+              - 'button "Notifications: 1 new" [expanded] [ref=f9e33] [cursor=pointer]':
+                - generic [ref=f9e34]: 
+                - generic: "1"
+            - listitem [ref=f9e35]:
+              - button "Your profile and preferences" [ref=f9e36] [cursor=pointer]
+    - main [ref=f9e39]:
+      - generic [ref=f9e41]:
+        - heading "Search" [level=1] [ref=f9e42]
+        - generic [ref=f9e43]:
+          - textbox "Search for pages, files, people and more" [active] [ref=f9e44]: Kubernikus
+          - button " Help" [ref=f9e45] [cursor=pointer]
+        - button " Search" [ref=f9e46] [cursor=pointer]
+      - generic [ref=f9e49]:
+        - complementary "Sidebar" [ref=f9e50]:
+          - navigation [ref=f9e52]:
+            - generic [ref=f9e54]:
+              - generic [ref=f9e55]:
+                - generic [ref=f9e56]:
+                  - generic [ref=f9e57]: Contributor
+                  - list [ref=f9e60]:
+                    - listitem [ref=f9e61]:
+                      - textbox [ref=f9e63]
+                - generic [ref=f9e64]:
+                  - generic [ref=f9e65]: In space
+                  - generic [ref=f9e66]:
+                    - list [ref=f9e68]:
+                      - listitem:
+                        - textbox: Select a space
+                    - generic [ref=f9e70]:
+                      - checkbox "Search archived spaces" [ref=f9e71]
+                      - text: Search archived spaces
+                - generic [ref=f9e72]:
+                  - generic [ref=f9e73]: Last modified
+                  - list [ref=f9e76]:
+                    - listitem [ref=f9e77]:
+                      - button "Any date" [ref=f9e78] [cursor=pointer]
+                    - listitem [ref=f9e79]:
+                      - button "Last 24 hours" [ref=f9e80] [cursor=pointer]
+                    - listitem [ref=f9e81]:
+                      - button "Last week" [ref=f9e82] [cursor=pointer]
+                    - listitem [ref=f9e83]:
+                      - button "Last month" [ref=f9e84] [cursor=pointer]
+                    - listitem [ref=f9e85]:
+                      - button "Last year" [ref=f9e86] [cursor=pointer]
+                    - listitem [ref=f9e87]:
+                      - button "Custom" [ref=f9e88] [cursor=pointer]
+                - generic [ref=f9e89]:
+                  - generic [ref=f9e90]: Of type
+                  - generic [ref=f9e91]:
+                    - list [ref=f9e93]:
+                      - listitem [ref=f9e94]:
+                        - button "All content" [ref=f9e95] [cursor=pointer]
+                      - listitem [ref=f9e96]:
+                        - button "Pages" [ref=f9e97] [cursor=pointer]
+                      - listitem [ref=f9e98]:
+                        - button "Blog posts" [ref=f9e99] [cursor=pointer]
+                      - listitem [ref=f9e100]:
+                        - button "Attachments" [ref=f9e101] [cursor=pointer]
+                      - listitem [ref=f9e102]:
+                        - button "Spaces" [ref=f9e103] [cursor=pointer]
+                      - listitem [ref=f9e104]:
+                        - button "Custom" [ref=f9e105] [cursor=pointer]
+                    - text: 
+              - generic [ref=f9e106]:
+                - button "Add a filter" [ref=f9e107] [cursor=pointer]
+                - text:   
+        - generic [ref=f9e109]:
+          - generic [ref=f9e110]:
+            - paragraph [ref=f9e111]: Page 1 of 30. Showing 291 results (0.654 seconds)
+            - list [ref=f9e112]:
+              - listitem [ref=f9e113]:
+                - heading "content icon for search result Kubernikus" [level=3] [ref=f9e114]:
+                  - generic "content icon for search result" [ref=f9e115]
+                  - link [ref=f9e116] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/pages/6148911394/Kubernikus
+                    - strong [ref=f9e117]: Kubernikus
+                - generic [ref=f9e118]:
+                  - text: "\""
+                  - strong [ref=f9e119]: Kubernikus
+                  - text: "is our legacy Kubernetes cluster platform that provides Kubernetes-as-a-Service for OpenStack … Monitoring & Logging: To be determined Slack channels:"
+                  - strong [ref=f9e120]: kubernikus
+                  - strong [ref=f9e121]: kubernikus
+                  - text: "-users (incident history"
+                - generic [ref=f9e122]:
+                  - link "Global Cloud Operations - IPE&D - SCI Platform Delivery" [ref=f9e123] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/overview
+                  - text: • Jun 08, 2026
+              - listitem [ref=f9e124]:
+                - heading "content icon for search result Kubernikus · Managed Kubernetes (Legacy) [Draft]" [level=3] [ref=f9e125]:
+                  - generic "content icon for search result" [ref=f9e126]
+                  - link [ref=f9e127] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/pages/6162579237/Kubernikus+%C2%B7+Managed+Kubernetes+Legacy+Draft
+                    - strong [ref=f9e128]: Kubernikus
+                    - text: · Managed Kubernetes (Legacy) [Draft]
+                - generic [ref=f9e129]:
+                  - strong [ref=f9e130]: Kubernikus
+                  - text: "Owner: InfraOps · Namespace:"
+                  - strong [ref=f9e131]: kubernikus
+                  - text: "-system in k-<region> cluster #"
+                  - strong [ref=f9e132]: kubernikus
+                  - text: 1) Alert Handling … No tickets available for
+                  - strong [ref=f9e133]: Kubernikus
+                  - text: 16 ee72b26f-e520-4565-812c-28a0d8c53e7c incomplete TBD GreenHouse / No Slack
+                - generic [ref=f9e134]:
+                  - link "Global Cloud Operations - IPE&D - SCI Platform Delivery" [ref=f9e135] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/overview
+                  - text: • Jul 02, 2026
+              - listitem [ref=f9e136]:
+                - heading "content icon for search result How To - Install Calico on Kubernikus" [level=3] [ref=f9e137]:
+                  - generic "content icon for search result" [ref=f9e138]
+                  - link [ref=f9e139] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMP/pages/3407076139/How+To+-+Install+Calico+on+Kubernikus
+                    - text: How To - Install Calico on
+                    - strong [ref=f9e140]: Kubernikus
+                - generic [ref=f9e141]:
+                  - text: Install Calico on
+                  - strong [ref=f9e142]: Kubernikus
+                  - text: <replace with process owner> How To "Calico is an open source networking and network security solution for containers, virtual machines, and native host-based workloads."
+                  - strong [ref=f9e143]: Kubernikus
+                  - text: relies
+                - generic [ref=f9e144]:
+                  - link "IT - Production Management Portals" [ref=f9e145] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMP/overview
+                  - text: • Sep 28, 2023
+              - listitem [ref=f9e146]:
+                - heading "content icon for search result How To - Upgrade Kubernetes on CCloud kubernikus nodes" [level=3] [ref=f9e147]:
+                  - generic "content icon for search result" [ref=f9e148]
+                  - link [ref=f9e149] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMPARCHIVE/pages/2027843481/How+To+-+Upgrade+Kubernetes+on+CCloud+kubernikus+nodes
+                    - text: How To - Upgrade Kubernetes on CCloud
+                    - strong [ref=f9e150]: kubernikus
+                    - text: nodes
+                - generic [ref=f9e151]:
+                  - text: Upgrade kubernetes running on
+                  - strong [ref=f9e152]: kubernikus
+                  - text: "nodes Dan Mount How To Upgrade the version of Kubernetes … Abstract: Upgrade kubernetes running on"
+                  - strong [ref=f9e153]: kubernikus
+                  - text: "nodes Owner: Dan Mount kb howto ccloud kubernetes upgrade"
+                - generic [ref=f9e154]:
+                  - link "PMPARCHIVE" [ref=f9e155] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMPARCHIVE/overview
+                  - text: • Jun 14, 2019
+              - listitem [ref=f9e156]:
+                - heading "content icon for search result Building Kubernikus based MLF cluster" [level=3] [ref=f9e157]:
+                  - generic "content icon for search result" [ref=f9e158]
+                  - link [ref=f9e159] [cursor=pointer]:
+                    - /url: /wiki/spaces/cleaops/pages/2043256476/Building+Kubernikus+based+MLF+cluster
+                    - text: Building
+                    - strong [ref=f9e160]: Kubernikus
+                    - text: based MLF cluster
+                - generic [ref=f9e161]:
+                  - text: or product owner Create
+                  - strong [ref=f9e162]: Kubernikus
+                  - text: cluster, with appropriate types & sizes of nodepool Download cluster credentials … network "nfs" in
+                  - strong [ref=f9e163]: Kubernikus
+                  - text: cluster's subnet Create a share "nfs" in the share network using 100 Gb (in prod
+                - generic [ref=f9e164]:
+                  - link "AI Cloud OPs" [ref=f9e165] [cursor=pointer]:
+                    - /url: /wiki/spaces/cleaops/overview
+                  - text: • Dec 12, 2018
+              - listitem [ref=f9e166]:
+                - heading "content icon for search result Case Study - Converged Cloud Kubernikus VM hybrid setup" [level=3] [ref=f9e167]:
+                  - generic "content icon for search result" [ref=f9e168]
+                  - link [ref=f9e169] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMPARCHIVE/pages/2084284728/Case+Study+-+Converged+Cloud+Kubernikus+VM+hybrid+setup
+                    - text: Case Study - Converged Cloud
+                    - strong [ref=f9e170]: Kubernikus
+                    - text: VM hybrid setup
+                - generic [ref=f9e171]:
+                  - text: for the
+                  - strong [ref=f9e172]: Kubernikus
+                  - text: "cluster, the other identifies the VM on the private shared network Abstract: Hybrid Setup of Kubernetes and VMs in Converged Cloud guideline kb ccloud"
+                  - strong [ref=f9e173]: kubernikus
+                  - text: kubernetes 2026q1expiry archive
+                - generic [ref=f9e174]:
+                  - link "PMPARCHIVE" [ref=f9e175] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMPARCHIVE/overview
+                  - text: • Apr 01, 2019
+              - listitem [ref=f9e176]:
+                - heading "content icon for search result CC - Kubernikus" [level=3] [ref=f9e177]:
+                  - generic "content icon for search result" [ref=f9e178]
+                  - link [ref=f9e179] [cursor=pointer]:
+                    - /url: /wiki/spaces/cleaops/pages/2043256252/CC+-+Kubernikus
+                    - text: CC -
+                    - strong [ref=f9e180]: Kubernikus
+                - generic [ref=f9e181]:
+                  - link "AI Cloud OPs" [ref=f9e182] [cursor=pointer]:
+                    - /url: /wiki/spaces/cleaops/overview
+                  - text: • Dec 12, 2018
+              - listitem [ref=f9e183]:
+                - heading "content icon for search result Kubernetes and Flatcar Kubernikus upgrade" [level=3] [ref=f9e184]:
+                  - generic "content icon for search result" [ref=f9e185]
+                  - link [ref=f9e186] [cursor=pointer]:
+                    - /url: /wiki/spaces/UI/pages/3774960698/Kubernetes+and+Flatcar+Kubernikus+upgrade
+                    - text: Kubernetes and Flatcar
+                    - strong [ref=f9e187]: Kubernikus
+                    - text: upgrade
+                - generic [ref=f9e188]: "This wiki describes the process and prerequisites required for Kubernetes and/or Flatcar upgrade. Flatcar - Packaged OS image (ubuntu) Useful links: Flatcar release channels / versions - https://www.flatcar.org/releases/ https"
+                - generic [ref=f9e189]:
+                  - link "SAP User Interfaces" [ref=f9e190] [cursor=pointer]:
+                    - /url: /wiki/spaces/UI/overview
+                  - text: • Oct 30, 2023
+              - listitem [ref=f9e191]:
+                - heading "content icon for search result How to apply infrastructure changes to CC / Kubernikus landscapes" [level=3] [ref=f9e192]:
+                  - generic "content icon for search result" [ref=f9e193]
+                  - link [ref=f9e194] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMP/pages/2093189609/How+to+apply+infrastructure+changes+to+CC+Kubernikus+landscapes
+                    - text: How to apply infrastructure changes to CC /
+                    - strong [ref=f9e195]: Kubernikus
+                    - text: landscapes
+                - generic [ref=f9e196]: This document describes how to apply changes to project's infrastructure with he help of Terraform. [~c5247214] How To This document describes how to apply changes to project's infrastructure with the help of Terraform
+                - generic [ref=f9e197]:
+                  - link "IT - Production Management Portals" [ref=f9e198] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMP/overview
+                  - text: • May 02, 2019
+              - listitem [ref=f9e199]:
+                - heading "content icon for search result CC3 - KB - How to determine cluster name of a Kubernikus cluster" [level=3] [ref=f9e200]:
+                  - generic "content icon for search result" [ref=f9e201]
+                  - link [ref=f9e202] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMPSupport/pages/2501975680/CC3+-+KB+-+How+to+determine+cluster+name+of+a+Kubernikus+cluster
+                    - text: CC3 - KB - How to determine cluster name of a
+                    - strong [ref=f9e203]: Kubernikus
+                    - text: cluster
+                - generic [ref=f9e204]: "Step-by-step guide Add the steps involved: Open CC project page in your browser Click Kubernetes link under Containers section image2020-5-28_12-12-16.png Cluster name is stated on the page: image2020-5-28_12-14-23.png"
+                - generic [ref=f9e205]:
+                  - link "PMP Support" [ref=f9e206] [cursor=pointer]:
+                    - /url: /wiki/spaces/PMPSupport/overview
+                  - text: • Feb 28, 2023
+          - list [ref=f9e208]:
+            - listitem [ref=f9e209]:
+              - strong [ref=f9e210]: "1"
+            - listitem [ref=f9e211]:
+              - link "2" [ref=f9e212] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Kubernikus&cql=siteSearch+~+%22Kubernikus%22&startIndex=10
+            - listitem [ref=f9e213]:
+              - link "3" [ref=f9e214] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Kubernikus&cql=siteSearch+~+%22Kubernikus%22&startIndex=20
+            - listitem [ref=f9e215]:
+              - link "4" [ref=f9e216] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Kubernikus&cql=siteSearch+~+%22Kubernikus%22&startIndex=30
+            - listitem [ref=f9e217]:
+              - link "5" [ref=f9e218] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Kubernikus&cql=siteSearch+~+%22Kubernikus%22&startIndex=40
+            - listitem [ref=f9e219]:
+              - link "Next" [ref=f9e220] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Kubernikus&cql=siteSearch+~+%22Kubernikus%22&startIndex=10
+        - generic [ref=f9e224]:
+          - img "ScriptRunner Enhanced Search" [ref=f9e227]
+          - generic [ref=f9e231]:
+            - heading "Find what you need faster" [level=2] [ref=f9e232]
+            - paragraph [ref=f9e235]: Use ScriptRunner Enhanced Search to pinpoint exactly what you’re looking for. Define searches with Confluence Query Language (CQL) to see only what you want, minus the noise.
+            - link "Take me there" [ref=f9e238] [cursor=pointer]:
+              - /url: /wiki/plugins/servlet/scriptrunner/enhancedsearch/
+    - contentinfo [ref=f9e240]:
+      - list [ref=f9e242]:
+        - listitem [ref=f9e243]:
+          - text: Powered by
+          - link "Atlassian Confluence" [ref=f9e244] [cursor=pointer]:
+            - /url: https://www.atlassian.com/software/confluence
+          - text: "9.2.21 (node3: 4bccedf7)·"
+        - listitem [ref=f9e245]:
+          - link "Report an Incident" [ref=f9e246] [cursor=pointer]:
+            - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+          - text: ·
+        - listitem [ref=f9e247]:
+          - link "Wiki Community" [ref=f9e248] [cursor=pointer]:
+            - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL
+  - status [ref=f9e249]

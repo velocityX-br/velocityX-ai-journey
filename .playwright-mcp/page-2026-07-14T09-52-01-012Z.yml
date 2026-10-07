@@ -1,0 +1,393 @@
+- generic [ref=f21e1]:
+  - generic [ref=f21e3]:
+    - banner [ref=f21e4]:
+      - list:
+        - listitem:
+          - link "Skip to main content Type 'u' then '8'" [ref=f21e5] [cursor=pointer]:
+            - /url: "#main"
+            - text: Skip to main content
+        - listitem:
+          - link "Skip to search" [ref=f21e6] [cursor=pointer]:
+            - /url: "#quick-search-query"
+      - navigation "Site" [ref=f21e7]:
+        - generic [ref=f21e8]:
+          - generic [ref=f21e9]:
+            - button " Linked Applications" [ref=f21e10] [cursor=pointer]
+            - text: 
+          - list [ref=f21e13]:
+            - listitem [ref=f21e14]:
+              - button " Spaces" [ref=f21e15] [cursor=pointer]
+            - listitem [ref=f21e16]:
+              - link "Calendars" [ref=f21e17] [cursor=pointer]:
+                - /url: /wiki/calendar/mycalendar.action
+            - listitem [ref=f21e19]:
+              - link "Create blank page Type 'c'" [ref=f21e20] [cursor=pointer]:
+                - /url: /wiki/plugins/createcontent/createpage-defaultspace.action?atl_token=0b782fc7a212e23a5d8eba9bc089339d15c520b8&src=quick-create
+                - text: Create
+              - link "Create" [ref=f21e21] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f21e22]: 
+          - list [ref=f21e24]:
+            - listitem [ref=f21e25]:
+              - generic [ref=f21e26]:
+                - button "Search" [ref=f21e27] [cursor=pointer]: 
+                - textbox "Search query Type 'g' then 'g' OR '/'" [ref=f21e28]:
+                  - /placeholder: Search
+            - listitem [ref=f21e29]:
+              - button " Help" [ref=f21e30] [cursor=pointer]
+            - listitem
+            - listitem [ref=f21e32]:
+              - 'button "Notifications: 1 new" [expanded] [ref=f21e33] [cursor=pointer]':
+                - generic [ref=f21e34]: 
+                - generic: "1"
+            - listitem [ref=f21e35]:
+              - button "Your profile and preferences" [ref=f21e36] [cursor=pointer]
+    - main [ref=f21e39]:
+      - generic [ref=f21e41]:
+        - heading "Search" [level=1] [ref=f21e42]
+        - generic [ref=f21e43]:
+          - textbox "Search for pages, files, people and more" [active] [ref=f21e44]: accounts.ondemand.com Identity Authentication OpenID support contact
+          - button " Help" [ref=f21e45] [cursor=pointer]
+        - button " Search" [ref=f21e46] [cursor=pointer]
+      - generic [ref=f21e49]:
+        - complementary "Sidebar" [ref=f21e50]:
+          - navigation [ref=f21e52]:
+            - generic [ref=f21e54]:
+              - generic [ref=f21e55]:
+                - generic [ref=f21e56]:
+                  - generic [ref=f21e57]: Contributor
+                  - list [ref=f21e60]:
+                    - listitem [ref=f21e61]:
+                      - textbox [ref=f21e63]
+                - generic [ref=f21e64]:
+                  - generic [ref=f21e65]: In space
+                  - generic [ref=f21e66]:
+                    - list [ref=f21e68]:
+                      - listitem:
+                        - textbox: Select a space
+                    - generic [ref=f21e70]:
+                      - checkbox "Search archived spaces" [ref=f21e71]
+                      - text: Search archived spaces
+                - generic [ref=f21e72]:
+                  - generic [ref=f21e73]: Last modified
+                  - list [ref=f21e76]:
+                    - listitem [ref=f21e77]:
+                      - button "Any date" [ref=f21e78] [cursor=pointer]
+                    - listitem [ref=f21e79]:
+                      - button "Last 24 hours" [ref=f21e80] [cursor=pointer]
+                    - listitem [ref=f21e81]:
+                      - button "Last week" [ref=f21e82] [cursor=pointer]
+                    - listitem [ref=f21e83]:
+                      - button "Last month" [ref=f21e84] [cursor=pointer]
+                    - listitem [ref=f21e85]:
+                      - button "Last year" [ref=f21e86] [cursor=pointer]
+                    - listitem [ref=f21e87]:
+                      - button "Custom" [ref=f21e88] [cursor=pointer]
+                - generic [ref=f21e89]:
+                  - generic [ref=f21e90]: Of type
+                  - generic [ref=f21e91]:
+                    - list [ref=f21e93]:
+                      - listitem [ref=f21e94]:
+                        - button "All content" [ref=f21e95] [cursor=pointer]
+                      - listitem [ref=f21e96]:
+                        - button "Pages" [ref=f21e97] [cursor=pointer]
+                      - listitem [ref=f21e98]:
+                        - button "Blog posts" [ref=f21e99] [cursor=pointer]
+                      - listitem [ref=f21e100]:
+                        - button "Attachments" [ref=f21e101] [cursor=pointer]
+                      - listitem [ref=f21e102]:
+                        - button "Spaces" [ref=f21e103] [cursor=pointer]
+                      - listitem [ref=f21e104]:
+                        - button "Custom" [ref=f21e105] [cursor=pointer]
+                    - text: 
+              - generic [ref=f21e106]:
+                - button "Add a filter" [ref=f21e107] [cursor=pointer]
+                - text:   
+        - generic [ref=f21e109]:
+          - generic [ref=f21e110]:
+            - paragraph [ref=f21e111]: Page 1 of 91,781. Showing 917,805 results (6.841 seconds)
+            - list [ref=f21e112]:
+              - listitem [ref=f21e113]:
+                - heading "content icon for search result Support OpenID Connect Authentication Method" [level=3] [ref=f21e114]:
+                  - generic "content icon for search result" [ref=f21e115]
+                  - link [ref=f21e116] [cursor=pointer]:
+                    - /url: /wiki/spaces/hcproxy/pages/4316541576/Support+OpenID+Connect+Authentication+Method
+                    - strong [ref=f21e117]: Support
+                    - strong [ref=f21e118]: OpenID
+                    - text: Connect
+                    - strong [ref=f21e119]: Authentication
+                    - text: Method
+                - generic [ref=f21e120]:
+                  - text: General Security team is adding a new
+                  - strong [ref=f21e121]: authentication
+                  - text: method,
+                  - strong [ref=f21e122]: OpenID
+                  - text: Connect (OIDC), which should be
+                  - strong [ref=f21e123]: supported
+                  - text: … Connect
+                  - strong [ref=f21e124]: Authentication
+                  - text: Security / Trust tab. Creating OIDC tenant For creating OIDC
+                  - strong [ref=f21e125]: identity
+                  - strong [ref=f21e126]: authentication
+                - generic [ref=f21e127]:
+                  - link "HCP HTML5 Applications" [ref=f21e128] [cursor=pointer]:
+                    - /url: /wiki/spaces/hcproxy/overview
+                  - text: • Jun 10, 2024
+              - listitem [ref=f21e129]:
+                - heading "content icon for search result Regular syncs with product support" [level=3] [ref=f21e130]:
+                  - generic "content icon for search result" [ref=f21e131]
+                  - link [ref=f21e132] [cursor=pointer]:
+                    - /url: /wiki/spaces/idservice/pages/1795042737/Regular+syncs+with+product+support
+                    - text: Regular syncs with product
+                    - strong [ref=f21e133]: support
+                - generic [ref=f21e134]:
+                  - text: → when the user is Inactive at IAS side and
+                  - strong [ref=f21e135]: identity
+                  - text: federation is configured with Use
+                  - strong [ref=f21e136]: Identity
+                  - strong [ref=f21e137]: Authentication
+                  - text: user …
+                  - strong [ref=f21e138]: Identity
+                  - strong [ref=f21e139]: Authentication
+                  - text: user store and Allow
+                  - strong [ref=f21e140]: Identity
+                  - strong [ref=f21e141]: Authentication
+                  - text: users only check and test to see what
+                - generic [ref=f21e142]:
+                  - link "Identity Authentication Service" [ref=f21e143] [cursor=pointer]:
+                    - /url: /wiki/spaces/idservice/overview
+                  - text: • Jul 09, 2026
+              - listitem [ref=f21e144]:
+                - heading "content icon for search result Integrate Composable Storefront and SAP Commerce with SAP Identity Authentification Management using OpenID Connect" [level=3] [ref=f21e145]:
+                  - generic "content icon for search result" [ref=f21e146]
+                  - link [ref=f21e147] [cursor=pointer]:
+                    - /url: /wiki/spaces/pskb/pages/2639541725/Integrate+Composable+Storefront+and+SAP+Commerce+with+SAP%C2%A0Identity+Authentification+Management+using+OpenID+Connect
+                    - text: Integrate Composable Storefront and SAP Commerce with SAP
+                    - strong [ref=f21e148]: Identity
+                    - text: Authentification Management using
+                    - strong [ref=f21e149]: OpenID
+                    - text: Connect
+                - generic [ref=f21e150]:
+                  - text: to Session Management https://sap.github.io/spartacus-docs/session-management to
+                  - strong [ref=f21e151]: support
+                  - strong [ref=f21e152]: authentication
+                  - text: … Cloud
+                  - strong [ref=f21e153]: Identity
+                  - text: Services -
+                  - strong [ref=f21e154]: Identity
+                  - strong [ref=f21e155]: Authentication
+                - generic [ref=f21e156]:
+                  - link "[SAP] ES Knowledge Base" [ref=f21e157] [cursor=pointer]:
+                    - /url: /wiki/spaces/pskb/overview
+                  - text: • May 14, 2026
+              - listitem [ref=f21e158]:
+                - heading "content icon for search result INTG-02R1 - Implement OpenID Connect or SAML 2.0 to enable Single-Sign On via IAS" [level=3] [ref=f21e159]:
+                  - generic "content icon for search result" [ref=f21e160]
+                  - link [ref=f21e161] [cursor=pointer]:
+                    - /url: /wiki/spaces/CBC/pages/4649781432/INTG-02R1+-+Implement+OpenID+Connect+or+SAML+2.0+to+enable+Single-Sign+On+via+IAS
+                    - text: INTG-02R1 - Implement
+                    - strong [ref=f21e162]: OpenID
+                    - text: Connect or SAML 2.0 to enable Single-Sign On via IAS
+                - generic [ref=f21e163]:
+                  - text: provider proxy. The
+                  - strong [ref=f21e164]: Identity
+                  - strong [ref=f21e165]: Authentication
+                  - text: service also
+                  - strong [ref=f21e166]: supports
+                  - strong [ref=f21e167]: OpenID
+                  - text: Connect to integrate, for example, Altiscale … to configure a custom
+                  - strong [ref=f21e168]: identity
+                  - text: provider proxy. The
+                  - strong [ref=f21e169]: Identity
+                  - strong [ref=f21e170]: Authentication
+                  - text: service also
+                  - strong [ref=f21e171]: supports
+                  - strong [ref=f21e172]: OpenID
+                  - text: Connect
+                - generic [ref=f21e173]:
+                  - link "Central Business Configuration" [ref=f21e174] [cursor=pointer]:
+                    - /url: /wiki/spaces/CBC/overview
+                  - text: • Nov 03, 2025
+              - listitem [ref=f21e175]:
+                - heading "content icon for search result Identity Authentication for Learning-only Users" [level=3] [ref=f21e176]:
+                  - generic "content icon for search result" [ref=f21e177]
+                  - link [ref=f21e178] [cursor=pointer]:
+                    - /url: /wiki/spaces/SFENG6/pages/5214426522/Identity+Authentication+for+Learning-only+Users
+                    - strong [ref=f21e179]: Identity
+                    - strong [ref=f21e180]: Authentication
+                    - text: for Learning-only Users
+                - generic [ref=f21e181]:
+                  - text: this, please
+                  - strong [ref=f21e182]: contact
+                  - text: "your administrator\" Logs: \""
+                  - strong [ref=f21e183]: Identity
+                  - text: Provider could not process SAML2
+                  - strong [ref=f21e184]: authentication
+                  - text: request …
+                  - strong [ref=f21e185]: Authentication
+                  - text: and
+                  - strong [ref=f21e186]: Identity
+                  - text: Provisioning Services (IAS/IPS) Primary Repository - SAP for Me
+                - generic [ref=f21e187]:
+                  - link "Engineering" [ref=f21e188] [cursor=pointer]:
+                    - /url: /wiki/spaces/SFENG6/overview
+                  - text: • Jul 02, 2026
+              - listitem [ref=f21e189]:
+                - heading "content icon for search result Security - Identity Management" [level=3] [ref=f21e190]:
+                  - generic "content icon for search result" [ref=f21e191]
+                  - link [ref=f21e192] [cursor=pointer]:
+                    - /url: /wiki/spaces/apjscpcee/pages/2575112828/Security+-+Identity+Management
+                    - text: Security -
+                    - strong [ref=f21e193]: Identity
+                    - text: Management
+                - generic [ref=f21e194]:
+                  - text: separately. It isn’t part of the
+                  - strong [ref=f21e195]: Identity
+                  - strong [ref=f21e196]: Authentication
+                  - text: contract.
+                  - strong [ref=f21e197]: Contact
+                  - text: person is William Dudley … Migration from SAML Trust to
+                  - strong [ref=f21e198]: OpenID
+                  - text: Connect Trust with
+                  - strong [ref=f21e199]: Identity
+                  - strong [ref=f21e200]: Authentication
+                - generic [ref=f21e201]:
+                  - link "APJ SAP Cloud Platform CEE" [ref=f21e202] [cursor=pointer]:
+                    - /url: /wiki/spaces/apjscpcee/overview
+                  - text: • Jun 25, 2026
+              - listitem [ref=f21e203]:
+                - heading "content icon for search result SAP Cloud Identity Services - OpenID Connect Integration (SAP_COM_1259)" [level=3] [ref=f21e204]:
+                  - generic "content icon for search result" [ref=f21e205]
+                  - link [ref=f21e206] [cursor=pointer]:
+                    - /url: /wiki/spaces/ApplServ/pages/5263567720/SAP+Cloud+Identity+Services+-+OpenID+Connect+Integration+SAP_COM_1259
+                    - text: SAP Cloud
+                    - strong [ref=f21e207]: Identity
+                    - text: Services -
+                    - strong [ref=f21e208]: OpenID
+                    - text: Connect Integration (SAP_COM_1259)
+                - generic [ref=f21e209]:
+                  - text: The communication scenario provides an
+                  - strong [ref=f21e210]: OpenID
+                  - text: Connect integration to SAP Cloud
+                  - strong [ref=f21e211]: Identity
+                  - text: Services …
+                  - strong [ref=f21e212]: Authentication
+                  - text: . The same SAP
+                  - strong [ref=f21e213]: Identity
+                  - strong [ref=f21e214]: Authentication
+                  - text: tenant that was used for interactive login needs to be used
+                - generic [ref=f21e215]:
+                  - link "PI Core Application Services" [ref=f21e216] [cursor=pointer]:
+                    - /url: /wiki/spaces/ApplServ/overview
+                  - text: • Mar 09, 2026
+              - listitem [ref=f21e217]:
+                - heading "content icon for search result Adoption of Identity Authentication Service (IAS)" [level=3] [ref=f21e218]:
+                  - generic "content icon for search result" [ref=f21e219]
+                  - link [ref=f21e220] [cursor=pointer]:
+                    - /url: /wiki/spaces/SFM/pages/5880711820/Adoption+of+Identity+Authentication+Service+IAS
+                    - text: Adoption of
+                    - strong [ref=f21e221]: Identity
+                    - strong [ref=f21e222]: Authentication
+                    - text: Service (IAS)
+                - generic [ref=f21e223]:
+                  - text: (for business users) to trust a tenant of SAP Cloud
+                  - strong [ref=f21e224]: Identity
+                  - text: Services using
+                  - strong [ref=f21e225]: OpenID
+                  - text: Connect. SAML trust isn't
+                  - strong [ref=f21e226]: supported
+                  - text: "… ### Background The"
+                  - strong [ref=f21e227]: Identity
+                  - strong [ref=f21e228]: Authentication
+                  - text: Service (IAS) is becoming the successor of XSUAA (Extended Services
+                - generic [ref=f21e229]:
+                  - link "SAP Sustainability Footprint Management" [ref=f21e230] [cursor=pointer]:
+                    - /url: /wiki/spaces/SFM/overview
+                  - text: • Feb 17, 2026
+              - listitem [ref=f21e231]:
+                - heading "content icon for search result INTG-02R1" [level=3] [ref=f21e232]:
+                  - generic "content icon for search result" [ref=f21e233]
+                  - link "INTG-02R1" [ref=f21e234] [cursor=pointer]:
+                    - /url: /wiki/spaces/PSITG/pages/2135965607/INTG-02R1
+                - generic [ref=f21e235]:
+                  - text: provider proxy. The
+                  - strong [ref=f21e236]: Identity
+                  - strong [ref=f21e237]: Authentication
+                  - text: service also
+                  - strong [ref=f21e238]: supports
+                  - strong [ref=f21e239]: OpenID
+                  - text: Connect to integrate, for example, Altiscale … to configure a custom
+                  - strong [ref=f21e240]: identity
+                  - text: provider proxy. The
+                  - strong [ref=f21e241]: Identity
+                  - strong [ref=f21e242]: Authentication
+                  - text: service also
+                  - strong [ref=f21e243]: supports
+                  - strong [ref=f21e244]: OpenID
+                  - text: Connect
+                - generic [ref=f21e245]:
+                  - link "Product Standard Integration" [ref=f21e246] [cursor=pointer]:
+                    - /url: /wiki/spaces/PSITG/overview
+                  - text: • Oct 27, 2025
+              - listitem [ref=f21e247]:
+                - 'heading "content icon for search result MCS Compliance INTG-02R1: Identity Authentication and Single Sign-On (SSO)" [level=3] [ref=f21e248]':
+                  - generic "content icon for search result" [ref=f21e249]
+                  - link [ref=f21e250] [cursor=pointer]:
+                    - /url: /wiki/spaces/CXCOMPGMRM/pages/5838223666/MCS+Compliance+INTG-02R1+Identity+Authentication+and+Single+Sign-On+SSO
+                    - text: "MCS Compliance INTG-02R1:"
+                    - strong [ref=f21e251]: Identity
+                    - strong [ref=f21e252]: Authentication
+                    - text: and Single Sign-On (SSO)
+                - generic [ref=f21e253]:
+                  - text: Detailed Compliance Requirement Text (What) All SAP applications shall
+                  - strong [ref=f21e254]: support
+                  - text: single sign-on (SSO) via
+                  - strong [ref=f21e255]: Identity
+                  - strong [ref=f21e256]: Authentication
+                  - text: Service (IAS) by implementing
+                  - strong [ref=f21e257]: OpenID
+                  - text: Connect or SAML 2.0. MCS Core Fulfilled by manual test
+                - generic [ref=f21e258]:
+                  - link "CX Commerce Program & Release Management" [ref=f21e259] [cursor=pointer]:
+                    - /url: /wiki/spaces/CXCOMPGMRM/overview
+                  - text: • Mar 02, 2026
+          - list [ref=f21e261]:
+            - listitem [ref=f21e262]:
+              - strong [ref=f21e263]: "1"
+            - listitem [ref=f21e264]:
+              - link "2" [ref=f21e265] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=accounts.ondemand.com+Identity+Authentication+OpenID+support+contact&cql=siteSearch+~+%22accounts.ondemand.com+Identity+Authentication+OpenID+support+contact%22&startIndex=10
+            - listitem [ref=f21e266]:
+              - link "3" [ref=f21e267] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=accounts.ondemand.com+Identity+Authentication+OpenID+support+contact&cql=siteSearch+~+%22accounts.ondemand.com+Identity+Authentication+OpenID+support+contact%22&startIndex=20
+            - listitem [ref=f21e268]:
+              - link "4" [ref=f21e269] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=accounts.ondemand.com+Identity+Authentication+OpenID+support+contact&cql=siteSearch+~+%22accounts.ondemand.com+Identity+Authentication+OpenID+support+contact%22&startIndex=30
+            - listitem [ref=f21e270]:
+              - link "5" [ref=f21e271] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=accounts.ondemand.com+Identity+Authentication+OpenID+support+contact&cql=siteSearch+~+%22accounts.ondemand.com+Identity+Authentication+OpenID+support+contact%22&startIndex=40
+            - listitem [ref=f21e272]:
+              - link "Next" [ref=f21e273] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=accounts.ondemand.com+Identity+Authentication+OpenID+support+contact&cql=siteSearch+~+%22accounts.ondemand.com+Identity+Authentication+OpenID+support+contact%22&startIndex=10
+        - generic [ref=f21e277]:
+          - img "ScriptRunner Enhanced Search" [ref=f21e280]
+          - generic [ref=f21e284]:
+            - heading "Find what you need faster" [level=2] [ref=f21e285]
+            - paragraph [ref=f21e288]: Use ScriptRunner Enhanced Search to pinpoint exactly what you’re looking for. Define searches with Confluence Query Language (CQL) to see only what you want, minus the noise.
+            - link "Take me there" [ref=f21e291] [cursor=pointer]:
+              - /url: /wiki/plugins/servlet/scriptrunner/enhancedsearch/
+    - contentinfo [ref=f21e293]:
+      - list [ref=f21e295]:
+        - listitem [ref=f21e296]:
+          - text: Powered by
+          - link "Atlassian Confluence" [ref=f21e297] [cursor=pointer]:
+            - /url: https://www.atlassian.com/software/confluence
+          - text: "9.2.21 (node3: 4bccedf7)·"
+        - listitem [ref=f21e298]:
+          - link "Report an Incident" [ref=f21e299] [cursor=pointer]:
+            - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+          - text: ·
+        - listitem [ref=f21e300]:
+          - link "Wiki Community" [ref=f21e301] [cursor=pointer]:
+            - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL
+  - status [ref=f21e302]

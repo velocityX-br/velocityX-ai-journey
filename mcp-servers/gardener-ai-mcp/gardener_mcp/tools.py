@@ -33,13 +33,13 @@ import logging
 import time
 from typing import Any
 
+from ai_observability import preview, span
 from fastmcp import Context
 
 from gardener_mcp.models import (
-    CacheSapGithubContentResult,
     SAP_GITHUB_CONTENT_TYPES,
+    CacheSapGithubContentResult,
     ToolSearchResult,
-    _SAP_GITHUB_TARGET_COLLECTIONS,
 )
 from ingestion.base import Document
 from ingestion.chunking import CodeChunker, MarkdownChunker
@@ -52,6 +52,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Lightweight TTL cache for tool results
 # ---------------------------------------------------------------------------
+
 
 class _ToolCache:
     """In-process TTL + LRU cache for MCP tool results.
@@ -270,19 +271,31 @@ def register_tools(mcp_app: Any) -> None:
         limit: int = 10,
         state: str | None = None,
         labels: list[str] | None = None,
+        source_origin: str | None = None,
+        sap_github_repo: str | None = None,
         ctx: Context = None,
     ) -> list[ToolSearchResult]:
-        """Search GitHub issues from the Gardener repository.
+        """Search GitHub issues from the Gardener repositories.
 
-        Queries the ``gardener_issues`` Qdrant collection.  The ``state``
-        and ``labels`` parameters are translated into Qdrant payload
-        filters and merged with any caller-supplied ``filters``.
+        Queries the ``gardener_issues`` Qdrant collection.  This collection
+        holds both public ``gardener/gardener`` issues and SAP GitHub
+        Enterprise issues from the Gardener canary/live problem tracking
+        repositories (``kubernetes-canary/issues-canary`` and
+        ``kubernetes-live/issues-live``).  The ``state``, ``labels``,
+        ``source_origin`` and ``sap_github_repo`` parameters are translated
+        into Qdrant payload filters.
 
         Args:
             query: Natural language search query for GitHub issues.
             limit: Maximum number of results to return (1-50).
             state: Filter by issue state: 'open', 'closed', or None for all.
             labels: Filter by label names e.g. ['bug', 'help wanted'].
+            source_origin: Filter by content origin. Use 'sap_github' to
+                restrict results to SAP GitHub Enterprise issues, or None
+                for all origins (including public github.com/gardener).
+            sap_github_repo: Filter by SAP GitHub repository slug e.g.
+                'kubernetes-canary/issues-canary'. Only relevant when
+                source_origin='sap_github'.
             ctx: FastMCP context providing access to lifespan singletons.
 
         Returns:
@@ -295,10 +308,22 @@ def register_tools(mcp_app: Any) -> None:
             extra["state"] = state
         if labels is not None:
             extra["labels"] = labels
+        if source_origin is not None:
+            extra["source_origin"] = source_origin
+        if sap_github_repo is not None:
+            extra["sap_github_repo"] = sap_github_repo
 
         filters = _merge_filters(None, extra) or None
 
-        cache_key = _tool_cache._make_key("search_issues", query=query, limit=limit, state=state, labels=labels)
+        cache_key = _tool_cache._make_key(
+            "search_issues",
+            query=query,
+            limit=limit,
+            state=state,
+            labels=labels,
+            source_origin=source_origin,
+            sap_github_repo=sap_github_repo,
+        )
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -484,7 +509,9 @@ def register_tools(mcp_app: Any) -> None:
         """
         app_ctx = _get_app_context(ctx)
 
-        cache_key = _tool_cache._make_key("rag_retrieve", query=query, collection=collection, limit=limit, filters=filters)
+        cache_key = _tool_cache._make_key(
+            "rag_retrieve", query=query, collection=collection, limit=limit, filters=filters
+        )
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -560,10 +587,7 @@ def register_tools(mcp_app: Any) -> None:
         context_lines: list[str] = []
         for idx, doc in enumerate(retrieved, start=1):
             source_label = doc.metadata.get("url") or doc.metadata.get("source", "unknown")
-            context_lines.append(
-                f"[{idx}] Collection: {doc.collection} | Source: {source_label}\n"
-                f"{doc.content}"
-            )
+            context_lines.append(f"[{idx}] Collection: {doc.collection} | Source: {source_label}\n{doc.content}")
         context_block = "\n\n---\n\n".join(context_lines)
 
         # Build the user message.
@@ -583,16 +607,30 @@ def register_tools(mcp_app: Any) -> None:
             " 3) Recommended remediation steps."
         )
 
-        response = await app_ctx.anthropic_client.messages.create(
-            model=app_ctx.settings.anthropic_model,
-            max_tokens=2048,
-            system=system_prompt,
-            messages=[{"role": "user", "content": user_message}],
-        )
+        async with span(
+            f"chat {app_ctx.settings.anthropic_model}",
+            **{
+                "gen_ai.operation.name": "chat",
+                "gen_ai.request.model": app_ctx.settings.anthropic_model,
+                "gen_ai.provider.name": "anthropic",
+                "peer.service": "anthropic",
+                "ai.query": preview(user_message),
+            },
+        ) as current:
+            response = await app_ctx.anthropic_client.messages.create(
+                model=app_ctx.settings.anthropic_model,
+                max_tokens=2048,
+                system=system_prompt,
+                messages=[{"role": "user", "content": user_message}],
+            )
+            if response.content and hasattr(response.content[0], "text"):
+                result = response.content[0].text
+                if current.is_recording():
+                    current.set_attribute("ai.answer", preview(result))
+            else:
+                result = ""
 
-        # Extract the text content from the first content block.
-        if response.content and hasattr(response.content[0], "text"):
-            result = response.content[0].text
+        if result:
             _tool_cache.set(cache_key, result)
             return result
 
@@ -678,8 +716,7 @@ def register_tools(mcp_app: Any) -> None:
         """
         if content_type not in SAP_GITHUB_CONTENT_TYPES:
             raise ValueError(
-                f"Invalid content_type {content_type!r}. "
-                f"Must be one of: {sorted(SAP_GITHUB_CONTENT_TYPES)}"
+                f"Invalid content_type {content_type!r}. Must be one of: {sorted(SAP_GITHUB_CONTENT_TYPES)}"
             )
         if not content or not content.strip():
             raise ValueError("content must not be empty")
@@ -692,35 +729,41 @@ def register_tools(mcp_app: Any) -> None:
         # search results can be distinguished from github.com/gardener/* docs.
         # ------------------------------------------------------------------
         metadata: dict[str, Any] = {
-            "source_origin": "sap_github",        # distinguishes from github.com
+            "source_origin": "sap_github",  # distinguishes from github.com
             "sap_github_repo": sap_github_repo,
             "url": sap_github_url,
             "content_type": content_type,
         }
 
         if content_type == "issue" and issue_metadata:
-            metadata.update({
-                "issue_number": issue_metadata.get("issue_number"),
-                "title": issue_metadata.get("title"),
-                "state": issue_metadata.get("state", "open"),
-                "labels": issue_metadata.get("labels", []),
-                "created_at": issue_metadata.get("created_at"),
-                "closed_at": issue_metadata.get("closed_at"),
-            })
+            metadata.update(
+                {
+                    "issue_number": issue_metadata.get("issue_number"),
+                    "title": issue_metadata.get("title"),
+                    "state": issue_metadata.get("state", "open"),
+                    "labels": issue_metadata.get("labels", []),
+                    "created_at": issue_metadata.get("created_at"),
+                    "closed_at": issue_metadata.get("closed_at"),
+                }
+            )
         elif content_type == "pr" and pr_metadata:
-            metadata.update({
-                "pr_number": pr_metadata.get("pr_number"),
-                "title": pr_metadata.get("title"),
-                "state": pr_metadata.get("state", "open"),
-                "created_at": pr_metadata.get("created_at"),
-                "merged_at": pr_metadata.get("merged_at"),
-            })
+            metadata.update(
+                {
+                    "pr_number": pr_metadata.get("pr_number"),
+                    "title": pr_metadata.get("title"),
+                    "state": pr_metadata.get("state", "open"),
+                    "created_at": pr_metadata.get("created_at"),
+                    "merged_at": pr_metadata.get("merged_at"),
+                }
+            )
         elif content_type == "code" and code_metadata:
-            metadata.update({
-                "file_path": code_metadata.get("file_path"),
-                "ref": code_metadata.get("ref"),
-                "language": code_metadata.get("language"),
-            })
+            metadata.update(
+                {
+                    "file_path": code_metadata.get("file_path"),
+                    "ref": code_metadata.get("ref"),
+                    "language": code_metadata.get("language"),
+                }
+            )
 
         # ------------------------------------------------------------------
         # Check whether this URL already has chunks in the collection.
@@ -777,8 +820,7 @@ def register_tools(mcp_app: Any) -> None:
         )
 
         logger.info(
-            "cache_sap_github_content: upserted %d chunks into %r for %s "
-            "(already_existed=%s)",
+            "cache_sap_github_content: upserted %d chunks into %r for %s (already_existed=%s)",
             upserted,
             collection,
             sap_github_url,

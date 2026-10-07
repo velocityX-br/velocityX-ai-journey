@@ -33,6 +33,8 @@ uv sync
 uv run python -m sci_mcp.server
 ```
 
+For step-by-step installation and Claude Code registration, see [`INSTALL.md`](./INSTALL.md).
+
 For the full operational process — prerequisites, ingestion workflow, MCP client
 registration, tool-selection guidance, and troubleshooting — see [`USAGE.md`](./USAGE.md).
 

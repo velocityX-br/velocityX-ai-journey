@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.veloxityx.sci-ingest</string>
+
+    <!-- The wrapper to run. It preflights Qdrant + the Hai proxy and
+         soft-skips (no deletion) if either is down, so an unattended run
+         never wipes the index when it cannot be rebuilt. Config is passed
+         via EnvironmentVariables below — no secrets live in the plist. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/I577081/Workdir/Github/veloxityX-ai-journey/mcp-servers/sci-ai-mcp/scripts/weekly_ingest.sh</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <!-- Absolute path to the sci-ai-mcp project root. REQUIRED so the
+             script can cd here and pydantic-settings can load .env. -->
+        <key>SCI_DIR</key>
+        <string>/Users/I577081/Workdir/Github/veloxityX-ai-journey/mcp-servers/sci-ai-mcp</string>
+
+        <!-- Optional overrides; defaults are baked into the script. -->
+        <key>QDRANT_URL</key>
+        <string>http://localhost:6333</string>
+        <key>HAI_PROXY_URL</key>
+        <string>http://localhost:6655</string>
+    </dict>
+
+    <!-- Run once a week: Monday (Weekday=1) at 10:00 local time.
+         Daytime local is deliberate — the Mac is awake, VPN is up, and the
+         Hai proxy is running, so the rebuild actually happens instead of
+         soft-skipping (a night run would usually find the services down).
+         Edit Weekday/Hour/Minute to reschedule. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>1</integer>
+        <key>Hour</key>
+        <integer>10</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- Capture stdout/stderr for launchd-level debugging. Detailed run
+         logs (with UTC timestamps) also go to sci-ai-mcp/logs/weekly-ingest.log. -->
+    <key>StandardOutPath</key>
+    <string>/Users/I577081/Library/Logs/sci-ingest.launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/I577081/Library/Logs/sci-ingest.launchd.err.log</string>
+
+    <!-- Do not run at load; only on the calendar schedule. -->
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

@@ -1,0 +1,23 @@
+{
+  "name": "adk-a2a-poc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A teaching PoC on the official Google Agent Development Kit (@google/adk) leading up to Agent2Agent (A2A).",
+  "scripts": {
+    "local": "tsx src/01-local.ts",
+    "a2a:server": "tsx src/02-a2a-server.ts",
+    "a2a:client": "tsx src/03-a2a-client.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/adk": "^1.6.0",
+    "dotenv": "^16.6.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

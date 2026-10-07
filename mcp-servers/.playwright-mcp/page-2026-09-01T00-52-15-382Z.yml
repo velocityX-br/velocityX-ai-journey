@@ -1,0 +1,155 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - list:
+      - listitem:
+        - link "Skip to sidebar Type 'u' then '8'" [ref=e5] [cursor=pointer]:
+          - /url: "#nav-sidebar"
+          - text: Skip to sidebar
+      - listitem:
+        - link "Skip to main content" [ref=e6] [cursor=pointer]:
+          - /url: "#main"
+      - listitem:
+        - link "Skip to search" [ref=e7] [cursor=pointer]:
+          - /url: "#quick-search-query"
+    - navigation "Site" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button " Linked Applications" [ref=e11] [cursor=pointer]
+          - text: 
+        - list [ref=e14]:
+          - listitem [ref=e15]:
+            - button " Spaces" [ref=e16] [cursor=pointer]
+          - listitem [ref=e17]:
+            - link "Calendars" [ref=e18] [cursor=pointer]:
+              - /url: /wiki/calendar/mycalendar.action
+          - listitem [ref=e20]:
+            - link "Create blank page Type 'c'" [ref=e21] [cursor=pointer]:
+              - /url: /wiki/plugins/createcontent/createpage-defaultspace.action?atl_token=1a761cdc81f2758455eb0efb58f57694d2955da1&src=quick-create
+              - text: Create
+            - link "Create" [ref=e22] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e23]: 
+        - list [ref=e25]:
+          - listitem [ref=e26]:
+            - generic [ref=e27]:
+              - button "Search" [ref=e28] [cursor=pointer]: 
+              - textbox "Search query Type 'g' then 'g' OR '/'" [ref=e29]:
+                - /placeholder: Search
+          - listitem [ref=e30]:
+            - button " Help" [ref=e31] [cursor=pointer]
+          - listitem
+          - listitem [ref=e33]:
+            - button "Open Notifications Type 'g' then 'n'" [ref=e34] [cursor=pointer]:
+              - generic [ref=e35]: 
+              - generic: "0"
+          - listitem [ref=e36]:
+            - button "Your profile and preferences" [ref=e37] [cursor=pointer]
+  - generic [ref=e42]:
+    - complementary "sidebar":
+      - generic [ref=e43]:
+        - navigation "Sidebar menu" [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e48]:
+              - heading "Discover" [level=2] [ref=e50]
+              - list [ref=e51]:
+                - listitem [ref=e52]:
+                  - button " All updates" [ref=e53] [cursor=pointer]:
+                    - generic [ref=e54]: 
+                    - generic [ref=e55]: All updates
+                - listitem [ref=e56]:
+                  - button " Popular" [ref=e57] [cursor=pointer]:
+                    - generic [ref=e58]: 
+                    - generic [ref=e59]: Popular
+            - generic [ref=e61]:
+              - heading "My Work" [level=2] [ref=e63]
+              - list [ref=e64]:
+                - listitem [ref=e65]:
+                  - button " Recently worked on" [ref=e66] [cursor=pointer]:
+                    - generic [ref=e67]: 
+                    - generic [ref=e68]: Recently worked on
+                - listitem [ref=e69]:
+                  - button " Recently visited" [ref=e70] [cursor=pointer]:
+                    - generic [ref=e71]: 
+                    - generic [ref=e72]: Recently visited
+                - listitem [ref=e73]:
+                  - button " Saved for later" [ref=e74] [cursor=pointer]:
+                    - generic [ref=e75]: 
+                    - generic [ref=e76]: Saved for later
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - heading "My Spaces" [level=2] [ref=e80]
+                - link "All" [ref=e81] [cursor=pointer]:
+                  - /url: /wiki/spacedirectory/view.action
+              - list [ref=e82]:
+                - listitem [ref=e83]:
+                  - link " Find spaces" [ref=e84] [cursor=pointer]:
+                    - /url: /wiki/spacedirectory/view.action
+                    - generic [ref=e85]: 
+                    - generic [ref=e86]: Find spaces
+                  - paragraph [ref=e87]: Keep your most useful spaces at hand. Hit the star icon beside any space to make it appear here.
+                  - paragraph [ref=e88]:
+                    - link "Find spaces" [ref=e89] [cursor=pointer]:
+                      - /url: /wiki/spacedirectory/view.action
+        - button "Collapse sidebar ( [ )" [ref=e91] [cursor=pointer]:
+          - generic [ref=e92]: 
+    - generic [ref=e95]:
+      - main [ref=e96]:
+        - generic [ref=e97]:
+          - heading "All updates" [level=1] [ref=e99]
+          - list [ref=e100]:
+            - listitem [ref=e101]
+      - complementary [ref=e106]:
+        - generic [ref=e110]:
+          - heading "Welcome to Corporate Wiki" [level=2] [ref=e114]
+          - paragraph [ref=e118]
+          - region "Tip" [ref=e122]:
+            - text: 
+            - generic [ref=e123]:
+              - paragraph [ref=e124]:
+                - link "Self Help Tool" [ref=e125] [cursor=pointer]:
+                  - /url: /wiki/spaces/wikihome/pages/1900960425/WIKI+HOME
+              - paragraph [ref=e126]:
+                - link "Wiki Permissions" [ref=e127] [cursor=pointer]:
+                  - /url: /wiki/spaces/wikihome/pages/2015338988/Wiki+Permissions
+              - paragraph [ref=e128]:
+                - link "Work Zone - Support Center" [ref=e129] [cursor=pointer]:
+                  - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/overview_page/R1slkakPVopJhblbUM5mIL
+          - generic [ref=e132]:
+            - heading "Latest Updates from My Spaces" [level=2] [ref=e133]
+            - separator [ref=e134]
+            - region "Tip" [ref=e135]:
+              - generic [ref=e137]:
+                - heading "Recently Updated" [level=2] [ref=e138]
+                - paragraph [ref=e139]: As you and your team create content this area will fill up and display the latest updates.
+        - list [ref=e140]:
+          - listitem [ref=e141]:
+            - generic [ref=e143]:
+              - generic [ref=e144]:
+                - heading "Upcoming Events" [level=2] [ref=e145]
+                - link [ref=e147] [cursor=pointer]:
+                  - /url: https://wiki.one.int.sap/wiki/calendar/mycalendar.action
+                  - img "My Calendars" [ref=e148]: 
+                  - text: My Calendars
+              - text: 
+              - generic [ref=e150]:
+                - generic [ref=e151]: You have no calendars in your list.
+                - link "Create or find calendars »" [ref=e152] [cursor=pointer]:
+                  - /url: https://wiki.one.int.sap/wiki/calendar/mycalendar.action
+                - generic [ref=e153]:
+                  - text: or
+                  - link "I'll get to this later..." [ref=e154] [cursor=pointer]:
+                    - /url: "#"
+  - contentinfo [ref=e155]:
+    - list [ref=e157]:
+      - listitem [ref=e158]:
+        - text: Powered by
+        - link "Atlassian Confluence" [ref=e159] [cursor=pointer]:
+          - /url: https://www.atlassian.com/software/confluence
+        - text: "9.2.23 (node2: 4bcceb6c)·"
+      - listitem [ref=e160]:
+        - link "Report an Incident" [ref=e161] [cursor=pointer]:
+          - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+        - text: ·
+      - listitem [ref=e162]:
+        - link "Wiki Community" [ref=e163] [cursor=pointer]:
+          - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL

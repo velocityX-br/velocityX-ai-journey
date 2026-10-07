@@ -1,0 +1,87 @@
+# generic_react.yaml — copy-me template for a NEW chat config.
+#
+# A new file changes the prompt, model, and tools. The control flow stays
+# the create_agent loop. To add a config:
+#   1. cp generic_react.yaml my_case.yaml
+#   2. change name + system_prompt
+#   3. point mcp_servers at any MCP server(s) you want as tools
+#   4. uv run agent-chat run --config my_case --query "..."
+#
+# Playwright (headless and headed) is attached so the agent can open a page when
+# a web_search snippet is not enough. Uncomment the examples below to add more.
+
+name: generic-react-agent
+
+system_prompt: |
+  You are a general-purpose assistant. Answer the user's question directly and
+  concisely. If tools are available, use them when they help; otherwise reason
+  from your own knowledge.
+
+  You have a `web_search` tool for retrieving current information from the
+  internet. Use it whenever the answer may depend on recent events or on
+  information newer than your training data, then cite the URLs you relied on.
+
+  When the snippets are missing, too short, or the answer needs the page
+  itself, open that result URL with the headless browser. Call
+  mcp__playwright-headless__browser_navigate, then
+  mcp__playwright-headless__browser_snapshot, and cite what the snapshot
+  shows. Use mcp__playwright-headed__browser_navigate and
+  mcp__playwright-headed__browser_snapshot only when the user asks for a
+  visible browser. Do not pass playwright-headless or playwright-headed to
+  delegate_source.
+
+llm:
+  provider: anthropic
+  model: anthropic--claude-sonnet-latest
+  temperature: 0.0
+  # Stream the model's reasoning into the Web UI's "Thinking" card. Set a token
+  # budget to enable (Anthropic extended thinking); 0 disables it. Only turn on
+  # for a model/gateway that supports extended thinking.
+  # thinking_budget_tokens: 2048
+
+memory:
+  backend: memory
+
+# Built-in web search (see src/agent_chat/web_search.py). Uses TAVILY_API_KEY
+# when set, otherwise a keyless DuckDuckGo fallback.
+web_search: true
+
+# Same Playwright servers as sap_ops.yaml. `npx` must be on PATH in the
+# process that starts the agent. Tool names are mcp__playwright-headless__*
+# and mcp__playwright-headed__*.
+mcp_servers:
+  playwright-headless:
+    transport: stdio
+    command: npx
+    args:
+      - "@playwright/mcp@latest"
+      - "--browser"
+      - msedge
+      - "--headless"
+      - "--caps"
+      - storage
+  playwright-headed:
+    transport: stdio
+    command: npx
+    args:
+      - "@playwright/mcp@latest"
+      - "--browser"
+      - msedge
+      - "--caps"
+      - storage
+
+# --- Example: attach a local stdio MCP server -------------------------------
+# mcp_servers:
+#   my_tools:
+#     transport: stdio
+#     command: uv
+#     args: ["run", "python", "-m", "my_pkg.server"]
+#     cwd: ../path/to/server
+
+# --- Example: attach a remote HTTP MCP server -------------------------------
+# mcp_servers:
+#   remote:
+#     transport: streamable_http
+#     url: https://my-mcp-host.example.com/mcp
+#     headers:
+#       Authorization: Bearer ${MY_MCP_TOKEN}

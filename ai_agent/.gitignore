@@ -1,0 +1,27 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Env & secrets
+.env
+
+# Agent state / checkpoints
+*.sqlite
+*.sqlite-*
+/state/
+agent_state*
+
+# Frontend
+web/node_modules/
+
+# OS
+.DS_Store
+
+# Local exploration notes
+.project-exploration/

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Style C Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;1,300&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* === VIEWPORT BASE === */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #0c0c10; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #0c0c10; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: block; visibility: hidden; opacity: 0; pointer-events: none; }
+.slide.active, .slide.visible { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; } }
+
+/* === WILDCARD: OBSIDIAN ATLAS — dark editorial + data newspaper === */
+/* Concept: A dark scholarly newsroom aesthetic. DM Serif Display for drama,
+   IBM Plex Mono for data precision. Deep ink (#0c0c10) background with
+   warm saffron (#e8a000) as the single accent. Layout inspired by
+   broadsheet newspaper grids but built for technical data visualization. */
+:root {
+  --ink: #0c0c10;
+  --ink2: #14141c;
+  --paper: #f0ebe0;
+  --saffron: #e8a000;
+  --saffron-dim: rgba(232,160,0,0.12);
+  --saffron-glow: rgba(232,160,0,0.06);
+  --text-main: #ddd8cc;
+  --text-sub: #7a7570;
+  --rule: rgba(240,235,224,0.1);
+  --rule-warm: rgba(232,160,0,0.25);
+}
+
+.slide-c {
+  background: var(--ink);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* atmospheric gradient */
+.atm {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 900px 600px at 70% 40%, rgba(232,160,0,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 400px at 20% 80%, rgba(232,160,0,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* subtle grain texture */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+}
+
+/* === top masthead === */
+.masthead {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 72px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  justify-content: space-between;
+  z-index: 20;
+  opacity: 0;
+}
+.slide.active .masthead { animation: fadeIn 0.5s ease-out 0.05s both; }
+.mast-left { font-size: 13px; color: var(--text-sub); letter-spacing: 0.1em; text-transform: uppercase; }
+.mast-mid {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--saffron);
+  letter-spacing: 0.05em;
+}
+.mast-right { font-size: 13px; color: var(--text-sub); letter-spacing: 0.08em; }
+
+/* === main layout: 3-column newspaper grid === */
+.main-grid {
+  position: absolute;
+  top: 72px; left: 0; right: 0; bottom: 56px;
+  display: grid;
+  grid-template-columns: 56px 1fr 56px 780px 56px;
+  grid-template-rows: 1fr;
+}
+
+/* col 1: left rule column */
+.col-rule-left {
+  grid-column: 1;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  gap: 16px;
+}
+.vertical-text {
+  font-size: 11px;
+  color: var(--text-sub);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transform: rotate(180deg);
+}
+
+/* col 2: main title area */
+.col-title {
+  grid-column: 2;
+  padding: 80px 64px 80px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-size: 13px;
+  color: var(--saffron);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  opacity: 0;
+}
+.slide.active .eyebrow { animation: fadeUp 0.5s ease-out 0.2s both; }
+
+.serif-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 104px;
+  line-height: 0.95;
+  color: var(--text-main);
+  margin-bottom: 0;
+  letter-spacing: -0.01em;
+  opacity: 0;
+}
+.slide.active .serif-title { animation: fadeUp 0.6s ease-out 0.35s both; }
+.serif-title em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+.deck-rule {
+  width: 64px;
+  height: 1px;
+  background: var(--saffron);
+  margin: 48px 0;
+  opacity: 0;
+}
+.slide.active .deck-rule { animation: expand 0.6s ease-out 0.5s both; }
+
+.body-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--text-sub);
+  line-height: 1.65;
+  max-width: 680px;
+  opacity: 0;
+}
+.slide.active .body-text { animation: fadeUp 0.5s ease-out 0.55s both; }
+
+/* col 3: narrow rule */
+.col-rule-mid { grid-column: 3; border-right: 1px solid var(--rule); }
+
+/* col 4: data panel */
+.col-data {
+  grid-column: 4;
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* architecture flow - vertical pipeline */
+.pipe-label {
+  font-size: 13px;
+  color: var(--saffron);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0;
+}
+.slide.active .pipe-label { animation: fadeIn 0.5s ease-out 0.4s both; }
+
+.pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  opacity: 0;
+}
+.slide.active .pipeline { animation: fadeIn 0.6s ease-out 0.55s both; }
+
+.pipe-step {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  border: 1px solid var(--rule);
+  border-bottom: none;
+  position: relative;
+}
+.pipe-step:first-child { border-top: 1px solid var(--rule-warm); }
+.pipe-step:last-child { border-bottom: 1px solid var(--rule); }
+.pipe-step.active-step { background: var(--saffron-dim); border-color: rgba(232,160,0,0.3); }
+
+.step-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+}
+.step-icon.warm { border-color: var(--saffron); color: var(--saffron); }
+.step-icon.dim  { border-color: var(--text-sub); color: var(--text-sub); }
+
+.step-text { flex: 1; }
+.step-name {
+  font-size: 17px;
+  color: var(--text-main);
+  letter-spacing: 0.02em;
+}
+.step-detail {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-top: 3px;
+  font-weight: 300;
+}
+
+.step-arrow {
+  position: absolute;
+  left: 41px;
+  bottom: -14px;
+  width: 1px;
+  height: 14px;
+  background: linear-gradient(var(--rule), transparent);
+  z-index: 5;
+}
+
+/* rrf formula box */
+.formula-box {
+  margin-top: 8px;
+  border: 1px solid var(--rule-warm);
+  padding: 24px 28px;
+  background: var(--saffron-glow);
+  opacity: 0;
+}
+.slide.active .formula-box { animation: fadeIn 0.6s ease-out 0.8s both; }
+.formula-label {
+  font-size: 12px;
+  color: var(--saffron);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.formula-text {
+  font-size: 20px;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+.formula-text .f-saffron { color: var(--saffron); }
+.formula-note {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-top: 10px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* bottom bar */
+.foot-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  justify-content: space-between;
+  z-index: 20;
+  opacity: 0;
+}
+.slide.active .foot-bar { animation: fadeIn 0.5s ease-out 0.9s both; }
+.foot-left { font-size: 13px; color: var(--text-sub); letter-spacing: 0.08em; }
+.foot-right { font-size: 13px; color: var(--text-sub); }
+.foot-right span { color: var(--saffron); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes expand { from{width:0;opacity:0} to{width:64px;opacity:1} }
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+  <div class="deck-stage" id="stage">
+    <div class="slide active slide-c" id="s1">
+      <div class="atm"></div>
+      <div class="grain"></div>
+
+      <!-- masthead -->
+      <div class="masthead">
+        <span class="mast-left">技术深度讲座 · 2026-06-25</span>
+        <span class="mast-mid">OBSIDIAN ATLAS</span>
+        <span class="mast-right">gardener-ai-mcp · Phase 1–8</span>
+      </div>
+
+      <!-- main grid -->
+      <div class="main-grid">
+        <!-- left rule -->
+        <div class="col-rule-left">
+          <span class="vertical-text">RAG · MCP · RRF</span>
+        </div>
+
+        <!-- title col -->
+        <div class="col-title">
+          <div class="eyebrow">Gardener × AI Operations</div>
+          <div class="serif-title">让 AI<br>真正理解<br><em>Gardener</em></div>
+          <div class="deck-rule"></div>
+          <div class="body-text">
+            用 RAG + MCP 构建智能运维助手<br>
+            从向量化到 Hybrid 检索的完整工程实践
+          </div>
+        </div>
+
+        <!-- mid rule -->
+        <div class="col-rule-mid"></div>
+
+        <!-- data col -->
+        <div class="col-data">
+          <div class="pipe-label">Data → Retrieval Pipeline</div>
+          <div class="pipeline">
+            <div class="pipe-step">
+              <div class="step-icon dim">IN</div>
+              <div class="step-text">
+                <div class="step-name">Docs · Issues · PRs · Code</div>
+                <div class="step-detail">4 种 Ingester + MarkdownChunker</div>
+              </div>
+              <div class="step-arrow"></div>
+            </div>
+            <div class="pipe-step">
+              <div class="step-icon dim">EMB</div>
+              <div class="step-text">
+                <div class="step-name">HyperspaceEmbedder</div>
+                <div class="step-detail">text-embedding-3-small · 1536-dim</div>
+              </div>
+              <div class="step-arrow"></div>
+            </div>
+            <div class="pipe-step">
+              <div class="step-icon dim">VDB</div>
+              <div class="step-text">
+                <div class="step-name">Qdrant · 4 Collections</div>
+                <div class="step-detail">HNSW m=16 · cosine distance</div>
+              </div>
+              <div class="step-arrow"></div>
+            </div>
+            <div class="pipe-step active-step">
+              <div class="step-icon warm">RRF</div>
+              <div class="step-text">
+                <div class="step-name">HybridRetriever</div>
+                <div class="step-detail">8 parallel searches → RRF fusion</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <div class="formula-label">RRF Algorithm</div>
+            <div class="formula-text">
+              score(d) = Σ <span class="f-saffron">1 / (60 + rank)</span>
+            </div>
+            <div class="formula-note">
+              k=60 · BEIR benchmark default<br>
+              Solves cross-collection score incompatibility
+            </div>
+          </div>
+        </div>
+
+        <!-- right rule -->
+        <div style="grid-column:5;border-left:1px solid var(--rule)"></div>
+      </div>
+
+      <!-- footer -->
+      <div class="foot-bar">
+        <span class="foot-left">gardener-ai-mcp · FastMCP · Python 3.12 · asyncio.gather · Qdrant 1.18</span>
+        <span class="foot-right">01 <span>/</span> 28</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  function fit(){
+    var s=document.getElementById('stage');
+    var vw=window.innerWidth,vh=window.innerHeight;
+    var scale=Math.min(vw/1920,vh/1080);
+    var tx=(vw-1920*scale)/2,ty=(vh-1080*scale)/2;
+    s.style.transform='translate('+tx+'px,'+ty+'px) scale('+scale+')';
+  }
+  fit(); window.addEventListener('resize',fit);
+})();
+</script>
+</body>
+</html>

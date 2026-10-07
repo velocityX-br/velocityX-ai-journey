@@ -1,0 +1,47 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - heading "agent-scaffold" [level=1] [ref=e3]
+    - generic [ref=e4]:
+      - text: config
+      - combobox "config" [ref=e5]:
+        - option "generic-react-agent (anthropic/anthropic--claude-sonnet-latest)" [selected]
+        - option "sap-ops-assistant (anthropic/anthropic--claude-sonnet-latest · gardener)"
+    - generic [ref=e6]:
+      - text: thread
+      - textbox "thread" [ref=e7]: web-rd3vamw9
+    - button "New session" [ref=e8] [cursor=pointer]
+    - generic [ref=e9]: generic_react · thread web-rd3vamw9
+  - generic [ref=e10]:
+    - generic [ref=e15]: "用 markdown 输出一个小示例，必须包含：一个二级标题、一段含**加粗**和`行内代码`的文字、一个三项无序列表、一个 python 代码块(print hello)、以及一个两列两行的表格。只输出 markdown，不要解释。"
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - heading "示例标题" [level=2] [ref=e18]
+        - paragraph [ref=e19]:
+          - text: 这是一段包含
+          - strong [ref=e20]: 加粗文字
+          - text: 和
+          - code [ref=e21]: inline_code
+          - text: 的普通段落。
+        - list [ref=e22]:
+          - listitem [ref=e23]: 第一项
+          - listitem [ref=e24]: 第二项
+          - listitem [ref=e25]: 第三项
+        - code [ref=e27]: print("Hello, World!")
+        - table [ref=e28]:
+          - rowgroup [ref=e29]:
+            - row [ref=e30]:
+              - columnheader "列一" [ref=e31]
+              - columnheader "列二" [ref=e32]
+          - rowgroup [ref=e33]:
+            - row [ref=e34]:
+              - cell "数据 A" [ref=e35]
+              - cell "数据 B" [ref=e36]
+            - row [ref=e37]:
+              - cell "数据 C" [ref=e38]
+              - cell "数据 D" [ref=e39]
+      - button "Copied ✓" [active] [ref=e42] [cursor=pointer]
+  - contentinfo [ref=e11]:
+    - generic [ref=e12]:
+      - textbox "Ask something… (Enter to send, Shift+Enter for newline)" [ref=e13]:
+        - /placeholder: Ask something…  (Enter to send, Shift+Enter for newline)
+      - button "Send" [ref=e14] [cursor=pointer]

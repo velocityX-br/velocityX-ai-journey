@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style A Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;600;700;900&family=Chakra+Petch:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* === VIEWPORT BASE (mandatory) === */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #0A0E27; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #0A0E27; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: block; visibility: hidden; opacity: 0; pointer-events: none; }
+.slide.active, .slide.visible { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+
+/* === 8-BIT ORBIT STYLE === */
+:root {
+  --void: #0A0E27;
+  --navy: #0F1B3D;
+  --cyan: #5EDCF4;
+  --pink: #F0A6CA;
+  --yellow: #F4D03F;
+  --lavender: #E2D5F2;
+  --white: #FFFFFF;
+  --px: 4px;
+}
+
+.slide-a {
+  background: var(--void);
+  font-family: 'Chakra Petch', monospace;
+  position: relative;
+}
+
+/* CRT scanlines */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px);
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* grid bg */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(94,220,244,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(94,220,244,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* starfield */
+.stars { position: absolute; inset: 0; overflow: hidden; }
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+@keyframes twinkle { 0%,100%{opacity:0.2} 50%{opacity:1} }
+
+/* corner brackets */
+.corner { position: absolute; width: 32px; height: 32px; }
+.corner::before, .corner::after { content: ''; position: absolute; background: var(--cyan); }
+.corner.tl { top: 48px; left: 48px; }
+.corner.tl::before { top: 0; left: 0; width: 32px; height: 4px; }
+.corner.tl::after  { top: 0; left: 0; width: 4px; height: 32px; }
+.corner.tr { top: 48px; right: 48px; }
+.corner.tr::before { top: 0; right: 0; width: 32px; height: 4px; }
+.corner.tr::after  { top: 0; right: 0; width: 4px; height: 32px; }
+.corner.bl { bottom: 48px; left: 48px; }
+.corner.bl::before { bottom: 0; left: 0; width: 32px; height: 4px; }
+.corner.bl::after  { bottom: 0; left: 0; width: 4px; height: 32px; }
+.corner.br { bottom: 48px; right: 48px; }
+.corner.br::before { bottom: 0; right: 0; width: 32px; height: 4px; }
+.corner.br::after  { bottom: 0; right: 0; width: 4px; height: 32px; }
+
+/* content layout */
+.content-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 120px 160px;
+  z-index: 10;
+}
+
+/* HUD label */
+.hud-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 20px;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+  opacity: 0;
+}
+.slide.active .hud-label { animation: fadeUp 0.4s ease-out 0.1s both; }
+
+/* main title */
+.main-title {
+  font-family: 'Tektur', sans-serif;
+  font-weight: 900;
+  font-size: 108px;
+  line-height: 0.95;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  text-shadow: 8px 8px 0 var(--navy), 8px 8px 0 var(--navy);
+  opacity: 0;
+}
+.slide.active .main-title { animation: fadeUp 0.5s ease-out 0.25s both; }
+
+.main-title .accent { color: var(--cyan); text-shadow: 0 0 40px rgba(94,220,244,0.6), 8px 8px 0 rgba(94,220,244,0.2); }
+
+/* subtitle */
+.subtitle {
+  font-family: 'Chakra Petch', monospace;
+  font-size: 32px;
+  color: var(--lavender);
+  font-weight: 300;
+  margin-top: 32px;
+  max-width: 900px;
+  line-height: 1.5;
+  opacity: 0;
+}
+.slide.active .subtitle { animation: fadeUp 0.5s ease-out 0.4s both; }
+
+/* tag strip */
+.tag-strip {
+  display: flex;
+  gap: 16px;
+  margin-top: 64px;
+  opacity: 0;
+}
+.slide.active .tag-strip { animation: fadeUp 0.5s ease-out 0.55s both; }
+
+.tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  color: var(--void);
+  padding: 8px 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.tag.c { background: var(--cyan); box-shadow: 4px 4px 0 rgba(94,220,244,0.3); }
+.tag.p { background: var(--pink); box-shadow: 4px 4px 0 rgba(240,166,202,0.3); }
+.tag.y { background: var(--yellow); box-shadow: 4px 4px 0 rgba(244,208,63,0.3); }
+
+/* right panel — RRF visual */
+.right-panel {
+  position: absolute;
+  right: 120px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 540px;
+  z-index: 10;
+  opacity: 0;
+}
+.slide.active .right-panel { animation: fadeIn 0.8s ease-out 0.6s both; }
+
+.pixel-box {
+  border: 2px solid var(--cyan);
+  padding: 40px;
+  position: relative;
+  background: rgba(15,27,61,0.8);
+}
+.pixel-box::before {
+  content: 'SYSTEM BOOT';
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  color: var(--cyan);
+  background: var(--void);
+  padding: 0 8px;
+  letter-spacing: 0.2em;
+}
+
+.stack-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(94,220,244,0.1);
+}
+.stack-row:last-child { border: none; }
+.row-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  color: var(--yellow);
+  width: 40px;
+  flex-shrink: 0;
+}
+.row-bar-wrap { flex: 1; height: 8px; background: rgba(255,255,255,0.05); }
+.row-bar { height: 100%; }
+.row-label {
+  font-family: 'Chakra Petch', monospace;
+  font-size: 14px;
+  color: var(--lavender);
+  width: 80px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* bottom line */
+.bottom-line {
+  position: absolute;
+  bottom: 64px;
+  left: 160px;
+  right: 160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+}
+.slide.active .bottom-line { animation: fadeIn 0.5s ease-out 0.7s both; }
+
+.bl-left {
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  color: rgba(226,213,242,0.4);
+  letter-spacing: 0.1em;
+}
+.bl-right {
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  color: rgba(94,220,244,0.5);
+}
+
+/* divider line */
+.divider {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  margin-bottom: 32px;
+  opacity: 0;
+}
+.slide.active .divider { animation: expand 0.5s ease-out 0.18s both; }
+
+@keyframes fadeUp { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes expand { from { width: 0; opacity: 0; } to { width: 120px; opacity: 1; } }
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+  <div class="deck-stage" id="stage">
+    <div class="slide active slide-a" id="s1">
+      <!-- bg layers -->
+      <div class="grid-bg"></div>
+      <div class="vignette"></div>
+      <div class="scanlines"></div>
+      <!-- stars -->
+      <div class="stars">
+        <div class="star" style="top:12%;left:72%;animation-delay:0.3s"></div>
+        <div class="star" style="top:8%;left:85%;animation-delay:1.1s;width:3px;height:3px"></div>
+        <div class="star" style="top:22%;left:92%;animation-delay:0.7s"></div>
+        <div class="star" style="top:65%;left:78%;animation-delay:1.5s"></div>
+        <div class="star" style="top:78%;left:88%;animation-delay:0.5s;width:3px;height:3px"></div>
+        <div class="star" style="top:40%;left:95%;animation-delay:2s"></div>
+        <div class="star" style="top:5%;left:60%;animation-delay:0.9s"></div>
+        <div class="star" style="top:90%;left:65%;animation-delay:1.3s;width:3px;height:3px"></div>
+      </div>
+      <!-- corner brackets -->
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <!-- main content -->
+      <div class="content-wrap">
+        <div class="hud-label">&gt;_ 技术深度讲座 / TECH DEEP DIVE 2026</div>
+        <div class="divider"></div>
+        <div class="main-title">让 AI<br>真正理解<br><span class="accent">GARDENER</span></div>
+        <div class="subtitle">用 RAG + MCP 构建智能运维助手<br>从向量化到 Reciprocal Rank Fusion 的完整实现</div>
+        <div class="tag-strip">
+          <span class="tag c">RAG</span>
+          <span class="tag p">MCP Server</span>
+          <span class="tag y">Qdrant · Python</span>
+        </div>
+      </div>
+      <!-- right panel -->
+      <div class="right-panel">
+        <div class="pixel-box">
+          <div class="stack-row">
+            <span class="row-num">01</span>
+            <div class="row-bar-wrap"><div class="row-bar" style="width:85%;background:linear-gradient(90deg,#5EDCF4,rgba(94,220,244,0.3))"></div></div>
+            <span class="row-label">gardener_docs</span>
+          </div>
+          <div class="stack-row">
+            <span class="row-num">02</span>
+            <div class="row-bar-wrap"><div class="row-bar" style="width:70%;background:linear-gradient(90deg,#F0A6CA,rgba(240,166,202,0.3))"></div></div>
+            <span class="row-label">issues</span>
+          </div>
+          <div class="stack-row">
+            <span class="row-num">03</span>
+            <div class="row-bar-wrap"><div class="row-bar" style="width:55%;background:linear-gradient(90deg,#F4D03F,rgba(244,208,63,0.3))"></div></div>
+            <span class="row-label">prs</span>
+          </div>
+          <div class="stack-row">
+            <span class="row-num">04</span>
+            <div class="row-bar-wrap"><div class="row-bar" style="width:40%;background:linear-gradient(90deg,#E2D5F2,rgba(226,213,242,0.3))"></div></div>
+            <span class="row-label">code</span>
+          </div>
+          <div style="margin-top:24px;font-family:'Space Mono',monospace;font-size:13px;color:rgba(94,220,244,0.6);letter-spacing:0.1em;">
+            RRF FUSION k=60 · 8 CONCURRENT SEARCHES
+          </div>
+        </div>
+      </div>
+      <!-- bottom -->
+      <div class="bottom-line">
+        <span class="bl-left">GARDENER-AI-MCP · PHASE 1–8 COMPLETE</span>
+        <span class="bl-right">01 / 28</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  function fit(){
+    var s=document.getElementById('stage');
+    var vw=window.innerWidth, vh=window.innerHeight;
+    var scale=Math.min(vw/1920, vh/1080);
+    var tx=(vw-1920*scale)/2, ty=(vh-1080*scale)/2;
+    s.style.transform='translate('+tx+'px,'+ty+'px) scale('+scale+')';
+  }
+  fit(); window.addEventListener('resize', fit);
+})();
+</script>
+</body>
+</html>
