@@ -1,0 +1,10 @@
+# Playwright MCP generated output (logs, screenshots, traces, storage state)
+.playwright-mcp/
+**/.playwright-mcp/
+console-*.log
+page-*.png
+page-*.jpeg
+page-*.webp
+storage-state-*.json
+trace-*.zip
+*.har
