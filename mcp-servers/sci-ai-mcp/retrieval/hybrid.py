@@ -27,6 +27,8 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
+from ai_observability import embed_query, preview, search_collection, span, top_sources
+
 from embeddings.base import BaseEmbedder
 from retrieval.base import BaseRetriever, SearchResult
 from vectorstore.base import BaseVectorStore
@@ -34,6 +36,7 @@ from vectorstore.base import BaseVectorStore
 _DEFAULT_COLLECTIONS: list[str] = [
     "sci_docs_operation",
     "sci_docs_customer",
+    "sci_docs_adr",
 ]
 
 
@@ -146,9 +149,7 @@ class HybridRetriever(BaseRetriever):
         """
         self._embedder = embedder
         self._vector_store = vector_store
-        self._collections: list[str] = (
-            collections if collections is not None else list(_DEFAULT_COLLECTIONS)
-        )
+        self._collections: list[str] = collections if collections is not None else list(_DEFAULT_COLLECTIONS)
 
     async def retrieve(
         self,
@@ -186,26 +187,26 @@ class HybridRetriever(BaseRetriever):
             EmbeddingError: If the embedder cannot encode the query.
             VectorStoreError: If any individual search call fails.
         """
-        query_vector: list[float] = await self._embedder.embed_query(query)
+        async with span(
+            "retrieve hybrid",
+            **{
+                "gen_ai.operation.name": "retrieve",
+                "ai.rag.collections": ",".join(self._collections),
+                "ai.rag.limit": limit,
+                "ai.query": preview(query),
+            },
+        ) as current:
+            query_vector: list[float] = await embed_query(self._embedder, query)
 
-        # One dense search per collection.  The results from every
-        # collection are then merged with Reciprocal Rank Fusion, which is
-        # what gives this retriever its cross-collection value: a single
-        # ranked list spanning both operation and customer docs.
-        coroutines = [
-            self._vector_store.search(
-                collection,
-                query_vector,
-                limit,
-                filters,
-            )
-            for collection in self._collections
-        ]
+            coroutines = [
+                search_collection(self._vector_store, collection, query_vector, limit, filters)
+                for collection in self._collections
+            ]
 
-        # Launch all searches concurrently.  Any exception propagates.
-        all_results: list[list[SearchResult]] = list(
-            await asyncio.gather(*coroutines)
-        )
+            all_results: list[list[SearchResult]] = list(await asyncio.gather(*coroutines))
 
-        fused = reciprocal_rank_fusion(all_results)
-        return fused[:limit]
+            fused = reciprocal_rank_fusion(all_results)[:limit]
+            if current.is_recording():
+                current.set_attribute("ai.rag.result_count", len(fused))
+                current.set_attribute("ai.rag.top_sources", top_sources(fused))
+            return fused

@@ -49,8 +49,12 @@ class SearchDocsInput(BaseModel):
 class SearchIssuesInput(BaseModel):
     """Input schema for the ``search_issues`` tool.
 
-    Searches the ``gardener_issues`` Qdrant collection for GitHub issues
-    from the gardener/gardener repository.
+    Searches the ``gardener_issues`` Qdrant collection for GitHub issues.
+    This collection holds both public ``gardener/gardener`` issues and
+    SAP GitHub Enterprise issues from the Gardener canary/live problem
+    tracking repositories (``kubernetes-canary/issues-canary`` and
+    ``kubernetes-live/issues-live``).  Use ``source_origin`` and
+    ``sap_github_repo`` to scope results to a specific origin/repo.
     """
 
     query: str = Field(
@@ -69,6 +73,24 @@ class SearchIssuesInput(BaseModel):
     labels: list[str] | None = Field(
         default=None,
         description="Filter by label names e.g. ['bug', 'help wanted']",
+    )
+    source_origin: str | None = Field(
+        default=None,
+        description=(
+            "Filter by content origin. Use 'sap_github' to restrict results "
+            "to SAP GitHub Enterprise issues (Gardener canary/live problem "
+            "tracking), or None for all origins including public "
+            "github.com/gardener issues."
+        ),
+    )
+    sap_github_repo: str | None = Field(
+        default=None,
+        description=(
+            "Filter by SAP GitHub repository slug e.g. "
+            "'kubernetes-canary/issues-canary' or "
+            "'kubernetes-live/issues-live'. Only relevant when "
+            "source_origin='sap_github'."
+        ),
     )
 
 

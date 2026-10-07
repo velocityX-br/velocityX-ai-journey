@@ -30,9 +30,10 @@ from ingestion.base import BaseIngester, Document, IngestionError
 
 logger = logging.getLogger(__name__)
 
-# Top-level directories to walk.  The Contents API is walked recursively
-# from these roots.
-_DOC_ROOT = "website"
+# Documentation roots used by current and historical repository layouts.
+# The repository moved from ``website/`` to ``hugo/content/``; keeping both
+# allows ingestion to remain compatible with older branches and forks.
+_DOC_ROOTS = ("hugo/content", "website")
 _PROPOSAL_INDICATORS = ("proposal", "proposals", "gep")
 
 
@@ -128,24 +129,35 @@ class GitHubDocsIngester(BaseIngester):
 
         documents: list[Document] = []
 
-        # Walk website/ documentation tree.
-        try:
-            doc_docs = await self._walk_directory(repo, _DOC_ROOT, "doc")
-            documents.extend(doc_docs)
-        except Exception as exc:
-            logger.warning("Failed to walk %r in %s: %s", _DOC_ROOT, repo_slug, exc)
+        # Walk the first documentation root that contains Markdown. Gardener's
+        # current site stores content under hugo/content/, while older revisions
+        # and forks may still use website/.
+        for doc_root in _DOC_ROOTS:
+            root_documents = await self._walk_directory(repo, doc_root, "doc")
+            if not root_documents:
+                logger.debug("Documentation root %r contained no Markdown", doc_root)
+                continue
+            documents.extend(root_documents)
+            logger.info("Using documentation root %s", doc_root)
+            break
+        else:
+            logger.warning(
+                "None of the documentation roots %s contain Markdown in %s",
+                _DOC_ROOTS,
+                repo_slug,
+            )
 
-        # Walk root-level proposal directories.
+        # Preserve compatibility with repositories that keep proposals in a
+        # separate root-level directory outside the main documentation root.
         try:
             root_contents: list[ContentFile] = await asyncio.to_thread(
                 repo.get_contents, ""
             )
             for item in root_contents:
                 if item.type == "dir" and _is_proposal_path(item.path):
-                    proposal_docs = await self._walk_directory(
-                        repo, item.path, "proposal"
+                    documents.extend(
+                        await self._walk_directory(repo, item.path, "proposal")
                     )
-                    documents.extend(proposal_docs)
         except Exception as exc:
             logger.warning(
                 "Failed to enumerate root contents of %s: %s", repo_slug, exc
@@ -175,31 +187,46 @@ class GitHubDocsIngester(BaseIngester):
         Returns:
             List of ``Document`` objects for each ``.md`` file found.
         """
-        documents: list[Document] = []
-
         try:
             contents: list[ContentFile] | ContentFile = await asyncio.to_thread(
                 repo.get_contents, path
             )
         except Exception as exc:
             logger.debug("Cannot access path %r: %s", path, exc)
-            return documents
+            return []
 
-        # get_contents returns a single ContentFile if the path is a file,
-        # or a list when the path is a directory.
+        return await self._walk_contents(repo, contents, content_type)
+
+    async def _walk_contents(
+        self,
+        repo: Repository,
+        contents: list[ContentFile] | ContentFile,
+        content_type: str,
+    ) -> list[Document]:
+        """Collect Markdown documents from an already-fetched directory listing.
+
+        Args:
+            repo: The PyGithub repository object.
+            contents: A directory listing or a single content item.
+            content_type: Default type inherited by nested regular documents.
+
+        Returns:
+            Documents found in this listing and all nested directories.
+        """
         if not isinstance(contents, list):
             contents = [contents]
 
+        documents: list[Document] = []
         for item in contents:
+            item_content_type = (
+                "proposal" if _is_proposal_path(item.path) else content_type
+            )
             if item.type == "dir":
-                sub_docs = await self._walk_directory(
-                    repo,
-                    item.path,
-                    "proposal" if _is_proposal_path(item.path) else content_type,
+                documents.extend(
+                    await self._walk_directory(repo, item.path, item_content_type)
                 )
-                documents.extend(sub_docs)
-            elif item.type == "file" and item.path.endswith(".md"):
-                doc = await self._fetch_document(repo, item, content_type)
+            elif item.type == "file" and item.path.lower().endswith(".md"):
+                doc = await self._fetch_document(repo, item, item_content_type)
                 if doc is not None:
                     documents.append(doc)
 

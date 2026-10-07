@@ -1,0 +1,461 @@
+- generic [active] [ref=f24e1]:
+  - generic [ref=f24e3]:
+    - banner [ref=f24e4]:
+      - list:
+        - listitem:
+          - link "Skip to sidebar Type 'u' then '8'" [ref=f24e5] [cursor=pointer]:
+            - /url: ""
+            - text: Skip to sidebar
+        - listitem:
+          - link "Skip to main content" [ref=f24e6] [cursor=pointer]:
+            - /url: "#main"
+        - listitem:
+          - link "Skip to breadcrumbs" [ref=f24e7] [cursor=pointer]:
+            - /url: "#breadcrumbs"
+        - listitem:
+          - link "Skip to search" [ref=f24e8] [cursor=pointer]:
+            - /url: "#quick-search-query"
+      - navigation "Site" [ref=f24e9]:
+        - generic [ref=f24e10]:
+          - generic [ref=f24e11]:
+            - button " Linked Applications" [ref=f24e12] [cursor=pointer]
+            - text: 
+          - list [ref=f24e15]:
+            - listitem [ref=f24e16]:
+              - button " Spaces" [ref=f24e17] [cursor=pointer]
+            - listitem [ref=f24e18]:
+              - link "Calendars" [ref=f24e19] [cursor=pointer]:
+                - /url: /wiki/calendar/mycalendar.action
+            - listitem [ref=f24e21]:
+              - link "Create" [ref=f24e22] [cursor=pointer]:
+                - /url: /wiki/pages/createpage.action?&atl_token=0b782fc7a212e23a5d8eba9bc089339d15c520b8spaceKey=idservice&fromPageId=1004998910
+          - list [ref=f24e24]:
+            - listitem [ref=f24e25]:
+              - generic [ref=f24e26]:
+                - button "Search" [ref=f24e27] [cursor=pointer]: 
+                - textbox "Search query Type 'g' then 'g' OR '/'" [ref=f24e28]:
+                  - /placeholder: Search
+            - listitem [ref=f24e29]:
+              - button " Help" [ref=f24e30] [cursor=pointer]
+            - listitem
+            - listitem [ref=f24e32]:
+              - 'button "Notifications: 1 new" [expanded] [ref=f24e33] [cursor=pointer]':
+                - generic [ref=f24e34]: 
+                - generic: "1"
+            - listitem [ref=f24e35]:
+              - button "Your profile and preferences" [ref=f24e36] [cursor=pointer]
+    - generic [ref=f24e39]:
+      - complementary "sidebar" [ref=f24e40]:
+        - generic [ref=f24e41]:
+          - generic [ref=f24e42]:
+            - link "Identity Authentication Service" [ref=f24e43] [cursor=pointer]:
+              - /url: /wiki/spaces/idservice/pages/1004998910/Identity+Authentication+and+SAP+ID+Service+space
+              - generic "Identity Authentication Service" [ref=f24e49]
+            - text: 
+            - generic:
+              - button "Add to my spaces" [ref=f24e50] [cursor=pointer]: 
+              - text: 
+          - generic [ref=f24e51]:
+            - list [ref=f24e56]:
+              - listitem [ref=f24e57]:
+                - link "Pages" [ref=f24e58] [cursor=pointer]:
+                  - /url: /wiki/collector/pages.action?key=idservice
+                  - generic [ref=f24e59]: 
+                  - text: Pages
+              - listitem [ref=f24e60]:
+                - link "Calendars" [ref=f24e61] [cursor=pointer]:
+                  - /url: /wiki/display/idservice/calendars
+                  - generic [ref=f24e62]: 
+                  - text: Calendars
+            - generic [ref=f24e63]:
+              - heading "Page tree" [level=2] [ref=f24e65]:  Page tree
+              - list [ref=f24e68]:
+                - list [ref=f24e70]:
+                  - listitem [ref=f24e71]:
+                    - button "Expand item Program Overview" [ref=f24e73] [cursor=pointer]: 
+                    - link "Program Overview" [ref=f24e76] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1008577016/Program+Overview
+                  - listitem [ref=f24e77]:
+                    - button "Expand item Stakeholders" [ref=f24e79] [cursor=pointer]: 
+                    - link "Stakeholders" [ref=f24e82] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1020068596/Stakeholders
+                  - listitem [ref=f24e83]:
+                    - button "Expand item Product Specification" [ref=f24e85] [cursor=pointer]: 
+                    - link "Product Specification" [ref=f24e88] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1195251637/Product+Specification
+                  - listitem [ref=f24e89]:
+                    - button "Expand item Administrator Guide" [ref=f24e91] [cursor=pointer]: 
+                    - link "Administrator Guide" [ref=f24e94] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1211368659/Administrator+Guide
+                  - listitem [ref=f24e95]:
+                    - button "Expand item Developer Guide" [ref=f24e97] [cursor=pointer]: 
+                    - link "Developer Guide" [ref=f24e100] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1188202980/Developer+Guide
+                  - listitem [ref=f24e101]:
+                    - button "Expand item User Guide (SAP ID Service / IDS)" [ref=f24e103] [cursor=pointer]: 
+                    - link "User Guide (SAP ID Service / IDS)" [ref=f24e106] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1296834441/User+Guide+SAP+ID+Service+IDS
+                  - listitem [ref=f24e107]:
+                    - button "Expand item Support" [ref=f24e109] [cursor=pointer]: 
+                    - link "Support" [ref=f24e112] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1543407600/Support
+                  - listitem [ref=f24e113]:
+                    - button "Expand item Mosaic Templates" [ref=f24e115] [cursor=pointer]: 
+                    - link "Mosaic Templates" [ref=f24e118] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/6162100393/Mosaic+Templates
+        - generic [ref=f24e119]:
+          - button "ConfigureSpace tools" [ref=f24e120] [cursor=pointer]:
+            - generic [ref=f24e121]:  Configure
+            - text: Space tools
+          - button "Sidebar" [expanded] [ref=f24e123] [cursor=pointer]: 
+        - tooltip "Type '['" [ref=f24e124]
+      - main [ref=f24e126]:
+        - generic [ref=f24e127]:
+          - region "Page tools" [ref=f24e128]:
+            - list:
+              - listitem [ref=f24e129]:
+                - link "View inline comments ('v') Type 'v'" [ref=f24e130] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f24e131]:
+                    - generic [ref=f24e132]: 
+                    - text: View inline comments
+              - listitem [ref=f24e133]:
+                - link "Save for later Type 'f'" [ref=f24e134] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f24e135]:
+                    - generic [ref=f24e136]: 
+                    - text: Save for later
+              - listitem [ref=f24e137]:
+                - link "Watch 'w'" [ref=f24e138] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f24e139]:
+                    - generic [ref=f24e140]: 
+                    - text: Watch
+              - listitem [ref=f24e141]:
+                - link "Share this page with others Type 's' OR 'k'" [ref=f24e142] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f24e143]:
+                    - generic [ref=f24e144]: 
+                    - text: Share
+              - listitem [ref=f24e145]:
+                - link "More options" [ref=f24e146] [cursor=pointer]:
+                  - /url: "#"
+                  - button "More options" [ref=f24e148]: 
+          - generic [ref=f24e149]:
+            - generic:
+              - navigation "Breadcrumbs":
+                - list:
+                  - listitem [ref=f24e150]:
+                    - link "Pages" [ref=f24e152] [cursor=pointer]:
+                      - /url: /wiki/collector/pages.action?key=idservice
+            - generic:
+              - list:
+                - listitem [ref=f24e153]:
+                  - link "Restrictions apply" [ref=f24e154] [cursor=pointer]:
+                    - /url: ""
+                    - text: 
+                - listitem
+                - listitem
+                - listitem [ref=f24e155]
+            - link [ref=f24e157] [cursor=pointer]:
+              - /url: /wiki/spaces/idservice/pages/1004998910/Identity+Authentication+and+SAP+ID+Service+space
+              - heading "Identity Authentication and SAP ID Service space" [level=1] [ref=f24e158]
+        - generic [ref=f24e159]:
+          - generic [ref=f24e160]:
+            - list [ref=f24e161]:
+              - listitem [ref=f24e162]:
+                - text: Created by
+                - generic [ref=f24e163]: Unknown User (c5152392)
+                - text: ", last updated by"
+                - generic [ref=f24e164]: Unknown User (d034743)
+                - text: "on"
+                - link "modified on Feb 19, 2018, select to show changes" [ref=f24e165] [cursor=pointer]:
+                  - /url: /wiki/pages/diffpagesbyversion.action?pageId=1004998910&selectedPageVersions=9&selectedPageVersions=10
+                  - text: Feb 19, 2018
+                - text: • 1 minute read
+            - list:
+              - listitem
+              - listitem
+              - listitem
+              - listitem
+          - generic [ref=f24e166]:
+            - paragraph [ref=f24e167]: "Search this space:"
+            - generic [ref=f24e168]:
+              - search [ref=f24e169]:
+                - group [ref=f24e170]:
+                  - textbox "Search" [ref=f24e172]:
+                    - /placeholder: ""
+                  - button " Search" [ref=f24e173] [cursor=pointer]
+              - region
+              - alert [ref=f24e175]
+            - paragraph
+            - paragraph [ref=f24e176]
+            - paragraph
+            - generic [ref=f24e177]:
+              - generic [ref=f24e182]:
+                - generic [ref=f24e183]: Mission Statement
+                - generic [ref=f24e184]:
+                  - paragraph [ref=f24e185]:
+                    - strong [ref=f24e186]:
+                      - generic [ref=f24e187]: SAP
+                      - text: Cloud Identity Services - Identity
+                    - strong [ref=f24e188]:
+                      - text: Authentication (
+                      - generic [ref=f24e189]: IAS
+                      - text: )
+                    - text: is a core service of
+                    - link "SAP Business Technology Platform (BTP)" [ref=f24e190] [cursor=pointer]:
+                      - /url: https://wiki.wdf.sap.corp/wiki/display/technology/Home
+                    - text: and provides capabilities for
+                  - list [ref=f24e191]:
+                    - listitem [ref=f24e192]: authentication and single sign-on
+                    - listitem [ref=f24e193]: user profile management
+                    - listitem [ref=f24e194]: self services like user registration and password reset
+                    - listitem [ref=f24e195]:
+                      - text: "administration:"
+                      - list [ref=f24e196]:
+                        - listitem [ref=f24e197]: trust configuration to applications
+                        - listitem [ref=f24e198]: maintaining the user base
+                        - listitem [ref=f24e199]: branding of user interface, email templates and policies
+                    - listitem [ref=f24e200]:
+                      - text: for the employee scenario as well as consumer- and
+                      - generic [ref=f24e201]: B2B
+                      - text: "-scenarios"
+                  - paragraph [ref=f24e202]:
+                    - strong [ref=f24e203]:
+                      - generic [ref=f24e204]: SAP
+                      - generic [ref=f24e205]: ID
+                      - text: Service (
+                      - generic [ref=f24e206]: IDS
+                      - text: )
+                    - text: is
+                    - generic [ref=f24e207]: SAP
+                    - text: ’s own tenant of Identity Authentication, acting as identity provider for
+                    - generic [ref=f24e208]: SAP
+                    - text: "'s public facing portals like"
+                    - generic [ref=f24e209]: SAP
+                    - text: .com,
+                    - generic [ref=f24e210]: SAP
+                    - text: Community,
+                    - generic [ref=f24e211]: SAP
+                    - text: Store et al.
+              - generic [ref=f24e215]:
+                - generic [ref=f24e216]:
+                  - generic [ref=f24e217] [cursor=pointer]:
+                    - link [ref=f24e220]:
+                      - /url: /wiki/spaces/idservice/pages/1008577018/About
+                      - img "About" [ref=f24e221]
+                    - generic [ref=f24e222]:
+                      - link "About" [ref=f24e224]:
+                        - /url: /wiki/spaces/idservice/pages/1008577018/About
+                      - generic [ref=f24e225]:
+                        - text: Overview
+                        - generic [ref=f24e226]: SAP
+                        - generic [ref=f24e227]: ID
+                        - text: service and Identity Authentication
+                  - generic [ref=f24e228] [cursor=pointer]:
+                    - link [ref=f24e231]:
+                      - /url: /wiki/spaces/idservice/pages/1626014896/How+to+Request+a+Tenant+of+Identity+Authentication+Service
+                      - img "Request Custom Tenant" [ref=f24e232]
+                    - generic [ref=f24e233]:
+                      - link "Request Custom Tenant" [ref=f24e235]:
+                        - /url: /wiki/spaces/idservice/pages/1626014896/How+to+Request+a+Tenant+of+Identity+Authentication+Service
+                      - generic [ref=f24e236]: How to request a custom tenant
+                  - generic [ref=f24e237] [cursor=pointer]:
+                    - link [ref=f24e240]:
+                      - /url: /wiki/spaces/idservice/pages/1012762311/Roadmap
+                      - img "Roadmap" [ref=f24e241]
+                    - generic [ref=f24e242]:
+                      - link "Roadmap" [ref=f24e244]:
+                        - /url: /wiki/spaces/idservice/pages/1012762311/Roadmap
+                      - generic [ref=f24e245]: Plans for the next milestones
+                  - generic [ref=f24e246] [cursor=pointer]:
+                    - link [ref=f24e249]:
+                      - /url: https://wiki.wdf.sap.corp/wiki//x/mKIJXg
+                      - img "Takt Transparency" [ref=f24e250]
+                    - generic [ref=f24e251]:
+                      - link "Takt Transparency" [ref=f24e253]:
+                        - /url: https://wiki.wdf.sap.corp/wiki//x/mKIJXg
+                      - generic [ref=f24e254]: Development takts details
+                  - generic [ref=f24e255] [cursor=pointer]:
+                    - link [ref=f24e258]:
+                      - /url: /wiki/spaces/idservice/pages/1543407600/Support
+                      - img "Support" [ref=f24e259]
+                    - generic [ref=f24e260]:
+                      - link "Support" [ref=f24e262]:
+                        - /url: /wiki/spaces/idservice/pages/1543407600/Support
+                      - generic [ref=f24e263]: Report bugs and get support
+                - generic [ref=f24e264]:
+                  - generic [ref=f24e265] [cursor=pointer]:
+                    - link [ref=f24e268]:
+                      - /url: /wiki/spaces/idservice/pages/1195251637/Product+Specification
+                      - img "Documentation" [ref=f24e269]
+                    - generic [ref=f24e270]:
+                      - link "Documentation" [ref=f24e272]:
+                        - /url: /wiki/spaces/idservice/pages/1195251637/Product+Specification
+                      - generic [ref=f24e273]: Technical overview, release notes, features
+                  - generic [ref=f24e274] [cursor=pointer]:
+                    - link [ref=f24e277]:
+                      - /url: https://wiki.wdf.sap.corp/wiki/x/hwHWRw
+                      - img "Request SP in SAP IT" [ref=f24e278]
+                    - generic [ref=f24e279]:
+                      - link "Request SP in SAP IT" [ref=f24e281]:
+                        - /url: https://wiki.wdf.sap.corp/wiki/x/hwHWRw
+                      - generic [ref=f24e282]:
+                        - text: How to request a Service Provider in
+                        - generic [ref=f24e283]: SAP
+                        - generic [ref=f24e284]: IT
+                  - generic [ref=f24e285] [cursor=pointer]:
+                    - link [ref=f24e288]:
+                      - /url: ""
+                      - img "User Guide" [ref=f24e289]
+                    - generic [ref=f24e290]:
+                      - link "User Guide" [ref=f24e292]:
+                        - /url: ""
+                      - generic [ref=f24e293]: Use cases and trouble-shooting for end-users
+                  - generic [ref=f24e294] [cursor=pointer]:
+                    - link [ref=f24e297]:
+                      - /url: /wiki/spaces/idservice/pages/1188202980/Developer+Guide
+                      - img "Developer Guide" [ref=f24e298]
+                    - generic [ref=f24e299]:
+                      - link "Developer Guide" [ref=f24e301]:
+                        - /url: /wiki/spaces/idservice/pages/1188202980/Developer+Guide
+                      - generic [ref=f24e302]:
+                        - text: Tools and
+                        - generic [ref=f24e303]: API
+                        - text: "-s for developers"
+                  - generic [ref=f24e304] [cursor=pointer]:
+                    - link [ref=f24e307]:
+                      - /url: /wiki/spaces/idservice/pages/1211368659/Administrator+Guide
+                      - img "Administrator Guide" [ref=f24e308]
+                    - generic [ref=f24e309]:
+                      - link "Administrator Guide" [ref=f24e311]:
+                        - /url: /wiki/spaces/idservice/pages/1211368659/Administrator+Guide
+                      - generic [ref=f24e312]: Administrative tools and troubleshooting
+                - generic [ref=f24e313]:
+                  - generic [ref=f24e314] [cursor=pointer]:
+                    - link [ref=f24e317]:
+                      - /url: https://wiki.wdf.sap.corp/wiki/x/yoZdP
+                      - img "Team & DL's" [ref=f24e318]
+                    - generic [ref=f24e319]:
+                      - link "Team & DL's" [ref=f24e321]:
+                        - /url: https://wiki.wdf.sap.corp/wiki/x/yoZdP
+                      - generic [ref=f24e322]: Development teams and stakeholders
+                  - generic [ref=f24e323] [cursor=pointer]:
+                    - link [ref=f24e326]:
+                      - /url: /wiki/spaces/idservice/pages/1008577030/System+Landscape
+                      - img "System Landscape" [ref=f24e327]
+                    - generic [ref=f24e328]:
+                      - link "System Landscape" [ref=f24e330]:
+                        - /url: /wiki/spaces/idservice/pages/1008577030/System+Landscape
+                      - generic [ref=f24e331]: System Landscape
+                  - generic [ref=f24e332] [cursor=pointer]:
+                    - link [ref=f24e335]:
+                      - /url: https://wiki.wdf.sap.corp/x/7akdP
+                      - img "Product Team" [ref=f24e336]
+                    - generic [ref=f24e337]:
+                      - link "Product Team" [ref=f24e339]:
+                        - /url: https://wiki.wdf.sap.corp/x/7akdP
+                      - generic [ref=f24e340]: Project internal space of the product team
+                  - generic [ref=f24e341] [cursor=pointer]:
+                    - link [ref=f24e344]:
+                      - /url: /wiki/spaces/idservice/pages/1252562690/Alerts
+                      - img "Alerts" [ref=f24e345]
+                    - generic [ref=f24e346]:
+                      - link "Alerts" [ref=f24e348]:
+                        - /url: /wiki/spaces/idservice/pages/1252562690/Alerts
+                      - generic [ref=f24e349]: System Alerts
+              - heading [level=3] [ref=f24e351]:
+                - text: "Contents of this Wiki space:"
+                - button "Copy link to heading" [ref=f24e353] [cursor=pointer]:
+                  - img "Copy link to heading" [ref=f24e354]: 
+                  - text:  
+              - list [ref=f24e355]:
+                - listitem [ref=f24e356]:
+                  - strong [ref=f24e357]: Identity Authentication
+                  - text: is an official
+                  - generic [ref=f24e358]: SAP
+                  - text: "product - thus you find functions and features described in the application documentation:"
+                  - link "https://help.sap.com/IAS" [ref=f24e359] [cursor=pointer]:
+                    - /url: https://help.sap.com/IAS
+                - listitem [ref=f24e360]:
+                  - generic [ref=f24e361]:
+                    - text: The following chapters on this Wiki refer to
+                    - strong [ref=f24e362]:
+                      - generic [ref=f24e363]: SAP
+                      - generic [ref=f24e364]: ID
+                      - text: Service
+                    - text: "capabilities:"
+                  - list [ref=f24e365]:
+                    - listitem [ref=f24e366]:
+                      - link "Product Specification" [ref=f24e367] [cursor=pointer]:
+                        - /url: /wiki/spaces/idservice/pages/1195251637/Product+Specification
+                    - listitem [ref=f24e368]:
+                      - link "Administrator Guide" [ref=f24e369] [cursor=pointer]:
+                        - /url: /wiki/spaces/idservice/pages/1211368659/Administrator+Guide
+                    - listitem [ref=f24e370]:
+                      - link "Developer Guide" [ref=f24e371] [cursor=pointer]:
+                        - /url: /wiki/spaces/idservice/pages/1188202980/Developer+Guide
+                    - listitem [ref=f24e372]:
+                      - link "User Guide (SAP ID Service / IDS)" [ref=f24e373] [cursor=pointer]:
+                        - /url: /wiki/spaces/idservice/pages/1296834441/User+Guide+SAP+ID+Service+IDS
+            - paragraph
+            - paragraph [ref=f24e374]
+            - paragraph [ref=f24e375]:
+              - emphasis [ref=f24e376]: "Space Admins: Marko Sommer, Svetlana Stancheva, Valentin Ivanov, Polina Ivanova, Liubo Yolovski, Krasimir Nedkov, Stephan Zlatarev"
+          - generic [ref=f24e377]:
+            - generic [ref=f24e378]:
+              - link " Like" [ref=f24e379] [cursor=pointer]:
+                - /url: ""
+                - generic [ref=f24e380]: 
+                - text: Like
+              - text: Be the first to like this
+            - list [ref=f24e384]:
+              - listitem [ref=f24e385]: No labels
+              - listitem [ref=f24e386]:
+                - link "Edit Labels Type 'l'" [ref=f24e387] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f24e388]:  Edit Labels
+          - generic [ref=f24e389]:
+            - heading "1 Comment" [level=2] [ref=f24e391]
+            - list [ref=f24e392]:
+              - listitem [ref=f24e393]:
+                - generic [ref=f24e394]:
+                  - paragraph [ref=f24e395]:
+                    - link [ref=f24e398] [cursor=pointer]:
+                      - /url: "    /wiki/display/~D021767\n"
+                      - img "D021767" [ref=f24e399]
+                  - generic [ref=f24e400]:
+                    - heading [level=4] [ref=f24e401]:
+                      - link "Janzen, Wolfgang" [ref=f24e402] [cursor=pointer]:
+                        - /url: "    /wiki/display/~D021767\n"
+                    - generic [ref=f24e403]:
+                      - text: Jun 27, 2022
+                      - button "Copy link to comment" [ref=f24e404] [cursor=pointer]:
+                        - generic [ref=f24e405]: 
+                        - text: 
+                  - generic [ref=f24e406]:
+                    - paragraph [ref=f24e408]:
+                      - text: "See also:"
+                      - link "FAQ SAP Cloud Identity Services" [ref=f24e409] [cursor=pointer]:
+                        - /url: https://jam4.sapjam.com/wiki/show/x1u6Ehs9FbzpnNehBiVrot?_lightbox=true
+                    - generic [ref=f24e411]:
+                      - list:
+                        - listitem [ref=f24e412]:
+                          - link "Like" [ref=f24e413] [cursor=pointer]:
+                            - /url: ""
+      - contentinfo [ref=f24e414]:
+        - list [ref=f24e416]:
+          - listitem [ref=f24e417]:
+            - text: Powered by
+            - link "Atlassian Confluence" [ref=f24e418] [cursor=pointer]:
+              - /url: https://www.atlassian.com/software/confluence
+            - text: "9.2.21 (node3: 4bccedf7)·"
+          - listitem [ref=f24e419]:
+            - link "Report an Incident" [ref=f24e420] [cursor=pointer]:
+              - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+            - text: ·
+          - listitem [ref=f24e421]:
+            - link "Wiki Community" [ref=f24e422] [cursor=pointer]:
+              - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL
+  - text:                                                   

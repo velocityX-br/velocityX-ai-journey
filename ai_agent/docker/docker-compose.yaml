@@ -1,0 +1,64 @@
+# docker-compose for agent-chat.
+#
+#   docker compose -f docker/docker-compose.yaml up --build
+#
+# Runs two entrypoints onto the same core:
+#   * agent      — one-shot CLI demo (run/show).
+#   * agent-web  — the FastAPI + SSE Web UI on http://localhost:8000
+# A named volume persists SQLite checkpoints when a config uses memory.backend=sqlite.
+
+services:
+  agent:
+    build:
+      context: ../..
+      dockerfile: ai_agent/docker/Dockerfile
+    image: agent-chat:dev
+    environment:
+      # Provide at least one provider key. Read from the host environment.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # Optional LangSmith tracing
+      LANGCHAIN_TRACING_V2: ${LANGCHAIN_TRACING_V2:-}
+      LANGCHAIN_API_KEY: ${LANGCHAIN_API_KEY:-}
+      LANGCHAIN_PROJECT: ${LANGCHAIN_PROJECT:-agent-chat}
+      # Traces go to the kind cluster's existing collector (observability ns).
+      # Port-forward svc/otel-collector 4318 and svc/jaeger 16686 on the host first.
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
+      OTEL_UI_BASE_URL: http://127.0.0.1:16686
+    volumes:
+      - agent_state:/app/state
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Default demo run; override on the CLI as needed.
+    command: ["run", "--config", "generic_react", "--query", "Say hello and confirm you are running."]
+
+  agent-web:
+    build:
+      context: ../..
+      dockerfile: ai_agent/docker/Dockerfile
+    image: agent-chat:dev
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      LANGCHAIN_TRACING_V2: ${LANGCHAIN_TRACING_V2:-}
+      LANGCHAIN_API_KEY: ${LANGCHAIN_API_KEY:-}
+      LANGCHAIN_PROJECT: ${LANGCHAIN_PROJECT:-agent-chat}
+      # Traces go to the kind cluster's existing collector (observability ns).
+      # Port-forward svc/otel-collector 4318 and svc/jaeger 16686 on the host first.
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
+      OTEL_UI_BASE_URL: http://127.0.0.1:16686
+    volumes:
+      - agent_state:/app/state
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8000:8000"
+    # Bind to 0.0.0.0 so the port is reachable from the host.
+    command: ["serve", "--host", "0.0.0.0", "--port", "8000"]
+
+volumes:
+  agent_state:

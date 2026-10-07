@@ -1,9 +1,10 @@
 """CLI entry point: fetch, chunk, embed, and upsert SCI docs into Qdrant.
 
-Supports two documentation collections:
+Supports three documentation collections:
 
 - ``sci_docs_operation`` — Markdown docs from ``cc/documentation-operation``
 - ``sci_docs_customer``  — Markdown docs from ``cc/documentation-customer``
+- ``sci_docs_adr``       — Architecture Decision Records from ``PlusOne/adr``
 
 Each collection is populated by a single ``GitHubDocsIngester`` instance
 parameterised with the source repository slug and a ``content_type`` label.
@@ -26,6 +27,7 @@ Environment variables (see .env.example)::
     GITHUB_BASE_URL=https://github.wdf.sap.corp/api/v3 # optional override
     GITHUB_DOCS_OPERATION_REPO=cc/documentation-operation
     GITHUB_DOCS_CUSTOMER_REPO=cc/documentation-customer
+    GITHUB_DOCS_ADR_REPO=PlusOne/adr
     HYPERSPACE_OPENAI_BASE_URL=http://localhost:6655/openai/v1
     ANTHROPIC_AUTH_TOKEN=<hyperspace-bearer-token>
     QDRANT_URL=http://localhost:6333
@@ -49,7 +51,7 @@ from config.settings import Settings, build_github_client, get_settings
 from embeddings.openai_embedder import HyperspaceEmbedder
 from ingestion.chunking import MarkdownChunker
 from ingestion.github_docs import GitHubDocsIngester
-from sci_mcp.models import CUSTOMER_COLLECTION, OPERATION_COLLECTION
+from sci_mcp.models import ADR_COLLECTION, CUSTOMER_COLLECTION, OPERATION_COLLECTION
 from vectorstore.qdrant import QdrantVectorStore
 
 logging.basicConfig(
@@ -71,27 +73,35 @@ logger = logging.getLogger(__name__)
 # The HyperspaceEmbedder already splits at 2048 internally.
 _EMBED_BATCH_SIZE = 256
 
-_ALL_COLLECTIONS = [OPERATION_COLLECTION, CUSTOMER_COLLECTION]
+_ALL_COLLECTIONS = [OPERATION_COLLECTION, CUSTOMER_COLLECTION, ADR_COLLECTION]
 
 # Short aliases accepted by --collections (full names also accepted).
 _COLLECTION_ALIASES: dict[str, str] = {
     "operation": OPERATION_COLLECTION,
     "customer": CUSTOMER_COLLECTION,
+    "adr": ADR_COLLECTION,
     OPERATION_COLLECTION: OPERATION_COLLECTION,
     CUSTOMER_COLLECTION: CUSTOMER_COLLECTION,
+    ADR_COLLECTION: ADR_COLLECTION,
 }
 
 
 def _content_type_for(collection: str) -> str:
     """Return the ``content_type`` metadata label for a collection."""
-    return "operation" if collection == OPERATION_COLLECTION else "customer"
+    if collection == OPERATION_COLLECTION:
+        return "operation"
+    if collection == CUSTOMER_COLLECTION:
+        return "customer"
+    return "adr"
 
 
 def _repo_for(collection: str, settings: Settings) -> str:
     """Return the source repository slug for a collection."""
     if collection == OPERATION_COLLECTION:
         return settings.github_docs_operation_repo
-    return settings.github_docs_customer_repo
+    if collection == CUSTOMER_COLLECTION:
+        return settings.github_docs_customer_repo
+    return settings.github_docs_adr_repo
 
 
 # ---------------------------------------------------------------------------
@@ -178,9 +188,12 @@ async def _check() -> None:
 
     if any_empty:
         empty = [c for c, n in rows if n == 0]
-        aliases = " ".join(
-            "operation" if c == OPERATION_COLLECTION else "customer" for c in empty
-        )
+        _alias_for = {
+            OPERATION_COLLECTION: "operation",
+            CUSTOMER_COLLECTION: "customer",
+            ADR_COLLECTION: "adr",
+        }
+        aliases = " ".join(_alias_for.get(c, c) for c in empty)
         print(
             f"\n  {len(empty)} collection(s) are empty: {', '.join(empty)}\n"
             "  Run:  uv run python scripts/ingest_docs.py\n"
@@ -395,10 +408,11 @@ def main() -> None:
             "Collection aliases:\n"
             "  operation → sci_docs_operation  (cc/documentation-operation)\n"
             "  customer  → sci_docs_customer   (cc/documentation-customer)\n"
+            "  adr       → sci_docs_adr        (PlusOne/adr)\n"
             "\nExamples:\n"
             "  uv run python scripts/ingest_docs.py\n"
             "  uv run python scripts/ingest_docs.py --collections operation\n"
-            "  uv run python scripts/ingest_docs.py --collections operation customer\n"
+            "  uv run python scripts/ingest_docs.py --collections operation customer adr\n"
         ),
     )
     parser.add_argument(
@@ -413,8 +427,8 @@ def main() -> None:
         choices=list(_COLLECTION_ALIASES.keys()),
         default=None,
         help=(
-            "Collections to ingest. Accepts short aliases (operation, customer) "
-            "or full names. Defaults to both collections."
+            "Collections to ingest. Accepts short aliases (operation, customer, "
+            "adr) or full names. Defaults to all collections."
         ),
     )
     args = parser.parse_args()

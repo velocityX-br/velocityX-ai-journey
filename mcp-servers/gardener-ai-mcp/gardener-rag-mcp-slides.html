@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>让 AI 真正理解 Gardener — RAG + MCP 技术深度讲座</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — Obsidian Atlas
+   ============================================================ */
+:root {
+  --ink:        #0c0c10;
+  --ink2:       #14141c;
+  --saffron:    #e8a000;
+  --saffron-dim:#b47a00;
+  --text:       #ddd8cc;
+  --sub:        #7a7570;
+  --rule:       rgba(240,235,224,0.1);
+  --rule-med:   rgba(240,235,224,0.18);
+  --stage-bg:   #000;
+  --slide-bg:   #0c0c10;
+  --serif:      'DM Serif Display', serif;
+  --mono:       'IBM Plex Mono', monospace;
+  --sans:       'IBM Plex Sans', sans-serif;
+}
+
+/* ============================================================
+   viewport-base.css — INCLUDED IN FULL
+   ============================================================ */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--stage-bg, #000); }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: var(--stage-bg, #000); }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--slide-bg, #fff); }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: block; visibility: hidden; opacity: 0; pointer-events: none; background: var(--slide-bg, #fff); }
+.slide.active, .slide.visible { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+@media print {
+  html, body { width: 1920px; height: auto; overflow: visible; }
+  .deck-viewport { position: static; overflow: visible; }
+  .deck-stage { position: static; width: auto; height: auto; transform: none !important; }
+  .slide { position: relative; display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; width: 1920px; height: 1080px; break-after: page; }
+  .slide:last-child { break-after: auto; }
+  .deck-controls { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+}
+
+/* ============================================================
+   GLOBAL SLIDE CHROME
+   ============================================================ */
+* { box-sizing: border-box; }
+
+/* Masthead bar — 72px top */
+.masthead {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 72px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  z-index: 10;
+}
+.masthead-brand {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--saffron);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex: 0 0 auto;
+  width: 360px;
+}
+.masthead-center {
+  flex: 1;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--sub);
+  letter-spacing: 0.04em;
+}
+.masthead-num {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--sub);
+  width: 360px;
+  text-align: right;
+  letter-spacing: 0.06em;
+}
+
+/* Footer bar — 56px bottom */
+.footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  z-index: 10;
+}
+.footer-tech {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--sub);
+  letter-spacing: 0.05em;
+  flex: 1;
+}
+.footer-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--sub);
+  letter-spacing: 0.06em;
+}
+
+/* Left section label column — 56px */
+.section-col {
+  position: absolute;
+  left: 0;
+  top: 72px;
+  bottom: 56px;
+  width: 56px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--saffron);
+  letter-spacing: 0.12em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+}
+
+/* Content area */
+.content-area {
+  position: absolute;
+  top: 72px;
+  left: 56px;
+  right: 0;
+  bottom: 56px;
+}
+
+/* Right data panel separator */
+.panel-rule {
+  position: absolute;
+  top: 72px;
+  bottom: 56px;
+  width: 1px;
+  background: var(--rule-med);
+}
+
+/* Column grid lines */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.grid-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+/* ============================================================
+   ANIMATION KEYFRAMES
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes drawLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes pulseBox {
+  0%, 100% { box-shadow: 0 0 0 1px var(--saffron); }
+  50%       { box-shadow: 0 0 12px 2px rgba(232,160,0,0.4); }
+}
+
+/* Animation helpers scoped to active slide */
+.slide.active .anim-1 { animation: fadeUp 0.5s 0.1s both; }
+.slide.active .anim-2 { animation: fadeUp 0.5s 0.2s both; }
+.slide.active .anim-3 { animation: fadeUp 0.5s 0.3s both; }
+.slide.active .anim-4 { animation: fadeUp 0.5s 0.4s both; }
+.slide.active .anim-5 { animation: fadeUp 0.5s 0.5s both; }
+.slide.active .anim-6 { animation: fadeUp 0.5s 0.6s both; }
+.slide.active .anim-7 { animation: fadeUp 0.5s 0.7s both; }
+.slide.active .anim-8 { animation: fadeUp 0.5s 0.8s both; }
+.slide.active .anim-fade { animation: fadeIn 0.6s 0.15s both; }
+.slide.active .anim-line { animation: drawLine 0.6s 0.4s both; transform-origin: left center; }
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.serif   { font-family: var(--serif); }
+.mono    { font-family: var(--mono); }
+.sans    { font-family: var(--sans); }
+.saffron { color: var(--saffron); }
+.sub     { color: var(--sub); }
+.text    { color: var(--text); }
+
+/* ============================================================
+   COMPONENT: Code Block
+   ============================================================ */
+.code-block {
+  background: var(--ink2);
+  border: 1px solid var(--saffron);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--text);
+  padding: 28px 32px;
+}
+.code-block .kw  { color: var(--saffron); }
+.code-block .cm  { color: var(--sub); font-style: italic; }
+.code-block .st  { color: #8ec07c; }
+.code-block .fn  { color: #83a598; }
+.code-block .num { color: #d3869b; }
+
+/* ============================================================
+   COMPONENT: Terminal box
+   ============================================================ */
+.terminal {
+  background: #0a0a0e;
+  border: 1px solid rgba(232,160,0,0.3);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 18px;
+  line-height: 1.65;
+  color: #7a7570;
+  padding: 24px 28px;
+}
+.terminal .t-err  { color: #fb4934; }
+.terminal .t-warn { color: var(--saffron); }
+.terminal .t-ok   { color: #8ec07c; }
+.terminal .t-dim  { color: #4a4540; }
+.terminal .t-prompt { color: var(--saffron); }
+
+/* ============================================================
+   COMPONENT: Pipeline box
+   ============================================================ */
+.pipe-box {
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  border-radius: 3px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pipe-box.active-box {
+  border-color: var(--saffron);
+}
+.pipe-title {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--saffron);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pipe-detail {
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--sub);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   COMPONENT: Saffron rule
+   ============================================================ */
+.saffron-rule {
+  height: 3px;
+  background: var(--saffron);
+  border: none;
+  margin: 0;
+}
+.thin-rule {
+  height: 1px;
+  background: var(--rule-med);
+  border: none;
+  margin: 0;
+}
+
+/* ============================================================
+   DECK CONTROLS (outside stage)
+   ============================================================ */
+.deck-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 9999;
+  align-items: center;
+}
+.deck-btn {
+  background: rgba(20,20,28,0.9);
+  border: 1px solid rgba(232,160,0,0.4);
+  color: var(--saffron);
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  letter-spacing: 0.06em;
+  transition: background 0.2s, border-color 0.2s;
+}
+.deck-btn:hover {
+  background: rgba(232,160,0,0.15);
+  border-color: var(--saffron);
+}
+.slide-counter {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--sub);
+  letter-spacing: 0.08em;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* ============================================================
+   EDIT MODE
+   ============================================================ */
+.edit-btn {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 9999;
+  background: rgba(20,20,28,0.9);
+  border: 1px solid rgba(232,160,0,0.3);
+  color: var(--saffron);
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+.deck-viewport:hover .edit-btn { display: flex; }
+.edit-mode [contenteditable] {
+  outline: 1px dashed rgba(232,160,0,0.5);
+  min-width: 20px;
+  min-height: 1em;
+}
+
+/* ============================================================
+   SLIDE-SPECIFIC STYLES
+   ============================================================ */
+
+/* ---- SLIDE 1: Cover ---- */
+.s1-eyebrow {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--saffron);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.s1-title {
+  font-family: var(--serif);
+  font-size: 96px;
+  line-height: 1.05;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+.s1-title em {
+  font-style: italic;
+  color: var(--saffron);
+}
+.s1-subtitle {
+  font-family: var(--sans);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--sub);
+  letter-spacing: 0.04em;
+  margin: 24px 0 0 0;
+}
+.s1-author {
+  font-family: var(--mono);
+  font-size: 17px;
+  color: var(--sub);
+  letter-spacing: 0.06em;
+  margin-top: 40px;
+}
+.s1-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 340px;
+}
+.s1-pipe-node {
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  padding: 18px 24px;
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.06em;
+  text-align: center;
+  position: relative;
+}
+.s1-pipe-node.highlight {
+  border-color: var(--saffron);
+  color: var(--saffron);
+}
+.s1-pipe-arrow {
+  text-align: center;
+  color: var(--saffron);
+  font-size: 20px;
+  line-height: 1.4;
+  font-family: var(--mono);
+}
+
+/* ---- SLIDE 2: Pain Points ---- */
+.s2-question {
+  font-family: var(--serif);
+  font-size: 54px;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 64px;
+}
+.s2-question em {
+  color: var(--saffron);
+  font-style: italic;
+}
+.pain-point {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+.pain-num {
+  font-family: var(--mono);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--saffron);
+  line-height: 1;
+  flex: 0 0 50px;
+  margin-top: 4px;
+}
+.pain-text {
+  font-family: var(--sans);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ---- SLIDE 3: RAG ---- */
+.s3-title {
+  font-family: var(--serif);
+  font-size: 64px;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.s3-title .accent {
+  color: var(--saffron);
+}
+.s3-explain {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--sub);
+  line-height: 1.6;
+  max-width: 560px;
+}
+.flow-step {
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  border-radius: 3px;
+  padding: 22px 28px;
+  text-align: center;
+  flex: 1;
+}
+.flow-step-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.flow-step-title {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--saffron);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.flow-step-desc {
+  font-family: var(--sans);
+  font-size: 17px;
+  color: var(--sub);
+}
+.flow-arrow {
+  font-family: var(--mono);
+  font-size: 28px;
+  color: var(--saffron);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.compare-table th {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--saffron);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule-med);
+  text-align: left;
+}
+.compare-table td {
+  font-family: var(--sans);
+  font-size: 18px;
+  color: var(--text);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.compare-table td.bad  { color: #fb4934; }
+.compare-table td.good { color: #8ec07c; }
+.compare-table td.feature { color: var(--sub); font-size: 16px; }
+
+/* ---- SLIDE 4: Data Pipeline ---- */
+.pipe-step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  border-radius: 3px;
+  padding: 28px 24px;
+  flex: 1;
+}
+.pipe-step.highlight {
+  border-color: var(--saffron);
+}
+.pipe-step-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--saffron);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.pipe-step-title {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+.pipe-step-sub {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--saffron);
+  opacity: 0.8;
+}
+.pipe-step-params {
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--sub);
+  line-height: 1.55;
+  margin-top: 4px;
+}
+.h-arrow {
+  font-family: var(--mono);
+  font-size: 32px;
+  color: var(--saffron);
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 0 4px;
+}
+
+/* ---- SLIDE 5: Two Retrievers ---- */
+.retriever-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.retriever-title {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.retriever-sub {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--saffron);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.r-point {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.r-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--saffron);
+  margin-top: 8px;
+  flex: 0 0 8px;
+}
+.r-text {
+  font-family: var(--sans);
+  font-size: 20px;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+/* ---- SLIDE 6: Concurrent Design ---- */
+.concur-node {
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  border-radius: 3px;
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--text);
+  text-align: center;
+  white-space: nowrap;
+}
+.concur-node.dense { border-color: var(--saffron); color: var(--saffron); }
+.concur-node.sparse { border-color: #83a598; color: #83a598; }
+.concur-center {
+  background: var(--saffron);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 14px 22px;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+.concur-rrf {
+  background: var(--ink2);
+  border: 2px solid var(--saffron);
+  border-radius: 3px;
+  padding: 16px 24px;
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--saffron);
+  text-align: center;
+}
+
+/* ---- SLIDE 7: RRF ---- */
+.formula-box {
+  background: var(--ink2);
+  border: 2px solid var(--saffron);
+  border-radius: 4px;
+  padding: 32px 48px;
+  text-align: center;
+}
+.formula-text {
+  font-family: var(--mono);
+  font-size: 38px;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+.formula-text .accent {
+  color: var(--saffron);
+  font-size: 44px;
+}
+.rrf-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.rrf-table th {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--saffron);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--saffron);
+  text-align: left;
+}
+.rrf-table td {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--text);
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.rrf-table td.doc { color: var(--saffron); font-weight: 600; }
+.rrf-table td.score { color: #8ec07c; }
+.insight-box {
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  border-radius: 3px;
+  padding: 20px 24px;
+  flex: 1;
+}
+.insight-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--saffron);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.insight-text {
+  font-family: var(--sans);
+  font-size: 18px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ---- SLIDE 8: MCP Tools ---- */
+.tool-card {
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  border-radius: 3px;
+  padding: 18px 20px;
+  flex: 1;
+}
+.tool-card.highlight {
+  border-color: var(--saffron);
+  animation: pulseBox 2s 1s infinite;
+}
+.tool-name {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--saffron);
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.tool-desc {
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--sub);
+  line-height: 1.4;
+}
+
+/* ---- SLIDE 9: End-to-End ---- */
+.e2e-step {
+  background: var(--ink2);
+  border: 1px solid var(--rule-med);
+  border-radius: 3px;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.e2e-step.user-step {
+  border-color: var(--saffron);
+}
+.e2e-icon {
+  font-family: var(--mono);
+  font-size: 20px;
+  color: var(--saffron);
+  flex: 0 0 32px;
+}
+.e2e-text {
+  font-family: var(--sans);
+  font-size: 20px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.e2e-mono {
+  font-family: var(--mono);
+  font-size: 17px;
+  color: var(--sub);
+}
+.e2e-arrow {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 22px;
+  color: var(--saffron);
+  line-height: 1.3;
+  padding: 2px 0;
+}
+
+/* ---- SLIDE 10: Summary ---- */
+.takeaway {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.takeaway-num {
+  font-family: var(--serif);
+  font-size: 52px;
+  color: var(--saffron);
+  line-height: 1;
+  flex: 0 0 56px;
+  margin-top: -4px;
+}
+.takeaway-body {
+  flex: 1;
+}
+.takeaway-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--text);
+  line-height: 1.3;
+}
+.stack-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.stack-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--saffron);
+  flex: 0 0 6px;
+}
+.stack-name {
+  font-family: var(--mono);
+  font-size: 17px;
+  color: var(--saffron);
+  flex: 0 0 300px;
+}
+.stack-desc {
+  font-family: var(--sans);
+  font-size: 17px;
+  color: var(--sub);
+}
+.cta-banner {
+  background: var(--saffron);
+  border-radius: 3px;
+  padding: 22px 36px;
+  text-align: center;
+  margin-top: 28px;
+}
+.cta-text {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+</style>
+</head>
+<body>
+
+<div class="deck-viewport">
+  <div class="deck-stage" id="deckStage">
+
+    <!-- ================================================================
+         SLIDE 1 — COVER
+         ================================================================ -->
+    <div class="slide active" id="slide-1">
+      <!-- Grid lines -->
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:960px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+
+      <!-- Masthead -->
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">技术深度讲座 2026</div>
+        <div class="masthead-num mono">01 / 10</div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 1</div>
+      </div>
+
+      <!-- Content -->
+      <div style="position:absolute; top:72px; left:80px; right:420px; bottom:56px; display:flex; flex-direction:column; justify-content:center; padding: 60px 80px 60px 60px;">
+        <div class="s1-eyebrow anim-1">Gardener × AI Operations &nbsp;/&nbsp; 技术深度讲座 2026</div>
+        <h1 class="s1-title anim-2">让 AI 真正<br>理解 <em>Gardener</em></h1>
+        <hr class="saffron-rule anim-3" style="width:320px; margin: 20px 0;">
+        <p class="s1-subtitle anim-4">用 RAG + MCP 构建智能运维助手</p>
+        <p class="s1-author anim-5">gardener-ai-mcp &nbsp;·&nbsp; Phase 1–8 Complete &nbsp;·&nbsp; 7 MCP Tools</p>
+      </div>
+
+      <!-- Right Data Panel -->
+      <div class="panel-rule" style="right:400px;"></div>
+      <div style="position:absolute; top:72px; right:0; width:400px; bottom:56px; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px 40px;">
+        <div class="mono sub anim-6" style="font-size:13px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;">Data Pipeline</div>
+        <div class="s1-pipeline anim-7">
+          <div class="s1-pipe-node highlight">Docs</div>
+          <div class="s1-pipe-arrow">↓</div>
+          <div class="s1-pipe-node">Embed</div>
+          <div class="s1-pipe-arrow">↓</div>
+          <div class="s1-pipe-node highlight">Qdrant</div>
+          <div class="s1-pipe-arrow">↓</div>
+          <div class="s1-pipe-node">RRF</div>
+          <div class="s1-pipe-arrow">↓</div>
+          <div class="s1-pipe-node highlight">MCP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 2 — 运维工程师的困境
+         ================================================================ -->
+    <div class="slide" id="slide-2">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:1200px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">运维工程师的困境</div>
+        <div class="masthead-num mono">02 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 2</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">01 / 问题</span>
+      </div>
+      <!-- Main content -->
+      <div style="position:absolute; top:72px; left:56px; right:520px; bottom:56px; padding:60px 80px;">
+        <div class="s2-question anim-1">
+          <em>Shoot 集群</em>卡在<br>Reconciling 状态，<br>该怎么办？
+        </div>
+        <div class="pain-point anim-2">
+          <div class="pain-num">01</div>
+          <div class="pain-text">文档散落 GitHub 各处，<br>无法语义搜索</div>
+        </div>
+        <div class="pain-point anim-3">
+          <div class="pain-num">02</div>
+          <div class="pain-text">LLM 知识截止 2024，<br>不了解 Gardener 最新版本</div>
+        </div>
+        <div class="pain-point anim-4">
+          <div class="pain-num">03</div>
+          <div class="pain-text">人工翻文档耗时，<br>深夜故障无从下手</div>
+        </div>
+      </div>
+      <!-- Right panel -->
+      <div class="panel-rule" style="right:520px;"></div>
+      <div style="position:absolute; top:72px; right:0; width:520px; bottom:56px; padding:48px 40px; display:flex; flex-direction:column; justify-content:center;">
+        <div class="mono saffron anim-5" style="font-size:13px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:16px;">$ kubectl get shoot -A</div>
+        <div class="terminal anim-6">
+          <div class="t-dim"># 凌晨 3:47 — 生产告警</div>
+          <br>
+          <div><span class="t-err">ERROR</span> Shoot/prod-eu-west-1</div>
+          <div class="t-dim">  status: Reconciling</div>
+          <div class="t-dim">  duration: 4h37m</div>
+          <br>
+          <div><span class="t-warn">WARN</span>  Seed heartbeat missing</div>
+          <div class="t-dim">  last_seen: 4h ago</div>
+          <br>
+          <div><span class="t-err">CRIT</span>  Worker nodes: 0/12 Ready</div>
+          <div class="t-dim">  reason: Unknown</div>
+          <br>
+          <div class="t-dim"># 文档在哪？版本对应吗？</div>
+          <div><span class="t-prompt">$</span> <span style="color:#ddd8cc; opacity:0.4">█</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 3 — RAG 是什么
+         ================================================================ -->
+    <div class="slide" id="slide-3">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:1100px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">RAG 是什么（揭开黑盒）</div>
+        <div class="masthead-num mono">03 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 3</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">02 / 原理</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; padding:50px 60px 40px 60px; display:flex; flex-direction:column; gap:36px;">
+        <!-- Top: Title + explanation -->
+        <div class="anim-1">
+          <div class="s3-title">
+            <span class="accent">RAG</span> = Retrieval<br>Augmented Generation
+          </div>
+          <p class="s3-explain">
+            不是让 AI 记住所有知识，而是在<strong style="color:var(--text)">回答时</strong>实时检索相关文档，
+            将最新内容注入上下文，再由 LLM 生成准确答案。
+          </p>
+        </div>
+        <!-- Middle: Flow -->
+        <div style="display:flex; align-items:stretch; gap:0; anim-2" class="anim-2">
+          <div class="flow-step">
+            <div class="flow-step-title">用户问题</div>
+            <div class="flow-step-desc">"Shoot 卡在<br>Reconciling?"</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="border-color:var(--saffron);">
+            <div class="flow-step-title">检索相关文档</div>
+            <div class="flow-step-desc">向量检索 + RRF<br>Top-5 文档片段</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-step-title">LLM 生成答案</div>
+            <div class="flow-step-desc">根因 + 证据<br>+ 修复步骤</div>
+          </div>
+        </div>
+        <!-- Bottom: Comparison table -->
+        <div class="anim-3">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>能力维度</th>
+                <th>纯 LLM</th>
+                <th>RAG（本项目）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="feature">知识截止日期</td>
+                <td class="bad">2024 年固定</td>
+                <td class="good">实时更新</td>
+              </tr>
+              <tr>
+                <td class="feature">私有文档</td>
+                <td class="bad">不支持</td>
+                <td class="good">完整索引</td>
+              </tr>
+              <tr>
+                <td class="feature">幻觉率</td>
+                <td class="bad">较高</td>
+                <td class="good">显著降低</td>
+              </tr>
+              <tr>
+                <td class="feature">可解释性</td>
+                <td class="bad">黑盒</td>
+                <td class="good">附带文档来源</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 4 — 数据入库
+         ================================================================ -->
+    <div class="slide" id="slide-4">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:960px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">数据入库：从文档到向量</div>
+        <div class="masthead-num mono">04 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 4</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">03 / 数据管道</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; padding:50px 60px 40px 60px; display:flex; flex-direction:column; gap:28px;">
+        <!-- Header -->
+        <div class="anim-1" style="display:flex; align-items:baseline; gap:24px;">
+          <h2 class="serif" style="font-size:44px; color:var(--text); margin:0;">4 步数据管道</h2>
+          <span class="mono sub" style="font-size:16px; letter-spacing:0.06em;">14,000+ chunks indexed</span>
+        </div>
+        <!-- Pipeline steps horizontal -->
+        <div style="display:flex; align-items:stretch; gap:0; flex:1;" class="anim-2">
+          <div class="pipe-step">
+            <div class="pipe-step-num">Step 01</div>
+            <div class="pipe-step-title">GitHub APIs</div>
+            <div class="pipe-step-sub">4种 Ingester</div>
+            <div class="pipe-step-params">
+              docs / issues<br>prs / code<br><br>
+              <span style="color:var(--saffron);">gardener/documentation</span><br>
+              <span style="color:var(--saffron);">gardener/gardener</span>
+            </div>
+          </div>
+          <div class="h-arrow">→</div>
+          <div class="pipe-step">
+            <div class="pipe-step-num">Step 02</div>
+            <div class="pipe-step-title">Chunker</div>
+            <div class="pipe-step-sub">智能切块</div>
+            <div class="pipe-step-params">
+              MarkdownChunker<br>
+              <span style="color:var(--saffron);">1000c / 200c</span> overlap<br><br>
+              CodeChunker<br>
+              <span style="color:var(--saffron);">1500c / 300c</span> overlap
+            </div>
+          </div>
+          <div class="h-arrow">→</div>
+          <div class="pipe-step highlight">
+            <div class="pipe-step-num">Step 03</div>
+            <div class="pipe-step-title">Embedder</div>
+            <div class="pipe-step-sub">HyperspaceEmbedder</div>
+            <div class="pipe-step-params">
+              text-embedding-3-small<br>
+              <span style="color:var(--saffron);">1536-dim</span> vectors<br><br>
+              Batch size: <span style="color:var(--saffron);">2048</span><br>
+              SAP Hyperspace API
+            </div>
+          </div>
+          <div class="h-arrow">→</div>
+          <div class="pipe-step">
+            <div class="pipe-step-num">Step 04</div>
+            <div class="pipe-step-title">Qdrant</div>
+            <div class="pipe-step-sub">向量存储</div>
+            <div class="pipe-step-params">
+              4 collections<br>
+              HNSW <span style="color:var(--saffron);">m=16</span><br>
+              Cosine distance<br><br>
+              gardener_docs<br>
+              gardener_issues<br>
+              gardener_prs<br>
+              gardener_code
+            </div>
+          </div>
+        </div>
+        <!-- Bottom stat -->
+        <div class="anim-3" style="display:flex; gap:48px; align-items:center; padding-top:8px; border-top:1px solid var(--rule);">
+          <div>
+            <span class="mono saffron" style="font-size:40px; font-weight:600;">14,000+</span>
+            <span class="sans sub" style="font-size:18px; margin-left:12px;">chunks indexed</span>
+          </div>
+          <div>
+            <span class="mono saffron" style="font-size:40px; font-weight:600;">4</span>
+            <span class="sans sub" style="font-size:18px; margin-left:12px;">Qdrant collections</span>
+          </div>
+          <div>
+            <span class="mono saffron" style="font-size:40px; font-weight:600;">1536</span>
+            <span class="sans sub" style="font-size:18px; margin-left:12px;">vector dimensions</span>
+          </div>
+          <div>
+            <span class="mono saffron" style="font-size:40px; font-weight:600;">2</span>
+            <span class="sans sub" style="font-size:18px; margin-left:12px;">data sources</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 5 — 两种检索器
+         ================================================================ -->
+    <div class="slide" id="slide-5">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:56px;"></div>
+        <div class="grid-line" style="left:960px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">两种检索器</div>
+        <div class="masthead-num mono">05 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 5</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">04 / 检索策略</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; padding:50px 60px 40px 60px; display:flex; gap:0;">
+        <!-- Left: Semantic -->
+        <div class="retriever-col anim-1" style="padding-right:48px;">
+          <div class="retriever-sub">检索器 A</div>
+          <div class="retriever-title">SemanticRetriever</div>
+          <hr class="thin-rule" style="margin-bottom:20px;">
+          <div class="r-point">
+            <div class="r-dot"></div>
+            <div class="r-text">单集合密集向量检索</div>
+          </div>
+          <div class="r-point">
+            <div class="r-dot"></div>
+            <div class="r-text"><span class="mono" style="color:var(--saffron);">embed_query()</span> → nearest-neighbour</div>
+          </div>
+          <div class="r-point">
+            <div class="r-dot"></div>
+            <div class="r-text">适合定向工具：search_docs,<br>search_issues, search_prs…</div>
+          </div>
+          <div class="code-block" style="margin-top:24px; font-size:17px;">
+            <div class="cm"># embed query → search</div>
+            <div><span class="kw">query_vector</span> = <span class="fn">await</span></div>
+            <div>&nbsp;&nbsp;embedder.<span class="fn">embed_query</span>(query)</div>
+            <div>&nbsp;</div>
+            <div>results = <span class="fn">await</span></div>
+            <div>&nbsp;&nbsp;client.<span class="fn">search</span>(</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">collection</span>, query_vector,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">limit</span>=<span class="num">10</span></div>
+            <div>&nbsp;&nbsp;)</div>
+          </div>
+        </div>
+        <!-- Divider -->
+        <div style="width:1px; background:var(--saffron); opacity:0.5; margin:0 0;"></div>
+        <!-- Right: Hybrid -->
+        <div class="retriever-col anim-2" style="padding-left:48px;">
+          <div class="retriever-sub">检索器 B</div>
+          <div class="retriever-title">HybridRetriever</div>
+          <hr class="thin-rule" style="margin-bottom:20px;">
+          <div class="r-point">
+            <div class="r-dot"></div>
+            <div class="r-text">跨全部 <span class="mono saffron">4</span> 个集合并发搜索</div>
+          </div>
+          <div class="r-point">
+            <div class="r-dot"></div>
+            <div class="r-text">密集向量 + 关键词双路并行</div>
+          </div>
+          <div class="r-point">
+            <div class="r-dot"></div>
+            <div class="r-text"><span class="mono" style="color:var(--saffron);">RRF</span> 融合多路结果</div>
+          </div>
+          <div class="r-point">
+            <div class="r-dot"></div>
+            <div class="r-text">适合：<span class="mono" style="color:var(--saffron);">root_cause_analysis</span></div>
+          </div>
+          <div style="margin-top:24px; background:var(--ink2); border:1px solid var(--saffron); border-radius:3px; padding:20px 24px;">
+            <div class="mono sub" style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">并发搜索架构</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              <div class="concur-node dense">docs dense</div>
+              <div class="concur-node sparse">docs sparse</div>
+              <div class="concur-node dense">issues dense</div>
+              <div class="concur-node sparse">issues sparse</div>
+              <div class="concur-node dense">prs dense</div>
+              <div class="concur-node sparse">prs sparse</div>
+              <div class="concur-node dense">code dense</div>
+              <div class="concur-node sparse">code sparse</div>
+            </div>
+            <div style="text-align:center; color:var(--saffron); font-size:24px; margin:8px 0;">↓</div>
+            <div class="concur-rrf">RRF Fusion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 6 — HybridRetriever 并发设计
+         ================================================================ -->
+    <div class="slide" id="slide-6">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:1020px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">HybridRetriever 并发设计</div>
+        <div class="masthead-num mono">06 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 6</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">05 / 并发架构</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; display:flex;">
+        <!-- Left: Code -->
+        <div style="flex:0 0 860px; padding:50px 48px 40px 60px; display:flex; flex-direction:column; justify-content:center; gap:24px;">
+          <div class="anim-1">
+            <h2 class="serif" style="font-size:36px; color:var(--text); margin:0 0 8px 0;">asyncio.gather —— 8路并发</h2>
+            <p class="sans sub" style="font-size:18px; margin:0 0 20px 0;">时间复杂度取决于最慢的那条路</p>
+          </div>
+          <div class="code-block anim-2" style="font-size:19px; line-height:1.75;">
+<span class="cm"># 构建协程列表</span>
+<span class="kw">coroutines</span> = []
+<span class="fn">for</span> collection <span class="fn">in</span> self._collections:  <span class="cm"># 4个集合</span>
+    coroutines.<span class="fn">append</span>(<span class="fn">dense_search</span>(collection))
+    coroutines.<span class="fn">append</span>(<span class="fn">sparse_search</span>(collection))
+
+<span class="cm"># 8路并发执行</span>
+<span class="kw">all_results</span> = <span class="fn">await</span> asyncio.<span class="fn">gather</span>(
+    *coroutines,
+    return_exceptions=<span class="num">True</span>
+)
+
+<span class="cm"># RRF 融合 → Top-N</span>
+<span class="kw">fused</span> = self.<span class="fn">reciprocal_rank_fusion</span>(all_results)</div>
+          <div class="anim-3" style="display:flex; gap:20px; margin-top:8px;">
+            <div style="background:var(--ink2); border:1px solid var(--rule-med); border-radius:3px; padding:14px 20px; flex:1; text-align:center;">
+              <div class="mono saffron" style="font-size:28px; font-weight:600;">8x</div>
+              <div class="sans sub" style="font-size:15px; margin-top:4px;">并发搜索路</div>
+            </div>
+            <div style="background:var(--ink2); border:1px solid var(--rule-med); border-radius:3px; padding:14px 20px; flex:1; text-align:center;">
+              <div class="mono saffron" style="font-size:28px; font-weight:600;">O(1)</div>
+              <div class="sans sub" style="font-size:15px; margin-top:4px;">并发时间复杂度</div>
+            </div>
+            <div style="background:var(--ink2); border:1px solid var(--rule-med); border-radius:3px; padding:14px 20px; flex:1; text-align:center;">
+              <div class="mono saffron" style="font-size:28px; font-weight:600;">4</div>
+              <div class="sans sub" style="font-size:15px; margin-top:4px;">Qdrant 集合</div>
+            </div>
+          </div>
+        </div>
+        <!-- Divider -->
+        <div class="panel-rule"></div>
+        <!-- Right: Diagram -->
+        <div style="flex:1; padding:50px 48px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:0;">
+          <div class="anim-4" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <!-- Query center -->
+            <div class="concur-center" style="width:220px;">QUERY</div>
+            <div style="color:var(--saffron); font-size:20px; text-align:center; font-family:var(--mono);">↓ asyncio.gather</div>
+            <!-- 8 nodes in 2 columns -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; max-width:480px;">
+              <div class="concur-node dense" style="font-size:13px;">docs  → dense</div>
+              <div class="concur-node sparse" style="font-size:13px;">docs  → sparse</div>
+              <div class="concur-node dense" style="font-size:13px;">issues → dense</div>
+              <div class="concur-node sparse" style="font-size:13px;">issues → sparse</div>
+              <div class="concur-node dense" style="font-size:13px;">prs   → dense</div>
+              <div class="concur-node sparse" style="font-size:13px;">prs   → sparse</div>
+              <div class="concur-node dense" style="font-size:13px;">code  → dense</div>
+              <div class="concur-node sparse" style="font-size:13px;">code  → sparse</div>
+            </div>
+            <!-- Arrow down -->
+            <div style="color:var(--saffron); font-size:20px; text-align:center; font-family:var(--mono);">↓ all_results</div>
+            <!-- RRF -->
+            <div class="concur-rrf" style="width:100%; max-width:480px;">
+              RRF Fusion → Top-N
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 7 — RRF 算法推导
+         ================================================================ -->
+    <div class="slide" id="slide-7">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:960px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">RRF 算法推导</div>
+        <div class="masthead-num mono">07 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 7</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">06 / RRF 算法</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; padding:40px 60px; display:flex; flex-direction:column; gap:28px;">
+        <!-- Formula -->
+        <div class="formula-box anim-1" style="align-self:stretch; text-align:center;">
+          <div class="mono sub" style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Reciprocal Rank Fusion Formula</div>
+          <div class="formula-text">
+            score(d) = <span class="accent">Σ</span>
+            &nbsp;&nbsp;<span style="display:inline-block; text-align:center; vertical-align:middle; line-height:1;">
+              <span style="display:block; border-bottom:2px solid var(--saffron); padding:0 8px;">1</span>
+              <span style="display:block; padding:4px 8px 0;">k + rank<sub style="font-size:0.6em;">i</sub></span>
+            </span>
+            &nbsp;&nbsp;where&nbsp;&nbsp;<span class="accent">k = 60</span>
+          </div>
+        </div>
+        <!-- Example table -->
+        <div class="anim-2">
+          <table class="rrf-table">
+            <thead>
+              <tr>
+                <th>文档</th>
+                <th>docs 排名</th>
+                <th>code 排名</th>
+                <th>RRF 得分</th>
+                <th>最终排名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="doc">文档 A</td>
+                <td>#1</td>
+                <td>#4</td>
+                <td class="score">1/61 + 1/64 = <strong>0.0320</strong></td>
+                <td class="score">#1 (tie)</td>
+              </tr>
+              <tr>
+                <td class="doc">文档 C</td>
+                <td>#5</td>
+                <td>#1</td>
+                <td class="score">1/65 + 1/61 = <strong>0.0320</strong></td>
+                <td class="score">#2 (tie)</td>
+              </tr>
+              <tr>
+                <td class="doc">文档 B</td>
+                <td>#3</td>
+                <td>—</td>
+                <td class="score">1/63 = <strong>0.0159</strong></td>
+                <td class="score">#3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Insight boxes -->
+        <div style="display:flex; gap:20px;" class="anim-3">
+          <div class="insight-box">
+            <div class="insight-num">Insight 01</div>
+            <div class="insight-text"><span class="mono saffron">k=60</span>：BEIR 基准实验中的<br>黄金超参数常数</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-num">Insight 02</div>
+            <div class="insight-text">解决跨集合<strong style="color:var(--text)">分数不可比</strong>问题——<br>向量分数无法直接混合</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-num">Insight 03</div>
+            <div class="insight-text"><strong style="color:var(--text)">纯排名融合</strong>，无需标定，<br>不依赖分数绝对值</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 8 — MCP 工具层
+         ================================================================ -->
+    <div class="slide" id="slide-8">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:960px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">MCP 工具层</div>
+        <div class="masthead-num mono">08 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 8</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">07 / MCP 工具</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; display:flex;">
+        <!-- Left explanation -->
+        <div style="flex:0 0 560px; padding:50px 48px 40px 60px; display:flex; flex-direction:column; justify-content:center; gap:24px; border-right:1px solid var(--rule);">
+          <div class="anim-1">
+            <div class="mono saffron" style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px;">Model Context Protocol</div>
+            <h2 class="serif" style="font-size:44px; color:var(--text); margin:0 0 20px 0; line-height:1.15;">让 AI Agent<br>能调用外部工具<br>的标准协议</h2>
+            <hr class="saffron-rule" style="width:200px; margin:0 0 20px 0;">
+            <p class="sans" style="font-size:20px; color:var(--sub); line-height:1.6; margin:0;">
+              MCP 定义了一套工具调用接口，<br>
+              AI 模型可以发现并调用外部能力，<br>
+              实现与数据源、API 的解耦集成。
+            </p>
+          </div>
+          <div class="anim-2" style="background:var(--ink2); border:1px solid var(--rule-med); border-radius:3px; padding:20px 24px;">
+            <div class="mono sub" style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Transport</div>
+            <div style="display:flex; gap:12px;">
+              <div style="background:var(--ink); border:1px solid var(--saffron); border-radius:2px; padding:8px 14px; font-family:var(--mono); font-size:14px; color:var(--saffron);">stdio</div>
+              <div style="background:var(--ink); border:1px solid var(--rule-med); border-radius:2px; padding:8px 14px; font-family:var(--mono); font-size:14px; color:var(--sub);">SSE</div>
+              <div style="background:var(--ink); border:1px solid var(--rule-med); border-radius:2px; padding:8px 14px; font-family:var(--mono); font-size:14px; color:var(--sub);">HTTP</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right tools grid -->
+        <div style="flex:1; padding:40px 48px; display:flex; flex-direction:column; gap:12px; justify-content:center;">
+          <div class="mono sub anim-3" style="font-size:13px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">7 个 MCP 工具</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;" class="anim-4">
+            <div class="tool-card">
+              <div class="tool-name">search_docs</div>
+              <div class="tool-desc">语义搜索 Gardener 官方文档</div>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">search_issues</div>
+              <div class="tool-desc">搜索 GitHub Issues</div>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">search_prs</div>
+              <div class="tool-desc">搜索 Pull Requests</div>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">search_proposals</div>
+              <div class="tool-desc">搜索 GEP 增强提案</div>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">search_code</div>
+              <div class="tool-desc">搜索 Go 源代码片段</div>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">rag_retrieve</div>
+              <div class="tool-desc">低级 RAG 检索，任意集合</div>
+            </div>
+          </div>
+          <!-- Highlighted RCA tool -->
+          <div class="tool-card highlight anim-5" style="padding:20px 20px;">
+            <div class="tool-name" style="font-size:18px;">root_cause_analysis</div>
+            <div class="tool-desc" style="font-size:17px; color:var(--text);">混合检索 → LLM 推理 → 根因 + 证据 + 修复步骤</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 9 — 完整调用链
+         ================================================================ -->
+    <div class="slide" id="slide-9">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:1100px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">完整调用链</div>
+        <div class="masthead-num mono">09 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 9</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">08 / 端到端</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; display:flex;">
+        <!-- Left flow -->
+        <div style="flex:0 0 980px; padding:40px 48px 36px 60px; display:flex; flex-direction:column; gap:0; justify-content:center;">
+          <div class="e2e-step user-step anim-1">
+            <div class="e2e-icon">👤</div>
+            <div>
+              <div class="e2e-text">"Shoot 集群卡在 Reconciling 是什么原因？"</div>
+              <div class="e2e-mono sub" style="font-size:15px; margin-top:4px;">MCP Tool: root_cause_analysis(symptom=...)</div>
+            </div>
+          </div>
+          <div class="e2e-arrow anim-2">↓ embed_query()</div>
+          <div class="e2e-step anim-2">
+            <div class="e2e-icon" style="font-family:var(--mono); color:var(--saffron);">∑</div>
+            <div>
+              <div class="e2e-text">向量化查询</div>
+              <div class="e2e-mono">[0.23, -0.87, 0.12, ...] &nbsp;<span style="color:var(--saffron);">1536-dim</span></div>
+            </div>
+          </div>
+          <div class="e2e-arrow anim-3">↓ asyncio.gather()</div>
+          <div class="e2e-step anim-3">
+            <div class="e2e-icon" style="font-family:var(--mono); color:var(--saffron);">⊕</div>
+            <div>
+              <div class="e2e-text">8路并发搜索（4集合 × dense/sparse）</div>
+              <div class="e2e-mono">docs, issues, prs, code &nbsp;×&nbsp; dense + sparse</div>
+            </div>
+          </div>
+          <div class="e2e-arrow anim-4">↓ reciprocal_rank_fusion(k=60)</div>
+          <div class="e2e-step anim-4">
+            <div class="e2e-icon" style="font-family:var(--mono); color:var(--saffron);">#</div>
+            <div>
+              <div class="e2e-text">RRF 融合 → <span class="mono saffron">Top-5</span> 文档片段</div>
+              <div class="e2e-mono">跨集合重排名，消除分数量纲差异</div>
+            </div>
+          </div>
+          <div class="e2e-arrow anim-5">↓ format_context()</div>
+          <div class="e2e-step anim-5">
+            <div class="e2e-icon" style="font-family:var(--mono); color:var(--saffron);">✦</div>
+            <div>
+              <div class="e2e-text">Claude API — 根因分析</div>
+              <div class="e2e-mono">system + retrieved_context + user_query → LLM</div>
+            </div>
+          </div>
+        </div>
+        <!-- Divider -->
+        <div class="panel-rule"></div>
+        <!-- Right: mock output -->
+        <div style="flex:1; padding:40px 40px; display:flex; flex-direction:column; justify-content:center; gap:16px;">
+          <div class="mono saffron anim-6" style="font-size:13px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">LLM 响应示例</div>
+          <div class="terminal anim-7" style="flex:1; font-size:16px; line-height:1.7;">
+<span class="t-warn">## 根因分析</span>
+
+<span class="t-ok">根因:</span> Seed 控制器未收到
+  来自 Worker 节点的心跳信号
+
+<span class="t-warn">## 支持证据</span>
+
+<span class="t-dim">[1]</span> docs/concepts/seed.md:
+  "Seed heartbeat timeout:
+   default 5m, configurable"
+
+<span class="t-dim">[2]</span> issues/4821 (closed):
+  "Worker node registration fails
+   when seed unreachable"
+
+<span class="t-warn">## 修复步骤</span>
+
+<span class="t-ok">1.</span> kubectl get seed -o yaml
+<span class="t-ok">2.</span> 检查 gardenlet 日志
+<span class="t-ok">3.</span> 验证网络策略 seed↔shoot
+<span class="t-ok">4.</span> 重启 gardenlet (如需要)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SLIDE 10 — 总结
+         ================================================================ -->
+    <div class="slide" id="slide-10">
+      <div class="grid-lines">
+        <div class="grid-line" style="left:480px;"></div>
+        <div class="grid-line" style="left:1020px;"></div>
+        <div class="grid-line" style="left:1440px;"></div>
+      </div>
+      <div class="masthead">
+        <div class="masthead-brand mono">gardener-ai-mcp</div>
+        <div class="masthead-center sans">总结：你也能构建一个</div>
+        <div class="masthead-num mono">10 / 10</div>
+      </div>
+      <div class="footer">
+        <div class="footer-tech mono">FastMCP · Qdrant · text-embedding-3-small · asyncio · RRF</div>
+        <div class="footer-num mono">Slide 10</div>
+      </div>
+      <div class="section-col">
+        <span class="section-label">09 / 总结</span>
+      </div>
+      <div style="position:absolute; top:72px; left:56px; right:0; bottom:56px; display:flex;">
+        <!-- Left: Key takeaways -->
+        <div style="flex:0 0 920px; padding:44px 56px 36px 60px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--rule);">
+          <div class="mono saffron anim-1" style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:20px;">3 个核心洞察</div>
+          <div class="takeaway anim-2">
+            <div class="takeaway-num">1</div>
+            <div class="takeaway-body">
+              <div class="takeaway-title">RAG 的核心是「检索时增强」，<br>而非「训练时灌入」</div>
+            </div>
+          </div>
+          <div class="takeaway anim-3">
+            <div class="takeaway-num">2</div>
+            <div class="takeaway-body">
+              <div class="takeaway-title">HybridRetriever + RRF =<br>跨异构数据源的最优融合策略</div>
+            </div>
+          </div>
+          <div class="takeaway anim-4" style="border-bottom:none;">
+            <div class="takeaway-num">3</div>
+            <div class="takeaway-body">
+              <div class="takeaway-title">MCP 协议让 AI Agent 与工具解耦，<br>可插拔可扩展</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Stack + CTA -->
+        <div style="flex:1; padding:44px 48px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="anim-5">
+            <div class="mono saffron" style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px;">关键组件清单</div>
+            <div class="stack-item">
+              <div class="stack-bullet"></div>
+              <div class="stack-name">FastMCP &gt;= 3.3.1</div>
+              <div class="stack-desc">MCP 服务器框架</div>
+            </div>
+            <div class="stack-item">
+              <div class="stack-bullet"></div>
+              <div class="stack-name">Qdrant &gt;= 1.18</div>
+              <div class="stack-desc">HNSW + cosine 向量库</div>
+            </div>
+            <div class="stack-item">
+              <div class="stack-bullet"></div>
+              <div class="stack-name">text-embedding-3-small</div>
+              <div class="stack-desc">1536-dim OpenAI 向量模型</div>
+            </div>
+            <div class="stack-item">
+              <div class="stack-bullet"></div>
+              <div class="stack-name">asyncio.gather</div>
+              <div class="stack-desc">8路并发检索</div>
+            </div>
+            <div class="stack-item" style="border-bottom:none;">
+              <div class="stack-bullet"></div>
+              <div class="stack-name">RRF k=60</div>
+              <div class="stack-desc">无标定跨集合融合</div>
+            </div>
+          </div>
+          <div class="cta-banner anim-6">
+            <div class="cta-text">github.com/gardener/gardener-ai-mcp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.deck-stage -->
+</div><!-- /.deck-viewport -->
+
+<!-- Controls (outside stage) -->
+<div class="deck-controls" id="deckControls">
+  <button class="deck-btn" id="btnPrev">← Prev</button>
+  <span class="slide-counter" id="slideCounter">1 / 10</span>
+  <button class="deck-btn" id="btnNext">Next →</button>
+</div>
+
+<!-- Edit button -->
+<button class="edit-btn" id="editBtn" title="Toggle Edit Mode (E)">✏️</button>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------ */
+  /* SlidePresentation                                                    */
+  /* ------------------------------------------------------------------ */
+  class SlidePresentation {
+    constructor() {
+      this.stage       = document.getElementById('deckStage');
+      this.slides      = Array.from(document.querySelectorAll('.slide'));
+      this.counter     = document.getElementById('slideCounter');
+      this.btnPrev     = document.getElementById('btnPrev');
+      this.btnNext     = document.getElementById('btnNext');
+      this.editBtn     = document.getElementById('editBtn');
+      this.viewport    = document.querySelector('.deck-viewport');
+
+      this.total       = this.slides.length;
+      this.current     = 0;
+      this.editMode    = false;
+
+      this._restoreFromStorage();
+      this._scaleStage();
+      this._bindEvents();
+      this._showSlide(this.current);
+    }
+
+    /* ---- Scaling ---- */
+    _scaleStage() {
+      const vw    = window.innerWidth;
+      const vh    = window.innerHeight;
+      const scale = Math.min(vw / 1920, vh / 1080);
+      const tx    = Math.max(0, (vw - 1920 * scale) / 2);
+      const ty    = Math.max(0, (vh - 1080 * scale) / 2);
+      this.stage.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    }
+
+    /* ---- Show/hide slide ---- */
+    _showSlide(index) {
+      const clamped = Math.max(0, Math.min(this.total - 1, index));
+
+      this.slides.forEach((s, i) => {
+        if (i === clamped) {
+          s.classList.add('active', 'visible');
+        } else {
+          s.classList.remove('active', 'visible');
+        }
+      });
+
+      this.current = clamped;
+      this.counter.textContent = `${this.current + 1} / ${this.total}`;
+      sessionStorage.setItem('pres_current', this.current);
+    }
+
+    next()  { this._showSlide(this.current + 1); }
+    prev()  { this._showSlide(this.current - 1); }
+
+    /* ---- localStorage restore ---- */
+    _restoreFromStorage() {
+      const saved = sessionStorage.getItem('pres_current');
+      if (saved !== null) {
+        const idx = parseInt(saved, 10);
+        if (!isNaN(idx) && idx >= 0 && idx < this.total) {
+          // Remove active from slide 0 default
+          this.slides[0].classList.remove('active');
+          this.current = idx;
+        }
+      }
+    }
+
+    /* ---- Edit mode ---- */
+    _toggleEdit() {
+      this.editMode = !this.editMode;
+      document.body.classList.toggle('edit-mode', this.editMode);
+      this.editBtn.style.opacity = this.editMode ? '1' : '';
+      this.editBtn.title = this.editMode
+        ? 'Exit Edit Mode (E or Ctrl+S to save)'
+        : 'Toggle Edit Mode (E)';
+
+      const slide = this.slides[this.current];
+      if (this.editMode) {
+        slide.querySelectorAll('h1,h2,h3,h4,p,div.s1-eyebrow,div.s1-subtitle,div.s1-author,div.pain-text,div.s3-explain,div.r-text,div.e2e-text,div.takeaway-title,div.tool-desc,div.pipe-step-params,div.insight-text').forEach(el => {
+          el.contentEditable = 'true';
+        });
+      } else {
+        slide.querySelectorAll('[contenteditable]').forEach(el => {
+          el.removeAttribute('contenteditable');
+        });
+        this._saveEdits(slide);
+      }
+    }
+
+    _saveEdits(slide) {
+      const key = `pres_edits_${this.current}`;
+      localStorage.setItem(key, slide.innerHTML);
+    }
+
+    /* ---- Event binding ---- */
+    _bindEvents() {
+      // Keyboard
+      document.addEventListener('keydown', (e) => {
+        if (this.editMode && e.key !== 'Escape' && !(e.ctrlKey && e.key === 's') && e.key !== 'e') return;
+        switch (e.key) {
+          case 'ArrowRight':
+          case ' ':
+          case 'PageDown':
+            e.preventDefault();
+            this.next();
+            break;
+          case 'ArrowLeft':
+          case 'PageUp':
+            e.preventDefault();
+            this.prev();
+            break;
+          case 'e':
+          case 'E':
+            if (!this.editMode) this._toggleEdit();
+            else this._toggleEdit();
+            break;
+          case 'Escape':
+            if (this.editMode) this._toggleEdit();
+            break;
+          case 's':
+            if (e.ctrlKey) {
+              e.preventDefault();
+              if (this.editMode) {
+                this._saveEdits(this.slides[this.current]);
+                console.info('Slide edits saved to localStorage');
+              }
+            }
+            break;
+        }
+      });
+
+      // Buttons
+      this.btnNext.addEventListener('click', () => this.next());
+      this.btnPrev.addEventListener('click', () => this.prev());
+      this.editBtn.addEventListener('click', () => this._toggleEdit());
+
+      // Resize
+      window.addEventListener('resize', () => this._scaleStage());
+
+      // Touch / swipe
+      let touchStartX = 0;
+      let touchStartY = 0;
+      this.stage.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      this.stage.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+          dx < 0 ? this.next() : this.prev();
+        }
+      }, { passive: true });
+    }
+  }
+
+  /* Boot */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new SlidePresentation());
+  } else {
+    new SlidePresentation();
+  }
+}());
+</script>
+</body>
+</html>

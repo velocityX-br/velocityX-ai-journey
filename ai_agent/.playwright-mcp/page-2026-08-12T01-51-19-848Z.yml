@@ -1,0 +1,36 @@
+- generic [ref=f1e1]:
+  - complementary [ref=f1e2]:
+    - button "+ New chat" [ref=f1e4] [cursor=pointer]
+    - generic [ref=f1e5]:
+      - generic [ref=f1e51] [cursor=pointer]:
+        - generic [ref=f1e52]:
+          - generic [ref=f1e53]: What is my name? Answer in one short sentence.
+          - generic [ref=f1e54]: just now
+        - generic [ref=f1e55]:
+          - button "✎" [ref=f1e56]
+          - button "🗑" [ref=f1e57]
+      - generic [ref=f1e58] [cursor=pointer]:
+        - generic [ref=f1e59]:
+          - generic [ref=f1e60]: My name is Zephyr. Just remember it and reply with one short…
+          - generic [ref=f1e61]: 2m ago
+        - generic [ref=f1e62]:
+          - button "✎" [ref=f1e63]
+          - button "🗑" [ref=f1e64]
+  - main [ref=f1e13]:
+    - generic [ref=f1e14]:
+      - heading "agent-scaffold" [level=1] [ref=f1e15]
+      - generic [ref=f1e16]:
+        - text: config
+        - combobox "config" [ref=f1e17]:
+          - option "generic-react-agent (anthropic/anthropic--claude-sonnet-latest)" [selected]
+          - option "sap-ops-assistant (anthropic/anthropic--claude-sonnet-latest · gardener)"
+      - generic [ref=f1e18]: generic_react · thread web-vuo7y9xm
+    - generic [ref=f1e19]:
+      - generic [ref=f1e65]: What is my name? Answer in one short sentence.
+      - generic [ref=f1e66]:
+        - paragraph [ref=f1e68]: I don't know your name, as you haven't shared it with me.
+        - button "Copy markdown" [ref=f1e70] [cursor=pointer]
+    - generic [ref=f1e21]:
+      - textbox "Ask something… (Enter to send, Shift+Enter for newline)" [active] [ref=f1e22]:
+        - /placeholder: Ask something…  (Enter to send, Shift+Enter for newline)
+      - button "Send" [ref=f1e23] [cursor=pointer]

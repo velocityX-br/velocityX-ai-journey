@@ -1,0 +1,23 @@
+- generic [ref=e1]:
+  - complementary [ref=e2]:
+    - button "+ New chat" [ref=e4] [cursor=pointer]
+    - generic [ref=e6] [cursor=pointer]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: New chat
+        - generic [ref=e9]: just now
+      - generic [ref=e10]:
+        - button "✎" [ref=e11]
+        - button "🗑" [ref=e12]
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - heading "agent-scaffold" [level=1] [ref=e15]
+      - generic [ref=e16]:
+        - text: config
+        - combobox "config" [ref=e17]:
+          - option "generic-react-agent (anthropic/anthropic--claude-sonnet-latest)" [selected]
+          - option "sap-ops-assistant (anthropic/anthropic--claude-sonnet-latest · gardener)"
+      - generic [ref=e18]: generic_react · thread web-willlpze
+    - generic [ref=e21]:
+      - textbox "Ask something… (Enter to send, Shift+Enter for newline)" [active] [ref=e22]:
+        - /placeholder: Ask something…  (Enter to send, Shift+Enter for newline)
+      - button "Send" [ref=e23] [cursor=pointer]

@@ -1,0 +1,324 @@
+- generic [ref=f15e1]:
+  - generic [ref=f15e3]:
+    - banner [ref=f15e4]:
+      - list:
+        - listitem:
+          - link "Skip to main content Type 'u' then '8'" [ref=f15e5] [cursor=pointer]:
+            - /url: "#main"
+            - text: Skip to main content
+        - listitem:
+          - link "Skip to search" [ref=f15e6] [cursor=pointer]:
+            - /url: "#quick-search-query"
+      - navigation "Site" [ref=f15e7]:
+        - generic [ref=f15e8]:
+          - generic [ref=f15e9]:
+            - button " Linked Applications" [ref=f15e10] [cursor=pointer]
+            - text: 
+          - list [ref=f15e13]:
+            - listitem [ref=f15e14]:
+              - button " Spaces" [ref=f15e15] [cursor=pointer]
+            - listitem [ref=f15e16]:
+              - link "Calendars" [ref=f15e17] [cursor=pointer]:
+                - /url: /wiki/calendar/mycalendar.action
+            - listitem [ref=f15e19]:
+              - link "Create blank page Type 'c'" [ref=f15e20] [cursor=pointer]:
+                - /url: /wiki/plugins/createcontent/createpage-defaultspace.action?atl_token=0b782fc7a212e23a5d8eba9bc089339d15c520b8&src=quick-create
+                - text: Create
+              - link "Create" [ref=f15e21] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f15e22]: 
+          - list [ref=f15e24]:
+            - listitem [ref=f15e25]:
+              - generic [ref=f15e26]:
+                - button "Search" [ref=f15e27] [cursor=pointer]: 
+                - textbox "Search query Type 'g' then 'g' OR '/'" [ref=f15e28]:
+                  - /placeholder: Search
+            - listitem [ref=f15e29]:
+              - button " Help" [ref=f15e30] [cursor=pointer]
+            - listitem
+            - listitem [ref=f15e32]:
+              - 'button "Notifications: 1 new" [expanded] [ref=f15e33] [cursor=pointer]':
+                - generic [ref=f15e34]: 
+                - generic: "1"
+            - listitem [ref=f15e35]:
+              - button "Your profile and preferences" [ref=f15e36] [cursor=pointer]
+    - main [ref=f15e39]:
+      - generic [ref=f15e41]:
+        - heading "Search" [level=1] [ref=f15e42]
+        - generic [ref=f15e43]:
+          - textbox "Search for pages, files, people and more" [active] [ref=f15e44]: Neutron Kubernetes
+          - button " Help" [ref=f15e45] [cursor=pointer]
+        - button " Search" [ref=f15e46] [cursor=pointer]
+      - generic [ref=f15e49]:
+        - complementary "Sidebar" [ref=f15e50]:
+          - navigation [ref=f15e52]:
+            - generic [ref=f15e54]:
+              - generic [ref=f15e55]:
+                - generic [ref=f15e56]:
+                  - generic [ref=f15e57]: Contributor
+                  - list [ref=f15e60]:
+                    - listitem [ref=f15e61]:
+                      - textbox [ref=f15e63]
+                - generic [ref=f15e64]:
+                  - generic [ref=f15e65]: In space
+                  - generic [ref=f15e66]:
+                    - list [ref=f15e68]:
+                      - listitem:
+                        - textbox: Select a space
+                    - generic [ref=f15e70]:
+                      - checkbox "Search archived spaces" [ref=f15e71]
+                      - text: Search archived spaces
+                - generic [ref=f15e72]:
+                  - generic [ref=f15e73]: Last modified
+                  - list [ref=f15e76]:
+                    - listitem [ref=f15e77]:
+                      - button "Any date" [ref=f15e78] [cursor=pointer]
+                    - listitem [ref=f15e79]:
+                      - button "Last 24 hours" [ref=f15e80] [cursor=pointer]
+                    - listitem [ref=f15e81]:
+                      - button "Last week" [ref=f15e82] [cursor=pointer]
+                    - listitem [ref=f15e83]:
+                      - button "Last month" [ref=f15e84] [cursor=pointer]
+                    - listitem [ref=f15e85]:
+                      - button "Last year" [ref=f15e86] [cursor=pointer]
+                    - listitem [ref=f15e87]:
+                      - button "Custom" [ref=f15e88] [cursor=pointer]
+                - generic [ref=f15e89]:
+                  - generic [ref=f15e90]: Of type
+                  - generic [ref=f15e91]:
+                    - list [ref=f15e93]:
+                      - listitem [ref=f15e94]:
+                        - button "All content" [ref=f15e95] [cursor=pointer]
+                      - listitem [ref=f15e96]:
+                        - button "Pages" [ref=f15e97] [cursor=pointer]
+                      - listitem [ref=f15e98]:
+                        - button "Blog posts" [ref=f15e99] [cursor=pointer]
+                      - listitem [ref=f15e100]:
+                        - button "Attachments" [ref=f15e101] [cursor=pointer]
+                      - listitem [ref=f15e102]:
+                        - button "Spaces" [ref=f15e103] [cursor=pointer]
+                      - listitem [ref=f15e104]:
+                        - button "Custom" [ref=f15e105] [cursor=pointer]
+                    - text: 
+              - generic [ref=f15e106]:
+                - button "Add a filter" [ref=f15e107] [cursor=pointer]
+                - text:   
+        - generic [ref=f15e109]:
+          - generic [ref=f15e110]:
+            - paragraph [ref=f15e111]: Page 1 of 3,145. Showing 31,441 results (1.08 seconds)
+            - list [ref=f15e112]:
+              - listitem [ref=f15e113]:
+                - heading "content icon for search result Neutron/Octavia" [level=3] [ref=f15e114]:
+                  - generic "content icon for search result" [ref=f15e115]
+                  - link [ref=f15e116] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/pages/6140469216/Neutron+Octavia
+                    - strong [ref=f15e117]: Neutron
+                    - text: /Octavia
+                - generic [ref=f15e118]:
+                  - text: "Information out of meeting series, KT Sessions, and weekly calls Key Stakeholder:"
+                  - strong [ref=f15e119]: Neutron
+                  - text: Franziska …
+                  - strong [ref=f15e120]: Neutron
+                  - text: Documentation https://operations.global.cloud.sap/docs/network/openstack/neutron/
+                - generic [ref=f15e121]:
+                  - link "Global Cloud Operations - Platform & Software Delivery" [ref=f15e122] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/overview
+                  - text: • May 22, 2026
+              - listitem [ref=f15e123]:
+                - heading "content icon for search result Neutron · Network API [Draft]" [level=3] [ref=f15e124]:
+                  - generic "content icon for search result" [ref=f15e125]
+                  - link [ref=f15e126] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/pages/6163364257/Neutron+%C2%B7+Network+API+Draft
+                    - strong [ref=f15e127]: Neutron
+                    - text: · Network API [Draft]
+                - generic [ref=f15e128]:
+                  - strong [ref=f15e129]: Neutron
+                  - text: "Owner: InfraOps · Network Team #"
+                  - strong [ref=f15e130]: neutron
+                  - text: 1) Alert Handling & On-Call 26 incomplete Tickets are taken … incomplete
+                  - strong [ref=f15e131]: Neutron
+                  - text: deployments (TBD) 59 a72a87a1-b6eb-4173-b2f4-efcc81a6cb87 incomplete Loadbalancer deployments
+                - generic [ref=f15e132]:
+                  - link "Global Cloud Operations - IPE&D - SCI Platform Delivery" [ref=f15e133] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCOPSD/overview
+                  - text: • Jun 16, 2026
+              - listitem [ref=f15e134]:
+                - heading "content icon for search result Configuring New Neutron Routers" [level=3] [ref=f15e135]:
+                  - generic "content icon for search result" [ref=f15e136]
+                  - link [ref=f15e137] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/pages/3833439639/Configuring+New+Neutron+Routers
+                    - text: Configuring New
+                    - strong [ref=f15e138]: Neutron
+                    - text: Routers
+                - generic [ref=f15e139]:
+                  - text: CLI (Gi0 Mgmt interface ip) using local user after enabling "aaa new-model" Apply
+                  - strong [ref=f15e140]: Neutron
+                  - text: "router Standard aaa … . Pre-requisite: Inter-"
+                  - strong [ref=f15e141]: Neutron
+                  - text: peering needs to be configured on existing
+                  - strong [ref=f15e142]: Neutron
+                  - text: Routers in the region to the new
+                - generic [ref=f15e143]:
+                  - link "GCO SAP Cloud Infrastructure Network Delivery" [ref=f15e144] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/overview
+                  - text: • Feb 06, 2026
+              - listitem [ref=f15e145]:
+                - heading "content icon for search result Decommission Neutron Router Pair" [level=3] [ref=f15e146]:
+                  - generic "content icon for search result" [ref=f15e147]
+                  - link [ref=f15e148] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/pages/3833439703/Decommission+Neutron+Router+Pair
+                    - text: Decommission
+                    - strong [ref=f15e149]: Neutron
+                    - text: Router Pair
+                - generic [ref=f15e150]:
+                  - text: of
+                  - strong [ref=f15e151]: Neutron
+                  - text: Routers. The first activity to be performed is migrating all customer networks/virtual routers off … is to perform a capacity analysis of the
+                  - strong [ref=f15e152]: neutron
+                  - text: routers and ACI leaf switches in the region to determine if a migration can
+                - generic [ref=f15e153]:
+                  - link "GCO SAP Cloud Infrastructure Network Delivery" [ref=f15e154] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/overview
+                  - text: • Feb 24, 2026
+              - listitem [ref=f15e155]:
+                - heading "content icon for search result 2nd gen - Using Converged Cloud Neutron API (DAP Networks)" [level=3] [ref=f15e156]:
+                  - generic "content icon for search result" [ref=f15e157]
+                  - link [ref=f15e158] [cursor=pointer]:
+                    - /url: /wiki/spaces/hcpcore/pages/4019031237/2nd+gen+-+Using+Converged+Cloud+Neutron+API+DAP+Networks
+                    - text: 2nd gen - Using Converged Cloud
+                    - strong [ref=f15e159]: Neutron
+                    - text: API (DAP Networks)
+                - generic [ref=f15e160]:
+                  - text: of issues with the
+                  - strong [ref=f15e161]: Neutron
+                  - text: "API - create ticket to GCS … https://documentation.global.cloud.sap/docs/customer/getting-started/support/service-now-ticket-creation/ Service Offering: GCS-CCloud Networking (Security Groups|"
+                  - strong [ref=f15e162]: Neutron
+                  - text: "|Octavia"
+                - generic [ref=f15e163]:
+                  - link "HCPCore" [ref=f15e164] [cursor=pointer]:
+                    - /url: /wiki/spaces/hcpcore/overview
+                  - text: • Jun 09, 2026
+              - listitem [ref=f15e165]:
+                - heading "content icon for search result How to camify the interactive console / portal users of a new hyperscaler account" [level=3] [ref=f15e166]:
+                  - generic "content icon for search result" [ref=f15e167]
+                  - link "How to camify the interactive console / portal users of a new hyperscaler account" [ref=f15e168] [cursor=pointer]:
+                    - /url: /wiki/spaces/A4CLI/pages/5213996991/How+to+camify+the+interactive+console+portal+users+of+a+new+hyperscaler+account
+                - generic [ref=f15e169]:
+                  - text: ), monitoring_viewer (Monitoring Viewer), network_viewer (
+                  - strong [ref=f15e170]: Neutron
+                  - text: Read-Only), objectstore_viewer (Swift Read-Only), registry_viewer … ), keymanager_viewer (Barbican Read-Only), kubernetes_member (
+                  - strong [ref=f15e171]: Kubernetes
+                  - text: Member), masterdata_viewer (Masterdata Viewer), member
+                - generic [ref=f15e172]:
+                  - link "SAP BTP ABAP Environment – Landscape Infrastructure" [ref=f15e173] [cursor=pointer]:
+                    - /url: /wiki/spaces/A4CLI/overview
+                  - text: • Mar 19, 2026
+              - listitem [ref=f15e174]:
+                - heading "content icon for search result Neutron Router RMA" [level=3] [ref=f15e175]:
+                  - generic "content icon for search result" [ref=f15e176]
+                  - link [ref=f15e177] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/pages/3833439788/Neutron+Router+RMA
+                    - strong [ref=f15e178]: Neutron
+                    - text: Router RMA
+                - generic [ref=f15e179]:
+                  - text: Everyone Feb 19, 2027 Feb 19, 2026 07:25 6 Feb 11, 2026 This is to describe the RMA process of
+                  - strong [ref=f15e180]: Neutron
+                - generic [ref=f15e181]:
+                  - link "GCO SAP Cloud Infrastructure Network Delivery" [ref=f15e182] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/overview
+                  - text: • Feb 17, 2026
+              - listitem [ref=f15e183]:
+                - heading "content icon for search result Kubernetes , BTP Kyma - Fundamentals" [level=3] [ref=f15e184]:
+                  - generic "content icon for search result" [ref=f15e185]
+                  - link [ref=f15e186] [cursor=pointer]:
+                    - /url: /wiki/spaces/BPM/pages/6247806091/Kubernetes+BTP+Kyma+-+Fundamentals
+                    - strong [ref=f15e187]: Kubernetes
+                    - text: ", BTP Kyma - Fundamentals"
+                - generic [ref=f15e188]:
+                  - text: This wiki is a collection of notes and concepts captured while learning
+                  - strong [ref=f15e189]: Kubernetes
+                  - text: and SAP BTP Kyma. The content of this wiki may change over time. For official guidance, please refer to the official
+                  - strong [ref=f15e190]: Kubernetes
+                  - text: and SAP BTP Kyma
+                - generic [ref=f15e191]:
+                  - link "SAP Build Process Automation" [ref=f15e192] [cursor=pointer]:
+                    - /url: /wiki/spaces/BPM/overview
+                  - text: • about 2 hours ago
+              - listitem [ref=f15e193]:
+                - heading "content icon for search result Devstack - Magnum" [level=3] [ref=f15e194]:
+                  - generic "content icon for search result" [ref=f15e195]
+                  - link "Devstack - Magnum" [ref=f15e196] [cursor=pointer]:
+                    - /url: /wiki/spaces/tipinfra/pages/1773340503/Devstack+-+Magnum
+                - generic [ref=f15e197]:
+                  - strong [ref=f15e198]: Kubernetes
+                  - text: and Swarm bay models
+                  - strong [ref=f15e199]: neutron
+                  - text: net-show publicmagnum baymodel-create --name
+                  - strong [ref=f15e200]: kubernetes
+                  - text: "--keypair-id default … # tempest disable_service tempest # rabbit enable_service rabbit # Ensure we are using"
+                  - strong [ref=f15e201]: neutron
+                  - text: networking rather than
+                - generic [ref=f15e202]:
+                  - link "Engineering Services Canada" [ref=f15e203] [cursor=pointer]:
+                    - /url: /wiki/spaces/tipinfra/overview
+                  - text: • Sep 18, 2015
+              - listitem [ref=f15e204]:
+                - heading "content icon for search result Documenting LoB Impacted By Neutron Router Changes" [level=3] [ref=f15e205]:
+                  - generic "content icon for search result" [ref=f15e206]
+                  - link [ref=f15e207] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/pages/3833439759/Documenting+LoB+Impacted+By+Neutron+Router+Changes
+                    - text: Documenting LoB Impacted By
+                    - strong [ref=f15e208]: Neutron
+                    - text: Router Changes
+                - generic [ref=f15e209]:
+                  - text: Everyone Mar 18, 2026 Mar 18, 2025 15:04 20 In order to LOB impact of changes involving
+                  - strong [ref=f15e210]: neutron
+                  - text: routers …
+                  - strong [ref=f15e211]: neutron
+                  - text: router will be having changes. In this example, we will use the eu-de-2-rt13
+                  - strong [ref=f15e212]: neutron
+                  - text: router pair
+                - generic [ref=f15e213]:
+                  - link "GCO SAP Cloud Infrastructure Network Delivery" [ref=f15e214] [cursor=pointer]:
+                    - /url: /wiki/spaces/GCSCIO/overview
+                  - text: • Dec 26, 2024
+          - list [ref=f15e216]:
+            - listitem [ref=f15e217]:
+              - strong [ref=f15e218]: "1"
+            - listitem [ref=f15e219]:
+              - link "2" [ref=f15e220] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Neutron+Kubernetes&cql=siteSearch+~+%22Neutron+Kubernetes%22&startIndex=10
+            - listitem [ref=f15e221]:
+              - link "3" [ref=f15e222] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Neutron+Kubernetes&cql=siteSearch+~+%22Neutron+Kubernetes%22&startIndex=20
+            - listitem [ref=f15e223]:
+              - link "4" [ref=f15e224] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Neutron+Kubernetes&cql=siteSearch+~+%22Neutron+Kubernetes%22&startIndex=30
+            - listitem [ref=f15e225]:
+              - link "5" [ref=f15e226] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Neutron+Kubernetes&cql=siteSearch+~+%22Neutron+Kubernetes%22&startIndex=40
+            - listitem [ref=f15e227]:
+              - link "Next" [ref=f15e228] [cursor=pointer]:
+                - /url: dosearchsite.action?queryString=Neutron+Kubernetes&cql=siteSearch+~+%22Neutron+Kubernetes%22&startIndex=10
+        - generic [ref=f15e232]:
+          - img "ScriptRunner Enhanced Search" [ref=f15e235]
+          - generic [ref=f15e239]:
+            - heading "Find what you need faster" [level=2] [ref=f15e240]
+            - paragraph [ref=f15e243]: Use ScriptRunner Enhanced Search to pinpoint exactly what you’re looking for. Define searches with Confluence Query Language (CQL) to see only what you want, minus the noise.
+            - link "Take me there" [ref=f15e246] [cursor=pointer]:
+              - /url: /wiki/plugins/servlet/scriptrunner/enhancedsearch/
+    - contentinfo [ref=f15e248]:
+      - list [ref=f15e250]:
+        - listitem [ref=f15e251]:
+          - text: Powered by
+          - link "Atlassian Confluence" [ref=f15e252] [cursor=pointer]:
+            - /url: https://www.atlassian.com/software/confluence
+          - text: "9.2.21 (node3: 4bccedf7)·"
+        - listitem [ref=f15e253]:
+          - link "Report an Incident" [ref=f15e254] [cursor=pointer]:
+            - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+          - text: ·
+        - listitem [ref=f15e255]:
+          - link "Wiki Community" [ref=f15e256] [cursor=pointer]:
+            - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL
+  - status [ref=f15e257]

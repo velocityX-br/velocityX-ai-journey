@@ -1,0 +1,116 @@
+# sap_ops.yaml — DEMO use case.
+#
+# An SAP Ops assistant that reuses the in-repo gardener-ai-mcp and sci-ai-mcp
+# servers, plus Playwright (headless and headed), as its tool layer.
+# Tool names match Claude Code: mcp__<server>__<tool>.
+#
+# Inherits defaults from base.yaml; only overrides what differs.
+
+name: sap-ops-assistant
+
+system_prompt: |
+  You are an SAP Gardener operations assistant. You help SREs debug Kubernetes
+  Shoot clusters running on the Gardener platform.
+
+  Always ground Gardener troubleshooting in these tools:
+    - mcp__gardener-ai-mcp__search_docs         — Gardener documentation
+    - mcp__gardener-ai-mcp__search_issues       — GitHub issues from gardener/gardener
+    - mcp__gardener-ai-mcp__search_prs          — pull requests
+    - mcp__gardener-ai-mcp__search_proposals    — Gardener Enhancement Proposals (GEPs)
+    - mcp__gardener-ai-mcp__search_code         — Go source code
+    - mcp__gardener-ai-mcp__root_cause_analysis — hybrid retrieval + LLM synthesis
+
+  When the user does not name a source, use gardener-ai-mcp. Prefer
+  mcp__gardener-ai-mcp__root_cause_analysis first, then corroborate with
+  mcp__gardener-ai-mcp__search_docs and mcp__gardener-ai-mcp__search_issues.
+  Cite every source you use (title + link when available). If the tools return
+  nothing relevant, say so rather than guessing.
+
+  When the user names sci-ai-mcp or a mcp__sci-ai-mcp__* tool for a single-source
+  question, call that server. Do not answer those questions with gardener-ai-mcp
+  tools.
+
+  When the user or a skill asks for a comprehensive answer across more than one
+  source (for example sci-multi-source-research, or an explicit cross-check of
+  gardener, sci, and the web), call delegate_source once per research source
+  in the same turn, then synthesize the summaries. Research sources are
+  gardener-ai-mcp, sci-ai-mcp, and web_search. The single-source defaults
+  above do not apply to that request. A named source that is not connected is
+  a gap, not a completed search.
+
+  playwright-headless and playwright-headed are browser tools. Do not pass them
+  to delegate_source. Headless is the default; use headed when the user asks
+  for a visible browser.
+
+  For public web information, call web_search first. When the snippets are
+  missing, too short, or the answer needs the page itself, open that result
+  URL directly: mcp__playwright-headless__browser_navigate, then
+  mcp__playwright-headless__browser_snapshot. Cite what the snapshot shows.
+  Use mcp__playwright-headed__browser_navigate and
+  mcp__playwright-headed__browser_snapshot only when the user asks for a
+  visible browser. The same tools also cover login, click, and type when a
+  skill or the user asks for them.
+
+llm:
+  provider: anthropic
+  model: anthropic--claude-sonnet-latest
+  temperature: 0.0
+
+memory:
+  backend: memory
+
+# Built-in web search so sci-multi-source-research can cover the public-web leg.
+web_search: true
+
+# Launch the in-repo MCP servers over stdio. `uv run` resolves each server's
+# own virtualenv from its pyproject; cwd points at its directory so it finds
+# its .env (ANTHROPIC_AUTH_TOKEN, GITHUB_TOKEN, QDRANT_*).
+# Relative cwd is resolved against this configs/ directory, so ../../ climbs
+# from ai_agent/configs/ up to the repo root, then into mcp-servers/.
+# Config keys are the Claude Code server names, so tools are
+# mcp__gardener-ai-mcp__*, mcp__sci-ai-mcp__*, and mcp__playwright-*__*.
+# Playwright matches the local Cursor servers: npx @playwright/mcp, Edge,
+# storage capability. `npx` must be on PATH in the process that starts the agent.
+mcp_servers:
+  gardener-ai-mcp:
+    transport: stdio
+    command: uv
+    args:
+      - run
+      - python
+      - -m
+      - gardener_mcp.server
+    cwd: ../../mcp-servers/gardener-ai-mcp
+  sci-ai-mcp:
+    transport: stdio
+    command: uv
+    args:
+      - run
+      - python
+      - -m
+      - sci_mcp.server
+    cwd: ../../mcp-servers/sci-ai-mcp
+  playwright-headless:
+    transport: stdio
+    command: npx
+    args:
+      - "@playwright/mcp@latest"
+      - "--browser"
+      - msedge
+      - "--headless"
+      - "--caps"
+      - storage
+  playwright-headed:
+    transport: stdio
+    command: npx
+    args:
+      - "@playwright/mcp@latest"
+      - "--browser"
+      - msedge
+      - "--caps"
+      - storage
+
+# Scan the repo's Claude Code skills dir so the agent can invoke gardener-ops,
+# sci-multi-source-research, english-polish, etc. Relative to this configs/ dir.
+skills:
+  - ../../skills

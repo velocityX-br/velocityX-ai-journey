@@ -91,6 +91,41 @@ uv run ingest-docs --check
 
 ---
 
+### Scheduled weekly ingestion (launchd)
+
+For an **unattended weekly refresh**, use the launchd wrapper instead of running
+`ingest-docs` by hand. `scripts/weekly_ingest.sh` does a **clean rebuild** —
+delete both collections, then re-ingest — because ingestion is not incremental
+(§3: a re-run over an existing collection doubles the point count). Crucially it
+**preflights Qdrant (`:6333`) and the Hai/Hyperspace proxy (`:6655`) first, and
+soft-skips (exit 0, no deletion) if either is down**, so a night run on a
+sleeping laptop never wipes the index when it can't be rebuilt.
+
+Install the LaunchAgent (paths in the plist are already set for this machine):
+
+```bash
+cd mcp-servers/sci-ai-mcp
+cp scripts/com.veloxityx.sci-ingest.plist ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.veloxityx.sci-ingest.plist
+launchctl list | grep sci-ingest        # confirm it's loaded
+```
+
+- **Schedule:** Sunday 10:00 local (daytime so the Mac is awake, VPN up, Hai
+  running). Edit `Weekday`/`Hour`/`Minute` in the plist, then reload.
+- **Force a test run now:** `launchctl start com.veloxityx.sci-ingest`
+- **Logs:**
+  - Detailed run log (UTC-timestamped): `sci-ai-mcp/logs/weekly-ingest.log` (git-ignored)
+  - launchd stdout/stderr: `~/Library/Logs/sci-ingest.launchd.{out,err}.log`
+- **Skip-safe behavior:** if Qdrant or the Hai proxy is unreachable, the log
+  shows a `… down — skipping, index left intact` line and the job exits 0 with
+  no deletion — it simply retries the following week.
+- **Failure signal:** after a rebuild, the wrapper re-runs `--check`; if any
+  collection is empty it exits non-zero, surfacing the failure in the launchd
+  error log.
+- **Uninstall:** `launchctl unload ~/Library/LaunchAgents/com.veloxityx.sci-ingest.plist`
+
+---
+
 ## 4. Running the server
 
 ```bash

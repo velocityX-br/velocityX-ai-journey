@@ -8,7 +8,8 @@ no concrete implementation is imported at module level.
 Tool inventory:
     search_operation_docs — semantic search over operation documentation
     search_customer_docs  — semantic search over customer documentation
-    search_docs           — hybrid search across BOTH collections (RRF)
+    search_adr_docs       — semantic search over Architecture Decision Records
+    search_docs           — hybrid search across ALL collections (RRF)
     rag_retrieve          — low-level RAG retrieval on a named collection
     root_cause_analysis   — hybrid retrieval + LLM synthesis
 
@@ -27,6 +28,7 @@ import logging
 import time
 from typing import Any
 
+from ai_observability import preview, span
 from fastmcp import Context
 
 from retrieval.semantic import SemanticRetriever
@@ -154,7 +156,7 @@ def configure_tool_cache(ttl_seconds: int, max_size: int) -> None:
 
 
 def register_tools(mcp_app: Any) -> None:
-    """Register all 5 MCP tools against the given ``FastMCP`` instance.
+    """Register all 6 MCP tools against the given ``FastMCP`` instance.
 
     This function is called from ``sci_mcp/server.py`` after the ``FastMCP``
     instance is created and the lifespan is configured.  Each inner
@@ -186,9 +188,7 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A ranked list of matching operation documentation chunks.
         """
-        cache_key = _tool_cache.make_key(
-            "search_operation_docs", query=query, limit=limit, filters=filters
-        )
+        cache_key = _tool_cache.make_key("search_operation_docs", query=query, limit=limit, filters=filters)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -225,9 +225,7 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A ranked list of matching customer documentation chunks.
         """
-        cache_key = _tool_cache.make_key(
-            "search_customer_docs", query=query, limit=limit, filters=filters
-        )
+        cache_key = _tool_cache.make_key("search_customer_docs", query=query, limit=limit, filters=filters)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -243,17 +241,54 @@ def register_tools(mcp_app: Any) -> None:
         return output
 
     @mcp_app.tool
+    async def search_adr_docs(
+        query: str,
+        limit: int = 10,
+        filters: dict[str, Any] | None = None,
+        ctx: Context = None,
+    ) -> list[ToolSearchResult]:
+        """Search SCI Architecture Decision Records (ADRs) using semantic similarity.
+
+        Queries the ``sci_docs_adr`` Qdrant collection, populated from the
+        ``PlusOne/adr`` repository.  Results are ranked by cosine similarity
+        between the embedded query and stored ADR document vectors.
+
+        Args:
+            query: Natural language search query for Architecture Decision Records.
+            limit: Maximum number of results to return (1-50).
+            filters: Optional metadata filters e.g. {'content_type': 'adr'}.
+            ctx: FastMCP context providing access to lifespan singletons.
+
+        Returns:
+            A ranked list of matching ADR document chunks.
+        """
+        cache_key = _tool_cache.make_key("search_adr_docs", query=query, limit=limit, filters=filters)
+        hit, cached = _tool_cache.get(cache_key)
+        if hit:
+            return cached
+
+        app_ctx = _get_app_context(ctx)
+        results = await app_ctx.adr_retriever.retrieve(
+            query=query,
+            filters=filters or None,
+            limit=limit,
+        )
+        output = [_to_tool_result(r) for r in results]
+        _tool_cache.set(cache_key, output)
+        return output
+
+    @mcp_app.tool
     async def search_docs(
         query: str,
         limit: int = 10,
         filters: dict[str, Any] | None = None,
         ctx: Context = None,
     ) -> list[ToolSearchResult]:
-        """Search across BOTH SCI documentation collections with hybrid RRF fusion.
+        """Search across ALL SCI documentation collections with hybrid RRF fusion.
 
-        Fans out dense + sparse searches over ``sci_docs_operation`` and
-        ``sci_docs_customer`` concurrently, then merges the results with
-        Reciprocal Rank Fusion into a single ranked list.
+        Fans out dense + sparse searches over ``sci_docs_operation``,
+        ``sci_docs_customer`` and ``sci_docs_adr`` concurrently, then merges
+        the results with Reciprocal Rank Fusion into a single ranked list.
 
         Args:
             query: Natural language search query across all SCI documentation.
@@ -264,9 +299,7 @@ def register_tools(mcp_app: Any) -> None:
         Returns:
             A single ranked list merging results from both collections.
         """
-        cache_key = _tool_cache.make_key(
-            "search_docs", query=query, limit=limit, filters=filters
-        )
+        cache_key = _tool_cache.make_key("search_docs", query=query, limit=limit, filters=filters)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -297,8 +330,8 @@ def register_tools(mcp_app: Any) -> None:
 
         Args:
             query: Natural language query for RAG retrieval.
-            collection: Qdrant collection to search: 'sci_docs_operation'
-                or 'sci_docs_customer'.
+            collection: Qdrant collection to search: 'sci_docs_operation',
+                'sci_docs_customer', or 'sci_docs_adr'.
             limit: Maximum number of results to return (1-50).
             filters: Optional metadata filters.
             ctx: FastMCP context providing access to lifespan singletons.
@@ -312,10 +345,7 @@ def register_tools(mcp_app: Any) -> None:
                 documentation collections.
         """
         if collection not in VALID_COLLECTIONS:
-            raise ValueError(
-                f"Invalid collection {collection!r}. "
-                f"Must be one of: {sorted(VALID_COLLECTIONS)}"
-            )
+            raise ValueError(f"Invalid collection {collection!r}. Must be one of: {sorted(VALID_COLLECTIONS)}")
 
         cache_key = _tool_cache.make_key(
             "rag_retrieve", query=query, collection=collection, limit=limit, filters=filters
@@ -373,9 +403,7 @@ def register_tools(mcp_app: Any) -> None:
             A structured root cause analysis as a plain-text string from
             the LLM.
         """
-        cache_key = _tool_cache.make_key(
-            "root_cause_analysis", symptom=symptom, context=context, limit=limit
-        )
+        cache_key = _tool_cache.make_key("root_cause_analysis", symptom=symptom, context=context, limit=limit)
         hit, cached = _tool_cache.get(cache_key)
         if hit:
             return cached
@@ -397,10 +425,7 @@ def register_tools(mcp_app: Any) -> None:
         context_lines: list[str] = []
         for idx, doc in enumerate(retrieved, start=1):
             source_label = doc.metadata.get("url") or doc.metadata.get("source", "unknown")
-            context_lines.append(
-                f"[{idx}] Collection: {doc.collection} | Source: {source_label}\n"
-                f"{doc.content}"
-            )
+            context_lines.append(f"[{idx}] Collection: {doc.collection} | Source: {source_label}\n{doc.content}")
         context_block = "\n\n---\n\n".join(context_lines)
 
         # Build the user message.
@@ -417,20 +442,32 @@ def register_tools(mcp_app: Any) -> None:
             " from retrieved documents, 3) Recommended remediation steps."
         )
 
-        response = await app_ctx.anthropic_client.messages.create(
-            model=app_ctx.settings.anthropic_model,
-            max_tokens=2048,
-            system=system_prompt,
-            messages=[{"role": "user", "content": user_message}],
-        )
+        async with span(
+            f"chat {app_ctx.settings.anthropic_model}",
+            **{
+                "gen_ai.operation.name": "chat",
+                "gen_ai.request.model": app_ctx.settings.anthropic_model,
+                "gen_ai.provider.name": "anthropic",
+                "peer.service": "anthropic",
+                "ai.query": preview(user_message),
+            },
+        ) as current:
+            response = await app_ctx.anthropic_client.messages.create(
+                model=app_ctx.settings.anthropic_model,
+                max_tokens=2048,
+                system=system_prompt,
+                messages=[{"role": "user", "content": user_message}],
+            )
+            if response.content and hasattr(response.content[0], "text"):
+                result = response.content[0].text
+                if current.is_recording():
+                    current.set_attribute("ai.answer", preview(result))
+            else:
+                result = ""
 
-        # Extract the text content from the first content block.
-        if response.content and hasattr(response.content[0], "text"):
-            result = response.content[0].text
+        if result:
             _tool_cache.set(cache_key, result)
             return result
 
-        logger.warning(
-            "root_cause_analysis: unexpected LLM response shape — returning empty string"
-        )
+        logger.warning("root_cause_analysis: unexpected LLM response shape — returning empty string")
         return ""

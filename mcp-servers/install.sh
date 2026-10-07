@@ -16,7 +16,7 @@
 #
 # Usage:
 #   ./install.sh                      # all servers
-#   ./install.sh --only gardener      # subset (comma-sep: gardener,sap-wiki,plato)
+#   ./install.sh --only gardener      # subset (comma-sep: gardener,sap-wiki,plato,sci)
 #   ./install.sh --skip-build         # only check env + print commands
 #   ./install.sh --help
 #
@@ -27,6 +27,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GARDENER_DIR="$SCRIPT_DIR/gardener-ai-mcp"
 SAPWIKI_DIR="$SCRIPT_DIR/sap-wiki-mcp"
 PLATO_DIR="$SCRIPT_DIR/plato-mcp"
+SCI_DIR="$SCRIPT_DIR/sci-ai-mcp"
 
 # --- colours ---------------------------------------------------------------
 if [ -t 1 ]; then
@@ -61,7 +62,7 @@ ${BOLD}Usage:${RESET}
   ./install.sh [options]
 
 ${BOLD}Options:${RESET}
-  --only <list>   Comma-separated subset: gardener,sap-wiki,plato
+  --only <list>   Comma-separated subset: gardener,sap-wiki,plato,sci
   --skip-build    Skip dependency install/build; only check env + print commands
   -h, --help      Show this help
 
@@ -232,6 +233,35 @@ install_plato() {
 }
 
 # =====================================================================
+# sci-ai-mcp
+# =====================================================================
+install_sci() {
+  hdr "sci-ai-mcp  (Python 3.12 · uv)"
+  [ -d "$SCI_DIR" ] || { err "directory missing: $SCI_DIR"; return; }
+
+  if [ "$DO_BUILD" -eq 1 ]; then
+    if command -v uv >/dev/null 2>&1; then
+      info "uv sync (installing dependencies)"
+      ( cd "$SCI_DIR" && uv sync ) && ok "dependencies installed" \
+        || err "uv sync failed"
+    else
+      err "uv not found — cannot build sci-ai-mcp"
+    fi
+  fi
+
+  ensure_env "$SCI_DIR" ".env.example"
+  check_secret "$SCI_DIR" "ANTHROPIC_AUTH_TOKEN" "SAP Hyperspace bearer token (embeddings + root_cause_analysis LLM)"
+  check_secret "$SCI_DIR" "GITHUB_TOKEN"         "SAP GHE PAT (read:repo) — only needed to (re)ingest docs, not to serve"
+
+  warn "runtime deps: a reachable ${BOLD}Qdrant${RESET} (QDRANT_URL, default http://localhost:6333) populated with the"
+  warn "sci_docs_operation + sci_docs_customer collections. Ingest separately, e.g.:"
+  warn "  ${DIM}cd sci-ai-mcp && uv run ingest-docs --collections operation customer && uv run ingest-docs --check${RESET}"
+  warn "GHE docs are behind the internal SAP CA — set ${BOLD}GITHUB_CA_BUNDLE${RESET} for ingestion (see .env.example)."
+
+  REG_CMDS+=("claude mcp add --scope user sci-ai-mcp -- uv --directory \"$SCI_DIR\" run python -m sci_mcp.server")
+}
+
+# =====================================================================
 # main
 # =====================================================================
 hdr "Toolchain check"
@@ -243,6 +273,7 @@ check_tool python3 "install Python 3.12+" || true
 wants gardener && install_gardener
 wants sap-wiki && install_sapwiki
 wants plato    && install_plato
+wants sci      && install_sci
 
 # --- summary: attention needed --------------------------------------------
 hdr "Setup requiring your attention"

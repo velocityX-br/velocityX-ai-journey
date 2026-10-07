@@ -11,9 +11,10 @@ imported by ``sci_mcp/tools.py`` and registered automatically by FastMCP's
 Pydantic schema introspection.  No model imports anything from the
 retrieval or vector store layers.
 
-This server is scoped to pure documentation RAG over two collections:
-``sci_docs_operation`` (from ``cc/documentation-operation``) and
-``sci_docs_customer`` (from ``cc/documentation-customer``).
+This server is scoped to pure documentation RAG over three collections:
+``sci_docs_operation`` (from ``cc/documentation-operation``),
+``sci_docs_customer`` (from ``cc/documentation-customer``), and
+``sci_docs_adr`` (from ``PlusOne/adr`` — Architecture Decision Records).
 """
 
 from __future__ import annotations
@@ -26,12 +27,15 @@ from pydantic import BaseModel, Field
 # Collection identifiers
 # ---------------------------------------------------------------------------
 
-# The two canonical documentation collections managed by this server.
+# The canonical documentation collections managed by this server.
 OPERATION_COLLECTION = "sci_docs_operation"
 CUSTOMER_COLLECTION = "sci_docs_customer"
+ADR_COLLECTION = "sci_docs_adr"
 
 # Valid target collections for the low-level ``rag_retrieve`` tool.
-VALID_COLLECTIONS = frozenset({OPERATION_COLLECTION, CUSTOMER_COLLECTION})
+VALID_COLLECTIONS = frozenset(
+    {OPERATION_COLLECTION, CUSTOMER_COLLECTION, ADR_COLLECTION}
+)
 
 
 # ---------------------------------------------------------------------------
@@ -83,6 +87,29 @@ class SearchCustomerDocsInput(BaseModel):
     )
 
 
+class SearchAdrDocsInput(BaseModel):
+    """Input schema for the ``search_adr_docs`` tool.
+
+    Searches the ``sci_docs_adr`` Qdrant collection using semantic
+    (dense-vector) similarity against SCI Architecture Decision Records
+    (ADRs) sourced from the ``PlusOne/adr`` repository.
+    """
+
+    query: str = Field(
+        description="Natural language search query for SCI Architecture Decision Records (ADRs)"
+    )
+    limit: int = Field(
+        default=10,
+        ge=1,
+        le=50,
+        description="Maximum number of results to return (1-50)",
+    )
+    filters: dict[str, Any] | None = Field(
+        default=None,
+        description="Optional metadata filters e.g. {'content_type': 'adr'}",
+    )
+
+
 class SearchDocsInput(BaseModel):
     """Input schema for the ``search_docs`` tool.
 
@@ -117,8 +144,8 @@ class RAGRetrieveInput(BaseModel):
     query: str = Field(description="Natural language query for RAG retrieval")
     collection: str = Field(
         description=(
-            "Qdrant collection to search: 'sci_docs_operation' or"
-            " 'sci_docs_customer'"
+            "Qdrant collection to search: 'sci_docs_operation',"
+            " 'sci_docs_customer', or 'sci_docs_adr'"
         )
     )
     limit: int = Field(

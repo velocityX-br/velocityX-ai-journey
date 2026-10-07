@@ -1,0 +1,42 @@
+- generic [ref=e13]:
+  - generic:
+    - navigation "Global skip links":
+      - link "Skip to main content" [ref=e15] [cursor=pointer]:
+        - /url: javascript:void(0);
+      - link "Open accessibility preferences" [ref=e17] [cursor=pointer]:
+        - /url: javascript:void(0);
+  - generic [ref=e19]:
+    - navigation "Primary" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - button "My HCSM landing page" [ref=e26]:
+            - img "HCSM Harmonized Customer Service Management" [ref=e27] [cursor=pointer]
+          - navigation "Unpinned All menu"
+          - navigation "Unpinned Favorites menu"
+          - navigation "Unpinned History menu"
+          - navigation "Unpinned Workspaces menu"
+          - navigation "More menus"
+          - menu [ref=e28]:
+            - menuitem "All" [ref=e29] [cursor=pointer]
+            - menuitem "Favorites" [ref=e30] [cursor=pointer]
+            - menuitem "History" [ref=e31] [cursor=pointer]
+            - menuitem "More menus" [ref=e32] [cursor=pointer]:
+              - img [ref=e34]
+        - generic [ref=e37]:
+          - generic [ref=e38]: Unified Navigation App | ServiceNow
+          - button "Create favorite for Unified Navigation App | ServiceNow" [ref=e39] [cursor=pointer]:
+            - img [ref=e41]
+        - generic [ref=e46]:
+          - button "Show help" [ref=e47] [cursor=pointer]:
+            - img [ref=e49]
+          - button "Show notifications" [ref=e52] [cursor=pointer]:
+            - img [ref=e54]
+          - 'button "Bryan Chen (I577081): Available" [ref=e56] [cursor=pointer]':
+            - generic [ref=e58]:
+              - img "Bryan Chen (I577081) is Available" [ref=e60]:
+                - generic [ref=e62]: BC
+              - img [ref=e64]
+    - main [ref=e71]:
+      - img "Loading" [ref=e76]
+      - iframe [ref=e78]:
+        

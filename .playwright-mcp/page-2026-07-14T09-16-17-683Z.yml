@@ -1,0 +1,139 @@
+- generic [ref=f6e1]:
+  - generic [ref=f6e3]:
+    - banner [ref=f6e4]:
+      - list:
+        - listitem:
+          - link "Skip to main content Type 'u' then '8'" [ref=f6e5] [cursor=pointer]:
+            - /url: "#main"
+            - text: Skip to main content
+        - listitem:
+          - link "Skip to search" [ref=f6e6] [cursor=pointer]:
+            - /url: "#quick-search-query"
+      - navigation "Site" [ref=f6e7]:
+        - generic [ref=f6e8]:
+          - generic [ref=f6e9]:
+            - button " Linked Applications" [ref=f6e10] [cursor=pointer]
+            - text: 
+          - list [ref=f6e13]:
+            - listitem [ref=f6e14]:
+              - button " Spaces" [ref=f6e15] [cursor=pointer]
+            - listitem [ref=f6e16]:
+              - link "Calendars" [ref=f6e17] [cursor=pointer]:
+                - /url: /wiki/calendar/mycalendar.action
+            - listitem [ref=f6e19]:
+              - link "Create blank page Type 'c'" [ref=f6e20] [cursor=pointer]:
+                - /url: /wiki/plugins/createcontent/createpage-defaultspace.action?atl_token=ef8854a23be54008feb783d2ae67ebe9f9e08086&src=quick-create
+                - text: Create
+              - link "Create" [ref=f6e21] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f6e22]: 
+          - list [ref=f6e24]:
+            - listitem [ref=f6e25]:
+              - generic [ref=f6e26]:
+                - button "Search" [ref=f6e27] [cursor=pointer]: 
+                - textbox "Search query Type 'g' then 'g' OR '/'" [ref=f6e28]:
+                  - /placeholder: Search
+            - listitem [ref=f6e29]:
+              - button " Help" [ref=f6e30] [cursor=pointer]
+            - listitem
+            - listitem [ref=f6e32]:
+              - 'button "Notifications: 1 new" [expanded] [ref=f6e33] [cursor=pointer]':
+                - generic [ref=f6e34]: 
+                - generic: "1"
+            - listitem [ref=f6e35]:
+              - button "Your profile and preferences" [ref=f6e36] [cursor=pointer]
+    - main [ref=f6e39]:
+      - generic [ref=f6e41]:
+        - heading "Search" [level=1] [ref=f6e42]
+        - generic [ref=f6e43]:
+          - textbox "Search for pages, files, people and more" [active] [ref=f6e44]: Neotron
+          - button " Help" [ref=f6e45] [cursor=pointer]
+        - button " Search" [ref=f6e46] [cursor=pointer]
+      - generic [ref=f6e49]:
+        - complementary "Sidebar" [ref=f6e50]:
+          - navigation [ref=f6e52]:
+            - generic [ref=f6e54]:
+              - generic [ref=f6e55]:
+                - generic [ref=f6e56]:
+                  - generic [ref=f6e57]: Contributor
+                  - list [ref=f6e60]:
+                    - listitem [ref=f6e61]:
+                      - textbox [ref=f6e63]
+                - generic [ref=f6e64]:
+                  - generic [ref=f6e65]: In space
+                  - generic [ref=f6e66]:
+                    - list [ref=f6e68]:
+                      - listitem:
+                        - textbox: Select a space
+                    - generic [ref=f6e70]:
+                      - checkbox "Search archived spaces" [ref=f6e71]
+                      - text: Search archived spaces
+                - generic [ref=f6e72]:
+                  - generic [ref=f6e73]: Last modified
+                  - list [ref=f6e76]:
+                    - listitem [ref=f6e77]:
+                      - button "Any date" [ref=f6e78] [cursor=pointer]
+                    - listitem [ref=f6e79]:
+                      - button "Last 24 hours" [ref=f6e80] [cursor=pointer]
+                    - listitem [ref=f6e81]:
+                      - button "Last week" [ref=f6e82] [cursor=pointer]
+                    - listitem [ref=f6e83]:
+                      - button "Last month" [ref=f6e84] [cursor=pointer]
+                    - listitem [ref=f6e85]:
+                      - button "Last year" [ref=f6e86] [cursor=pointer]
+                    - listitem [ref=f6e87]:
+                      - button "Custom" [ref=f6e88] [cursor=pointer]
+                - generic [ref=f6e89]:
+                  - generic [ref=f6e90]: Of type
+                  - generic [ref=f6e91]:
+                    - list [ref=f6e93]:
+                      - listitem [ref=f6e94]:
+                        - button "All content" [ref=f6e95] [cursor=pointer]
+                      - listitem [ref=f6e96]:
+                        - button "Pages" [ref=f6e97] [cursor=pointer]
+                      - listitem [ref=f6e98]:
+                        - button "Blog posts" [ref=f6e99] [cursor=pointer]
+                      - listitem [ref=f6e100]:
+                        - button "Attachments" [ref=f6e101] [cursor=pointer]
+                      - listitem [ref=f6e102]:
+                        - button "Spaces" [ref=f6e103] [cursor=pointer]
+                      - listitem [ref=f6e104]:
+                        - button "Custom" [ref=f6e105] [cursor=pointer]
+                    - text: 
+              - generic [ref=f6e106]:
+                - button "Add a filter" [ref=f6e107] [cursor=pointer]
+                - text:   
+        - generic [ref=f6e110]:
+          - text: No results found for
+          - strong [ref=f6e111]: Neotron
+          - text: ". Please try one of the following suggestions:"
+          - list [ref=f6e112]:
+            - listitem [ref=f6e113]:
+              - text: Use more general search terms or
+              - link "consult the online documentation" [ref=f6e114] [cursor=pointer]:
+                - /url: https://confluence.atlassian.com/display/DOC/Confluence+Search+Syntax
+              - text: for tips.
+            - listitem [ref=f6e115]: If you are filtering by space, content, last modification date or contributor, try removing or adjusting the filter
+          - list
+        - generic [ref=f6e119]:
+          - img "ScriptRunner Enhanced Search" [ref=f6e122]
+          - generic [ref=f6e126]:
+            - heading "Find what you need faster" [level=2] [ref=f6e127]
+            - paragraph [ref=f6e130]: Use ScriptRunner Enhanced Search to pinpoint exactly what you’re looking for. Define searches with Confluence Query Language (CQL) to see only what you want, minus the noise.
+            - link "Take me there" [ref=f6e133] [cursor=pointer]:
+              - /url: /wiki/plugins/servlet/scriptrunner/enhancedsearch/
+    - contentinfo [ref=f6e135]:
+      - list [ref=f6e137]:
+        - listitem [ref=f6e138]:
+          - text: Powered by
+          - link "Atlassian Confluence" [ref=f6e139] [cursor=pointer]:
+            - /url: https://www.atlassian.com/software/confluence
+          - text: "9.2.21 (node4: 4bcce76d)·"
+        - listitem [ref=f6e140]:
+          - link "Report an Incident" [ref=f6e141] [cursor=pointer]:
+            - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+          - text: ·
+        - listitem [ref=f6e142]:
+          - link "Wiki Community" [ref=f6e143] [cursor=pointer]:
+            - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL
+  - status [ref=f6e144]

@@ -38,6 +38,8 @@ class Settings(BaseSettings):
             documentation source.  Defaults to ``"cc/documentation-operation"``.
         github_docs_customer_repo: Repository slug for the customer
             documentation source.  Defaults to ``"cc/documentation-customer"``.
+        github_docs_adr_repo: Repository slug for the Architecture Decision
+            Records source.  Defaults to ``"PlusOne/adr"``.
         github_base_url: GitHub API base URL.  Defaults to the SAP GitHub
             Enterprise API v3 endpoint.
         github_ca_bundle: Optional path to a PEM CA bundle used to verify
@@ -97,6 +99,15 @@ class Settings(BaseSettings):
             "GITHUB_DOCS_CUSTOMER_REPO",
         ),
         description="Repository slug for the SCI customer documentation source.",
+    )
+
+    github_docs_adr_repo: str = Field(
+        default="PlusOne/adr",
+        validation_alias=AliasChoices(
+            "SCI_MCP_GITHUB_DOCS_ADR_REPO",
+            "GITHUB_DOCS_ADR_REPO",
+        ),
+        description="Repository slug for the SCI Architecture Decision Records (ADR) source.",
     )
 
     github_base_url: str | None = Field(

@@ -1,0 +1,951 @@
+- generic [ref=f12e1]:
+  - generic [ref=f12e2]:
+    - region
+    - region [ref=f12e3]:
+      - generic [ref=f12e4]: All activities are displayed
+  - navigation [ref=f12e8]:
+    - generic [ref=f12e9]:
+      - generic [ref=f12e10]:
+        - link "Back" [ref=f12e11] [cursor=pointer]:
+          - text: 
+          - generic [ref=f12e12]: Back
+        - button "additional actions" [ref=f12e13] [cursor=pointer]: 
+        - heading "Incident INC30641209" [level=1] [ref=f12e14]:
+          - button "Incident INC30641209" [ref=f12e15] [cursor=pointer]:
+            - generic [ref=f12e16]: Incident
+            - generic [ref=f12e17]: INC30641209
+          - text:  
+      - generic [ref=f12e19]:
+        - button "Manage Attachments" [ref=f12e20] [cursor=pointer]: 
+        - button "Go to Activity Stream" [ref=f12e21] [cursor=pointer]:
+          - text: 
+          - generic [ref=f12e22]: Activity Stream
+        - button "More options" [ref=f12e23] [cursor=pointer]:
+          - text: 
+          - generic [ref=f12e24]: More options
+        - text:   
+        - generic [ref=f12e26]:
+          - button "Follow" [ref=f12e28] [cursor=pointer]:
+            - generic [ref=f12e29]: Follow
+          - button "Update" [ref=f12e30] [cursor=pointer]
+          - button "Assign to Me" [ref=f12e31] [cursor=pointer]
+          - button "Send Reply" [ref=f12e32] [cursor=pointer]
+          - button "Resolve" [ref=f12e33] [cursor=pointer]
+          - button "Save" [ref=f12e34] [cursor=pointer]
+          - button "Forward to Next Level" [ref=f12e35] [cursor=pointer]
+          - button "Reroute - Set Initial Level" [ref=f12e36] [cursor=pointer]
+          - button "Reroute - Keep Level" [ref=f12e37] [cursor=pointer]
+        - text: 
+  - generic [ref=f12e38]:
+    - generic [ref=f12e39]:
+      - generic [ref=f12e41]:
+        - list [ref=f12e44]:
+          - listitem [ref=f12e45]:
+            - link "Manage Attachments ( 1 ):" [ref=f12e46] [cursor=pointer]:
+              - /url: "#"
+              - text: Manage Attachments (
+              - generic [ref=f12e47]: "1"
+              - text: "):"
+          - listitem [ref=f12e48]:
+            - generic [ref=f12e49]:
+              - link "Attached by C5378848 on 2026-07-06 12:08:38" [ref=f12e50] [cursor=pointer]:
+                - /url: sys_attachment.do?sys_id=073dd86bcf7d07500cfdfa713d851cdc&sysparm_this_url=incident.do?sysparm_query=number%3DINC30641209
+                - img "Attached by C5378848 on 2026-07-06 12:08:38" [ref=f12e51]
+              - link "Download image (9).png" [ref=f12e52] [cursor=pointer]:
+                - /url: ""
+                - text: image (9).png
+              - link "View image (9).png" [ref=f12e53] [cursor=pointer]:
+                - /url: "#"
+                - text: "[view]"
+        - generic [ref=f12e54]:
+          - button "Close Messages" [ref=f12e55] [cursor=pointer]: 
+          - region [ref=f12e56]:
+            - generic [ref=f12e57]:
+              - generic [ref=f12e58]:
+                - text: 
+                - generic [ref=f12e59]: Info Message
+              - text: The assignment group GCID INFRA OPS DEVSUPPORT conflicts with the official assignment group:GCID INFRA OPS INFRA OPS.Please click Reroute to assign to an official assignment group.
+        - region "Incident form section" [ref=f12e60]:
+          - generic [ref=f12e61]:
+            - generic [ref=f12e62]:
+              - generic [ref=f12e63]:
+                - generic [ref=f12e64]:
+                  - note
+                  - text: Number 
+                - textbox "Number" [ref=f12e66]: INC30641209
+              - generic [ref=f12e68]:
+                - generic [ref=f12e69]:
+                  - note
+                  - text: Component 
+                - generic [ref=f12e71]:
+                  - combobox "Component" [active] [ref=f12e72]: GCID-SCI-009
+                  - 'button "Look up value for field: Component" [ref=f12e74] [cursor=pointer]':
+                    - generic [ref=f12e75]: 
+                - 'button "Preview record for field: Component" [ref=f12e78] [cursor=pointer]': 
+              - text:  
+              - generic [ref=f12e79]:
+                - generic [ref=f12e80]:
+                  - note
+                  - text: Service offering 
+                - generic [ref=f12e82]:
+                  - searchbox "Service offering" [ref=f12e83]: GCID-SCI Compute-Virtual
+                  - 'button "Look up value for field: Service offering" [ref=f12e85] [cursor=pointer]':
+                    - generic [ref=f12e86]: 
+                - 'button "Preview record for field: Service offering" [ref=f12e89] [cursor=pointer]': 
+              - text:       
+              - generic [ref=f12e90]:
+                - generic [ref=f12e91]:
+                  - note "Mandatory - preloaded with saved data" [ref=f12e92]: 
+                  - text: Priority
+                  - button "Mandatory - preloaded with saved data. Sequence in which an incident needs to be resolved" [ref=f12e93]: 
+                - combobox "Mandatory - preloaded with saved dataPriority Mandatory - preloaded with saved data. Sequence in which an incident needs to be resolved" [ref=f12e95] [cursor=pointer]:
+                  - option "1 - Very High"
+                  - option "2 - High" [selected]
+                  - option "3 - Medium"
+                  - option "4 - Low"
+              - generic [ref=f12e97]:
+                - generic [ref=f12e98]:
+                  - note
+                  - text: Severity 
+                - combobox "Severity" [ref=f12e100] [cursor=pointer]:
+                  - option "Very High"
+                  - option "High" [selected]
+                  - option "Medium"
+                  - option "Low"
+              - generic [ref=f12e102]:
+                - generic [ref=f12e103]:
+                  - note
+                  - text: Assigned to
+                  - button "Person primarily responsible for working this task" [ref=f12e104]: 
+                - generic [ref=f12e106]:
+                  - searchbox "Assigned to Person primarily responsible for working this task" [ref=f12e107]: Matiula Sediqui (C5417978)
+                  - 'button "Look up value for field: Assigned to" [ref=f12e109] [cursor=pointer]':
+                    - generic [ref=f12e110]: 
+                - generic [ref=f12e111]:
+                  - generic "Find Agents" [ref=f12e112] [cursor=pointer]:
+                    - generic "Find Agents" [ref=f12e113]: 
+                  - 'button "Preview record for field: Assigned to" [ref=f12e115] [cursor=pointer]': 
+              - generic [ref=f12e116]:
+                - generic [ref=f12e117]:
+                  - note
+                  - text: ORT SLA status 
+                - textbox "ORT SLA status" [ref=f12e119]
+              - generic [ref=f12e121]:
+                - generic [ref=f12e122]:
+                  - note
+                  - text: Assignment group 
+                - generic [ref=f12e124]:
+                  - searchbox "Assignment group" [ref=f12e125]: GCID INFRA OPS DEVSUPPORT
+                  - 'button "Look up value for field: Assignment group" [ref=f12e127] [cursor=pointer]':
+                    - generic [ref=f12e128]: 
+                - generic [ref=f12e129]:
+                  - text: 
+                  - 'button "Preview record for field: Assignment group" [ref=f12e131] [cursor=pointer]': 
+                  - button "" [ref=f12e132] [cursor=pointer]
+              - generic [ref=f12e133]:
+                - generic [ref=f12e134]:
+                  - note "Read only - cannot be modified"
+                  - text: Source channel
+                  - generic [ref=f12e135]: 
+                - combobox "Read only - cannot be modifiedSource channel" [ref=f12e137]:
+                  - option "e-Mail (Automated)" [disabled]
+                  - option "ECS vROps" [disabled]
+                  - option "EPANT" [disabled]
+                  - option "NowSupport" [disabled]
+                  - option "SAP Conversational AI" [disabled]
+                  - option "Security Validation" [disabled]
+                  - option "Cisco" [disabled]
+                  - option "Case" [disabled]
+                  - option "Change" [disabled]
+                  - option "Event" [disabled]
+                  - option "GCID Digital Assistance" [disabled]
+                  - option "Internal" [disabled] [selected]
+                  - option "IT Direct" [disabled]
+                  - option "Monterey" [disabled]
+                  - option "Multi Cloud" [disabled]
+                  - option "NS2" [disabled]
+                  - option "ESM" [disabled]
+                  - option "Service Portal" [disabled]
+                  - option "Vega" [disabled]
+                  - option "Service Request" [disabled]
+                  - option "SFSF ServiceNow" [disabled]
+                  - option "SPC" [disabled]
+                  - option "Ticket Manager" [disabled]
+                  - option "Manual - Event" [disabled]
+                  - option "SAT" [disabled]
+                  - option "SSF" [disabled]
+                  - option "MONROU" [disabled]
+                  - option "RSA" [disabled]
+                  - option "Elastisearch" [disabled]
+                  - option "EMPOB" [disabled]
+                  - option "IDAUT" [disabled]
+                  - option "VSPH" [disabled]
+                  - option "SCCM" [disabled]
+                  - option "UTA" [disabled]
+                  - option "CTFEMEA" [disabled]
+                  - option "SAP Learning Center" [disabled]
+                  - option "SFP" [disabled]
+                  - option "DLM Incident" [disabled]
+                  - option "Service Execution" [disabled]
+                  - option "CSNIP" [disabled]
+                  - option "ITDXC" [disabled]
+                  - option "SPC CLD" [disabled]
+                  - option "GENESYSVBOT" [disabled]
+                  - option "ITPICKUPLOCKER" [disabled]
+                  - option "ITVerizon" [disabled]
+                  - option "ITHARMONY" [disabled]
+                  - option "Stackstorm" [disabled]
+                  - option "ARM" [disabled]
+                  - option "TTT" [disabled]
+                  - option "TPT" [disabled]
+                  - option "PFG App" [disabled]
+                  - option "AUTHAPP" [disabled]
+              - generic [ref=f12e139]:
+                - generic [ref=f12e140]:
+                  - note "Mandatory - preloaded with saved data" [ref=f12e141]: 
+                  - text: Requester
+                  - button "Mandatory - preloaded with saved data. Person who reported or is affected by this incident" [ref=f12e142]: 
+                - generic [ref=f12e144]:
+                  - searchbox "Mandatory - preloaded with saved dataRequester Mandatory - preloaded with saved data. Person who reported or is affected by this incident" [ref=f12e145]: Venkatesh Yadla (C5377109)
+                  - 'button "Look up value for field: Requester" [ref=f12e147] [cursor=pointer]':
+                    - generic [ref=f12e148]: 
+                - generic [ref=f12e149]:
+                  - button "Show related incidents" [ref=f12e150] [cursor=pointer]:
+                    - text: 
+                    - generic [ref=f12e151]: Show related incidents
+                  - button "Start Microsoft Teams chat" [ref=f12e152] [cursor=pointer]:
+                    - img "Start Microsoft Teams chat" [ref=f12e153]
+                  - 'button "Preview record for field: Requester" [ref=f12e155] [cursor=pointer]': 
+              - generic [ref=f12e156]:
+                - generic [ref=f12e157]:
+                  - note
+                  - text: Requested by 
+                - generic [ref=f12e159]:
+                  - searchbox "Requested by" [ref=f12e160]
+                  - 'button "Look up value for field: Requested by" [ref=f12e162] [cursor=pointer]':
+                    - generic [ref=f12e163]: 
+                - generic [ref=f12e164]: 
+              - generic [ref=f12e165]:
+                - generic [ref=f12e166]:
+                  - note
+                  - text: LoB-field 1 
+                - combobox "LoB-field 1" [ref=f12e168] [cursor=pointer]:
+                  - option "-- None --" [selected]
+              - generic [ref=f12e170]:
+                - generic [ref=f12e171]:
+                  - note
+                  - text: LoB-field 2 
+                - combobox "LoB-field 2" [ref=f12e173] [cursor=pointer]:
+                  - option "-- None --" [selected]
+              - generic [ref=f12e175]:
+                - generic [ref=f12e176]:
+                  - note
+                  - text: LoB-field 3 
+                - combobox "LoB-field 3" [ref=f12e178] [cursor=pointer]:
+                  - option "-- None --" [selected]
+              - generic [ref=f12e180]:
+                - generic [ref=f12e181]:
+                  - note
+                  - text: LoB-field 4 
+                - combobox "LoB-field 4" [ref=f12e183] [cursor=pointer]:
+                  - option "-- None --" [selected]
+              - generic [ref=f12e185]:
+                - generic [ref=f12e186]:
+                  - note
+                  - text: LoB-field 5 
+                - combobox "LoB-field 5" [ref=f12e188] [cursor=pointer]:
+                  - option "-- None --" [selected]
+              - generic [ref=f12e190]:
+                - generic [ref=f12e191]:
+                  - note
+                  - text: LoB-field 6 
+                - textbox "LoB-field 6" [ref=f12e193]
+              - generic [ref=f12e195]:
+                - generic [ref=f12e196]:
+                  - note
+                  - text: Bridge Call URL 
+                - button "Edit Bridge Call URL" [ref=f12e199] [cursor=pointer]:
+                  - generic [ref=f12e200]: 
+                  - generic [ref=f12e201]: Edit Bridge Call URL
+            - generic [ref=f12e202]:
+              - generic [ref=f12e203]:
+                - generic [ref=f12e204]:
+                  - note
+                  - text: State 
+                - combobox "State" [disabled] [ref=f12e206]:
+                  - option "New" [disabled]
+                  - option "In Progress" [disabled] [selected]
+                  - option "Awaiting Info" [disabled]
+                  - option "Resolved" [disabled]
+                  - option "Closed" [disabled]
+              - text: 
+              - generic [ref=f12e208]:
+                - generic [ref=f12e209]:
+                  - note
+                  - text: Data Processing & Security 
+                - combobox "Data Processing & Security" [disabled] [ref=f12e211]:
+                  - option "-- None --" [disabled] [selected]
+                  - option "CNDP" [disabled]
+                  - option "Deactivated" [disabled]
+                  - option "EUDP" [disabled]
+                  - option "NONE" [disabled]
+                  - option "SCDP" [disabled]
+              - generic [ref=f12e213]:
+                - generic [ref=f12e214]:
+                  - note
+                  - text: Opened 
+                - generic [ref=f12e215]:
+                  - text: 
+                  - textbox "Opened" [ref=f12e217]: 2026-07-06 12:00:43
+              - generic [ref=f12e219]:
+                - generic [ref=f12e220]:
+                  - note
+                  - text: Due date
+                  - button "Expected date from assigned to" [ref=f12e221]: 
+                - generic [ref=f12e222]:
+                  - text: 
+                  - generic [ref=f12e224]:
+                    - textbox "Due date Expected date from assigned to" [ref=f12e225]
+                    - button "Select Due date date and time" [ref=f12e227] [cursor=pointer]:
+                      - generic [ref=f12e228]: 
+              - generic [ref=f12e230]:
+                - generic [ref=f12e231]:
+                  - note
+                  - text: Time worked 
+                - generic [ref=f12e233]:
+                  - generic:
+                    - generic [ref=f12e235]:
+                      - generic [ref=f12e237]: Days
+                      - textbox "Days" [ref=f12e238]: "00"
+                    - generic [ref=f12e240]:
+                      - generic [ref=f12e242]: Hours
+                      - textbox "Hours" [ref=f12e243]: "00"
+                      - generic [ref=f12e245]: Minutes
+                      - textbox "Minutes" [ref=f12e246]: "00"
+                      - generic [ref=f12e248]: Seconds
+                      - textbox "Seconds" [ref=f12e249]: "00"
+              - text:    
+              - generic [ref=f12e251]:
+                - generic [ref=f12e252]:
+                  - note
+                  - text: OLA Initial Response Status (GIGYA) 
+                - textbox "OLA Initial Response Status (GIGYA)" [ref=f12e254]
+              - text: 
+              - generic [ref=f12e256]:
+                - generic [ref=f12e257]:
+                  - note
+                  - text: Contract 
+                - textbox "Contract" [ref=f12e259]
+                - generic [ref=f12e260]: 
+              - generic [ref=f12e261]:
+                - generic [ref=f12e262]:
+                  - note
+                  - text: Requesting Assignment Group 
+                - generic [ref=f12e264]:
+                  - searchbox "Requesting Assignment Group" [ref=f12e265]
+                  - 'button "Look up value for field: Requesting Assignment Group" [ref=f12e267] [cursor=pointer]':
+                    - generic [ref=f12e268]: 
+                - generic [ref=f12e269]: 
+              - generic [ref=f12e270]:
+                - generic [ref=f12e271]:
+                  - note
+                  - text: Requesting Business Unit 
+                - generic [ref=f12e273]:
+                  - searchbox "Requesting Business Unit" [ref=f12e274]
+                  - 'button "Look up value for field: Requesting Business Unit" [ref=f12e276] [cursor=pointer]':
+                    - generic [ref=f12e277]: 
+                - generic [ref=f12e278]: 
+              - generic [ref=f12e279]:
+                - generic [ref=f12e280]:
+                  - note
+                  - text: Participant Code 
+                - textbox "Participant Code" [ref=f12e284]
+      - tablist "Section Tab Lists" [ref=f12e286]:
+        - generic [ref=f12e287]:
+          - tab "Communication" [selected] [ref=f12e288] [cursor=pointer]:
+            - generic [ref=f12e289]: Communication
+          - generic [ref=f12e290]: Contains unpopulated mandatory fields
+        - generic [ref=f12e291]:
+          - tab "Initial Description" [ref=f12e292] [cursor=pointer]:
+            - generic [ref=f12e293]: Initial Description
+          - generic [ref=f12e294]: Contains unpopulated mandatory fields
+        - generic [ref=f12e295]:
+          - tab "System" [ref=f12e296] [cursor=pointer]:
+            - generic [ref=f12e297]: System
+          - generic [ref=f12e298]: Contains unpopulated mandatory fields
+        - generic [ref=f12e299]:
+          - tab "Related Records" [ref=f12e300] [cursor=pointer]:
+            - generic [ref=f12e301]: Related Records
+          - generic [ref=f12e302]: Contains unpopulated mandatory fields
+        - generic [ref=f12e303]:
+          - tab "Resolution Information" [ref=f12e304] [cursor=pointer]:
+            - generic [ref=f12e305]: Resolution Information
+          - generic [ref=f12e306]: Contains unpopulated mandatory fields
+        - generic [ref=f12e307]: Contains unpopulated mandatory fields
+        - generic [ref=f12e308]: Contains unpopulated mandatory fields
+        - generic [ref=f12e309]:
+          - tab "IOC / Customer Downtime Communication" [ref=f12e310] [cursor=pointer]:
+            - generic [ref=f12e311]: IOC / Customer Downtime Communication
+          - generic [ref=f12e312]: Contains unpopulated mandatory fields
+      - tabpanel "Communication Section" [ref=f12e313]:
+        - generic [ref=f12e314]:
+          - text: 
+          - region "Communication form section" [ref=f12e315]:
+            - generic [ref=f12e317]:
+              - generic [ref=f12e318]:
+                - generic [ref=f12e319]:
+                  - note
+                  - text: Draft 
+                - generic [ref=f12e320]:
+                  - generic [ref=f12e324]:
+                    - button "Remove lines from Draft script area" [ref=f12e325] [cursor=pointer]:
+                      - generic [ref=f12e326]: 
+                      - generic [ref=f12e327]: Remove lines from Draft script area
+                    - button "Add lines to Draft script area" [ref=f12e328] [cursor=pointer]:
+                      - generic [ref=f12e329]: 
+                      - generic [ref=f12e330]: Add lines to Draft script area
+                  - application "Draft. In the editor, press Alt+F10 to focus on the toolbar. Mac press Option+F10 to focus on the toolbar. Press escape to return to the editor." [ref=f12e331]:
+                    - generic [ref=f12e332]:
+                      - group [ref=f12e335]:
+                        - toolbar [ref=f12e336]:
+                          - button "Bold" [ref=f12e337]:
+                            - img [ref=f12e339]
+                          - button "Italic" [ref=f12e341]:
+                            - img [ref=f12e343]
+                          - button "Underline" [ref=f12e345]:
+                            - img [ref=f12e347]
+                          - button "Undo" [disabled] [ref=f12e349]:
+                            - img [ref=f12e351]
+                          - button "Redo" [disabled] [ref=f12e353]:
+                            - img [ref=f12e355]
+                        - toolbar [ref=f12e357]:
+                          - button "Font Verdana" [ref=f12e358]:
+                            - generic [ref=f12e359]: Verdana
+                            - img [ref=f12e361]
+                          - button "Font size 8pt" [ref=f12e363]:
+                            - generic [ref=f12e364]: 8pt
+                            - img [ref=f12e366]
+                          - button "Table" [ref=f12e368]:
+                            - img [ref=f12e370]
+                            - img [ref=f12e373]
+                        - toolbar [ref=f12e375]:
+                          - button "Text color Black" [ref=f12e376]:
+                            - img [ref=f12e378]
+                            - img [ref=f12e382]
+                          - button "Background color Black" [ref=f12e384]:
+                            - img [ref=f12e386]
+                            - img [ref=f12e390]
+                          - button "Insert/edit link" [ref=f12e392]:
+                            - img [ref=f12e394]
+                          - button "Remove link" [disabled] [ref=f12e396]:
+                            - img [ref=f12e398]
+                        - toolbar [ref=f12e400]:
+                          - button "Insert/edit image" [ref=f12e401]:
+                            - img [ref=f12e403]
+                          - button "Insert/edit media" [ref=f12e405]:
+                            - img [ref=f12e407]
+                          - button "Source code" [ref=f12e409]:
+                            - img [ref=f12e411]
+                        - toolbar [ref=f12e414]:
+                          - button "Align left" [ref=f12e415]:
+                            - img [ref=f12e417]
+                          - button "Align center" [ref=f12e419]:
+                            - img [ref=f12e421]
+                          - button "Align right" [ref=f12e423]:
+                            - img [ref=f12e425]
+                        - toolbar [ref=f12e427]:
+                          - button "Bullet list" [ref=f12e428]:
+                            - img [ref=f12e430]
+                            - img [ref=f12e432]
+                          - button "Numbered list" [ref=f12e434]:
+                            - img [ref=f12e436]
+                            - img [ref=f12e438]
+                          - button "Fullscreen" [ref=f12e440]:
+                            - img [ref=f12e442]
+                          - button "Toggle theme" [ref=f12e444]:
+                            - img [ref=f12e446]
+                      - iframe [ref=f12e450]:
+                        - textbox "Draft. In the editor, press Alt+F10 to focus on the toolbar. Mac press Option+F10 to focus on the toolbar. Press escape to return to the editor." [active] [ref=f21e1]:
+                          - paragraph [ref=f21e2]
+                      - generic [ref=f12e451]:
+                        - generic [ref=f12e452]:
+                          - navigation [ref=f12e453]:
+                            - button "p" [ref=f12e454]
+                          - generic [ref=f12e455]: Press ⌥0 for help
+                        - generic "Press the Up and Down arrow keys to resize the editor." [ref=f12e456]:
+                          - img [ref=f12e457]
+              - text:     
+            - generic [ref=f12e461]:
+              - generic [ref=f12e463]:
+                - generic [ref=f12e464]:
+                  - note
+                  - text: Watch list
+                  - button "Interested users" [ref=f12e465]: 
+                - generic [ref=f12e466]:
+                  - generic [ref=f12e467]:
+                    - text: Unlock Watch list
+                    - generic [ref=f12e468]: ", Selected:"
+                  - button "Unlock Watch list , Selected:" [ref=f12e470] [cursor=pointer]:
+                    - generic [ref=f12e471]: 
+                  - button "Watch list Add me" [ref=f12e472] [cursor=pointer]:
+                    - generic [ref=f12e473]: 
+                  - text:       
+                  - paragraph
+              - generic [ref=f12e476]:
+                - generic [ref=f12e477]:
+                  - note
+                  - text: Internal notes list
+                  - button "Users interested in internal notes" [ref=f12e478]: 
+                - generic [ref=f12e479]:
+                  - generic [ref=f12e480]:
+                    - text: Unlock Internal notes list
+                    - generic [ref=f12e481]: ", Selected:"
+                  - button "Unlock Internal notes list , Selected:" [ref=f12e483] [cursor=pointer]:
+                    - generic [ref=f12e484]: 
+                  - button "Internal notes list Add me" [ref=f12e485] [cursor=pointer]:
+                    - generic [ref=f12e486]: 
+                  - text:       
+                  - paragraph
+            - generic [ref=f12e490]:
+              - generic [ref=f12e494]:
+                - generic [ref=f12e497]:
+                  - text:      
+                  - generic [ref=f12e498]:
+                    - generic [ref=f12e499]: Provider Info
+                    - textbox "Provider Info" [ref=f12e503]
+                    - button " Show all journal fields" [ref=f12e505] [cursor=pointer]:
+                      - text: 
+                      - generic [ref=f12e506]: Show all journal fields
+                  - generic [ref=f12e510]:
+                    - combobox [ref=f12e513] [cursor=pointer]:
+                      - option "Actions taken"
+                      - option "External Info"
+                      - option "Internal Info"
+                      - option "Provider Info" [selected]
+                    - button "Post" [ref=f12e514] [cursor=pointer]
+                - generic [ref=f12e516]: "Activities: 17"
+                - button "Filter Activity" [ref=f12e519] [cursor=pointer]:
+                  - text: 
+                  - generic [ref=f12e520]: Filter Activity
+              - list [ref=f12e524]:
+                - listitem [ref=f12e525]:
+                  - generic [ref=f12e526]:
+                    - generic [ref=f12e529] [cursor=pointer]: PK
+                    - generic [ref=f12e531]: Puttaraj Kammar (C5372155)
+                  - generic [ref=f12e533]:
+                    - text: Internal Info•
+                    - generic [ref=f12e534]: 2026-07-09 06:32:52
+                    - text: •
+                    - generic [ref=f12e535]:
+                      - generic [ref=f12e536]: 
+                      - link "Translate" [ref=f12e537] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e538]:
+                    - generic [ref=f12e540]:
+                      - text: Hello Matiula Sediqui,
+                      - text: Thanks for the update , Kindly let us know on further updates.
+                      - text: Thanks and Regards
+                      - text: Puttaraj K
+                    - button "Copy journal content" [ref=f12e541] [cursor=pointer]: 
+                - listitem [ref=f12e543]:
+                  - generic [ref=f12e544]:
+                    - generic [ref=f12e547] [cursor=pointer]: MS
+                    - generic [ref=f12e549]: Matiula Sediqui (C5417978)
+                  - generic [ref=f12e551]:
+                    - text: Internal Info•
+                    - generic [ref=f12e552]: 2026-07-09 06:28:12
+                    - text: •
+                    - generic [ref=f12e553]:
+                      - generic [ref=f12e554]: 
+                      - link "Translate" [ref=f12e555] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e556]:
+                    - generic [ref=f12e558]:
+                      - text: Dear Colleagues,
+                      - text: further update on this ticket.
+                      - text: "The compute on-duty engineer attempted to manually restore the port binding by setting the binding_host_id:"
+                      - text: openstack port set --host nova-compute-ironic-bb497 5b6a6f87-9f8c-4222-9ceb-17ca37966280
+                      - text: "The command was accepted, but the port is now showing binding_vif_type: binding_failed. This means Neutron"
+                      - text: accepted the host assignment, but the ACI mechanism driver could not complete the binding — node014-bb497
+                      - text: has no entry in the neutron-aci.yaml secrets config. This was already flagged during our initial diagnostics
+                      - text: "via hammer net check:"
+                      - text: ACI - warning - Could not find binding config for host in secrets' neutron-aci.yaml
+                      - text: "To summarise the current state:"
+                      - text: "- Port 5b6a6f87 — binding_vnic_type: baremetal, trunk parent port, status: DOWN, binding_vif_type: binding_failed"
+                      - text: "- FIP 10.47.147.186 is correctly wired (ASR NAT entry present, ACI FIP endpoint correct), but traffic cannot reach"
+                      - text: the fixed IP 10.180.2.46 because the port is not bound
+                      - text: "- The port was left in this broken state following a failed detach_interface operation on 2026-07-03"
+                      - text: This ticket has been escalated to the network-api team for further investigation.
+                      - text: Best regards,
+                      - text: Matiula Sediqui
+                      - text: SAP Cloud Infrastructure Support
+                    - button "Copy journal content" [ref=f12e559] [cursor=pointer]: 
+                - listitem [ref=f12e561]:
+                  - generic [ref=f12e562]:
+                    - generic [ref=f12e565] [cursor=pointer]: PK
+                    - generic [ref=f12e567]: Puttaraj Kammar (C5372155)
+                  - generic [ref=f12e569]:
+                    - text: Internal Info•
+                    - generic [ref=f12e570]: 2026-07-09 01:25:11
+                    - text: •
+                    - generic [ref=f12e571]:
+                      - generic [ref=f12e572]: 
+                      - link "Translate" [ref=f12e573] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e574]:
+                    - generic [ref=f12e576]:
+                      - text: Hello Team,
+                      - text: Can you please check this ticket on priority and provide the update.
+                      - text: Thanks and Regards
+                      - text: Puttaraj K
+                    - button "Copy journal content" [ref=f12e577] [cursor=pointer]: 
+                - listitem [ref=f12e579]:
+                  - generic [ref=f12e580]:
+                    - generic [ref=f12e583] [cursor=pointer]: BR
+                    - generic [ref=f12e585]: Barikara Ramesha (C5378848)
+                  - generic [ref=f12e587]:
+                    - text: External Info•
+                    - generic [ref=f12e588]: 2026-07-08 15:46:55
+                    - text: •
+                    - generic [ref=f12e589]:
+                      - generic [ref=f12e590]: 
+                      - link "Translate" [ref=f12e591] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e592]:
+                    - generic [ref=f12e594]:
+                      - text: Hello Team,
+                      - text: Can you please check this ticket on priority and provide the update.
+                      - text: Thanks and Regards
+                      - text: B.Ramesha
+                    - button "Copy journal content" [ref=f12e595] [cursor=pointer]: 
+                - listitem [ref=f12e597]:
+                  - generic [ref=f12e598]:
+                    - generic [ref=f12e601] [cursor=pointer]: DD
+                    - generic [ref=f12e603]: Dinoop D (C5356379)
+                  - generic [ref=f12e605]:
+                    - text: Field changes•
+                    - generic [ref=f12e606]: 2026-07-08 14:25:26
+                  - list [ref=f12e609]:
+                    - listitem [ref=f12e610]:
+                      - generic [ref=f12e611]: Assigned to
+                      - generic [ref=f12e612]:
+                        - text: Matiula Sediqui (C5417978)
+                        - generic [ref=f12e613]: was
+                        - text: Shifas S Sharaf (C5267726)
+                    - listitem [ref=f12e614]:
+                      - generic [ref=f12e615]: Assignment group
+                      - generic [ref=f12e616]:
+                        - text: GCID INFRA OPS DEVSUPPORT
+                        - generic [ref=f12e617]: was
+                        - text: GCID GLDS OS Win L2
+                    - listitem [ref=f12e618]:
+                      - generic [ref=f12e619]: Reassignment count
+                      - generic [ref=f12e620]:
+                        - text: "3"
+                        - generic [ref=f12e621]: was
+                        - text: "2"
+                - listitem [ref=f12e623]:
+                  - generic [ref=f12e624]:
+                    - generic [ref=f12e627] [cursor=pointer]: SS
+                    - generic [ref=f12e629]: Shifas S Sharaf (C5267726)
+                  - generic [ref=f12e631]:
+                    - text: Field changes•
+                    - generic [ref=f12e632]: 2026-07-08 13:44:43
+                  - list [ref=f12e635]:
+                    - listitem [ref=f12e636]:
+                      - generic [ref=f12e637]: Assigned to
+                      - generic [ref=f12e638]:
+                        - text: Shifas S Sharaf (C5267726)
+                        - generic [ref=f12e639]: was
+                        - text: Matiula Sediqui (C5417978)
+                    - listitem [ref=f12e640]:
+                      - generic [ref=f12e641]: Assignment group
+                      - generic [ref=f12e642]:
+                        - text: GCID GLDS OS Win L2
+                        - generic [ref=f12e643]: was
+                        - text: GCID INFRA OPS DEVSUPPORT
+                    - listitem [ref=f12e644]:
+                      - generic [ref=f12e645]: Reassignment count
+                      - generic [ref=f12e646]:
+                        - text: "2"
+                        - generic [ref=f12e647]: was
+                        - text: "1"
+                - listitem [ref=f12e649]:
+                  - generic [ref=f12e650]:
+                    - generic [ref=f12e653] [cursor=pointer]: PK
+                    - generic [ref=f12e655]: Puttaraj Kammar (C5372155)
+                  - generic [ref=f12e657]:
+                    - text: Internal Info•
+                    - generic [ref=f12e658]: 2026-07-08 08:38:38
+                    - text: •
+                    - generic [ref=f12e659]:
+                      - generic [ref=f12e660]: 
+                      - link "Translate" [ref=f12e661] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e662]:
+                    - generic [ref=f12e664]:
+                      - text: Hello Team,
+                      - text: Can you please check this ticket on priority and provide the update.
+                      - text: Thanks and Regards
+                      - text: Puttaraj K
+                    - button "Copy journal content" [ref=f12e665] [cursor=pointer]: 
+                - listitem [ref=f12e667]:
+                  - generic [ref=f12e668]:
+                    - generic [ref=f12e671] [cursor=pointer]: PK
+                    - generic [ref=f12e673]: Puttaraj Kammar (C5372155)
+                  - generic [ref=f12e675]:
+                    - text: Internal Info•
+                    - generic [ref=f12e676]: 2026-07-08 02:36:08
+                    - text: •
+                    - generic [ref=f12e677]:
+                      - generic [ref=f12e678]: 
+                      - link "Translate" [ref=f12e679] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e680]:
+                    - generic [ref=f12e682]:
+                      - text: Hello Team,
+                      - text: Please provide the update on this.
+                      - text: Thanks and Regards
+                      - text: Puttaraj K
+                    - button "Copy journal content" [ref=f12e683] [cursor=pointer]: 
+                - listitem [ref=f12e685]:
+                  - generic [ref=f12e686]:
+                    - generic [ref=f12e689] [cursor=pointer]: MS
+                    - generic [ref=f12e691]: Matiula Sediqui (C5417978)
+                  - generic [ref=f12e693]:
+                    - text: Internal Info•
+                    - generic [ref=f12e694]: 2026-07-07 08:08:14
+                    - text: •
+                    - generic [ref=f12e695]:
+                      - generic [ref=f12e696]: 
+                      - link "Translate" [ref=f12e697] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e698]:
+                    - generic [ref=f12e700]:
+                      - text: "This issue has been escalated to OnDuty as:"
+                      - text: "- ironic-conductor-bb497 pod missing; baremetal interface attach failing for node014-bb497 (eu-de-1)"
+                      - text: I've requested the compute team to take a look into this and provided them with all log entries to be found.
+                      - text: I'll update as soon as they got back with me.
+                    - button "Copy journal content" [ref=f12e701] [cursor=pointer]: 
+                - listitem [ref=f12e703]:
+                  - generic [ref=f12e704]:
+                    - generic [ref=f12e707] [cursor=pointer]: MB
+                    - generic [ref=f12e709]: Maik Buschatzky (C5321269)
+                  - generic [ref=f12e711]:
+                    - text: Field changes•
+                    - generic [ref=f12e712]: 2026-07-07 06:20:07
+                  - list [ref=f12e715]:
+                    - listitem [ref=f12e716]:
+                      - generic [ref=f12e717]: Assigned to
+                      - generic [ref=f12e718]: Matiula Sediqui (C5417978)
+                - listitem [ref=f12e720]:
+                  - generic [ref=f12e721]:
+                    - generic [ref=f12e724] [cursor=pointer]: RK
+                    - generic [ref=f12e726]: REKHA KUMARI (C5420430)
+                  - generic [ref=f12e728]:
+                    - text: Internal Info•
+                    - generic [ref=f12e729]: 2026-07-07 05:38:58
+                    - text: •
+                    - generic [ref=f12e730]:
+                      - generic [ref=f12e731]: 
+                      - link "Translate" [ref=f12e732] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e733]:
+                    - generic [ref=f12e736]:
+                      - paragraph [ref=f12e737]:
+                        - text: Hi Team,
+                        - text: Please check and provide an update ASAP.
+                      - paragraph [ref=f12e738]: Regards,
+                      - paragraph [ref=f12e739]: Rekha K
+                    - button "Copy journal content" [ref=f12e740] [cursor=pointer]: 
+                - listitem [ref=f12e742]:
+                  - generic [ref=f12e743]:
+                    - generic [ref=f12e746] [cursor=pointer]: AD
+                    - generic [ref=f12e748]: Andree Doering (C5161743)
+                  - generic [ref=f12e750]:
+                    - text: Internal Info•
+                    - generic [ref=f12e751]: 2026-07-06 13:38:48
+                    - text: •
+                    - generic [ref=f12e752]:
+                      - generic [ref=f12e753]: 
+                      - link "Translate" [ref=f12e754] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e755]:
+                    - generic [ref=f12e757]:
+                      - text: Hello Colleagues,
+                      - text: could you please have a look at this issue?
+                      - text: kind regards
+                      - text: Andree
+                    - button "Copy journal content" [ref=f12e758] [cursor=pointer]: 
+                - listitem [ref=f12e760]:
+                  - generic [ref=f12e761]:
+                    - generic [ref=f12e764] [cursor=pointer]: AD
+                    - generic [ref=f12e766]: Andree Doering (C5161743)
+                  - generic [ref=f12e768]:
+                    - text: Field changes•
+                    - generic [ref=f12e769]: 2026-07-06 13:38:48
+                  - list [ref=f12e772]:
+                    - listitem [ref=f12e773]:
+                      - generic [ref=f12e774]: Assigned to
+                      - generic [ref=f12e775]:
+                        - text: "[Empty]"
+                        - generic [ref=f12e776]: was
+                        - text: Andree Doering (C5161743)
+                    - listitem [ref=f12e777]:
+                      - generic [ref=f12e778]: Assignment group
+                      - generic [ref=f12e779]:
+                        - text: GCID INFRA OPS DEVSUPPORT
+                        - generic [ref=f12e780]: was
+                        - text: GCID INFRA OPS INFRA OPS
+                    - listitem [ref=f12e781]:
+                      - generic [ref=f12e782]: Reassignment count
+                      - generic [ref=f12e783]:
+                        - text: "1"
+                        - generic [ref=f12e784]: was
+                        - text: "0"
+                - listitem [ref=f12e786]:
+                  - generic [ref=f12e787]:
+                    - generic [ref=f12e790] [cursor=pointer]: AD
+                    - generic [ref=f12e792]: Andree Doering (C5161743)
+                  - generic [ref=f12e794]:
+                    - text: Field changes•
+                    - generic [ref=f12e795]: 2026-07-06 13:15:30
+                  - list [ref=f12e798]:
+                    - listitem [ref=f12e799]:
+                      - generic [ref=f12e800]: Assigned to
+                      - generic [ref=f12e801]: Andree Doering (C5161743)
+                    - listitem [ref=f12e802]:
+                      - generic [ref=f12e803]: State
+                      - generic [ref=f12e804]:
+                        - text: In Progress
+                        - generic [ref=f12e805]: was
+                        - text: New
+                - listitem [ref=f12e807]:
+                  - generic [ref=f12e808]:
+                    - generic [ref=f12e811] [cursor=pointer]: BR
+                    - generic [ref=f12e813]: Barikara Ramesha (C5378848)
+                  - generic [ref=f12e815]:
+                    - text: External Info•
+                    - generic [ref=f12e816]: 2026-07-06 12:10:08
+                    - text: •
+                    - generic [ref=f12e817]:
+                      - generic [ref=f12e818]: 
+                      - link "Translate" [ref=f12e819] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - generic [ref=f12e820]:
+                    - generic [ref=f12e822]:
+                      - text: Hi Team,
+                      - text: We are unable to attach interface and getting error, also old interface is not working.
+                      - text: "Server Name: ccde1gw9001.devint.net.sap"
+                      - text: Please find the attached error screenshot
+                      - text: Regards,
+                      - text: B.Ramesha
+                    - button "Copy journal content" [ref=f12e823] [cursor=pointer]: 
+                - listitem [ref=f12e825]:
+                  - generic [ref=f12e826]:
+                    - generic [ref=f12e829] [cursor=pointer]: BR
+                    - generic [ref=f12e831]: Barikara Ramesha (C5378848)
+                  - generic [ref=f12e833]:
+                    - text: Image uploaded•
+                    - generic [ref=f12e834]: 2026-07-06 12:08:38
+                  - link "image (9).png" [ref=f12e836] [cursor=pointer]:
+                    - /url: /sys_attachment.do?view=true&sys_id=073dd86bcf7d07500cfdfa713d851cdc
+                    - img "image (9).png" [ref=f12e837]
+                - listitem [ref=f12e839]:
+                  - generic [ref=f12e840]:
+                    - generic [ref=f12e843] [cursor=pointer]: BR
+                    - generic [ref=f12e845]: Barikara Ramesha (C5378848)
+                  - generic [ref=f12e847]:
+                    - text: Field changes•
+                    - generic [ref=f12e848]: 2026-07-06 12:08:03
+                  - list [ref=f12e851]:
+                    - listitem [ref=f12e852]:
+                      - generic [ref=f12e853]: Assignment group
+                      - generic [ref=f12e854]: GCID INFRA OPS INFRA OPS
+                    - listitem [ref=f12e855]:
+                      - generic [ref=f12e856]: Business impact
+                      - generic [ref=f12e857]: Server is inaccessible
+                    - listitem [ref=f12e858]:
+                      - generic [ref=f12e859]: Component
+                      - generic [ref=f12e860]: GCID-SCI-009
+                    - listitem [ref=f12e861]:
+                      - generic [ref=f12e862]: Description
+                      - generic [ref=f12e865]:
+                        - paragraph [ref=f12e866]: "Dear requester, In order to process your reported issue as quickly and efficiently as possible, we would need the following structured information from you along with detailed issue description:"
+                        - list [ref=f12e867]:
+                          - listitem [ref=f12e868]:
+                            - text: Project ID [or Converged Cloud Project Dashboard URL to master data of Project]
+                            - 'link "Project: SRM MDM CAT_eu-de-1" [ref=f12e869] [cursor=pointer]':
+                              - /url: https://cmp.wdf.sap.corp/sesi/main/#
+                          - listitem [ref=f12e870]: Region; Availability zone [i.e. EU-DE-1] EU-DE-1
+                          - listitem [ref=f12e871]: Domain ID
+                          - listitem [ref=f12e872]: Name and UUID of an affected component [volume, instance etc] ccde1gw9001.devint.net.sap
+                          - listitem [ref=f12e873]: Instance ID [is also the hostname of the device]ccde1gw9001.devint.net.sap
+                    - listitem [ref=f12e874]:
+                      - generic [ref=f12e875]: EUDP deactivated
+                      - generic [ref=f12e876]: "false"
+                    - listitem [ref=f12e877]:
+                      - generic [ref=f12e878]: Location
+                      - generic [ref=f12e879]: APJ Region/INDIA/Bangalore/BLR01
+                    - listitem [ref=f12e880]:
+                      - generic [ref=f12e881]: Opened by
+                      - generic [ref=f12e882]: Barikara Ramesha (C5378848)
+                    - listitem [ref=f12e883]:
+                      - generic [ref=f12e884]: Priority
+                      - generic [ref=f12e885]: 2 - High
+                    - listitem [ref=f12e886]:
+                      - generic [ref=f12e887]: Public
+                      - generic [ref=f12e888]: "false"
+                    - listitem [ref=f12e889]:
+                      - generic [ref=f12e890]: Reassignment count
+                      - generic [ref=f12e891]: "0"
+                    - listitem [ref=f12e892]:
+                      - generic [ref=f12e893]: Requester
+                      - generic [ref=f12e894]: Venkatesh Yadla (C5377109)
+                    - listitem [ref=f12e895]:
+                      - generic [ref=f12e896]: Service
+                      - generic [ref=f12e897]: GCID SAP Cloud Infrastructure
+                    - listitem [ref=f12e898]:
+                      - generic [ref=f12e899]: Service offering
+                      - generic [ref=f12e900]: GCID-SCI Compute-Virtual
+                    - listitem [ref=f12e901]:
+                      - generic [ref=f12e902]: Severity
+                      - generic [ref=f12e903]: High
+                    - listitem [ref=f12e904]:
+                      - generic [ref=f12e905]: State
+                      - generic [ref=f12e906]: New
+                    - listitem [ref=f12e907]:
+                      - generic [ref=f12e908]: Subject
+                      - generic [ref=f12e909]: We are unable to attach interface
+                    - listitem [ref=f12e910]:
+                      - generic [ref=f12e911]: SWAT state
+                      - generic [ref=f12e912]: Not triggered
+      - text:                                                                                                                                      
+      - generic [ref=f12e915]:
+        - button "Update" [ref=f12e916] [cursor=pointer]
+        - button "Assign to Me" [ref=f12e917] [cursor=pointer]
+        - button "Send Reply" [ref=f12e918] [cursor=pointer]
+        - button "Resolve" [ref=f12e919] [cursor=pointer]
+        - button "Save" [ref=f12e920] [cursor=pointer]
+        - button "Forward to Next Level" [ref=f12e921] [cursor=pointer]
+        - button "Reroute - Set Initial Level" [ref=f12e922] [cursor=pointer]
+        - button "Reroute - Keep Level" [ref=f12e923] [cursor=pointer]
+      - region "Related Links" [ref=f12e924]:
+        - heading "Related Links" [level=2] [ref=f12e925]
+        - list [ref=f12e926]:
+          - listitem [ref=f12e927]:
+            - link "Context Sensitive Analytics on Category" [ref=f12e928] [cursor=pointer]
+          - listitem [ref=f12e929]:
+            - link "Context Sensitive Analytics on Group" [ref=f12e930] [cursor=pointer]
+          - listitem [ref=f12e931]:
+            - link "Start Conference Call" [ref=f12e932] [cursor=pointer]
+          - listitem [ref=f12e933]:
+            - link "Import Messages from Microsoft Teams" [ref=f12e934] [cursor=pointer]
+          - listitem [ref=f12e935]:
+            - link "Refresh Impacted Services" [ref=f12e936] [cursor=pointer]
+          - listitem [ref=f12e937]:
+            - link "Audit History" [ref=f12e938] [cursor=pointer]
+    - generic: 
+  - region [ref=f12e939]: Removed Template bar landmark from bottom of form.
+  - text:                                                   
+  - status [ref=f12e940]

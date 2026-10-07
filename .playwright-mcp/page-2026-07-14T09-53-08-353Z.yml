@@ -1,0 +1,582 @@
+- generic [active] [ref=f27e1]:
+  - generic [ref=f27e3]:
+    - banner [ref=f27e4]:
+      - list:
+        - listitem:
+          - link "Skip to sidebar Type 'u' then '8'" [ref=f27e5] [cursor=pointer]:
+            - /url: ""
+            - text: Skip to sidebar
+        - listitem:
+          - link "Skip to main content" [ref=f27e6] [cursor=pointer]:
+            - /url: "#main"
+        - listitem:
+          - link "Skip to breadcrumbs" [ref=f27e7] [cursor=pointer]:
+            - /url: "#breadcrumbs"
+        - listitem:
+          - link "Skip to search" [ref=f27e8] [cursor=pointer]:
+            - /url: "#quick-search-query"
+      - navigation "Site" [ref=f27e9]:
+        - generic [ref=f27e10]:
+          - generic [ref=f27e11]:
+            - button " Linked Applications" [ref=f27e12] [cursor=pointer]
+            - text: 
+          - list [ref=f27e15]:
+            - listitem [ref=f27e16]:
+              - button " Spaces" [ref=f27e17] [cursor=pointer]
+            - listitem [ref=f27e18]:
+              - link "Calendars" [ref=f27e19] [cursor=pointer]:
+                - /url: /wiki/calendar/mycalendar.action
+            - listitem [ref=f27e21]:
+              - link "Create" [ref=f27e22] [cursor=pointer]:
+                - /url: /wiki/pages/createpage.action?&atl_token=0b782fc7a212e23a5d8eba9bc089339d15c520b8spaceKey=idservice&fromPageId=1543407600
+          - list [ref=f27e24]:
+            - listitem [ref=f27e25]:
+              - generic [ref=f27e26]:
+                - button "Search" [ref=f27e27] [cursor=pointer]: 
+                - textbox "Search query Type 'g' then 'g' OR '/'" [ref=f27e28]:
+                  - /placeholder: Search
+            - listitem [ref=f27e29]:
+              - button " Help" [ref=f27e30] [cursor=pointer]
+            - listitem
+            - listitem [ref=f27e32]:
+              - 'button "Notifications: 1 new" [expanded] [ref=f27e33] [cursor=pointer]':
+                - generic [ref=f27e34]: 
+                - generic: "1"
+            - listitem [ref=f27e35]:
+              - button "Your profile and preferences" [ref=f27e36] [cursor=pointer]
+    - generic [ref=f27e39]:
+      - complementary "sidebar" [ref=f27e40]:
+        - generic [ref=f27e41]:
+          - generic [ref=f27e42]:
+            - link "Identity Authentication Service" [ref=f27e43] [cursor=pointer]:
+              - /url: /wiki/spaces/idservice/pages/1004998910/Identity+Authentication+and+SAP+ID+Service+space
+              - generic "Identity Authentication Service" [ref=f27e49]
+            - text: 
+            - generic:
+              - button "Add to my spaces" [ref=f27e50] [cursor=pointer]: 
+              - text: 
+          - generic [ref=f27e51]:
+            - list [ref=f27e56]:
+              - listitem [ref=f27e57]:
+                - link "Pages" [ref=f27e58] [cursor=pointer]:
+                  - /url: /wiki/collector/pages.action?key=idservice
+                  - generic [ref=f27e59]: 
+                  - text: Pages
+              - listitem [ref=f27e60]:
+                - link "Calendars" [ref=f27e61] [cursor=pointer]:
+                  - /url: /wiki/display/idservice/calendars
+                  - generic [ref=f27e62]: 
+                  - text: Calendars
+            - generic [ref=f27e63]:
+              - heading "Page tree" [level=2] [ref=f27e65]:  Page tree
+              - list [ref=f27e68]:
+                - list [ref=f27e70]:
+                  - listitem [ref=f27e71]:
+                    - button "Expand item Program Overview" [ref=f27e73] [cursor=pointer]: 
+                    - link "Program Overview" [ref=f27e76] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1008577016/Program+Overview
+                  - listitem [ref=f27e77]:
+                    - button "Expand item Stakeholders" [ref=f27e79] [cursor=pointer]: 
+                    - link "Stakeholders" [ref=f27e82] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1020068596/Stakeholders
+                  - listitem [ref=f27e83]:
+                    - button "Expand item Product Specification" [ref=f27e85] [cursor=pointer]: 
+                    - link "Product Specification" [ref=f27e88] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1195251637/Product+Specification
+                  - listitem [ref=f27e89]:
+                    - button "Expand item Administrator Guide" [ref=f27e91] [cursor=pointer]: 
+                    - link "Administrator Guide" [ref=f27e94] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1211368659/Administrator+Guide
+                  - listitem [ref=f27e95]:
+                    - button "Expand item Developer Guide" [ref=f27e97] [cursor=pointer]: 
+                    - link "Developer Guide" [ref=f27e100] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1188202980/Developer+Guide
+                  - listitem [ref=f27e101]:
+                    - button "Expand item User Guide (SAP ID Service / IDS)" [ref=f27e103] [cursor=pointer]: 
+                    - link "User Guide (SAP ID Service / IDS)" [ref=f27e106] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1296834441/User+Guide+SAP+ID+Service+IDS
+                  - listitem [ref=f27e107]:
+                    - button "Expand item Support" [expanded] [ref=f27e109] [cursor=pointer]: 
+                    - link "Support" [ref=f27e112] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1543407600/Support
+                    - list [ref=f27e114]:
+                      - listitem [ref=f27e115]:
+                        - link "FAQ & Common Issues for BC-IAM-IDS component" [ref=f27e120] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/5991258808/FAQ+Common+Issues+for+BC-IAM-IDS+component
+                      - listitem [ref=f27e121]:
+                        - link "Known Issues" [ref=f27e126] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1885831185/Known+Issues
+                      - listitem [ref=f27e127]:
+                        - link "Service Catalog for Service Providers" [ref=f27e132] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1833476261/Service+Catalog+for+Service+Providers
+                      - listitem [ref=f27e133]:
+                        - link "Detailed Support Process" [ref=f27e138] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1552189234/Detailed+Support+Process
+                      - listitem [ref=f27e139]:
+                        - link "Identity Provider Error Handling" [ref=f27e144] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1183423252/Identity+Provider+Error+Handling
+                      - listitem [ref=f27e145]:
+                        - button "Expand item Operations Support" [ref=f27e147] [cursor=pointer]: 
+                        - link "Operations Support" [ref=f27e150] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1825563629/Operations+Support
+                      - listitem [ref=f27e151]:
+                        - link "Service Provider FAQ" [ref=f27e156] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1314666470/Service+Provider+FAQ
+                      - listitem [ref=f27e157]:
+                        - link "Single Sign-on with SAP ID Service for SAP Employees" [ref=f27e162] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1506233174/Single+Sign-on+with+SAP+ID+Service+for+SAP+Employees
+                      - listitem [ref=f27e163]:
+                        - link "Monitoring and Incident Management" [ref=f27e168] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1879435977/Monitoring+and+Incident+Management
+                      - listitem [ref=f27e169]:
+                        - link "Timelines" [ref=f27e174] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/2057755941/Timelines
+                      - listitem [ref=f27e175]:
+                        - button "Expand item Regular syncs with product support" [ref=f27e177] [cursor=pointer]: 
+                        - link "Regular syncs with product support" [ref=f27e180] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/1795042737/Regular+syncs+with+product+support
+                      - listitem [ref=f27e181]:
+                        - link "SCI EU DP Working Instructions" [ref=f27e186] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/4539655317/SCI+EU+DP+Working+Instructions
+                      - listitem [ref=f27e187]:
+                        - link "Kafka Monitoring" [ref=f27e192] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/4739646320/Kafka+Monitoring
+                      - listitem [ref=f27e193]:
+                        - link "Plutono Monitoring" [ref=f27e198] [cursor=pointer]:
+                          - /url: /wiki/spaces/idservice/pages/5053612256/Plutono+Monitoring
+                  - listitem [ref=f27e199]:
+                    - button "Expand item Mosaic Templates" [ref=f27e201] [cursor=pointer]: 
+                    - link "Mosaic Templates" [ref=f27e204] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/6162100393/Mosaic+Templates
+        - generic [ref=f27e205]:
+          - button "ConfigureSpace tools" [ref=f27e206] [cursor=pointer]:
+            - generic [ref=f27e207]:  Configure
+            - text: Space tools
+          - button "Sidebar" [expanded] [ref=f27e209] [cursor=pointer]: 
+        - tooltip "Type '['" [ref=f27e210]
+      - main [ref=f27e212]:
+        - generic [ref=f27e213]:
+          - region "Page tools" [ref=f27e214]:
+            - list:
+              - listitem [ref=f27e215]:
+                - link "View inline comments ('v') Type 'v'" [ref=f27e216] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f27e217]:
+                    - generic [ref=f27e218]: 
+                    - text: View inline comments
+              - listitem [ref=f27e219]:
+                - link "Save for later Type 'f'" [ref=f27e220] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f27e221]:
+                    - generic [ref=f27e222]: 
+                    - text: Save for later
+              - listitem [ref=f27e223]:
+                - link "Watch 'w'" [ref=f27e224] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f27e225]:
+                    - generic [ref=f27e226]: 
+                    - text: Watch
+              - listitem [ref=f27e227]:
+                - link "Share this page with others Type 's' OR 'k'" [ref=f27e228] [cursor=pointer]:
+                  - /url: /wiki
+                  - generic [ref=f27e229]:
+                    - generic [ref=f27e230]: 
+                    - text: Share
+              - listitem [ref=f27e231]:
+                - link "More options" [ref=f27e232] [cursor=pointer]:
+                  - /url: "#"
+                  - button "More options" [ref=f27e234]: 
+          - generic [ref=f27e235]:
+            - generic:
+              - navigation "Breadcrumbs":
+                - list:
+                  - listitem [ref=f27e236]:
+                    - link "Pages" [ref=f27e238] [cursor=pointer]:
+                      - /url: /wiki/collector/pages.action?key=idservice
+                  - listitem [ref=f27e239]:
+                    - text: /
+                    - link "Identity Authentication and SAP ID Service space" [ref=f27e241] [cursor=pointer]:
+                      - /url: /wiki/spaces/idservice/pages/1004998910/Identity+Authentication+and+SAP+ID+Service+space
+            - generic:
+              - list:
+                - listitem [ref=f27e242]:
+                  - link "Unrestricted" [ref=f27e243] [cursor=pointer]:
+                    - /url: ""
+                    - text: 
+                  - link "8 attachments" [ref=f27e244] [cursor=pointer]:
+                    - /url: /wiki/pages/viewpageattachments.action?pageId=1543407600&metadataLink=true
+                    - text: 
+                - listitem
+                - listitem
+                - listitem [ref=f27e245]
+            - link [ref=f27e247] [cursor=pointer]:
+              - /url: /wiki/spaces/idservice/pages/1543407600/Support
+              - heading "Support" [level=1] [ref=f27e248]
+        - generic [ref=f27e249]:
+          - generic [ref=f27e250]:
+            - list [ref=f27e251]:
+              - listitem [ref=f27e252]:
+                - text: Created by
+                - generic [ref=f27e253]: Unknown User (c5088844)
+                - text: ", last updated by"
+                - link "last.updated.by Kumblat Baby, Shibin" [ref=f27e255] [cursor=pointer]:
+                  - /url: "    /wiki/display/~I521000\n"
+                  - text: Kumblat Baby, Shibin
+                - text: "on"
+                - link "modified on Jun 24, 2026, select to show changes" [ref=f27e256] [cursor=pointer]:
+                  - /url: /wiki/pages/diffpagesbyversion.action?pageId=1543407600&selectedPageVersions=66&selectedPageVersions=67
+                  - text: Jun 24, 2026
+                - text: • 4 minute read
+            - list:
+              - listitem
+              - listitem
+              - listitem
+              - listitem
+          - generic [ref=f27e257]:
+            - heading [level=1] [ref=f27e258]:
+              - text: 1. Current Performance and Availability Status
+              - button "Copy link to heading" [ref=f27e260] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f27e261]: 
+                - text:  
+            - paragraph [ref=f27e262]: "The current availability and the up-time history of the IAS systems can be viewed here:"
+            - list [ref=f27e263]:
+              - listitem [ref=f27e264]:
+                - link "SAP Availability Service" [ref=f27e265] [cursor=pointer]:
+                  - /url: https://availability.cfapps.us10.hana.ondemand.com/index.html#/evaluation/457819
+            - heading [level=1] [ref=f27e266]:
+              - text: 2. Support Channels
+              - button "Copy link to heading" [ref=f27e268] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f27e269]: 
+                - text:  
+            - grid [ref=f27e271]:
+              - rowgroup "Use column header buttons to sort" [ref=f27e275]:
+                - row [ref=f27e276]:
+                  - columnheader [ref=f27e277]:
+                    - button [ref=f27e279] [cursor=pointer]:
+                      - heading [level=2] [ref=f27e280]:
+                        - text: 2.1.
+                        - strong [ref=f27e282]: SAP ID
+                  - columnheader [ref=f27e283]:
+                    - button [ref=f27e285] [cursor=pointer]:
+                      - heading [level=2] [ref=f27e286]:
+                        - text: 2.2.
+                        - strong [ref=f27e287]: Tenants
+                        - text: of Identity Authentication Service
+              - rowgroup [ref=f27e288]:
+                - row [ref=f27e289]:
+                  - gridcell [ref=f27e290]:
+                    - generic [ref=f27e291]:
+                      - heading "2.2.1. Support for Productive- and QA-Environment (accounts.sap.com and accounts400.sap.com)" [level=3] [ref=f27e292]
+                      - paragraph [ref=f27e293]:
+                        - strong [ref=f27e294]: "Infrastructure (24x7) - SAP ID: PLEASE only raise a ticket if you are certain this is an infrastructure-related issue"
+                      - paragraph [ref=f27e295]
+                      - paragraph [ref=f27e296]:
+                        - strong [ref=f27e297]: In case of Live Site Incidents / Emergencies
+                      - paragraph [ref=f27e298]:
+                        - text: Before contacting the L1 or CE teams via phone, please check the status of the service on
+                        - link "AvS" [ref=f27e299] [cursor=pointer]:
+                          - /url: https://availability.cfapps.us10.hana.ondemand.com/index.html#/evaluation/47811
+                        - text: or access
+                        - link "https://accounts.sap.com" [ref=f27e300] [cursor=pointer]:
+                          - /url: https://accounts.sap.com
+                      - paragraph [ref=f27e301]:
+                        - strong [ref=f27e302]: DO NOT CALL
+                        - text: them in case the monitor is green! Please open a ticket.
+                      - list [ref=f27e303]:
+                        - listitem [ref=f27e304]:
+                          - text: Via Phone
+                          - list [ref=f27e305]:
+                            - listitem [ref=f27e306]:
+                              - generic [ref=f27e308]:
+                                - text: "Hotline:"
+                                - strong [ref=f27e309]: +49 622 777 3758.
+                                - text: Press 1 for BTP.
+                            - listitem [ref=f27e310]:
+                              - text: If the hotline is not reachable, please contact the
+                              - link "Cloud Engineer on Duty" [ref=f27e311] [cursor=pointer]:
+                                - /url: https://wiki.wdf.sap.corp/wiki/x/th_Uag
+                              - text: directly through MS Teams, phone, or email.
+                      - paragraph [ref=f27e312]
+                      - paragraph [ref=f27e313]:
+                        - generic [ref=f27e314]:
+                          - strong [ref=f27e315]: Escalation contact
+                          - text: ":"
+                          - link "@Bushkevich, Andrei (external - Service)" [ref=f27e316] [cursor=pointer]:
+                            - /url: /wiki/display/~C5271635
+                  - gridcell [ref=f27e317]:
+                    - heading "2.2.2. In case of Live Site Incidents / Emergencies" [level=3] [ref=f27e318]
+                    - paragraph [ref=f27e319]:
+                      - text: Before contacting CCO or CE teams via phone, please check the status of the service on
+                      - link "AvS" [ref=f27e320] [cursor=pointer]:
+                        - /url: https://availability.cfapps.us10.hana.ondemand.com/index.html#/evaluation/457819
+                    - paragraph [ref=f27e321]:
+                      - strong [ref=f27e322]: DO NOT CALL
+                      - text: them in case all monitors are green instead of that please open a ticket
+                    - list [ref=f27e323]:
+                      - listitem [ref=f27e324]:
+                        - text: Via Phone
+                        - list [ref=f27e325]:
+                          - listitem [ref=f27e326]:
+                            - generic [ref=f27e328]:
+                              - text: "Hotline:"
+                              - strong [ref=f27e329]: +49 622 777 3758.
+                              - text: Press 1 for BTP.
+                          - listitem [ref=f27e330]:
+                            - text: If the hotline is not reachable, please contact the
+                            - link "Cloud Engineer on Duty" [ref=f27e331] [cursor=pointer]:
+                              - /url: https://wiki.wdf.sap.corp/wiki/x/th_Uag
+                            - text: directly through MS Teams, phone, or email.
+                - row [ref=f27e332]:
+                  - gridcell [ref=f27e333]:
+                    - heading "2.2.3. First Level Support" [level=3] [ref=f27e334]
+                    - paragraph [ref=f27e335]:
+                      - text: End User Support is done by the respective Service Provider. SAP ID Error messages will route (external) end users to
+                      - link "sso@sap.com" [ref=f27e336] [cursor=pointer]:
+                        - /url: mailto:sso@sap.com
+                      - text: (18x7 CET)
+                  - gridcell [ref=f27e337]:
+                    - generic [ref=f27e338]:
+                      - heading "2.2.4. Customer support" [level=3] [ref=f27e339]
+                      - paragraph [ref=f27e340]:
+                        - text: More details about how the customers are getting support is described in the
+                        - link "official documentation" [ref=f27e341] [cursor=pointer]:
+                          - /url: https://help.sap.com/docs/identity-authentication/identity-authentication/getting-support
+                        - text: .
+                      - paragraph [ref=f27e342]:
+                        - text: For more information about Customer Cases (how to create a Case, Priority, SLAs, etc), check
+                        - link "WIPS -> Case Management" [ref=f27e343] [cursor=pointer]:
+                          - /url: https://one.int.sap/functional_areas/services_and_support/wips/case_management
+                - row [ref=f27e344]:
+                  - 'gridcell "2.2.5. Service Requests, Incidents (affecting specific SPs) Previous ITDirect category: IMAS_IDS, SRAS_IDS Unified Ticketing: (8x5 CET) MFA/TOTP Issues Password/Login Issues S-User Replication Issue Other Issues Related to SAP ID Service Provider Requests SP Change SP Onboarding SP Deletion These categories include requests for: Service Provider Onboarding General Service Provider Change Requests reset of TOTP configuration for individual users updating certificates troubleshooting issues limited to your specific SP Service Catalog for Service Provider Onboarding. For how to request the integration of your application to the SAP internal tenant of Identity Authentication service see here. Non-Emergency Communication Channel Via Mail SAPIDService@sap.com" [ref=f27e345]':
+                    - generic [ref=f27e346]:
+                      - heading "2.2.5. Service Requests, Incidents (affecting specific SPs)" [level=3] [ref=f27e347]
+                      - paragraph [ref=f27e348]:
+                        - generic [ref=f27e349]:
+                          - text: Previous
+                          - strong [ref=f27e350]: ITDirect
+                          - text: "category:"
+                        - emphasis [ref=f27e352]: IMAS_IDS, SRAS_IDS
+                        - generic [ref=f27e353]: "Unified Ticketing: (8x5 CET)"
+                      - paragraph [ref=f27e354]:
+                        - strong [ref=f27e355]: MFA/TOTP Issues
+                        - link [ref=f27e356] [cursor=pointer]:
+                          - /url: https://itsupportportal.services.sap/itsupport?id=itsm_sc_cat_item&sys_id=b1982b441bb1c1105039a6c8bb4bcbc3&sysparm_variables=%7b%22business_service%22%3a%2253df54ef1ba564905039a6c8bb4bcb0e%22%2c%22service_offering%22%3a%224eccb0f5eb153a50d4f0f80c0bd0cd54%22%2c%22assignment_group%22%3a%22b4b35e0eebef2210d4f0f80c0bd0cdb3%22%2c%22short_description%22%3a%22MFA%2fTOTP+Issues%22%2c%22description%22%3a%22Please+provide+the+following+information+to+facilitate+further+investigation+of+the+MFA%2fTOTP+issue%3a%5cn%5cn-+Screenshot(s)+displaying+the+error+message(s)+encountered.%5cn-+The+exact+link%2fURL+where+the+issue+occurs.%5cn-+The+Email+or+SAP+ID+%22%7d
+                        - strong [ref=f27e359]: Password/Login Issues
+                        - generic [ref=f27e361]:
+                          - link [ref=f27e362] [cursor=pointer]:
+                            - /url: https://itsupportportal.services.sap/itsupport?id=itsm_sc_cat_item&sys_id=b1982b441bb1c1105039a6c8bb4bcbc3&sysparm_variables=%7b%22business_service%22%3a%2253df54ef1ba564905039a6c8bb4bcb0e%22%2c%22service_offering%22%3a%224eccb0f5eb153a50d4f0f80c0bd0cd54%22%2c%22assignment_group%22%3a%22b4b35e0eebef2210d4f0f80c0bd0cdb3%22%2c%22short_description%22%3a%22SAP+ID+Password+Reset+or+Login+Issues%22%2c%22description%22%3a%22Please+provide+the+following+information+to+facilitate+further+investigation+of+the+Password%2fLogin+issue%3a%5cn-+Screenshot(s)+displaying+the+error+message(s)+encountered.%5cn-+The+exact+link%2fURL+where+the+issue+occurs.%5cn-+The+Email+or+SAP+ID%5cn-+The+relevant+.HAR+file(s)+(instructions%3a+https%3a%2f%2ftoolbox.googleapps.com%2fapps%2fhar_analyzer%2f).%5cn-+SAML+trace+logs%2c+if+applicable+(see+SAP+Note%3a+https%3a%2f%2fme.sap.com%2fnotes%2f2461862%2fE).%5cn%22%7d
+                          - strong [ref=f27e365]: S-User Replication Issue
+                          - link [ref=f27e366] [cursor=pointer]:
+                            - /url: https://itsupportportal.services.sap/itsupport?id=itsm_sc_cat_item&sys_id=b1982b441bb1c1105039a6c8bb4bcbc3&sysparm_variables=%7b%22business_service%22%3a%2253df54ef1ba564905039a6c8bb4bcb0e%22%2c%22service_offering%22%3a%224eccb0f5eb153a50d4f0f80c0bd0cd54%22%2c%22assignment_group%22%3a%22b4b35e0eebef2210d4f0f80c0bd0cdb3%22%2c%22short_description%22%3a%22S-User+Replication+Issue%22%2c%22description%22%3a%22Please+provide+the+following+information+to+facilitate+further+investigation+of+the+S-User+ID+replication+issue%3a%5cn-+Screenshot(s)+displaying+the+error+message(s)+encountered.%5cn-+The+Email+or+SAP+ID%22%7d
+                          - strong [ref=f27e369]:
+                            - text: Other Issues Related to SAP ID
+                            - link [ref=f27e370] [cursor=pointer]:
+                              - /url: https://itsupportportal.services.sap/itsupport?id=itsm_sc_cat_item&sys_id=b1982b441bb1c1105039a6c8bb4bcbc3&sysparm_variables=%7b%22business_service%22%3a%2253df54ef1ba564905039a6c8bb4bcb0e%22%2c%22service_offering%22%3a%224eccb0f5eb153a50d4f0f80c0bd0cd54%22%2c%22assignment_group%22%3a%22b4b35e0eebef2210d4f0f80c0bd0cdb3%22%2c%22short_description%22%3a%22Other+Issues+Related+to+SAP+ID%22%2c%22description%22%3a%22Please+provide+the+following+information+to+facilitate+further+investigation+of+the+SAP+ID+issue(s)%3a%5cn-+Screenshot(s)+displaying+the+error+message(s)+encountered.%5cn-+The+Email+or+SAP+ID%22%7d
+                        - strong [ref=f27e373]:
+                          - text: Service Provider Requests
+                          - strong [ref=f27e374]:
+                            - text: SP Change
+                            - link [ref=f27e376] [cursor=pointer]:
+                              - /url: https://itsupportportal.services.sap/itsupport?id=itsm_sc_cat_item&sys_id=89c250681b044950074c65b26b4bcb45&sysparm_variables=%7b%22service_offering%22%3a%224eccb0f5eb153a50d4f0f80c0bd0cd54%22%2c%22assignment_group%22%3a%229e25347debd13a50d4f0f80c0bd0cded%22%2c%22short_text%22%3anull%2c%22short_description%22%3a%22SAP+ID%3a+SP+Change+Request%22%2c%22task_details%22%3a%22Service+Provider+Change%2c+SP+Change%2c+SP+Update%22%2c%22description%22%3a%22Hello+SAP+ID%2c%5cn%5cnI+would+like+to+request+a+change+to+an+existing+Service+Provider+previously+onboarded+to+the+SAP+ID.%5cn%5cnSAP+ID+landscape%3a+%5bPROD%2fQA%5d.+%5cnThis+is+the+entity-ID+of+my+Service+Provider%3a+%5bentity-ID%5d.%5cnThis+is+the+change+I+wish+to+request%3a+%5bdetail+the+change+you+require%5d.+%5cn%5cnThank+you+and+best+regards.%22%7d
+                          - text: SP Onboarding
+                          - link [ref=f27e380] [cursor=pointer]:
+                            - /url: https://itsupportportal.services.sap/itsupport?id=itsm_sc_cat_item&sys_id=89c250681b044950074c65b26b4bcb45&sysparm_variables=%7b%22service_offering%22%3a%224eccb0f5eb153a50d4f0f80c0bd0cd54%22%2c%22assignment_group%22%3a%229e25347debd13a50d4f0f80c0bd0cded%22%2c%22short_text%22%3anull%2c%22short_description%22%3a%22SAP+ID%3a+SP+Onboarding+Request%22%2c%22task_details%22%3a%22SP+Onboarding%2c+Service+Provider%22%2c%22description%22%3a%22Hello+SAP+ID%2c%5cn%5cnI+would+like+to+request+a+Service+Provider+(SP)+Onboarding.%5cnPlease+find+the+required+files+(Questionnaire+and+Metadata)+attached.%5cn%5cnService+Provider+Onboarding+Guide%3a+https%3a%2f%2fwiki.one.int.sap%2fwiki%2fx%2fhwHWRw%5cn%5cnThank+you+and+best+regards%2c%22%7d
+                        - strong [ref=f27e383]:
+                          - text: SP Deletion
+                          - link [ref=f27e385] [cursor=pointer]:
+                            - /url: https://itsupportportal.services.sap/itsupport?id=itsm_sc_cat_item&sys_id=89c250681b044950074c65b26b4bcb45&sysparm_variables=%7b%22service_offering%22%3a%224eccb0f5eb153a50d4f0f80c0bd0cd54%22%2c%22assignment_group%22%3a%229e25347debd13a50d4f0f80c0bd0cded%22%2c%22short_text%22%3anull%2c%22short_description%22%3a%22SAP+ID%3a+SP+Deletion+Request%22%2c%22task_details%22%3a%22Service+Provider+Delete%2c+SP+Delete%2c+SP+Change%22%2c%22description%22%3a%22Hello+SAP+ID%2c%5cn%5cnI+would+like+to+request+to+delete+the+existing+Service+Provider.%5cn%5cnSAP+ID+landscape%3a+%5bPROD%2fQA%5d.+%5cnThis+is+the+entity-ID+of+my+Service+Provider%3a+%5bentity-ID%5d.%5cn%5cnThank+you+and+best+regards.%22%7d
+                      - paragraph [ref=f27e388]: "These categories include requests for:"
+                      - list [ref=f27e389]:
+                        - listitem [ref=f27e390]: Service Provider Onboarding
+                        - listitem [ref=f27e391]: General Service Provider Change Requests
+                        - listitem [ref=f27e392]: reset of TOTP configuration for individual users
+                        - listitem [ref=f27e393]: updating certificates
+                        - listitem [ref=f27e394]: troubleshooting issues limited to your specific SP
+                      - paragraph [ref=f27e395]:
+                        - link "Service Catalog" [ref=f27e396] [cursor=pointer]:
+                          - /url: https://wiki.wdf.sap.corp/wiki/x/paBIbQ
+                        - text: for Service Provider Onboarding. For how to request the integration of your application to the SAP internal tenant of Identity Authentication service see
+                        - link "here" [ref=f27e397] [cursor=pointer]:
+                          - /url: https://wiki.wdf.sap.corp/wiki/x/hwHWRw
+                        - text: .
+                      - paragraph [ref=f27e398]:
+                        - strong [ref=f27e399]: Non-Emergency Communication Channel
+                      - list [ref=f27e400]:
+                        - listitem [ref=f27e401]:
+                          - text: Via Mail
+                          - link "SAPIDService@sap.com" [ref=f27e402] [cursor=pointer]:
+                            - /url: mailto:SAPIDService@sap.com
+                  - gridcell [ref=f27e403]:
+                    - generic [ref=f27e404]:
+                      - heading "2.2.6. Internal support" [level=3] [ref=f27e405]
+                      - paragraph [ref=f27e406]: "For non-customer tenants, please follow below guidelines:"
+                    - list [ref=f27e407]:
+                      - listitem [ref=f27e408]: If you wish to decommission your Cloud Identity Service instance there is no action that you need to take. The tenant will be deactivated and later deleted after at least 6 months of no activity (user logins to an application).
+                    - paragraph [ref=f27e409]
+                    - generic [ref=f27e410]:
+                      - list [ref=f27e411]:
+                        - listitem [ref=f27e412]:
+                          - text: If the issue/request is related to
+                          - link "https://accounts.sap.com/" [ref=f27e413] [cursor=pointer]:
+                            - /url: https://accounts.sap.com/
+                          - text: or
+                          - link "https://accounts400.sap.com/" [ref=f27e414] [cursor=pointer]:
+                            - /url: https://accounts400.sap.com/
+                          - text: ", refer to the instruction in the left part of the screen."
+                      - paragraph [ref=f27e415]
+                      - list [ref=f27e416]:
+                        - listitem [ref=f27e417]:
+                          - text: If you are facing issues with a custom IAS tenant (<tenantName>.
+                          - link "accounts.ondemand.com" [ref=f27e418] [cursor=pointer]:
+                            - /url: http://accounts.ondemand.com
+                          - text: ", <tenantName>."
+                          - link "accounts400.ondemand.com" [ref=f27e419] [cursor=pointer]:
+                            - /url: http://accounts400.ondemand.com
+                          - text: or <tenantName>.
+                          - link "accounts.sapcloud.cn" [ref=f27e421] [cursor=pointer]:
+                            - /url: http://accounts.sapcloud.cn
+                          - text: ), please reach out to the responsible person who requested the custom IAS tenant or to appointed tenant administrator/s.
+                      - paragraph [ref=f27e422]
+                      - list [ref=f27e423]:
+                        - listitem [ref=f27e424]:
+                          - text: "Service requests:"
+                          - list [ref=f27e425]:
+                            - listitem [ref=f27e426]:
+                              - link "How to Request a Tenant of Identity Authentication Service" [ref=f27e427] [cursor=pointer]:
+                                - /url: https://wiki.one.int.sap/wiki/display/idservice/How+to+Request+a+Tenant+of+Identity+Authentication+Service
+                      - paragraph [ref=f27e428]
+                      - list [ref=f27e429]:
+                        - listitem [ref=f27e430]:
+                          - link "FAQ SAP Cloud Identity Services" [ref=f27e431] [cursor=pointer]:
+                            - /url: https://workzone.one.int.sap/site#workzone-home&/wiki/show/x1u6Ehs9FbzpnNehBiVrot
+                      - paragraph [ref=f27e432]
+                      - list [ref=f27e433]:
+                        - listitem [ref=f27e434]:
+                          - text: For how-to / consultation questions, you can use below communities (you can either search for similar questions or post your own, if it’s not already covered).
+                          - list [ref=f27e435]:
+                            - listitem [ref=f27e436]:
+                              - link "SAP Cloud Identity Services’ Work Zone space, Forum Topics" [ref=f27e437] [cursor=pointer]:
+                                - /url: https://workzone.one.int.sap/site#workzone-home&/groups/e7Wsy6rTJQSe6qS2A26jlj/forums?folder_id=4iHVimrZj5HXQeLaxTN0YD
+                            - listitem [ref=f27e438]:
+                              - link "SAP Cloud Identity Services’ Community" [ref=f27e439] [cursor=pointer]:
+                                - /url: https://community.sap.com/topics/cloud-identity-services
+                      - paragraph [ref=f27e440]
+                      - list [ref=f27e441]:
+                        - listitem [ref=f27e442]:
+                          - text: How to disable/deactivate Two-Factor Authentication / TFA / 2FA / MFA for a user – see SAP Note
+                          - link "3154225 - How To Deactivate Two-Factor Authentication for a User" [ref=f27e443] [cursor=pointer]:
+                            - /url: https://me.sap.com/notes/3154225
+                      - paragraph [ref=f27e444]
+                      - list [ref=f27e445]:
+                        - listitem [ref=f27e446]:
+                          - text: To report a bug/issue,
+                          - link "Create ServiceNow Development Incident" [ref=f27e447] [cursor=pointer]:
+                            - /url: https://itsm.services.sap/sp?id=sc_cat_item&sys_id=b760c5611b5b78d4614e744c8b4bcbd7&sysparm_category=e15706fc0a0a0aa7007fc21e1ab70c2f&catalog_id=-1
+                          - text: on component BC-IAM-IDS
+                          - list [ref=f27e448]:
+                            - listitem [ref=f27e449]:
+                              - text: For more information about Development Incidents (how to create, close, etc.), please check
+                              - link "WIPS -> Development Incident -> Internal Incident" [ref=f27e450] [cursor=pointer]:
+                                - /url: https://one.int.sap/functional_areas/services_and_support/wips/development_incident/internal_incident
+                    - paragraph [ref=f27e451]
+                    - heading "2.2.7. Escalation contact:" [level=3] [ref=f27e452]
+                    - paragraph [ref=f27e453]:
+                      - link "Georgiev, Radoslav" [ref=f27e454] [cursor=pointer]:
+                        - /url: https://wiki.one.int.sap/wiki/display/~I571110
+                      - text: (Product Owner, Cloud Identity Services – Identity Authentication)
+                - row [ref=f27e455]:
+                  - gridcell [ref=f27e456]:
+                    - list [ref=f27e458]:
+                      - listitem [ref=f27e459]:
+                        - text: If the issue/request is related to
+                        - link "https://accounts.sap.com/" [ref=f27e460] [cursor=pointer]:
+                          - /url: https://accounts.sap.com/
+                        - text: or
+                        - link "https://accounts400.sap.com/" [ref=f27e461] [cursor=pointer]:
+                          - /url: https://accounts400.sap.com/
+                        - text: ", refer to the instruction in the left part of the screen."
+                  - gridcell [ref=f27e462]
+            - heading [level=2] [ref=f27e463]:
+              - text: 2.3. Further Support Details
+              - button "Copy link to heading" [ref=f27e465] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f27e466]: 
+                - text:  
+            - paragraph [ref=f27e467]:
+              - text: Overview of the support levels can be found
+              - link "here" [ref=f27e468] [cursor=pointer]:
+                - /url: /wiki/spaces/idservice/pages/1552189234/Detailed+Support+Process
+              - text: .
+            - paragraph [ref=f27e469]:
+              - generic [ref=f27e471]:
+                - text: For more information about Development Incidents (how to create, close, etc.), please check the
+                - link "documentation" [ref=f27e472] [cursor=pointer]:
+                  - /url: https://one.int.sap/functional_areas/services_and_support/wips/development_incident/internal_incident
+                - text: .
+            - paragraph [ref=f27e473]:
+              - text: SLAs for customer messages according to SAP BTP SLAs (details see
+              - link "SAP Trust Center" [ref=f27e474] [cursor=pointer]:
+                - /url: https://www.sap.com/about/trust-center/agreements.html
+              - text: → Cloud Services Agreements → Service Level Agreements → search for 'SAP Cloud Platform')
+            - heading [level=2] [ref=f27e475]:
+              - text: 2.4.
+              - link "Landscapes" [ref=f27e476] [cursor=pointer]:
+                - /url: https://portal.wdf.sap.corp/go/internal-incidents
+              - button "Copy link to heading" [ref=f27e478] [cursor=pointer]:
+                - img "Copy link to heading" [ref=f27e479]: 
+                - text:  
+            - grid [ref=f27e481]:
+              - rowgroup "Use column header buttons to sort" [ref=f27e486]:
+                - row [ref=f27e487]:
+                  - columnheader [ref=f27e488]:
+                    - button [ref=f27e490] [cursor=pointer]
+                  - columnheader [ref=f27e491]:
+                    - button "SAP Tenant" [ref=f27e493] [cursor=pointer]
+                  - columnheader [ref=f27e494]:
+                    - button "Customer Tenant" [ref=f27e496] [cursor=pointer]
+              - rowgroup [ref=f27e497]:
+                - row [ref=f27e498]:
+                  - gridcell "Productive Environment" [ref=f27e499]
+                  - gridcell [ref=f27e500]:
+                    - paragraph [ref=f27e501]: accounts.sap.com
+                  - gridcell [ref=f27e502]:
+                    - paragraph [ref=f27e503]: <tenant id>.accounts.ondemand.com
+                - row [ref=f27e504]:
+                  - gridcell "QA Environment" [ref=f27e505]
+                  - gridcell "accounts400.sap.com" [ref=f27e506]
+                  - gridcell [ref=f27e507]:
+                    - paragraph [ref=f27e508]: <tenant id>accounts400.ondemand.com
+            - generic "Filter column"
+            - text: 
+          - generic [ref=f27e509]:
+            - generic [ref=f27e510]:
+              - link " Like" [ref=f27e511] [cursor=pointer]:
+                - /url: ""
+                - generic [ref=f27e512]: 
+                - text: Like
+              - generic [ref=f27e513]:
+                - link "2 people" [ref=f27e514] [cursor=pointer]:
+                  - /url: ""
+                - text: like this
+            - list [ref=f27e518]:
+              - listitem [ref=f27e519]:
+                - link "unrestored-unknown-attachment" [ref=f27e520] [cursor=pointer]:
+                  - /url: /wiki/label/idservice/unrestored-unknown-attachment
+              - listitem [ref=f27e521]:
+                - link "Edit Labels Type 'l'" [ref=f27e522] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f27e523]:  Edit Labels
+      - contentinfo [ref=f27e524]:
+        - list [ref=f27e526]:
+          - listitem [ref=f27e527]:
+            - text: Powered by
+            - link "Atlassian Confluence" [ref=f27e528] [cursor=pointer]:
+              - /url: https://www.atlassian.com/software/confluence
+            - text: "9.2.21 (node3: 4bccedf7)·"
+          - listitem [ref=f27e529]:
+            - link "Report an Incident" [ref=f27e530] [cursor=pointer]:
+              - /url: https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site/Home?sap-language=en#unifiedticketing-Display&/create/INC/IMAS_EN_WIKI/Wiki%2525252520Incident%252525253A%2525252520/03///Hi%252525252C%252525250AI%2525252520am%2525252520experiencing%2525252520the%2525252520following%2525252520technical%2525252520issue%2525252520on%2525252520Wiki%2525252520(https%252525253A%252525256060%252525256060wiki.one.int.sap%252525256060wiki)...%252525250A//////01/01/////Business%2525252520Applications%2525252520(HR%252525252C%2525252520Billing%252525252C%2525252520Sales%252525252C%2525252520Controlling%252525252C...)/
+            - text: ·
+          - listitem [ref=f27e531]:
+            - link "Wiki Community" [ref=f27e532] [cursor=pointer]:
+              - /url: https://workzone.one.int.sap/site#workzone-home&/groups/0amcyaUNLQv0rj749CdTos/workpage_tabs/R1slkakPVopJhblbUM5mIL
+  - text:                                                   

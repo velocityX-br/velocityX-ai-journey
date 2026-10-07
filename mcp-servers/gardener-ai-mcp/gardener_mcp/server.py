@@ -21,9 +21,11 @@ Design notes (ADR-003, ADR-004):
 from __future__ import annotations
 
 import logging
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from typing import AsyncIterator
 
+from ai_observability import configure
+from ai_observability.mcp_middleware import OtelToolMiddleware
 from fastmcp import FastMCP
 
 from config.settings import Settings, get_settings
@@ -49,6 +51,7 @@ async def lifespan(app: FastMCP) -> AsyncIterator[dict]:  # type: ignore[type-ar
         makes available via ``Context.lifespan_context`` in every tool call.
     """
     settings: Settings = get_settings()
+    configure("gardener-ai-mcp")
     logger.info(
         "Starting Gardener AI MCP server — qdrant_url=%s anthropic_model=%s",
         settings.qdrant_url,
@@ -78,6 +81,7 @@ mcp = FastMCP(
     ),
     lifespan=lifespan,
 )
+mcp.add_middleware(OtelToolMiddleware())
 
 # Register all 7 tools against this FastMCP instance.
 register_tools(mcp)

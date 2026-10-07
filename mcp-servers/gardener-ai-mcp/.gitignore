@@ -40,3 +40,6 @@ coverage.xml
 # OS
 .DS_Store
 Thumbs.db
+
+# Project exploration notes (local onboarding docs, not committed)
+.project-exploration/

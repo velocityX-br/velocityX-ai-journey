@@ -1,0 +1,37 @@
+# hyperspace_gemini_3_5_flash.yaml — selectable backend model: gemini-3.5-flash.
+#
+# Exposes Google's `gemini-3.5-flash` (Vertex AI family; see SAP Note 3437766)
+# to the Web UI as its own selectable config, routed through a LiteLLM proxy —
+# a single OpenAI-compatible endpoint that fronts SAP "Hyperspace" backends.
+#
+# Setup: run a LiteLLM proxy whose model_list maps the name `gemini-3.5-flash`
+# to the real Vertex/Hyperspace deployment, then set (in .env):
+#   LITELLM_BASE_URL=http://localhost:4000     # your LiteLLM proxy URL
+#   LITELLM_API_KEY=sk-...                      # the proxy's virtual key
+# No secrets live in this file.
+
+name: hyperspace-gemini-3.5-flash
+
+system_prompt: |
+  You are a helpful, precise assistant powered by gemini-3.5-flash via the SAP
+  Hyperspace gateway. Use the available tools when they help answer the
+  question, and cite the sources returned by tools.
+
+llm:
+  provider: litellm            # LiteLLM proxy (OpenAI-compatible endpoint)
+  model: gemini-3.5-flash      # LiteLLM model_list alias -> Vertex/Hyperspace
+  temperature: 0.0
+  max_tokens: 4096
+  # Endpoint + key resolved from env by default (LITELLM_BASE_URL / LITELLM_API_KEY).
+  # You may pin them here explicitly (supports ${ENV} references):
+  # base_url: ${LITELLM_BASE_URL}
+  # api_key: ${LITELLM_API_KEY}
+
+memory:
+  backend: memory
+
+# Built-in web search (see src/agent_chat/web_search.py). Uses TAVILY_API_KEY
+# when set, otherwise a keyless DuckDuckGo fallback.
+web_search: true
+
+mcp_servers: {}

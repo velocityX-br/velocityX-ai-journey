@@ -1,0 +1,31 @@
+- generic [ref=f1e1]:
+  - complementary [ref=f1e2]:
+    - button "+ New chat" [ref=f1e4] [cursor=pointer]
+    - generic [ref=f1e5]:
+      - generic [ref=f1e37] [cursor=pointer]:
+        - generic [ref=f1e38]:
+          - generic [ref=f1e39]: New chat
+          - generic [ref=f1e40]: just now
+        - generic [ref=f1e41]:
+          - button "✎" [ref=f1e42]
+          - button "🗑" [ref=f1e43]
+      - generic [ref=f1e44] [cursor=pointer]:
+        - generic [ref=f1e45]:
+          - generic [ref=f1e46]: My name is Zephyr. Just remember it and reply with one short…
+          - generic [ref=f1e47]: 1m ago
+        - generic [ref=f1e48]:
+          - button "✎" [ref=f1e49]
+          - button "🗑" [ref=f1e50]
+  - main [ref=f1e13]:
+    - generic [ref=f1e14]:
+      - heading "agent-scaffold" [level=1] [ref=f1e15]
+      - generic [ref=f1e16]:
+        - text: config
+        - combobox "config" [ref=f1e17]:
+          - option "generic-react-agent (anthropic/anthropic--claude-sonnet-latest)" [selected]
+          - option "sap-ops-assistant (anthropic/anthropic--claude-sonnet-latest · gardener)"
+      - generic [ref=f1e18]: generic_react · thread web-vuo7y9xm
+    - generic [ref=f1e21]:
+      - textbox "Ask something… (Enter to send, Shift+Enter for newline)" [active] [ref=f1e22]:
+        - /placeholder: Ask something…  (Enter to send, Shift+Enter for newline)
+      - button "Send" [ref=f1e23] [cursor=pointer]

@@ -18,6 +18,7 @@ import logging
 
 import openai
 import tiktoken
+from ai_observability import note_external
 from tenacity import retry, retry_if_exception, stop_after_attempt, wait_exponential
 
 from config.settings import Settings
@@ -222,6 +223,7 @@ class HyperspaceEmbedder(BaseEmbedder):
             openai.RateLimitError: Re-raised after 5 failed attempts.
             openai.APIError: Propagated on non-429 API errors.
         """
+        note_external("openai", model=self._model)
         response = await self._client.embeddings.create(
             model=self._model,
             input=batch,
@@ -248,9 +250,7 @@ class HyperspaceEmbedder(BaseEmbedder):
                 input list (used for the log message only).
         """
         try:
-            total_tokens = sum(
-                len(self._tokenizer.encode(text)) for text in batch
-            )
+            total_tokens = sum(len(self._tokenizer.encode(text)) for text in batch)
             if total_tokens > _TOKEN_WARNING_THRESHOLD:
                 logger.warning(
                     "Batch starting at index %d contains %d tokens "

@@ -1,0 +1,2432 @@
+- generic [active] [ref=f8e1]:
+  - banner:
+    - navigation [ref=f8e2]:
+      - generic [ref=f8e3]:
+        - link "Cloud Infrastructure Operations" [ref=f8e4] [cursor=pointer]:
+          - /url: /
+        - list [ref=f8e14]:
+          - listitem [ref=f8e15]:
+            - link " OpsDocs" [ref=f8e16] [cursor=pointer]:
+              - /url: /docs/
+              - generic [ref=f8e17]: 
+              - text: OpsDocs
+          - listitem [ref=f8e18]:
+            - link " MIM Dashboard " [ref=f8e19] [cursor=pointer]:
+              - /url: https://itsm.services.sap/now/nav/ui/classic/params/target/%24pa_dashboard.do%3Fsysparm_dashboard%3Db9263f28475f611c0262b7cd436d437b
+              - generic [ref=f8e20]: 
+              - text: MIM Dashboard
+              - generic [ref=f8e21]: 
+          - listitem [ref=f8e22]:
+            - link " Documentation-Help" [ref=f8e23] [cursor=pointer]:
+              - /url: /help/
+              - generic [ref=f8e24]: 
+              - text: Documentation-Help
+          - listitem [ref=f8e25]:
+            - link " Links for SCI" [ref=f8e26] [cursor=pointer]:
+              - /url: /links/
+              - generic [ref=f8e27]: 
+              - text: Links for SCI
+          - listitem [ref=f8e28]:
+            - button "Toggle theme (auto)" [ref=f8e29] [cursor=pointer]
+          - listitem [ref=f8e32]:
+            - link "Go to CCloud" [ref=f8e33] [cursor=pointer]:
+              - /url: https://ccloud.global.cloud.sap
+        - generic [ref=f8e35]:
+          - generic: 
+          - searchbox "Search this site…" [ref=f8e36]
+  - generic [ref=f8e37]:
+    - generic [ref=f8e39]:
+      - complementary [ref=f8e40]:
+        - generic [ref=f8e41]:
+          - text:  
+          - navigation [ref=f8e42]:
+            - list [ref=f8e43]:
+              - listitem [ref=f8e44]:
+                - link " OpsDocs" [ref=f8e45] [cursor=pointer]:
+                  - /url: /docs/
+                  - generic [ref=f8e46]: 
+                  - text: OpsDocs
+                - list [ref=f8e47]:
+                  - listitem [ref=f8e48]:
+                    - generic [ref=f8e49]:
+                      - text: 
+                      - link " Compute" [ref=f8e50] [cursor=pointer]:
+                        - /url: /docs/compute/
+                        - generic [ref=f8e51]: 
+                        - text: Compute
+                    - text:                                                                                          
+                  - listitem [ref=f8e52]:
+                    - generic [ref=f8e53]:
+                      - text: 
+                      - link " Network" [ref=f8e54] [cursor=pointer]:
+                        - /url: /docs/network/
+                        - generic [ref=f8e55]: 
+                        - text: Network
+                    - text:                
+                  - listitem [ref=f8e56]:
+                    - generic [ref=f8e57]:
+                      - text: 
+                      - link " Storage" [ref=f8e58] [cursor=pointer]:
+                        - /url: /docs/storage/
+                        - generic [ref=f8e59]: 
+                        - text: Storage
+                    - text:                                   
+                  - listitem [ref=f8e60]:
+                    - generic [ref=f8e61]:
+                      - text: 
+                      - link " Container" [ref=f8e62] [cursor=pointer]:
+                        - /url: /docs/container/
+                        - generic [ref=f8e63]: 
+                        - text: Container
+                    - text:                    
+                  - listitem [ref=f8e64]:
+                    - generic [ref=f8e65]:
+                      - text: 
+                      - link " Resources" [ref=f8e66] [cursor=pointer]:
+                        - /url: /docs/resources/
+                        - generic [ref=f8e67]: 
+                        - text: Resources
+                    - text:      
+                  - listitem [ref=f8e68]:
+                    - generic [ref=f8e69]:
+                      - text: 
+                      - link " Frontend" [ref=f8e70] [cursor=pointer]:
+                        - /url: /docs/frontend/
+                        - generic [ref=f8e71]: 
+                        - text: Frontend
+                  - listitem [ref=f8e72]:
+                    - generic [ref=f8e73]:
+                      - text: 
+                      - link " Platform" [ref=f8e74] [cursor=pointer]:
+                        - /url: /docs/platform/
+                        - generic [ref=f8e75]: 
+                        - text: Platform
+                    - text: 
+                  - listitem [ref=f8e76]:
+                    - generic [ref=f8e77]:
+                      - text: 
+                      - link " Trust & Identity" [ref=f8e78] [cursor=pointer]:
+                        - /url: /docs/trust/
+                        - generic [ref=f8e79]: 
+                        - text: Trust & Identity
+                    - text:                     
+                  - listitem [ref=f8e80]:
+                    - generic [ref=f8e81]:
+                      - text: 
+                      - link " Observability" [ref=f8e82] [cursor=pointer]:
+                        - /url: /docs/observability/
+                        - generic [ref=f8e83]: 
+                        - text: Observability
+                    - text:                            
+                  - listitem [ref=f8e84]:
+                    - generic [ref=f8e85]:
+                      - text: 
+                      - link " Compliance Management" [ref=f8e86] [cursor=pointer]:
+                        - /url: /docs/management-compliance/
+                        - generic [ref=f8e87]: 
+                        - text: Compliance Management
+                  - listitem [ref=f8e88]:
+                    - generic [ref=f8e89]:
+                      - text: 
+                      - link " Process Management" [ref=f8e90] [cursor=pointer]:
+                        - /url: /docs/management-processes/
+                        - generic [ref=f8e91]: 
+                        - text: Process Management
+                    - text:            
+                  - listitem [ref=f8e92]:
+                    - generic [ref=f8e93]:
+                      - text: 
+                      - link " Tools" [ref=f8e94] [cursor=pointer]:
+                        - /url: /docs/tools/
+                        - generic [ref=f8e95]: 
+                        - text: Tools
+                    - text:  
+                  - listitem [ref=f8e96]:
+                    - link " Glossary" [ref=f8e98] [cursor=pointer]:
+                      - /url: /docs/glossary/
+                      - generic [ref=f8e99]: 
+                      - text: Glossary
+                  - listitem [ref=f8e100]:
+                    - generic [ref=f8e101]:
+                      - text: 
+                      - 'link " Sunset: DevOps" [ref=f8e102] [cursor=pointer]':
+                        - /url: /docs/devops/
+                        - generic [ref=f8e103]: 
+                        - text: "Sunset: DevOps"
+                    - text:     
+                  - listitem [ref=f8e104]:
+                    - generic [ref=f8e105]:
+                      - text: 
+                      - 'link " Sunset: Support" [ref=f8e106] [cursor=pointer]':
+                        - /url: /docs/support/
+                        - generic [ref=f8e107]: 
+                        - text: "Sunset: Support"
+                    - list [ref=f8e108]:
+                      - listitem [ref=f8e109]:
+                        - link "Finance and Controlling" [ref=f8e111] [cursor=pointer]:
+                          - /url: /docs/support/finance-controlling/
+                      - listitem [ref=f8e112]:
+                        - generic [ref=f8e113]:
+                          - text: 
+                          - link "Audits" [ref=f8e114] [cursor=pointer]:
+                            - /url: /docs/support/audits/
+                        - text:  
+                      - listitem [ref=f8e115]:
+                        - link "Backup/Restore" [ref=f8e117] [cursor=pointer]:
+                          - /url: /docs/support/backup/process/
+                      - listitem [ref=f8e118]:
+                        - link "Maintenance Management Process" [ref=f8e120] [cursor=pointer]:
+                          - /url: /docs/support/maintenance/maintenance/
+                      - listitem [ref=f8e121]:
+                        - generic [ref=f8e122]:
+                          - text: 
+                          - link "Onboarding" [ref=f8e123] [cursor=pointer]:
+                            - /url: /docs/support/onboarding/
+                        - text:  
+                      - listitem [ref=f8e124]:
+                        - generic [ref=f8e125]:
+                          - text: 
+                          - link "OnDuty" [ref=f8e126] [cursor=pointer]:
+                            - /url: /docs/support/onduty/
+                      - listitem [ref=f8e127]:
+                        - generic [ref=f8e128]:
+                          - text: 
+                          - link "Operation Model" [ref=f8e129] [cursor=pointer]:
+                            - /url: /docs/support/operation_model/
+                        - text:     
+                      - listitem [ref=f8e130]:
+                        - link "PCI" [ref=f8e132] [cursor=pointer]:
+                          - /url: /docs/support/audit/pci/events/
+                      - listitem [ref=f8e133]:
+                        - link "PCI-DSS" [ref=f8e135] [cursor=pointer]:
+                          - /url: /docs/support/audit/pci/requirements/
+                      - listitem [ref=f8e136]:
+                        - generic [ref=f8e137]:
+                          - text: 
+                          - link "Playbooks" [ref=f8e138] [cursor=pointer]:
+                            - /url: /docs/support/playbook/
+                        - list [ref=f8e139]:
+                          - listitem [ref=f8e140]:
+                            - generic [ref=f8e141]:
+                              - text: 
+                              - link "Archer" [ref=f8e142] [cursor=pointer]:
+                                - /url: /docs/support/playbook/archer/
+                            - text: 
+                          - listitem [ref=f8e143]:
+                            - link "DNS lookup failure for Ariba project in CN1" [ref=f8e145] [cursor=pointer]:
+                              - /url: /docs/support/playbook/network-specific-ariba-dns-issue/
+                          - listitem [ref=f8e146]:
+                            - generic [ref=f8e147]:
+                              - text: 
+                              - link "Active Directory" [ref=f8e148] [cursor=pointer]:
+                                - /url: /docs/support/playbook/activedirectory/
+                          - listitem [ref=f8e149]:
+                            - link "Add Floating network to Project" [ref=f8e151] [cursor=pointer]:
+                              - /url: /docs/support/playbook/floating_network_add/
+                          - listitem [ref=f8e152]:
+                            - link "Add new floating IPs to Network" [ref=f8e154] [cursor=pointer]:
+                              - /url: /docs/support/playbook/add_floating_ip_to_network/
+                          - listitem [ref=f8e155]:
+                            - link "Add Roles To TIC User" [ref=f8e157] [cursor=pointer]:
+                              - /url: /docs/support/playbook/add-roles-to-tic-user/
+                          - listitem [ref=f8e158]:
+                            - 'link "Alert: Rotate Kubernetes secret not stored in Vault" [ref=f8e160] [cursor=pointer]':
+                              - /url: /docs/support/playbook/rotate-local-kubernetes-secret/
+                          - listitem [ref=f8e161]:
+                            - 'link "Alert: Unexpected role assignments" [ref=f8e163] [cursor=pointer]':
+                              - /url: /docs/support/playbook/unexpected-role-assignments/
+                          - listitem [ref=f8e164]:
+                            - link "Alertmanager silences" [ref=f8e166] [cursor=pointer]:
+                              - /url: /docs/support/playbook/alertmanager_silence/
+                          - listitem [ref=f8e167]:
+                            - link "API" [ref=f8e169] [cursor=pointer]:
+                              - /url: /docs/support/playbook/billing/alerts/cc3test-alert-api/
+                          - listitem [ref=f8e170]:
+                            - link "API" [ref=f8e172] [cursor=pointer]:
+                              - /url: /docs/support/playbook/limes/alerts/cc3test-alert-api/
+                          - listitem [ref=f8e173]:
+                            - generic [ref=f8e174]:
+                              - text: 
+                              - link "Barbican Playbooks" [ref=f8e175] [cursor=pointer]:
+                                - /url: /docs/support/playbook/barbican/
+                            - text: 
+                          - listitem [ref=f8e176]:
+                            - generic [ref=f8e177]:
+                              - text: 
+                              - link "BareMetal" [ref=f8e178] [cursor=pointer]:
+                                - /url: /docs/support/playbook/baremetal/
+                            - text: 
+                          - listitem [ref=f8e179]:
+                            - link "Cannot Reach Instance" [ref=f8e181] [cursor=pointer]:
+                              - /url: /docs/support/playbook/cannot_reach_instance/
+                          - listitem [ref=f8e182]:
+                            - generic [ref=f8e183]:
+                              - text: 
+                              - link "CC3Test Playbooks" [ref=f8e184] [cursor=pointer]:
+                                - /url: /docs/support/playbook/cc3test/
+                            - text: 
+                          - listitem [ref=f8e185]:
+                            - generic [ref=f8e186]:
+                              - text: 
+                              - link "CCloud Shell Playbooks" [ref=f8e187] [cursor=pointer]:
+                                - /url: /docs/support/playbook/ccloud-shell/
+                          - listitem [ref=f8e188]:
+                            - generic [ref=f8e189]:
+                              - text: 
+                              - link "Cinder Playbooks" [ref=f8e190] [cursor=pointer]:
+                                - /url: /docs/support/playbook/cinder/
+                            - text:  
+                          - listitem [ref=f8e191]:
+                            - link "Concourse issues" [ref=f8e193] [cursor=pointer]:
+                              - /url: /docs/support/playbook/concourse_issues/
+                          - listitem [ref=f8e194]:
+                            - generic [ref=f8e195]:
+                              - text: 
+                              - link "Cortex" [ref=f8e196] [cursor=pointer]:
+                                - /url: /docs/support/playbook/cortex/
+                          - listitem [ref=f8e197]:
+                            - generic [ref=f8e198]:
+                              - text: 
+                              - link "Database Playbooks" [ref=f8e199] [cursor=pointer]:
+                                - /url: /docs/support/playbook/database/
+                          - listitem [ref=f8e200]:
+                            - generic [ref=f8e201]:
+                              - text: 
+                              - link "Datastore Playbooks" [ref=f8e202] [cursor=pointer]:
+                                - /url: /docs/support/playbook/datastore/
+                          - listitem [ref=f8e203]:
+                            - generic [ref=f8e204]:
+                              - text: 
+                              - link "Designate Playbooks" [ref=f8e205] [cursor=pointer]:
+                                - /url: /docs/support/playbook/designate/
+                            - text: 
+                          - listitem [ref=f8e206]:
+                            - link "Elektra" [ref=f8e208] [cursor=pointer]:
+                              - /url: /docs/support/playbook/elektra/alerts/cc3test-alert-datapath/
+                          - listitem [ref=f8e209]:
+                            - link "Floating IP Attachment" [ref=f8e211] [cursor=pointer]:
+                              - /url: /docs/support/playbook/floating_ips/
+                          - listitem [ref=f8e212]:
+                            - generic [ref=f8e213]:
+                              - text: 
+                              - link "General Knowledge" [ref=f8e214] [cursor=pointer]:
+                                - /url: /docs/support/playbook/knowledge/
+                          - listitem [ref=f8e215]:
+                            - generic [ref=f8e216]:
+                              - text: 
+                              - link "Glance Playbooks" [ref=f8e217] [cursor=pointer]:
+                                - /url: /docs/support/playbook/glance/
+                            - text: 
+                          - listitem [ref=f8e218]:
+                            - generic [ref=f8e219]:
+                              - text: 
+                              - link "Hermes Playbooks" [ref=f8e220] [cursor=pointer]:
+                                - /url: /docs/support/playbook/hermes/
+                            - text: 
+                          - listitem [ref=f8e221]:
+                            - link "Intermittent Connectivity" [ref=f8e223] [cursor=pointer]:
+                              - /url: /docs/support/playbook/intermittent_connectivity/
+                          - listitem [ref=f8e224]:
+                            - generic [ref=f8e225]:
+                              - text: 
+                              - link "Jumpserver Playbooks" [ref=f8e226] [cursor=pointer]:
+                                - /url: /docs/support/playbook/jumpserver/
+                            - text: 
+                          - listitem [ref=f8e227]:
+                            - link "Keystone API" [ref=f8e229] [cursor=pointer]:
+                              - /url: /docs/support/playbook/keystone/alerts/cc3test-alert-api/
+                          - listitem [ref=f8e230]:
+                            - link "Keystone Datapath" [ref=f8e232] [cursor=pointer]:
+                              - /url: /docs/support/playbook/keystone/alerts/cc3test-alert-datapath/
+                          - listitem [ref=f8e233]:
+                            - link "Keystone SIEM" [ref=f8e235] [cursor=pointer]:
+                              - /url: /docs/support/playbook/keystone/alerts/siem/
+                          - listitem [ref=f8e236]:
+                            - generic [ref=f8e237]:
+                              - text: 
+                              - link "Kubernetes Playbooks" [ref=f8e238] [cursor=pointer]:
+                                - /url: /docs/support/playbook/kubernetes/
+                          - listitem [ref=f8e239]:
+                            - generic [ref=f8e240]:
+                              - text: 
+                              - link "Kubernikus Playbooks" [ref=f8e241] [cursor=pointer]:
+                                - /url: /docs/support/playbook/kubernikus/
+                          - listitem [ref=f8e242]:
+                            - link "ldapproval pod status" [ref=f8e244] [cursor=pointer]:
+                              - /url: /docs/support/playbook/ldapproval/pod_status/
+                          - listitem [ref=f8e245]:
+                            - generic [ref=f8e246]:
+                              - text: 
+                              - link "Logs Playbooks" [ref=f8e247] [cursor=pointer]:
+                                - /url: /docs/support/playbook/logs/
+                          - listitem [ref=f8e248]:
+                            - generic [ref=f8e249]:
+                              - text: 
+                              - link "Maia Playbooks" [ref=f8e250] [cursor=pointer]:
+                                - /url: /docs/support/playbook/maia/
+                            - text: 
+                          - listitem [ref=f8e251]:
+                            - generic [ref=f8e252]:
+                              - text: 
+                              - link "Manila Playbooks" [ref=f8e253] [cursor=pointer]:
+                                - /url: /docs/support/playbook/manila/
+                            - text: 
+                          - listitem [ref=f8e254]:
+                            - generic [ref=f8e255]:
+                              - text: 
+                              - link "Network Playbooks" [ref=f8e256] [cursor=pointer]:
+                                - /url: /docs/support/playbook/network/
+                            - text:  
+                          - listitem [ref=f8e257]:
+                            - link "Network specific DNS issues" [ref=f8e259] [cursor=pointer]:
+                              - /url: /docs/support/playbook/network_specific_dns/
+                          - listitem [ref=f8e260]:
+                            - generic [ref=f8e261]:
+                              - text: 
+                              - link "Neutron Playbooks" [ref=f8e262] [cursor=pointer]:
+                                - /url: /docs/support/playbook/neutron/
+                            - list [ref=f8e263]:
+                              - listitem [ref=f8e264]:
+                                - generic [ref=f8e265]:
+                                  - text: 
+                                  - link "Neutron Alerts" [ref=f8e266] [cursor=pointer]:
+                                    - /url: /docs/support/playbook/neutron/alerts/
+                              - listitem [ref=f8e267]:
+                                - generic [ref=f8e268]:
+                                  - text: 
+                                  - link [ref=f8e269] [cursor=pointer]:
+                                    - /url: /docs/support/playbook/neutron/asr1k/
+                              - listitem [ref=f8e270]:
+                                - link "A thing or three about Security Groups" [ref=f8e272] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/security_groups/
+                              - listitem [ref=f8e273]:
+                                - link "Add external Network" [ref=f8e275] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/add-external-network/
+                              - listitem [ref=f8e276]:
+                                - link "ASR1K Troubleshooting" [ref=f8e278] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/asr1k/
+                              - listitem [ref=f8e279]:
+                                - link "Cannot Resolve single host in private network" [ref=f8e281] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/dns_single_resolve/
+                              - listitem [ref=f8e282]:
+                                - link "Delete Arista ports manually" [ref=f8e284] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/arista_port_cleanup/
+                              - listitem [ref=f8e285]:
+                                - link "Delete Networks and Router" [ref=f8e287] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/delete_networks_and_router/
+                              - listitem [ref=f8e288]:
+                                - link "DHCP Down" [ref=f8e290] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/dhcp_down/
+                              - listitem [ref=f8e291]:
+                                - link "GNS Tickets" [ref=f8e293] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/gns_tickets/
+                              - listitem [ref=f8e294]:
+                                - link "Metadata Service not reachable" [ref=f8e296] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/metadata_service_not_reachable/
+                              - listitem [ref=f8e297]:
+                                - link "Multiple segments same physnet" [ref=f8e299] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/multiple_segments_same_physnet/
+                              - listitem [ref=f8e300]:
+                                - link "NetworkNamespaceProbesFailed" [ref=f8e302] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/networknamespaceprobesfailed/
+                              - listitem [ref=f8e303]:
+                                - link "Neutron API Overloaded" [ref=f8e305] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/api_overloaded/
+                              - listitem [ref=f8e306]:
+                                - link "Neutron Crashloop" [ref=f8e308] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/crashloop/
+                              - listitem [ref=f8e309]:
+                                - link "ns-exporter deployment" [ref=f8e311] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/ns-exporter/
+                              - listitem [ref=f8e312]:
+                                - link "Port Creation Error" [ref=f8e314] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/port_create_error/
+                              - listitem [ref=f8e315]:
+                                - link "Port rebinding" [ref=f8e317] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/port_rebinding/
+                              - listitem [ref=f8e318]:
+                                - link "Reschedule Neutron Agents" [ref=f8e320] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/rescheduling_neutron_agents/
+                              - listitem [ref=f8e321]:
+                                - link "Resolve DNS name" [ref=f8e323] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/dns_resolve/
+                              - listitem [ref=f8e324]:
+                                - link "Router Sync" [ref=f8e326] [cursor=pointer]:
+                                  - /url: /docs/support/playbook/neutron/router_sync/
+                          - listitem [ref=f8e327]:
+                            - generic [ref=f8e328]:
+                              - text: 
+                              - link "Nova Playbooks" [ref=f8e329] [cursor=pointer]:
+                                - /url: /docs/support/playbook/nova/
+                            - text: 
+                          - listitem [ref=f8e330]:
+                            - generic [ref=f8e331]:
+                              - text: 
+                              - link "Octavia Playbooks" [ref=f8e332] [cursor=pointer]:
+                                - /url: /docs/support/playbook/octavia/
+                            - text: 
+                          - listitem [ref=f8e333]:
+                            - link "OIDC Authentication" [ref=f8e335] [cursor=pointer]:
+                              - /url: /docs/support/playbook/keystone/alerts/cc3test-alert-oidc/
+                          - listitem [ref=f8e336]:
+                            - generic [ref=f8e337]:
+                              - text: 
+                              - link "OpenSearch Playbooks" [ref=f8e338] [cursor=pointer]:
+                                - /url: /docs/support/playbook/opensearch/
+                            - text:  
+                          - listitem [ref=f8e339]:
+                            - link "plutono" [ref=f8e341] [cursor=pointer]:
+                              - /url: /docs/support/playbook/plutono/
+                          - listitem [ref=f8e342]:
+                            - generic [ref=f8e343]:
+                              - text: 
+                              - link "Portunus Playbooks" [ref=f8e344] [cursor=pointer]:
+                                - /url: /docs/support/playbook/portunus/
+                            - text: 
+                          - listitem [ref=f8e345]:
+                            - link "Problem getting Password" [ref=f8e347] [cursor=pointer]:
+                              - /url: /docs/support/playbook/retrieve_password/
+                          - listitem [ref=f8e348]:
+                            - link "Project Deletion Process" [ref=f8e350] [cursor=pointer]:
+                              - /url: /docs/support/playbook/project_delete/
+                          - listitem [ref=f8e351]:
+                            - generic [ref=f8e352]:
+                              - text: 
+                              - link "Prometheus Playbooks" [ref=f8e353] [cursor=pointer]:
+                                - /url: /docs/support/playbook/prometheus/
+                            - text:  
+                          - listitem [ref=f8e354]:
+                            - generic [ref=f8e355]:
+                              - text: 
+                              - link "Replicant Playbooks" [ref=f8e356] [cursor=pointer]:
+                                - /url: /docs/support/playbook/replicant/
+                          - listitem [ref=f8e357]:
+                            - 'link "Repo RHEL: RedHat CDN Entitlement outdated" [ref=f8e359] [cursor=pointer]':
+                              - /url: /docs/support/playbook/repo_rhel_entitlement/
+                          - listitem [ref=f8e360]:
+                            - link "Restore deleted OpenStack User assignments" [ref=f8e362] [cursor=pointer]:
+                              - /url: /docs/support/playbook/restore_deleted_openstack_user_assignments/
+                          - listitem [ref=f8e363]:
+                            - generic [ref=f8e364]:
+                              - text: 
+                              - link "SAP AI Core How-To's" [ref=f8e365] [cursor=pointer]:
+                                - /url: /docs/support/playbook/sap-ai-core/
+                          - listitem [ref=f8e366]:
+                            - link "Sentry Troubleshooting" [ref=f8e368] [cursor=pointer]:
+                              - /url: /docs/support/playbook/sentry/
+                          - listitem [ref=f8e369]:
+                            - generic [ref=f8e370]:
+                              - text: 
+                              - link "Storage Playbooks" [ref=f8e371] [cursor=pointer]:
+                                - /url: /docs/support/playbook/storage/
+                          - listitem [ref=f8e372]:
+                            - generic [ref=f8e373]:
+                              - text: 
+                              - link "Swift Playbooks" [ref=f8e374] [cursor=pointer]:
+                                - /url: /docs/support/playbook/swift/
+                            - text: 
+                          - listitem [ref=f8e375]:
+                            - link "tcpdump" [ref=f8e377] [cursor=pointer]:
+                              - /url: /docs/support/playbook/tcpdump/
+                          - listitem [ref=f8e378]:
+                            - generic [ref=f8e379]:
+                              - text: 
+                              - link "Terraform Playbooks" [ref=f8e380] [cursor=pointer]:
+                                - /url: /docs/support/playbook/terraform/
+                          - listitem [ref=f8e381]:
+                            - generic [ref=f8e382]:
+                              - text: 
+                              - link "Vault Playbooks" [ref=f8e383] [cursor=pointer]:
+                                - /url: /docs/support/playbook/vault/
+                          - listitem [ref=f8e384]:
+                            - link "VCF Playbooks" [ref=f8e386] [cursor=pointer]:
+                              - /url: /docs/support/playbook/vcf/
+                          - listitem [ref=f8e387]:
+                            - generic [ref=f8e388]:
+                              - text: 
+                              - link "Volta Playbooks" [ref=f8e389] [cursor=pointer]:
+                                - /url: /docs/support/playbook/volta/
+                          - listitem [ref=f8e390]:
+                            - generic [ref=f8e391]:
+                              - text: 
+                              - link "Whois Playbooks" [ref=f8e392] [cursor=pointer]:
+                                - /url: /docs/support/playbook/whois/
+                          - listitem [ref=f8e393]:
+                            - link "Windows can not boot with a fileType Error" [ref=f8e395] [cursor=pointer]:
+                              - /url: /docs/support/playbook/windows_incorrect_filetype/
+                          - listitem [ref=f8e396]:
+                            - link "Workflow Report broken alerts" [ref=f8e398] [cursor=pointer]:
+                              - /url: /docs/support/playbook/b1/workflow_broken_alert_playbook/
+      - complementary [ref=f8e399]:
+        - generic [ref=f8e400]:
+          - link " Edit this page" [ref=f8e401] [cursor=pointer]:
+            - /url: https://github.wdf.sap.corp/cc/documentation-operation/edit/main/source/docs/support/playbook/neutron/port_rebinding.md
+            - generic [ref=f8e402]: 
+            - text: Edit this page
+          - link " Create documentation issue" [ref=f8e403] [cursor=pointer]:
+            - /url: https://github.wdf.sap.corp/cc/documentation-operation/issues/new?title=Port%20rebinding&body=Page%20URL:%20https://operations.global.cloud.sap/docs/support/playbook/neutron/port_rebinding/
+            - generic [ref=f8e404]: 
+            - text: Create documentation issue
+          - link " Print entire section" [ref=f8e405] [cursor=pointer]:
+            - /url: https://operations.global.cloud.sap/docs/support/playbook/neutron/_print/
+            - generic [ref=f8e406]: 
+            - text: Print entire section
+        - generic [ref=f8e407]:
+          - heading "Categories" [level=5] [ref=f8e408]
+          - list [ref=f8e409]:
+            - listitem [ref=f8e410]:
+              - link "INTERNAL 601" [ref=f8e411] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/internal/
+                - text: INTERNAL
+                - generic [ref=f8e412]: "601"
+            - listitem [ref=f8e413]:
+              - link "Knowledge Base 1" [ref=f8e414] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/knowledge-base/
+                - text: Knowledge Base
+                - generic [ref=f8e415]: "1"
+            - listitem [ref=f8e416]:
+              - link "SupGrp_Compute 17" [ref=f8e417] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_compute/
+                - text: SupGrp_Compute
+                - generic [ref=f8e418]: "17"
+            - listitem [ref=f8e419]:
+              - link "SupGrp_Compute_Automation 19" [ref=f8e420] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_compute_automation/
+                - text: SupGrp_Compute_Automation
+                - generic [ref=f8e421]: "19"
+            - listitem [ref=f8e422]:
+              - link "SupGrp_Compute_IaaS 35" [ref=f8e423] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_compute_iaas/
+                - text: SupGrp_Compute_IaaS
+                - generic [ref=f8e424]: "35"
+            - listitem [ref=f8e425]:
+              - link "SupGrp_Compute_InfraOps 110" [ref=f8e426] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_compute_infraops/
+                - text: SupGrp_Compute_InfraOps
+                - generic [ref=f8e427]: "110"
+            - listitem [ref=f8e428]:
+              - link "SupGrp_Compute_KVM_Build 138" [ref=f8e429] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_compute_kvm_build/
+                - text: SupGrp_Compute_KVM_Build
+                - generic [ref=f8e430]: "138"
+            - listitem [ref=f8e431]:
+              - link "SupGrp_Compute_MetalOps 131" [ref=f8e432] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_compute_metalops/
+                - text: SupGrp_Compute_MetalOps
+                - generic [ref=f8e433]: "131"
+            - listitem [ref=f8e434]:
+              - link "SupGrp_DevSupport 94" [ref=f8e435] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_devsupport/
+                - text: SupGrp_DevSupport
+                - generic [ref=f8e436]: "94"
+            - listitem [ref=f8e437]:
+              - link "SupGrp_Esxi 2" [ref=f8e438] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_esxi/
+                - text: SupGrp_Esxi
+                - generic [ref=f8e439]: "2"
+            - listitem [ref=f8e440]:
+              - link "SupGrp_IaasSupport 3" [ref=f8e441] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_iaassupport/
+                - text: SupGrp_IaasSupport
+                - generic [ref=f8e442]: "3"
+            - listitem [ref=f8e443]:
+              - link "SupGrp_Name 5" [ref=f8e444] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_name/
+                - text: SupGrp_Name
+                - generic [ref=f8e445]: "5"
+            - listitem [ref=f8e446]:
+              - link "SupGrp_NetSupport 1" [ref=f8e447] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_netsupport/
+                - text: SupGrp_NetSupport
+                - generic [ref=f8e448]: "1"
+            - listitem [ref=f8e449]:
+              - link "SupGrp_Network 9" [ref=f8e450] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_network/
+                - text: SupGrp_Network
+                - generic [ref=f8e451]: "9"
+            - listitem [ref=f8e452]:
+              - link "SupGrp_Observability 1" [ref=f8e453] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_observability/
+                - text: SupGrp_Observability
+                - generic [ref=f8e454]: "1"
+            - listitem [ref=f8e455]:
+              - link "SupGrp_ProcessOps 20" [ref=f8e456] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_processops/
+                - text: SupGrp_ProcessOps
+                - generic [ref=f8e457]: "20"
+            - listitem [ref=f8e458]:
+              - link "SupGrp_Storage 14" [ref=f8e459] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_storage/
+                - text: SupGrp_Storage
+                - generic [ref=f8e460]: "14"
+            - listitem [ref=f8e461]:
+              - link "SupGrp_StorageSupport 1" [ref=f8e462] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/supgrp_storagesupport/
+                - text: SupGrp_StorageSupport
+                - generic [ref=f8e463]: "1"
+            - listitem [ref=f8e464]:
+              - link "ToC_ChapterName 5" [ref=f8e465] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_chaptername/
+                - text: ToC_ChapterName
+                - generic [ref=f8e466]: "5"
+            - listitem [ref=f8e467]:
+              - link "ToC_Chompute 3" [ref=f8e468] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_chompute/
+                - text: ToC_Chompute
+                - generic [ref=f8e469]: "3"
+            - listitem [ref=f8e470]:
+              - link "ToC_Compliance 1" [ref=f8e471] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_compliance/
+                - text: ToC_Compliance
+                - generic [ref=f8e472]: "1"
+            - listitem [ref=f8e473]:
+              - link "ToC_Compute 487" [ref=f8e474] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_compute/
+                - text: ToC_Compute
+                - generic [ref=f8e475]: "487"
+            - listitem [ref=f8e476]:
+              - link "ToC_Container 35" [ref=f8e477] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_container/
+                - text: ToC_Container
+                - generic [ref=f8e478]: "35"
+            - listitem [ref=f8e479]:
+              - link "ToC_DevOps 2" [ref=f8e480] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_devops/
+                - text: ToC_DevOps
+                - generic [ref=f8e481]: "2"
+            - listitem [ref=f8e482]:
+              - link "ToC_DocuHelp 29" [ref=f8e483] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_docuhelp/
+                - text: ToC_DocuHelp
+                - generic [ref=f8e484]: "29"
+            - listitem [ref=f8e485]:
+              - link "ToC_Frontend 2" [ref=f8e486] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_frontend/
+                - text: ToC_Frontend
+                - generic [ref=f8e487]: "2"
+            - listitem [ref=f8e488]:
+              - link "ToC_HowTo 2" [ref=f8e489] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_howto/
+                - text: ToC_HowTo
+                - generic [ref=f8e490]: "2"
+            - listitem [ref=f8e491]:
+              - link "ToC_Network 16" [ref=f8e492] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_network/
+                - text: ToC_Network
+                - generic [ref=f8e493]: "16"
+            - listitem [ref=f8e494]:
+              - link "ToC_Observability 8" [ref=f8e495] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_observability/
+                - text: ToC_Observability
+                - generic [ref=f8e496]: "8"
+            - listitem [ref=f8e497]:
+              - link "ToC_Octavia 9" [ref=f8e498] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_octavia/
+                - text: ToC_Octavia
+                - generic [ref=f8e499]: "9"
+            - listitem [ref=f8e500]:
+              - link "ToC_Platform 7" [ref=f8e501] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_platform/
+                - text: ToC_Platform
+                - generic [ref=f8e502]: "7"
+            - listitem [ref=f8e503]:
+              - link "ToC_Proccesses 1" [ref=f8e504] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_proccesses/
+                - text: ToC_Proccesses
+                - generic [ref=f8e505]: "1"
+            - listitem [ref=f8e506]:
+              - link "ToC_Processes 38" [ref=f8e507] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_processes/
+                - text: ToC_Processes
+                - generic [ref=f8e508]: "38"
+            - listitem [ref=f8e509]:
+              - link "ToC_Resources 6" [ref=f8e510] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_resources/
+                - text: ToC_Resources
+                - generic [ref=f8e511]: "6"
+            - listitem [ref=f8e512]:
+              - link "ToC_Security 49" [ref=f8e513] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_security/
+                - text: ToC_Security
+                - generic [ref=f8e514]: "49"
+            - listitem [ref=f8e515]:
+              - link "ToC_Storage 24" [ref=f8e516] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_storage/
+                - text: ToC_Storage
+                - generic [ref=f8e517]: "24"
+            - listitem [ref=f8e518]:
+              - link "ToC_Support 41" [ref=f8e519] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_support/
+                - text: ToC_Support
+                - generic [ref=f8e520]: "41"
+            - listitem [ref=f8e521]:
+              - link "ToC_Tools 5" [ref=f8e522] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_tools/
+                - text: ToC_Tools
+                - generic [ref=f8e523]: "5"
+            - listitem [ref=f8e524]:
+              - link "ToC_Trust 13" [ref=f8e525] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/categories/toc_trust/
+                - text: ToC_Trust
+                - generic [ref=f8e526]: "13"
+        - generic [ref=f8e527]:
+          - heading "Tags" [level=5] [ref=f8e528]
+          - list [ref=f8e529]:
+            - listitem [ref=f8e530]:
+              - link "access 7" [ref=f8e531] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/access/
+                - text: access
+                - generic [ref=f8e532]: "7"
+            - listitem [ref=f8e533]:
+              - link "Access Management 3" [ref=f8e534] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/access-management/
+                - text: Access Management
+                - generic [ref=f8e535]: "3"
+            - listitem [ref=f8e536]:
+              - link "Active Directory 1" [ref=f8e537] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/active-directory/
+                - text: Active Directory
+                - generic [ref=f8e538]: "1"
+            - listitem [ref=f8e539]:
+              - link "Admin 1" [ref=f8e540] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/admin/
+                - text: Admin
+                - generic [ref=f8e541]: "1"
+            - listitem [ref=f8e542]:
+              - link "alert 7" [ref=f8e543] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/alert/
+                - text: alert
+                - generic [ref=f8e544]: "7"
+            - listitem [ref=f8e545]:
+              - link "Alerting 1" [ref=f8e546] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/alerting/
+                - text: Alerting
+                - generic [ref=f8e547]: "1"
+            - listitem [ref=f8e548]:
+              - link "Ansible 6" [ref=f8e549] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ansible/
+                - text: Ansible
+                - generic [ref=f8e550]: "6"
+            - listitem [ref=f8e551]:
+              - link "API 2" [ref=f8e552] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/api/
+                - text: API
+                - generic [ref=f8e553]: "2"
+            - listitem [ref=f8e554]:
+              - link "aPod 1" [ref=f8e555] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/apod/
+                - text: aPod
+                - generic [ref=f8e556]: "1"
+            - listitem [ref=f8e557]:
+              - link "Approle 3" [ref=f8e558] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/approle/
+                - text: Approle
+                - generic [ref=f8e559]: "3"
+            - listitem [ref=f8e560]:
+              - link "A&R 1" [ref=f8e561] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ar/
+                - text: A&R
+                - generic [ref=f8e562]: "1"
+            - listitem [ref=f8e563]:
+              - link "Archer 1" [ref=f8e564] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/archer/
+                - text: Archer
+                - generic [ref=f8e565]: "1"
+            - listitem [ref=f8e566]:
+              - link "Architecture 4" [ref=f8e567] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/architecture/
+                - text: Architecture
+                - generic [ref=f8e568]: "4"
+            - listitem [ref=f8e569]:
+              - link "article 1" [ref=f8e570] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/article/
+                - text: article
+                - generic [ref=f8e571]: "1"
+            - listitem [ref=f8e572]:
+              - link "audit 4" [ref=f8e573] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/audit/
+                - text: audit
+                - generic [ref=f8e574]: "4"
+            - listitem [ref=f8e575]:
+              - link "audit-logs 1" [ref=f8e576] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/audit-logs/
+                - text: audit-logs
+                - generic [ref=f8e577]: "1"
+            - listitem [ref=f8e578]:
+              - link "Audits 6" [ref=f8e579] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/audits/
+                - text: Audits
+                - generic [ref=f8e580]: "6"
+            - listitem [ref=f8e581]:
+              - link "Authentication 2" [ref=f8e582] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/authentication/
+                - text: Authentication
+                - generic [ref=f8e583]: "2"
+            - listitem [ref=f8e584]:
+              - link "Automation 15" [ref=f8e585] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/automation/
+                - text: Automation
+                - generic [ref=f8e586]: "15"
+            - listitem [ref=f8e587]:
+              - link "AWX 9" [ref=f8e588] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/awx/
+                - text: AWX
+                - generic [ref=f8e589]: "9"
+            - listitem [ref=f8e590]:
+              - link "Backup 1" [ref=f8e591] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/backup/
+                - text: Backup
+                - generic [ref=f8e592]: "1"
+            - listitem [ref=f8e593]:
+              - link "Barbican 1" [ref=f8e594] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/barbican/
+                - text: Barbican
+                - generic [ref=f8e595]: "1"
+            - listitem [ref=f8e596]:
+              - link "Barbician 1" [ref=f8e597] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/barbician/
+                - text: Barbician
+                - generic [ref=f8e598]: "1"
+            - listitem [ref=f8e599]:
+              - link "Bare Metal 1" [ref=f8e600] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/bare-metal/
+                - text: Bare Metal
+                - generic [ref=f8e601]: "1"
+            - listitem [ref=f8e602]:
+              - link "baremetal 1" [ref=f8e603] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/baremetal/
+                - text: baremetal
+                - generic [ref=f8e604]: "1"
+            - listitem [ref=f8e605]:
+              - link "BB 1" [ref=f8e606] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/bb/
+                - text: BB
+                - generic [ref=f8e607]: "1"
+            - listitem [ref=f8e608]:
+              - link "Beta 3" [ref=f8e609] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/beta/
+                - text: Beta
+                - generic [ref=f8e610]: "3"
+            - listitem [ref=f8e611]:
+              - link "BGP Communities 1" [ref=f8e612] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/bgp-communities/
+                - text: BGP Communities
+                - generic [ref=f8e613]: "1"
+            - listitem [ref=f8e614]:
+              - link "BGP Community 1" [ref=f8e615] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/bgp-community/
+                - text: BGP Community
+                - generic [ref=f8e616]: "1"
+            - listitem [ref=f8e617]:
+              - link "BigVM 2" [ref=f8e618] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/bigvm/
+                - text: BigVM
+                - generic [ref=f8e619]: "2"
+            - listitem [ref=f8e620]:
+              - link "Billing 3" [ref=f8e621] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/billing/
+                - text: Billing
+                - generic [ref=f8e622]: "3"
+            - listitem [ref=f8e623]:
+              - link "BIOS 3" [ref=f8e624] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/bios/
+                - text: BIOS
+                - generic [ref=f8e625]: "3"
+            - listitem [ref=f8e626]:
+              - link "Block Device 1" [ref=f8e627] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/block-device/
+                - text: Block Device
+                - generic [ref=f8e628]: "1"
+            - listitem [ref=f8e629]:
+              - link "block storage 2" [ref=f8e630] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/block-storage/
+                - text: block storage
+                - generic [ref=f8e631]: "2"
+            - listitem [ref=f8e632]:
+              - link "bmpod 1" [ref=f8e633] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/bmpod/
+                - text: bmpod
+                - generic [ref=f8e634]: "1"
+            - listitem [ref=f8e635]:
+              - link "break-fix 2" [ref=f8e636] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/break-fix/
+                - text: break-fix
+                - generic [ref=f8e637]: "2"
+            - listitem [ref=f8e638]:
+              - link "build 31" [ref=f8e639] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/build/
+                - text: build
+                - generic [ref=f8e640]: "31"
+            - listitem [ref=f8e641]:
+              - link "cable 1" [ref=f8e642] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cable/
+                - text: cable
+                - generic [ref=f8e643]: "1"
+            - listitem [ref=f8e644]:
+              - link "cam 2" [ref=f8e645] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cam/
+                - text: cam
+                - generic [ref=f8e646]: "2"
+            - listitem [ref=f8e647]:
+              - link "CAPI 1" [ref=f8e648] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/capi/
+                - text: CAPI
+                - generic [ref=f8e649]: "1"
+            - listitem [ref=f8e650]:
+              - link "Case 1" [ref=f8e651] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/case/
+                - text: Case
+                - generic [ref=f8e652]: "1"
+            - listitem [ref=f8e653]:
+              - link "cc3test 2" [ref=f8e654] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cc3test/
+                - text: cc3test
+                - generic [ref=f8e655]: "2"
+            - listitem [ref=f8e656]:
+              - link "CCIR 1" [ref=f8e657] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ccir/
+                - text: CCIR
+                - generic [ref=f8e658]: "1"
+            - listitem [ref=f8e659]:
+              - link "ccloud 2" [ref=f8e660] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ccloud/
+                - text: ccloud
+                - generic [ref=f8e661]: "2"
+            - listitem [ref=f8e662]:
+              - link "Ceph 7" [ref=f8e663] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ceph/
+                - text: Ceph
+                - generic [ref=f8e664]: "7"
+            - listitem [ref=f8e665]:
+              - link "ci-cd 1" [ref=f8e666] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ci-cd/
+                - text: ci-cd
+                - generic [ref=f8e667]: "1"
+            - listitem [ref=f8e668]:
+              - link "cinder 3" [ref=f8e669] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cinder/
+                - text: cinder
+                - generic [ref=f8e670]: "3"
+            - listitem [ref=f8e671]:
+              - link "Cisco 2" [ref=f8e672] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cisco/
+                - text: Cisco
+                - generic [ref=f8e673]: "2"
+            - listitem [ref=f8e674]:
+              - link "Cisco UCS 1" [ref=f8e675] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cisco-ucs/
+                - text: Cisco UCS
+                - generic [ref=f8e676]: "1"
+            - listitem [ref=f8e677]:
+              - link "Clavis 1" [ref=f8e678] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/clavis/
+                - text: Clavis
+                - generic [ref=f8e679]: "1"
+            - listitem [ref=f8e680]:
+              - link "CLI 2" [ref=f8e681] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cli/
+                - text: CLI
+                - generic [ref=f8e682]: "2"
+            - listitem [ref=f8e683]:
+              - link "CloudHSM 2" [ref=f8e684] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cloudhsm/
+                - text: CloudHSM
+                - generic [ref=f8e685]: "2"
+            - listitem [ref=f8e686]:
+              - link "cluster 4" [ref=f8e687] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cluster/
+                - text: cluster
+                - generic [ref=f8e688]: "4"
+            - listitem [ref=f8e689]:
+              - link "Cluster-API 1" [ref=f8e690] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cluster-api/
+                - text: Cluster-API
+                - generic [ref=f8e691]: "1"
+            - listitem [ref=f8e692]:
+              - link "clusters 1" [ref=f8e693] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/clusters/
+                - text: clusters
+                - generic [ref=f8e694]: "1"
+            - listitem [ref=f8e695]:
+              - link "Compliance 8" [ref=f8e696] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/compliance/
+                - text: Compliance
+                - generic [ref=f8e697]: "8"
+            - listitem [ref=f8e698]:
+              - link "compute 99" [ref=f8e699] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/compute/
+                - text: compute
+                - generic [ref=f8e700]: "99"
+            - listitem [ref=f8e701]:
+              - link "Concourse 5" [ref=f8e702] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/concourse/
+                - text: Concourse
+                - generic [ref=f8e703]: "5"
+            - listitem [ref=f8e704]:
+              - link "Configuration 1" [ref=f8e705] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/configuration/
+                - text: Configuration
+                - generic [ref=f8e706]: "1"
+            - listitem [ref=f8e707]:
+              - link "Connectivity 1" [ref=f8e708] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/connectivity/
+                - text: Connectivity
+                - generic [ref=f8e709]: "1"
+            - listitem [ref=f8e710]:
+              - link "Context 1" [ref=f8e711] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/context/
+                - text: Context
+                - generic [ref=f8e712]: "1"
+            - listitem [ref=f8e713]:
+              - link "Controlplane 12" [ref=f8e714] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/controlplane/
+                - text: Controlplane
+                - generic [ref=f8e715]: "12"
+            - listitem [ref=f8e716]:
+              - link "Converged Cloud 1" [ref=f8e717] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/converged-cloud/
+                - text: Converged Cloud
+                - generic [ref=f8e718]: "1"
+            - listitem [ref=f8e719]:
+              - link "Cost 3" [ref=f8e720] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cost/
+                - text: Cost
+                - generic [ref=f8e721]: "3"
+            - listitem [ref=f8e722]:
+              - link "cPod 1" [ref=f8e723] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cpod/
+                - text: cPod
+                - generic [ref=f8e724]: "1"
+            - listitem [ref=f8e725]:
+              - link "CPU 2" [ref=f8e726] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cpu/
+                - text: CPU
+                - generic [ref=f8e727]: "2"
+            - listitem [ref=f8e728]:
+              - link "credential 1" [ref=f8e729] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/credential/
+                - text: credential
+                - generic [ref=f8e730]: "1"
+            - listitem [ref=f8e731]:
+              - link "credentials 2" [ref=f8e732] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/credentials/
+                - text: credentials
+                - generic [ref=f8e733]: "2"
+            - listitem [ref=f8e734]:
+              - link "Critical 19" [ref=f8e735] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/critical/
+                - text: Critical
+                - generic [ref=f8e736]: "19"
+            - listitem [ref=f8e737]:
+              - link "cross-platform 1" [ref=f8e738] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cross-platform/
+                - text: cross-platform
+                - generic [ref=f8e739]: "1"
+            - listitem [ref=f8e740]:
+              - link "Cubbyhole 1" [ref=f8e741] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/cubbyhole/
+                - text: Cubbyhole
+                - generic [ref=f8e742]: "1"
+            - listitem [ref=f8e743]:
+              - link "dashboard 1" [ref=f8e744] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/dashboard/
+                - text: dashboard
+                - generic [ref=f8e745]: "1"
+            - listitem [ref=f8e746]:
+              - link "Dashboards 2" [ref=f8e747] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/dashboards/
+                - text: Dashboards
+                - generic [ref=f8e748]: "2"
+            - listitem [ref=f8e749]:
+              - link "data-in 1" [ref=f8e750] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/data-in/
+                - text: data-in
+                - generic [ref=f8e751]: "1"
+            - listitem [ref=f8e752]:
+              - link "decom 7" [ref=f8e753] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/decom/
+                - text: decom
+                - generic [ref=f8e754]: "7"
+            - listitem [ref=f8e755]:
+              - link "define 6" [ref=f8e756] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/define/
+                - text: define
+                - generic [ref=f8e757]: "6"
+            - listitem [ref=f8e758]:
+              - link "Definition 10" [ref=f8e759] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/definition/
+                - text: Definition
+                - generic [ref=f8e760]: "10"
+            - listitem [ref=f8e761]:
+              - link "dell 18" [ref=f8e762] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/dell/
+                - text: dell
+                - generic [ref=f8e763]: "18"
+            - listitem [ref=f8e764]:
+              - link "deployment 1" [ref=f8e765] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/deployment/
+                - text: deployment
+                - generic [ref=f8e766]: "1"
+            - listitem [ref=f8e767]:
+              - link "Designate 1" [ref=f8e768] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/designate/
+                - text: Designate
+                - generic [ref=f8e769]: "1"
+            - listitem [ref=f8e770]:
+              - link "devsupport 1" [ref=f8e771] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/devsupport/
+                - text: devsupport
+                - generic [ref=f8e772]: "1"
+            - listitem [ref=f8e773]:
+              - link "diagnostic 1" [ref=f8e774] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/diagnostic/
+                - text: diagnostic
+                - generic [ref=f8e775]: "1"
+            - listitem [ref=f8e776]:
+              - link "disk 3" [ref=f8e777] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/disk/
+                - text: disk
+                - generic [ref=f8e778]: "3"
+            - listitem [ref=f8e779]:
+              - link "dispatcher 1" [ref=f8e780] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/dispatcher/
+                - text: dispatcher
+                - generic [ref=f8e781]: "1"
+            - listitem [ref=f8e782]:
+              - link "Distribution List 1" [ref=f8e783] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/distribution-list/
+                - text: Distribution List
+                - generic [ref=f8e784]: "1"
+            - listitem [ref=f8e785]:
+              - link "DL380 Gen11 1" [ref=f8e786] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/dl380-gen11/
+                - text: DL380 Gen11
+                - generic [ref=f8e787]: "1"
+            - listitem [ref=f8e788]:
+              - link "DL560 Gen11 1" [ref=f8e789] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/dl560-gen11/
+                - text: DL560 Gen11
+                - generic [ref=f8e790]: "1"
+            - listitem [ref=f8e791]:
+              - link "dns 1" [ref=f8e792] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/dns/
+                - text: dns
+                - generic [ref=f8e793]: "1"
+            - listitem [ref=f8e794]:
+              - link "eda-sll 1" [ref=f8e795] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/eda-sll/
+                - text: eda-sll
+                - generic [ref=f8e796]: "1"
+            - listitem [ref=f8e797]:
+              - link "EDITH 1" [ref=f8e798] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/edith/
+                - text: EDITH
+                - generic [ref=f8e799]: "1"
+            - listitem [ref=f8e800]:
+              - link "elk 1" [ref=f8e801] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/elk/
+                - text: elk
+                - generic [ref=f8e802]: "1"
+            - listitem [ref=f8e803]:
+              - link "esxi 8" [ref=f8e804] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/esxi/
+                - text: esxi
+                - generic [ref=f8e805]: "8"
+            - listitem [ref=f8e806]:
+              - link "ESXi_Deploy 1" [ref=f8e807] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/esxi_deploy/
+                - text: ESXi_Deploy
+                - generic [ref=f8e808]: "1"
+            - listitem [ref=f8e809]:
+              - link "Evacuation 1" [ref=f8e810] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/evacuation/
+                - text: Evacuation
+                - generic [ref=f8e811]: "1"
+            - listitem [ref=f8e812]:
+              - link "External Customer 1" [ref=f8e813] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/external-customer/
+                - text: External Customer
+                - generic [ref=f8e814]: "1"
+            - listitem [ref=f8e815]:
+              - link "External Domains 2" [ref=f8e816] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/external-domains/
+                - text: External Domains
+                - generic [ref=f8e817]: "2"
+            - listitem [ref=f8e818]:
+              - link "fan 2" [ref=f8e819] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/fan/
+                - text: fan
+                - generic [ref=f8e820]: "2"
+            - listitem [ref=f8e821]:
+              - link "File Share 1" [ref=f8e822] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/file-share/
+                - text: File Share
+                - generic [ref=f8e823]: "1"
+            - listitem [ref=f8e824]:
+              - link "FIM 1" [ref=f8e825] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/fim/
+                - text: FIM
+                - generic [ref=f8e826]: "1"
+            - listitem [ref=f8e827]:
+              - link "firmware 5" [ref=f8e828] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/firmware/
+                - text: firmware
+                - generic [ref=f8e829]: "5"
+            - listitem [ref=f8e830]:
+              - link "Flavor 2" [ref=f8e831] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/flavor/
+                - text: Flavor
+                - generic [ref=f8e832]: "2"
+            - listitem [ref=f8e833]:
+              - link "FlowChart 2" [ref=f8e834] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/flowchart/
+                - text: FlowChart
+                - generic [ref=f8e835]: "2"
+            - listitem [ref=f8e836]:
+              - link "Gardener 16" [ref=f8e837] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/gardener/
+                - text: Gardener
+                - generic [ref=f8e838]: "16"
+            - listitem [ref=f8e839]:
+              - link "general 1" [ref=f8e840] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/general/
+                - text: general
+                - generic [ref=f8e841]: "1"
+            - listitem [ref=f8e842]:
+              - link "GitHub 25" [ref=f8e843] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/github/
+                - text: GitHub
+                - generic [ref=f8e844]: "25"
+            - listitem [ref=f8e845]:
+              - link "Glance 3" [ref=f8e846] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/glance/
+                - text: Glance
+                - generic [ref=f8e847]: "3"
+            - listitem [ref=f8e848]:
+              - link "Governance 15" [ref=f8e849] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/governance/
+                - text: Governance
+                - generic [ref=f8e850]: "15"
+            - listitem [ref=f8e851]:
+              - link "gpudpod 1" [ref=f8e852] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/gpudpod/
+                - text: gpudpod
+                - generic [ref=f8e853]: "1"
+            - listitem [ref=f8e854]:
+              - link "Greenhouse 1" [ref=f8e855] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/greenhouse/
+                - text: Greenhouse
+                - generic [ref=f8e856]: "1"
+            - listitem [ref=f8e857]:
+              - link "group-compute 80" [ref=f8e858] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-compute/
+                - text: group-compute
+                - generic [ref=f8e859]: "80"
+            - listitem [ref=f8e860]:
+              - link "group-compute-storage-api 1" [ref=f8e861] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-compute-storage-api/
+                - text: group-compute-storage-api
+                - generic [ref=f8e862]: "1"
+            - listitem [ref=f8e863]:
+              - link "group-container 1" [ref=f8e864] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-container/
+                - text: group-container
+                - generic [ref=f8e865]: "1"
+            - listitem [ref=f8e866]:
+              - link "group-customer-success 1" [ref=f8e867] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-customer-success/
+                - text: group-customer-success
+                - generic [ref=f8e868]: "1"
+            - listitem [ref=f8e869]:
+              - link "group-email 1" [ref=f8e870] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-email/
+                - text: group-email
+                - generic [ref=f8e871]: "1"
+            - listitem [ref=f8e872]:
+              - link "group-escalation 1" [ref=f8e873] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-escalation/
+                - text: group-escalation
+                - generic [ref=f8e874]: "1"
+            - listitem [ref=f8e875]:
+              - link "group-foundation 2" [ref=f8e876] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-foundation/
+                - text: group-foundation
+                - generic [ref=f8e877]: "2"
+            - listitem [ref=f8e878]:
+              - link "group-iaas-support 2" [ref=f8e879] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-iaas-support/
+                - text: group-iaas-support
+                - generic [ref=f8e880]: "2"
+            - listitem [ref=f8e881]:
+              - link "group-identity 1" [ref=f8e882] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-identity/
+                - text: group-identity
+                - generic [ref=f8e883]: "1"
+            - listitem [ref=f8e884]:
+              - link "group-network-api 1" [ref=f8e885] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-network-api/
+                - text: group-network-api
+                - generic [ref=f8e886]: "1"
+            - listitem [ref=f8e887]:
+              - link "group-observability 1" [ref=f8e888] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-observability/
+                - text: group-observability
+                - generic [ref=f8e889]: "1"
+            - listitem [ref=f8e890]:
+              - link "group-observation 17" [ref=f8e891] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-observation/
+                - text: group-observation
+                - generic [ref=f8e892]: "17"
+            - listitem [ref=f8e893]:
+              - link "group-process 1" [ref=f8e894] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/group-process/
+                - text: group-process
+                - generic [ref=f8e895]: "1"
+            - listitem [ref=f8e896]:
+              - link "HA 1" [ref=f8e897] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ha/
+                - text: HA
+                - generic [ref=f8e898]: "1"
+            - listitem [ref=f8e899]:
+              - link "hammer 2" [ref=f8e900] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hammer/
+                - text: hammer
+                - generic [ref=f8e901]: "2"
+            - listitem [ref=f8e902]:
+              - link "HANA 1" [ref=f8e903] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hana/
+                - text: HANA
+                - generic [ref=f8e904]: "1"
+            - listitem [ref=f8e905]:
+              - link "handover 1" [ref=f8e906] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/handover/
+                - text: handover
+                - generic [ref=f8e907]: "1"
+            - listitem [ref=f8e908]:
+              - link "Handover Process 1" [ref=f8e909] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/handover-process/
+                - text: Handover Process
+                - generic [ref=f8e910]: "1"
+            - listitem [ref=f8e911]:
+              - link "Hardening 2" [ref=f8e912] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hardening/
+                - text: Hardening
+                - generic [ref=f8e913]: "2"
+            - listitem [ref=f8e914]:
+              - link "Hardware Management 1" [ref=f8e915] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hardware-management/
+                - text: Hardware Management
+                - generic [ref=f8e916]: "1"
+            - listitem [ref=f8e917]:
+              - link "Helm-Charts 1" [ref=f8e918] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/helm-charts/
+                - text: Helm-Charts
+                - generic [ref=f8e919]: "1"
+            - listitem [ref=f8e920]:
+              - link "Hermes 5" [ref=f8e921] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hermes/
+                - text: Hermes
+                - generic [ref=f8e922]: "5"
+            - listitem [ref=f8e923]:
+              - link "Hermez 1" [ref=f8e924] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hermez/
+                - text: Hermez
+                - generic [ref=f8e925]: "1"
+            - listitem [ref=f8e926]:
+              - link "host 2" [ref=f8e927] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/host/
+                - text: host
+                - generic [ref=f8e928]: "2"
+            - listitem [ref=f8e929]:
+              - link "how-to 1" [ref=f8e930] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/how-to/
+                - text: how-to
+                - generic [ref=f8e931]: "1"
+            - listitem [ref=f8e932]:
+              - link "hpe 9" [ref=f8e933] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hpe/
+                - text: hpe
+                - generic [ref=f8e934]: "9"
+            - listitem [ref=f8e935]:
+              - link "HSM 5" [ref=f8e936] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hsm/
+                - text: HSM
+                - generic [ref=f8e937]: "5"
+            - listitem [ref=f8e938]:
+              - link "HSMaaS 3" [ref=f8e939] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hsmaas/
+                - text: HSMaaS
+                - generic [ref=f8e940]: "3"
+            - listitem [ref=f8e941]:
+              - link "Hypervisor 2" [ref=f8e942] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/hypervisor/
+                - text: Hypervisor
+                - generic [ref=f8e943]: "2"
+            - listitem [ref=f8e944]:
+              - link "iaas 7" [ref=f8e945] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/iaas/
+                - text: iaas
+                - generic [ref=f8e946]: "7"
+            - listitem [ref=f8e947]:
+              - link "ias-auditlogs 1" [ref=f8e948] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ias-auditlogs/
+                - text: ias-auditlogs
+                - generic [ref=f8e949]: "1"
+            - listitem [ref=f8e950]:
+              - link "iDRAC 2" [ref=f8e951] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/idrac/
+                - text: iDRAC
+                - generic [ref=f8e952]: "2"
+            - listitem [ref=f8e953]:
+              - link "Image 1" [ref=f8e954] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/image/
+                - text: Image
+                - generic [ref=f8e955]: "1"
+            - listitem [ref=f8e956]:
+              - link "incident 2" [ref=f8e957] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/incident/
+                - text: incident
+                - generic [ref=f8e958]: "2"
+            - listitem [ref=f8e959]:
+              - link "Info 1" [ref=f8e960] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/info/
+                - text: Info
+                - generic [ref=f8e961]: "1"
+            - listitem [ref=f8e962]:
+              - link "Infraops 9" [ref=f8e963] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/infraops/
+                - text: Infraops
+                - generic [ref=f8e964]: "9"
+            - listitem [ref=f8e965]:
+              - link "Infrastructure 9" [ref=f8e966] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/infrastructure/
+                - text: Infrastructure
+                - generic [ref=f8e967]: "9"
+            - listitem [ref=f8e968]:
+              - link "installation 1" [ref=f8e969] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/installation/
+                - text: installation
+                - generic [ref=f8e970]: "1"
+            - listitem [ref=f8e971]:
+              - link "INTERNAL 1" [ref=f8e972] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/internal/
+                - text: INTERNAL
+                - generic [ref=f8e973]: "1"
+            - listitem [ref=f8e974]:
+              - link "IPAM 1" [ref=f8e975] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ipam/
+                - text: IPAM
+                - generic [ref=f8e976]: "1"
+            - listitem [ref=f8e977]:
+              - link "Ironic 1" [ref=f8e978] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ironic/
+                - text: Ironic
+                - generic [ref=f8e979]: "1"
+            - listitem [ref=f8e980]:
+              - link "issues 1" [ref=f8e981] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/issues/
+                - text: issues
+                - generic [ref=f8e982]: "1"
+            - listitem [ref=f8e983]:
+              - link "ITSM 2" [ref=f8e984] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/itsm/
+                - text: ITSM
+                - generic [ref=f8e985]: "2"
+            - listitem [ref=f8e986]:
+              - link "jumpHost 1" [ref=f8e987] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/jumphost/
+                - text: jumpHost
+                - generic [ref=f8e988]: "1"
+            - listitem [ref=f8e989]:
+              - link "jumphosts 1" [ref=f8e990] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/jumphosts/
+                - text: jumphosts
+                - generic [ref=f8e991]: "1"
+            - listitem [ref=f8e992]:
+              - link "jumpserver 5" [ref=f8e993] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/jumpserver/
+                - text: jumpserver
+                - generic [ref=f8e994]: "5"
+            - listitem [ref=f8e995]:
+              - link "K8s 2" [ref=f8e996] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/k8s/
+                - text: K8s
+                - generic [ref=f8e997]: "2"
+            - listitem [ref=f8e998]:
+              - link "keep-alive 1" [ref=f8e999] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/keep-alive/
+                - text: keep-alive
+                - generic [ref=f8e1000]: "1"
+            - listitem [ref=f8e1001]:
+              - link "Key Manager 1" [ref=f8e1002] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/key-manager/
+                - text: Key Manager
+                - generic [ref=f8e1003]: "1"
+            - listitem [ref=f8e1004]:
+              - link "keystone 2" [ref=f8e1005] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/keystone/
+                - text: keystone
+                - generic [ref=f8e1006]: "2"
+            - listitem [ref=f8e1007]:
+              - link "Knowledge Base 21" [ref=f8e1008] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/knowledge-base/
+                - text: Knowledge Base
+                - generic [ref=f8e1009]: "21"
+            - listitem [ref=f8e1010]:
+              - link "Knowledgebase 1" [ref=f8e1011] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/knowledgebase/
+                - text: Knowledgebase
+                - generic [ref=f8e1012]: "1"
+            - listitem [ref=f8e1013]:
+              - link "Kubernetes 2" [ref=f8e1014] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/kubernetes/
+                - text: Kubernetes
+                - generic [ref=f8e1015]: "2"
+            - listitem [ref=f8e1016]:
+              - link "kubernikus 1" [ref=f8e1017] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/kubernikus/
+                - text: kubernikus
+                - generic [ref=f8e1018]: "1"
+            - listitem [ref=f8e1019]:
+              - link "KVM 83" [ref=f8e1020] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/kvm/
+                - text: KVM
+                - generic [ref=f8e1021]: "83"
+            - listitem [ref=f8e1022]:
+              - link "Labels 1" [ref=f8e1023] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/labels/
+                - text: Labels
+                - generic [ref=f8e1024]: "1"
+            - listitem [ref=f8e1025]:
+              - link "lbaas 10" [ref=f8e1026] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/lbaas/
+                - text: lbaas
+                - generic [ref=f8e1027]: "10"
+            - listitem [ref=f8e1028]:
+              - link "LCM 3" [ref=f8e1029] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/lcm/
+                - text: LCM
+                - generic [ref=f8e1030]: "3"
+            - listitem [ref=f8e1031]:
+              - link "lenovo 13" [ref=f8e1032] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/lenovo/
+                - text: lenovo
+                - generic [ref=f8e1033]: "13"
+            - listitem [ref=f8e1034]:
+              - link "license 2" [ref=f8e1035] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/license/
+                - text: license
+                - generic [ref=f8e1036]: "2"
+            - listitem [ref=f8e1037]:
+              - link "Lifecycle 2" [ref=f8e1038] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/lifecycle/
+                - text: Lifecycle
+                - generic [ref=f8e1039]: "2"
+            - listitem [ref=f8e1040]:
+              - link "Limes 1" [ref=f8e1041] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/limes/
+                - text: Limes
+                - generic [ref=f8e1042]: "1"
+            - listitem [ref=f8e1043]:
+              - link "LiveMigration 2" [ref=f8e1044] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/livemigration/
+                - text: LiveMigration
+                - generic [ref=f8e1045]: "2"
+            - listitem [ref=f8e1046]:
+              - link "loadbalancer 9" [ref=f8e1047] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/loadbalancer/
+                - text: loadbalancer
+                - generic [ref=f8e1048]: "9"
+            - listitem [ref=f8e1049]:
+              - link "Location Codes 1" [ref=f8e1050] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/location-codes/
+                - text: Location Codes
+                - generic [ref=f8e1051]: "1"
+            - listitem [ref=f8e1052]:
+              - link "Logging 22" [ref=f8e1053] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/logging/
+                - text: Logging
+                - generic [ref=f8e1054]: "22"
+            - listitem [ref=f8e1055]:
+              - link "Logs 13" [ref=f8e1056] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/logs/
+                - text: Logs
+                - generic [ref=f8e1057]: "13"
+            - listitem [ref=f8e1058]:
+              - link "LXCA 1" [ref=f8e1059] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/lxca/
+                - text: LXCA
+                - generic [ref=f8e1060]: "1"
+            - listitem [ref=f8e1061]:
+              - link "Machine 1" [ref=f8e1062] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/machine/
+                - text: Machine
+                - generic [ref=f8e1063]: "1"
+            - listitem [ref=f8e1064]:
+              - link "Maia 2" [ref=f8e1065] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/maia/
+                - text: Maia
+                - generic [ref=f8e1066]: "2"
+            - listitem [ref=f8e1067]:
+              - link "mainboard 2" [ref=f8e1068] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/mainboard/
+                - text: mainboard
+                - generic [ref=f8e1069]: "2"
+            - listitem [ref=f8e1070]:
+              - link "Management 2" [ref=f8e1071] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/management/
+                - text: Management
+                - generic [ref=f8e1072]: "2"
+            - listitem [ref=f8e1073]:
+              - link "Manila 2" [ref=f8e1074] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/manila/
+                - text: Manila
+                - generic [ref=f8e1075]: "2"
+            - listitem [ref=f8e1076]:
+              - link "MCM 1" [ref=f8e1077] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/mcm/
+                - text: MCM
+                - generic [ref=f8e1078]: "1"
+            - listitem [ref=f8e1079]:
+              - link "memory 6" [ref=f8e1080] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/memory/
+                - text: memory
+                - generic [ref=f8e1081]: "6"
+            - listitem [ref=f8e1082]:
+              - link "memory-leak 1" [ref=f8e1083] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/memory-leak/
+                - text: memory-leak
+                - generic [ref=f8e1084]: "1"
+            - listitem [ref=f8e1085]:
+              - link "Metal 1" [ref=f8e1086] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/metal/
+                - text: Metal
+                - generic [ref=f8e1087]: "1"
+            - listitem [ref=f8e1088]:
+              - link "Metal-API 3" [ref=f8e1089] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/metal-api/
+                - text: Metal-API
+                - generic [ref=f8e1090]: "3"
+            - listitem [ref=f8e1091]:
+              - link "Metal-Operator 1" [ref=f8e1092] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/metal-operator/
+                - text: Metal-Operator
+                - generic [ref=f8e1093]: "1"
+            - listitem [ref=f8e1094]:
+              - link "Metrics 3" [ref=f8e1095] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/metrics/
+                - text: Metrics
+                - generic [ref=f8e1096]: "3"
+            - listitem [ref=f8e1097]:
+              - link "MIM 1" [ref=f8e1098] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/mim/
+                - text: MIM
+                - generic [ref=f8e1099]: "1"
+            - listitem [ref=f8e1100]:
+              - link "miscellaneous 15" [ref=f8e1101] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/miscellaneous/
+                - text: miscellaneous
+                - generic [ref=f8e1102]: "15"
+            - listitem [ref=f8e1103]:
+              - link "Models 1" [ref=f8e1104] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/models/
+                - text: Models
+                - generic [ref=f8e1105]: "1"
+            - listitem [ref=f8e1106]:
+              - link "Monitoring 10" [ref=f8e1107] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/monitoring/
+                - text: Monitoring
+                - generic [ref=f8e1108]: "10"
+            - listitem [ref=f8e1109]:
+              - link "mutavault 1" [ref=f8e1110] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/mutavault/
+                - text: mutavault
+                - generic [ref=f8e1111]: "1"
+            - listitem [ref=f8e1112]:
+              - link "my-groups 1" [ref=f8e1113] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/my-groups/
+                - text: my-groups
+                - generic [ref=f8e1114]: "1"
+            - listitem [ref=f8e1115]:
+              - link "Netbox 5" [ref=f8e1116] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/netbox/
+                - text: Netbox
+                - generic [ref=f8e1117]: "5"
+            - listitem [ref=f8e1118]:
+              - link "network 7" [ref=f8e1119] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/network/
+                - text: network
+                - generic [ref=f8e1120]: "7"
+            - listitem [ref=f8e1121]:
+              - link "network-api 10" [ref=f8e1122] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/network-api/
+                - text: network-api
+                - generic [ref=f8e1123]: "10"
+            - listitem [ref=f8e1124]:
+              - link "Networking 12" [ref=f8e1125] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/networking/
+                - text: Networking
+                - generic [ref=f8e1126]: "12"
+            - listitem [ref=f8e1127]:
+              - link "Neutron 2" [ref=f8e1128] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/neutron/
+                - text: Neutron
+                - generic [ref=f8e1129]: "2"
+            - listitem [ref=f8e1130]:
+              - link "NFS 4" [ref=f8e1131] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/nfs/
+                - text: NFS
+                - generic [ref=f8e1132]: "4"
+            - listitem [ref=f8e1133]:
+              - link "NIC 1" [ref=f8e1134] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/nic/
+                - text: NIC
+                - generic [ref=f8e1135]: "1"
+            - listitem [ref=f8e1136]:
+              - link "Node-Provisioning 5" [ref=f8e1137] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/node-provisioning/
+                - text: Node-Provisioning
+                - generic [ref=f8e1138]: "5"
+            - listitem [ref=f8e1139]:
+              - link "Nova 5" [ref=f8e1140] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/nova/
+                - text: Nova
+                - generic [ref=f8e1141]: "5"
+            - listitem [ref=f8e1142]:
+              - link "NOW 1" [ref=f8e1143] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/now/
+                - text: NOW
+                - generic [ref=f8e1144]: "1"
+            - listitem [ref=f8e1145]:
+              - link "NSX-T 1" [ref=f8e1146] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/nsx-t/
+                - text: NSX-T
+                - generic [ref=f8e1147]: "1"
+            - listitem [ref=f8e1148]:
+              - link "NSXT 4" [ref=f8e1149] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/nsxt/
+                - text: NSXT
+                - generic [ref=f8e1150]: "4"
+            - listitem [ref=f8e1151]:
+              - link "NTLS 1" [ref=f8e1152] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ntls/
+                - text: NTLS
+                - generic [ref=f8e1153]: "1"
+            - listitem [ref=f8e1154]:
+              - link "NXT 1" [ref=f8e1155] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/nxt/
+                - text: NXT
+                - generic [ref=f8e1156]: "1"
+            - listitem [ref=f8e1157]:
+              - link "Object Storage 1" [ref=f8e1158] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/object-storage/
+                - text: Object Storage
+                - generic [ref=f8e1159]: "1"
+            - listitem [ref=f8e1160]:
+              - link "Object Store 1" [ref=f8e1161] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/object-store/
+                - text: Object Store
+                - generic [ref=f8e1162]: "1"
+            - listitem [ref=f8e1163]:
+              - link "observability 13" [ref=f8e1164] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/observability/
+                - text: observability
+                - generic [ref=f8e1165]: "13"
+            - listitem [ref=f8e1166]:
+              - link "octavia 10" [ref=f8e1167] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/octavia/
+                - text: octavia
+                - generic [ref=f8e1168]: "10"
+            - listitem [ref=f8e1169]:
+              - link "octobus 5" [ref=f8e1170] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/octobus/
+                - text: octobus
+                - generic [ref=f8e1171]: "5"
+            - listitem [ref=f8e1172]:
+              - link "OME 1" [ref=f8e1173] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ome/
+                - text: OME
+                - generic [ref=f8e1174]: "1"
+            - listitem [ref=f8e1175]:
+              - link "On-Call 1" [ref=f8e1176] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/on-call/
+                - text: On-Call
+                - generic [ref=f8e1177]: "1"
+            - listitem [ref=f8e1178]:
+              - link "on-shift 1" [ref=f8e1179] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/on-shift/
+                - text: on-shift
+                - generic [ref=f8e1180]: "1"
+            - listitem [ref=f8e1181]:
+              - link "onboarding 2" [ref=f8e1182] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/onboarding/
+                - text: onboarding
+                - generic [ref=f8e1183]: "2"
+            - listitem [ref=f8e1184]:
+              - link "oncall 1" [ref=f8e1185] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/oncall/
+                - text: oncall
+                - generic [ref=f8e1186]: "1"
+            - listitem [ref=f8e1187]:
+              - link "OneView 1" [ref=f8e1188] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/oneview/
+                - text: OneView
+                - generic [ref=f8e1189]: "1"
+            - listitem [ref=f8e1190]:
+              - link "OpenSearch 13" [ref=f8e1191] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/opensearch/
+                - text: OpenSearch
+                - generic [ref=f8e1192]: "13"
+            - listitem [ref=f8e1193]:
+              - link "opensearch-hermes 1" [ref=f8e1194] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/opensearch-hermes/
+                - text: opensearch-hermes
+                - generic [ref=f8e1195]: "1"
+            - listitem [ref=f8e1196]:
+              - link "opensearch-logs 5" [ref=f8e1197] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/opensearch-logs/
+                - text: opensearch-logs
+                - generic [ref=f8e1198]: "5"
+            - listitem [ref=f8e1199]:
+              - link "OpenStack 4" [ref=f8e1200] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/openstack/
+                - text: OpenStack
+                - generic [ref=f8e1201]: "4"
+            - listitem [ref=f8e1202]:
+              - link "OpenTelemetry 6" [ref=f8e1203] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/opentelemetry/
+                - text: OpenTelemetry
+                - generic [ref=f8e1204]: "6"
+            - listitem [ref=f8e1205]:
+              - link "operations 3" [ref=f8e1206] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/operations/
+                - text: operations
+                - generic [ref=f8e1207]: "3"
+            - listitem [ref=f8e1208]:
+              - link "operator 1" [ref=f8e1209] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/operator/
+                - text: operator
+                - generic [ref=f8e1210]: "1"
+            - listitem [ref=f8e1211]:
+              - link "otel 4" [ref=f8e1212] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/otel/
+                - text: otel
+                - generic [ref=f8e1213]: "4"
+            - listitem [ref=f8e1214]:
+              - link "Owner_CC_InfraAutomation 4" [ref=f8e1215] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/owner_cc_infraautomation/
+                - text: Owner_CC_InfraAutomation
+                - generic [ref=f8e1216]: "4"
+            - listitem [ref=f8e1217]:
+              - link "password 1" [ref=f8e1218] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/password/
+                - text: password
+                - generic [ref=f8e1219]: "1"
+            - listitem [ref=f8e1220]:
+              - link "patch 1" [ref=f8e1221] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/patch/
+                - text: patch
+                - generic [ref=f8e1222]: "1"
+            - listitem [ref=f8e1223]:
+              - link "pci 1" [ref=f8e1224] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/pci/
+                - text: pci
+                - generic [ref=f8e1225]: "1"
+            - listitem [ref=f8e1226]:
+              - link "Pending 1" [ref=f8e1227] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/pending/
+                - text: Pending
+                - generic [ref=f8e1228]: "1"
+            - listitem [ref=f8e1229]:
+              - link "permission 1" [ref=f8e1230] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/permission/
+                - text: permission
+                - generic [ref=f8e1231]: "1"
+            - listitem [ref=f8e1232]:
+              - link "Perses 2" [ref=f8e1233] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/perses/
+                - text: Perses
+                - generic [ref=f8e1234]: "2"
+            - listitem [ref=f8e1235]:
+              - link "Playbooks 42" [ref=f8e1236] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/playbooks/
+                - text: Playbooks
+                - generic [ref=f8e1237]: "42"
+            - listitem [ref=f8e1238]:
+              - link "port 2" [ref=f8e1239] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/port/
+                - text: port
+                - generic [ref=f8e1240]: "2"
+            - listitem [ref=f8e1241]:
+              - link "port down 1" [ref=f8e1242] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/port-down/
+                - text: port down
+                - generic [ref=f8e1243]: "1"
+            - listitem [ref=f8e1244]:
+              - link "port flapping 1" [ref=f8e1245] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/port-flapping/
+                - text: port flapping
+                - generic [ref=f8e1246]: "1"
+            - listitem [ref=f8e1247]:
+              - link "Portunus 5" [ref=f8e1248] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/portunus/
+                - text: Portunus
+                - generic [ref=f8e1249]: "5"
+            - listitem [ref=f8e1250]:
+              - link "process 45" [ref=f8e1251] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/process/
+                - text: process
+                - generic [ref=f8e1252]: "45"
+            - listitem [ref=f8e1253]:
+              - link "Prometheus 2" [ref=f8e1254] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/prometheus/
+                - text: Prometheus
+                - generic [ref=f8e1255]: "2"
+            - listitem [ref=f8e1256]:
+              - link "proxy switch 1" [ref=f8e1257] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/proxy-switch/
+                - text: proxy switch
+                - generic [ref=f8e1258]: "1"
+            - listitem [ref=f8e1259]:
+              - link "psu 2" [ref=f8e1260] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/psu/
+                - text: psu
+                - generic [ref=f8e1261]: "2"
+            - listitem [ref=f8e1262]:
+              - link "PX Architecture 4" [ref=f8e1263] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/px-architecture/
+                - text: PX Architecture
+                - generic [ref=f8e1264]: "4"
+            - listitem [ref=f8e1265]:
+              - link "PXE 1" [ref=f8e1266] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/pxe/
+                - text: PXE
+                - generic [ref=f8e1267]: "1"
+            - listitem [ref=f8e1268]:
+              - link "python 2" [ref=f8e1269] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/python/
+                - text: python
+                - generic [ref=f8e1270]: "2"
+            - listitem [ref=f8e1271]:
+              - link "qa-node-request 1" [ref=f8e1272] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/qa-node-request/
+                - text: qa-node-request
+                - generic [ref=f8e1273]: "1"
+            - listitem [ref=f8e1274]:
+              - link "QSFP 1" [ref=f8e1275] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/qsfp/
+                - text: QSFP
+                - generic [ref=f8e1276]: "1"
+            - listitem [ref=f8e1277]:
+              - link "R860 1" [ref=f8e1278] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/r860/
+                - text: R860
+                - generic [ref=f8e1279]: "1"
+            - listitem [ref=f8e1280]:
+              - link "rabbitmq 1" [ref=f8e1281] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/rabbitmq/
+                - text: rabbitmq
+                - generic [ref=f8e1282]: "1"
+            - listitem [ref=f8e1283]:
+              - link "Re-install 1" [ref=f8e1284] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/re-install/
+                - text: Re-install
+                - generic [ref=f8e1285]: "1"
+            - listitem [ref=f8e1286]:
+              - link "Record 1" [ref=f8e1287] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/record/
+                - text: Record
+                - generic [ref=f8e1288]: "1"
+            - listitem [ref=f8e1289]:
+              - link "Region 2" [ref=f8e1290] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/region/
+                - text: Region
+                - generic [ref=f8e1291]: "2"
+            - listitem [ref=f8e1292]:
+              - link "remoteboard 1" [ref=f8e1293] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/remoteboard/
+                - text: remoteboard
+                - generic [ref=f8e1294]: "1"
+            - listitem [ref=f8e1295]:
+              - link "repo 1" [ref=f8e1296] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/repo/
+                - text: repo
+                - generic [ref=f8e1297]: "1"
+            - listitem [ref=f8e1298]:
+              - link "Resize 1" [ref=f8e1299] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/resize/
+                - text: Resize
+                - generic [ref=f8e1300]: "1"
+            - listitem [ref=f8e1301]:
+              - link "retention 1" [ref=f8e1302] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/retention/
+                - text: retention
+                - generic [ref=f8e1303]: "1"
+            - listitem [ref=f8e1304]:
+              - link "Role 3" [ref=f8e1305] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/role/
+                - text: Role
+                - generic [ref=f8e1306]: "3"
+            - listitem [ref=f8e1307]:
+              - link "Roles 2" [ref=f8e1308] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/roles/
+                - text: Roles
+                - generic [ref=f8e1309]: "2"
+            - listitem [ref=f8e1310]:
+              - link "runbook 1" [ref=f8e1311] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/runbook/
+                - text: runbook
+                - generic [ref=f8e1312]: "1"
+            - listitem [ref=f8e1313]:
+              - link "Runtime 4" [ref=f8e1314] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/runtime/
+                - text: Runtime
+                - generic [ref=f8e1315]: "4"
+            - listitem [ref=f8e1316]:
+              - link "sap 1" [ref=f8e1317] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/sap/
+                - text: sap
+                - generic [ref=f8e1318]: "1"
+            - listitem [ref=f8e1319]:
+              - link "SAP AI Core 3" [ref=f8e1320] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/sap-ai-core/
+                - text: SAP AI Core
+                - generic [ref=f8e1321]: "3"
+            - listitem [ref=f8e1322]:
+              - link "SCI 1" [ref=f8e1323] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/sci/
+                - text: SCI
+                - generic [ref=f8e1324]: "1"
+            - listitem [ref=f8e1325]:
+              - link "Secrets 2" [ref=f8e1326] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/secrets/
+                - text: Secrets
+                - generic [ref=f8e1327]: "2"
+            - listitem [ref=f8e1328]:
+              - link "Security 48" [ref=f8e1329] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/security/
+                - text: Security
+                - generic [ref=f8e1330]: "48"
+            - listitem [ref=f8e1331]:
+              - link "Security management 18" [ref=f8e1332] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/security-management/
+                - text: Security management
+                - generic [ref=f8e1333]: "18"
+            - listitem [ref=f8e1334]:
+              - link "Seed 1" [ref=f8e1335] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/seed/
+                - text: Seed
+                - generic [ref=f8e1336]: "1"
+            - listitem [ref=f8e1337]:
+              - link "SEM 6" [ref=f8e1338] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/sem/
+                - text: SEM
+                - generic [ref=f8e1339]: "6"
+            - listitem [ref=f8e1340]:
+              - link "ServiceNow 6" [ref=f8e1341] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/servicenow/
+                - text: ServiceNow
+                - generic [ref=f8e1342]: "6"
+            - listitem [ref=f8e1343]:
+              - link "Shift 1" [ref=f8e1344] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/shift/
+                - text: Shift
+                - generic [ref=f8e1345]: "1"
+            - listitem [ref=f8e1346]:
+              - link "short-lived-logins 2" [ref=f8e1347] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/short-lived-logins/
+                - text: short-lived-logins
+                - generic [ref=f8e1348]: "2"
+            - listitem [ref=f8e1349]:
+              - link "SIEM 11" [ref=f8e1350] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/siem/
+                - text: SIEM
+                - generic [ref=f8e1351]: "11"
+            - listitem [ref=f8e1352]:
+              - link "Sites 1" [ref=f8e1353] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/sites/
+                - text: Sites
+                - generic [ref=f8e1354]: "1"
+            - listitem [ref=f8e1355]:
+              - link "slack 1" [ref=f8e1356] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/slack/
+                - text: slack
+                - generic [ref=f8e1357]: "1"
+            - listitem [ref=f8e1358]:
+              - link "sll 1" [ref=f8e1359] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/sll/
+                - text: sll
+                - generic [ref=f8e1360]: "1"
+            - listitem [ref=f8e1361]:
+              - link "SR850-V3 1" [ref=f8e1362] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/sr850-v3/
+                - text: SR850-V3
+                - generic [ref=f8e1363]: "1"
+            - listitem [ref=f8e1364]:
+              - link "Stealtime 1" [ref=f8e1365] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/stealtime/
+                - text: Stealtime
+                - generic [ref=f8e1366]: "1"
+            - listitem [ref=f8e1367]:
+              - link "storage 13" [ref=f8e1368] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/storage/
+                - text: storage
+                - generic [ref=f8e1369]: "13"
+            - listitem [ref=f8e1370]:
+              - link "SupGrp_Compute 1" [ref=f8e1371] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/supgrp_compute/
+                - text: SupGrp_Compute
+                - generic [ref=f8e1372]: "1"
+            - listitem [ref=f8e1373]:
+              - link "SupGrp_Observability 1" [ref=f8e1374] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/supgrp_observability/
+                - text: SupGrp_Observability
+                - generic [ref=f8e1375]: "1"
+            - listitem [ref=f8e1376]:
+              - link "Support-Group 10" [ref=f8e1377] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/support-group/
+                - text: Support-Group
+                - generic [ref=f8e1378]: "10"
+            - listitem [ref=f8e1379]:
+              - link "Support Logs 2" [ref=f8e1380] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/support-logs/
+                - text: Support Logs
+                - generic [ref=f8e1381]: "2"
+            - listitem [ref=f8e1382]:
+              - link "Support Model 19" [ref=f8e1383] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/support-model/
+                - text: Support Model
+                - generic [ref=f8e1384]: "19"
+            - listitem [ref=f8e1385]:
+              - link "Support Process 4" [ref=f8e1386] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/support-process/
+                - text: Support Process
+                - generic [ref=f8e1387]: "4"
+            - listitem [ref=f8e1388]:
+              - link "Swift 5" [ref=f8e1389] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/swift/
+                - text: Swift
+                - generic [ref=f8e1390]: "5"
+            - listitem [ref=f8e1391]:
+              - link "switch 1" [ref=f8e1392] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/switch/
+                - text: switch
+                - generic [ref=f8e1393]: "1"
+            - listitem [ref=f8e1394]:
+              - link "tags 7" [ref=f8e1395] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/tags/
+                - text: tags
+                - generic [ref=f8e1396]: "7"
+            - listitem [ref=f8e1397]:
+              - link "tailscale 1" [ref=f8e1398] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/tailscale/
+                - text: tailscale
+                - generic [ref=f8e1399]: "1"
+            - listitem [ref=f8e1400]:
+              - link "Technical Users 1" [ref=f8e1401] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/technical-users/
+                - text: Technical Users
+                - generic [ref=f8e1402]: "1"
+            - listitem [ref=f8e1403]:
+              - link "tenso 1" [ref=f8e1404] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/tenso/
+                - text: tenso
+                - generic [ref=f8e1405]: "1"
+            - listitem [ref=f8e1406]:
+              - link "Terminating 1" [ref=f8e1407] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/terminating/
+                - text: Terminating
+                - generic [ref=f8e1408]: "1"
+            - listitem [ref=f8e1409]:
+              - link "Terraform 2" [ref=f8e1410] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/terraform/
+                - text: Terraform
+                - generic [ref=f8e1411]: "2"
+            - listitem [ref=f8e1412]:
+              - link "terraform-registry 1" [ref=f8e1413] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/terraform-registry/
+                - text: terraform-registry
+                - generic [ref=f8e1414]: "1"
+            - listitem [ref=f8e1415]:
+              - link "Testing 2" [ref=f8e1416] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/testing/
+                - text: Testing
+                - generic [ref=f8e1417]: "2"
+            - listitem [ref=f8e1418]:
+              - link "Thales 3" [ref=f8e1419] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/thales/
+                - text: Thales
+                - generic [ref=f8e1420]: "3"
+            - listitem [ref=f8e1421]:
+              - link "Thanos 2" [ref=f8e1422] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/thanos/
+                - text: Thanos
+                - generic [ref=f8e1423]: "2"
+            - listitem [ref=f8e1424]:
+              - link "the 1" [ref=f8e1425] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/the/
+                - text: the
+                - generic [ref=f8e1426]: "1"
+            - listitem [ref=f8e1427]:
+              - link "Ticket 2" [ref=f8e1428] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/ticket/
+                - text: Ticket
+                - generic [ref=f8e1429]: "2"
+            - listitem [ref=f8e1430]:
+              - link "ToC_Container 1" [ref=f8e1431] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/toc_container/
+                - text: ToC_Container
+                - generic [ref=f8e1432]: "1"
+            - listitem [ref=f8e1433]:
+              - link "tools 70" [ref=f8e1434] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/tools/
+                - text: tools
+                - generic [ref=f8e1435]: "70"
+            - listitem [ref=f8e1436]:
+              - link "troubleshooting 2" [ref=f8e1437] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/troubleshooting/
+                - text: troubleshooting
+                - generic [ref=f8e1438]: "2"
+            - listitem [ref=f8e1439]:
+              - link "Trust 2" [ref=f8e1440] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/trust/
+                - text: Trust
+                - generic [ref=f8e1441]: "2"
+            - listitem [ref=f8e1442]:
+              - link "upgrade 8" [ref=f8e1443] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/upgrade/
+                - text: upgrade
+                - generic [ref=f8e1444]: "8"
+            - listitem [ref=f8e1445]:
+              - link "vault 27" [ref=f8e1446] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vault/
+                - text: vault
+                - generic [ref=f8e1447]: "27"
+            - listitem [ref=f8e1448]:
+              - link "vault-doppelgaenger 1" [ref=f8e1449] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vault-doppelgaenger/
+                - text: vault-doppelgaenger
+                - generic [ref=f8e1450]: "1"
+            - listitem [ref=f8e1451]:
+              - link "VCenter 1" [ref=f8e1452] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vcenter/
+                - text: VCenter
+                - generic [ref=f8e1453]: "1"
+            - listitem [ref=f8e1454]:
+              - link "vcf 1" [ref=f8e1455] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vcf/
+                - text: vcf
+                - generic [ref=f8e1456]: "1"
+            - listitem [ref=f8e1457]:
+              - link "Vendor 1" [ref=f8e1458] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vendor/
+                - text: Vendor
+                - generic [ref=f8e1459]: "1"
+            - listitem [ref=f8e1460]:
+              - link "vendor consoles 1" [ref=f8e1461] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vendor-consoles/
+                - text: vendor consoles
+                - generic [ref=f8e1462]: "1"
+            - listitem [ref=f8e1463]:
+              - link "VM 5" [ref=f8e1464] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vm/
+                - text: VM
+                - generic [ref=f8e1465]: "5"
+            - listitem [ref=f8e1466]:
+              - link "VMware 11" [ref=f8e1467] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vmware/
+                - text: VMware
+                - generic [ref=f8e1468]: "11"
+            - listitem [ref=f8e1469]:
+              - link "vmware-tooling 1" [ref=f8e1470] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vmware-tooling/
+                - text: vmware-tooling
+                - generic [ref=f8e1471]: "1"
+            - listitem [ref=f8e1472]:
+              - link "Volume 1" [ref=f8e1473] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/volume/
+                - text: Volume
+                - generic [ref=f8e1474]: "1"
+            - listitem [ref=f8e1475]:
+              - link "volume check 1" [ref=f8e1476] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/volume-check/
+                - text: volume check
+                - generic [ref=f8e1477]: "1"
+            - listitem [ref=f8e1478]:
+              - link "vpn 2" [ref=f8e1479] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vpn/
+                - text: vpn
+                - generic [ref=f8e1480]: "2"
+            - listitem [ref=f8e1481]:
+              - link "vROps 1" [ref=f8e1482] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/vrops/
+                - text: vROps
+                - generic [ref=f8e1483]: "1"
+            - listitem [ref=f8e1484]:
+              - link "Warning 47" [ref=f8e1485] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/warning/
+                - text: Warning
+                - generic [ref=f8e1486]: "47"
+            - listitem [ref=f8e1487]:
+              - link "you 5" [ref=f8e1488] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/you/
+                - text: you
+                - generic [ref=f8e1489]: "5"
+            - listitem [ref=f8e1490]:
+              - link "zone 1" [ref=f8e1491] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/tags/zone/
+                - text: zone
+                - generic [ref=f8e1492]: "1"
+      - main [ref=f8e1493]:
+        - navigation "breadcrumb" [ref=f8e1494]:
+          - list [ref=f8e1495]:
+            - listitem [ref=f8e1496]:
+              - link "OpsDocs" [ref=f8e1497] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/docs/
+            - listitem [ref=f8e1498]:
+              - text: /
+              - 'link "Sunset: Support" [ref=f8e1499] [cursor=pointer]':
+                - /url: https://operations.global.cloud.sap/docs/support/
+            - listitem [ref=f8e1500]:
+              - text: /
+              - link "Playbooks" [ref=f8e1501] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/docs/support/playbook/
+            - listitem [ref=f8e1502]:
+              - text: /
+              - link "Neutron Playbooks" [ref=f8e1503] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/docs/support/playbook/neutron/
+            - listitem [ref=f8e1504]:
+              - text: /
+              - link "Port rebinding" [ref=f8e1505] [cursor=pointer]:
+                - /url: https://operations.global.cloud.sap/docs/support/playbook/neutron/port_rebinding/
+        - generic [ref=f8e1506]:
+          - heading "Port rebinding" [level=1] [ref=f8e1507]
+          - generic [ref=f8e1508]: Port Rebinding / Sync NSX-T
+          - paragraph [ref=f8e1509]: "You can trigger a NSX-T sync by port rebinding. To rebind a port follow the instructions below:"
+          - blockquote [ref=f8e1510]:
+            - strong [ref=f8e1511]: Don’t forget to save the binding_host_id
+            - text: from Step 1, otherwise port is lost forever.
+          - list [ref=f8e1512]:
+            - listitem [ref=f8e1513]:
+              - text: "openstack get current binding-host-id:"
+              - code [ref=f8e1514]: openstack port show <port-id> -f value -c binding_host_id
+            - listitem [ref=f8e1515]:
+              - text: Set port binding to DUMMY
+              - code [ref=f8e1516]: openstack port set --host something <port-id>
+            - listitem [ref=f8e1517]:
+              - text: Set port binding to old value
+              - code [ref=f8e1518]: openstack port set --host <original host from step 1> <port-id>
+          - paragraph [ref=f8e1519]: "Everything as a oneliner:"
+          - table [ref=f8e1522]:
+            - rowgroup [ref=f8e1523]:
+              - row [ref=f8e1524]:
+                - cell [ref=f8e1525]:
+                  - code [ref=f8e1527]: "1"
+                - 'cell "read -r -p ''Port to rebind: '' _port_id; _binding_host_id=\"$(openstack port show \"$_port_id\" -f value -c binding_host_id)\" && echo \"Reset port $_port_id on host ${_binding_host_id}\" && openstack port set --host something \"$_port_id\" && openstack port set --host \"$_binding_host_id\" \"$_port_id\" && unset _port_id _binding_host_id`" [ref=f8e1528]':
+                  - code [ref=f8e1530]:
+                    - generic [ref=f8e1531]: "read -r -p 'Port to rebind: ' _port_id; _binding_host_id=\"$(openstack port show \"$_port_id\" -f value -c binding_host_id)\" && echo \"Reset port $_port_id on host ${_binding_host_id}\" && openstack port set --host something \"$_port_id\" && openstack port set --host \"$_binding_host_id\" \"$_port_id\" && unset _port_id _binding_host_id`"
+          - generic [ref=f8e1533]:
+            - text: "Last modified September 22, 2025:"
+            - 'link "finished: restructured Documentation (9a294f73b)" [ref=f8e1534] [cursor=pointer]':
+              - /url: https://github.wdf.sap.corp/cc/documentation-operation/commit/9a294f73b589367577bba0a6ac273a59df653d7c
+    - contentinfo [ref=f8e1535]

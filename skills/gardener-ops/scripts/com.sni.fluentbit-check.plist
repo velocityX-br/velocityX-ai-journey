@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.sni.fluentbit-check</string>
+
+    <!-- The script to run. Environment variables (MAIL_TO etc.) are passed
+         via EnvironmentVariables below so no secrets are hardcoded in the
+         script itself. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/I577081/.claude/skills/gardener-ops/scripts/fluentbit-daily-check.sh</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <!-- EDIT THIS: recipient email address -->
+        <key>MAIL_TO</key>
+        <string>REPLACE_WITH_YOUR_EMAIL@sap.com</string>
+
+        <!-- Optional overrides; defaults are baked into the script -->
+        <key>MAIL_FROM</key>
+        <string>I577081@localhost</string>
+        <key>GARDEN</key>
+        <string>live</string>
+        <key>SHOOT</key>
+        <string>sni-staging</string>
+        <key>NAMESPACE</key>
+        <string>monitoring</string>
+    </dict>
+
+    <!-- Run every day at 08:00 local time. Edit Hour/Minute to change. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>8</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- Capture stdout/stderr for debugging -->
+    <key>StandardOutPath</key>
+    <string>/Users/I577081/Library/Logs/fluentbit-check.launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/I577081/Library/Logs/fluentbit-check.launchd.err.log</string>
+
+    <!-- Do not keep alive / do not run at load; only on the calendar schedule -->
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

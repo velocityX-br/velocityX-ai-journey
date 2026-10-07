@@ -23,6 +23,8 @@ import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
+from ai_observability import configure
+from ai_observability.mcp_middleware import OtelToolMiddleware
 from fastmcp import FastMCP
 
 from config.settings import Settings, get_settings
@@ -48,6 +50,7 @@ async def lifespan(app: FastMCP) -> AsyncIterator[dict]:  # type: ignore[type-ar
         makes available via ``Context.lifespan_context`` in every tool call.
     """
     settings: Settings = get_settings()
+    configure("sci-ai-mcp")
     logger.info(
         "Starting SCI AI MCP server — qdrant_url=%s anthropic_model=%s",
         settings.qdrant_url,
@@ -76,6 +79,7 @@ mcp = FastMCP(
     ),
     lifespan=lifespan,
 )
+mcp.add_middleware(OtelToolMiddleware())
 
 # Register all 5 tools against this FastMCP instance.
 register_tools(mcp)
@@ -89,8 +93,9 @@ register_tools(mcp)
 def main() -> None:
     """Run the SCI AI MCP server with the configured transport.
 
-    Reads ``mcp_transport`` from settings.  When ``sse`` is selected the
-    server binds on ``mcp_host:mcp_port``; otherwise it runs over stdio.
+    Reads ``mcp_transport`` from settings.  When ``sse``, ``http``, or
+    ``streamable-http`` is selected the server binds on
+    ``mcp_host:mcp_port``; otherwise it runs over stdio.
     """
     logging.basicConfig(level=logging.INFO)
 
@@ -98,11 +103,11 @@ def main() -> None:
     transport = getattr(settings, "mcp_transport", "stdio")
 
     logger.info("Running with transport=%s", transport)
-    if transport == "sse":
+    if transport in ("sse", "http", "streamable-http"):
         host = getattr(settings, "mcp_host", "0.0.0.0")
         port = getattr(settings, "mcp_port", 8080)
-        logger.info("SSE server binding on %s:%s", host, port)
-        mcp.run(transport="sse", host=host, port=port)
+        logger.info("%s server binding on %s:%s", transport, host, port)
+        mcp.run(transport=transport, host=host, port=port)  # type: ignore[arg-type]
     else:
         mcp.run(transport=transport)  # type: ignore[arg-type]
 

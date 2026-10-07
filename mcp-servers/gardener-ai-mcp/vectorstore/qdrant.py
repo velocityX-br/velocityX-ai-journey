@@ -48,6 +48,8 @@ _INDEXED_PAYLOAD_FIELDS: tuple[str, ...] = (
     "repo",
     "state",
     "language",
+    "source_origin",
+    "sap_github_repo",
 )
 
 

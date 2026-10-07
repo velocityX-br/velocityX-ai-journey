@@ -1,0 +1,36 @@
+# base.yaml — defaults inherited by every use-case config.
+# A concrete config (e.g. sap_ops.yaml) only needs to override what differs.
+
+name: base-agent
+system_prompt: |
+  You are a helpful, precise assistant. Use the available tools when they help
+  answer the question. Cite the sources returned by tools. If you do not know
+  something and no tool can help, say so plainly.
+
+llm:
+  provider: anthropic          # anthropic | openai | ollama
+  # Gateway model name (SAP internal LLM gateway / Claude Code style). Override
+  # per-env with AGENT_LLM__MODEL or by editing this line. The direct-Anthropic
+  # equivalent would be e.g. claude-sonnet-4-6.
+  model: anthropic--claude-sonnet-latest
+  temperature: 0.0
+  max_tokens: 4096
+  # Auth is resolved from the environment by default (no secrets in YAML):
+  #   * Gateway:  ANTHROPIC_AUTH_TOKEN + ANTHROPIC_BASE_URL  (Bearer token)
+  #   * Direct:   ANTHROPIC_API_KEY
+  # You may also set these explicitly here (supports ${ENV} references):
+  # base_url: ${ANTHROPIC_BASE_URL}
+  # auth_token: ${ANTHROPIC_AUTH_TOKEN}
+  # api_key: ${ANTHROPIC_API_KEY}
+
+memory:
+  backend: memory              # memory (dev) | sqlite (prod)
+  # path: ./agent_state.sqlite # required when backend == sqlite
+
+recursion_limit: 25
+
+# mcp_servers: {}              # no tools by default
+
+# skills: []                   # dirs to scan for Claude Code SKILL.md files
+                               # (skills roots or single skill dirs). Each skill
+                               # becomes a `skill_<name>` tool the agent can call.

@@ -9,7 +9,7 @@ Create SAP-branded presentations by delegating to the `frontend-slides` skill wi
 
 ## Step 1: Invoke frontend-slides
 
-Invoke the `frontend-slides` skill from `/Users/I577081/Workdir/Github/frontend-slides`.
+Invoke the `frontend-slides` skill (registered as `frontend-slides:frontend-slides`) via the Skill tool. Do not reference a hardcoded filesystem path — the skill is resolved by name.
 
 ## Step 2: Inject SAP Brand Context Before Style Discovery
 
