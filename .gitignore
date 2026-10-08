@@ -8,3 +8,9 @@ page-*.webp
 storage-state-*.json
 trace-*.zip
 *.har
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
